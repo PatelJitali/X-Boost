@@ -1,0 +1,180 @@
+.instafeed-container {
+  padding: 50px 20px;
+}
+
+#instafeed-container {
+  padding: 20px 6px;
+}
+
+.instafeed-container .instagram-text {
+  /* margin-bottom: 20px; */
+  padding: 0 20px;
+}
+.instafeed-container .instagram-item svg{
+      background: currentColor;
+}
+.instafeed-container .instagram-text .instagram-sub-title {
+  font-size: 16px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.instafeed-container .instagram-text .instagram-title {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  margin: 0;
+}
+
+.instafeed-container .instagram-feed {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-gap: 10px;
+}
+
+.instafeed-container .instagram-item {
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  aspect-ratio: 1;
+}
+.instafeed-container .instagram-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+.instafeed-container .instagram-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+.instafeed-container .instagram-item:hover::before {
+  opacity: 1;
+}
+
+.instafeed-container .instagram-item:hover img {
+  transform: scale(1.1);
+}
+
+.instafeed-container .instagram-item .instagram-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  color: rgba(255, 255, 255, 0.9);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.instafeed-container .instagram-item:hover .instagram-icon {
+  opacity: 1;
+}
+
+.instafeed-container .slick-prev {
+  left: -17px;
+}
+.instafeed-container .slick-next {
+  right: -18px;
+}
+
+.instafeed-container a img {
+  width: 100%;
+  height: 100%;
+  background-blend-mode: multiply;
+  background-color: #00000050;
+}
+.instafeed-container .slick-slide.slick-active {
+  height: 100%;
+}
+.instafeed-container .slick-track {
+  gap: 10px;
+  display: flex;
+}
+.instafeed-container .instagram-stats {
+  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.instafeed-container .slick-prev:before,
+.instafeed-container .slick-next:before {
+  color: gray;
+}
+
+.instafeed-container .slick-arrow {
+  border: none;
+  padding: 10px;
+  height: 4.5rem;
+  border-radius: 20rem;
+  box-shadow: 0 0 0.5rem 0.1rem #00000045;
+  width: 4.5rem;
+  position: absolute;
+  top: -4rem;
+  z-index: 2;
+  cursor: pointer;
+  background-color: #ffffffe6;
+}
+
+.instafeed-container .slick-arrow:hover {
+  transform: scale(1.1);
+}
+
+.instafeed-container button.slick-left-arrow.slick-arrow {
+  right: 6.5rem;
+}
+
+.instafeed-container button.slick-right-arrow.slick-arrow {
+  right: 1rem;
+}
+
+.instafeed-container button.slick-arrow.slick-disabled {
+  opacity: 0.5;
+  cursor: auto;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .instafeed-container .instagram-text .instagram-title {
+    font-size: 24px;
+  }
+  .instafeed-container .instagram-text.carousel {
+    max-width: 65%;
+  }
+}
+@media (max-width: 480px) {
+  #instafeed-container {
+    padding: 20px 0px;
+  }
+  .instafeed-container .instagram-text {
+    padding: 0 10px;
+  }
+  .instafeed-container .instagram-feed {
+    gap: 10px;
+  }
+  .instafeed-container button.slick-left-arrow.slick-arrow {
+    right: 5rem;
+  }
+  .instafeed-container .slick-arrow {
+    height: 3.5rem;
+    width: 3.5rem;
+    top: -3rem;
+  }
+  .instafeed-container {
+    padding: 15px;
+  }
+}

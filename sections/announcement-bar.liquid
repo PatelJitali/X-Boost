@@ -1,0 +1,643 @@
+{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
+{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign text_color = section.settings.color_scheme.settings.text
+  assign shadow = section.settings.color_scheme.settings.shadow
+%}
+
+{% for block in section.blocks %}
+  {% liquid
+    assign timer_bg = block.settings.background_color
+    if block.settings.text_color != 'rgba(0,0,0,0)'
+      assign timer_text = block.settings.text_color
+    else
+      assign timer_text = text_color
+    endif
+  %}
+{% endfor %}
+
+{% style %}
+  #announcement-countdown-timer .countdown-item {
+    background-color: {{ timer_bg }};
+    color: {{ timer_text }};
+    box-shadow: 0 0 .3rem .1rem {{ shadow }}2b;
+  }
+
+  #announcement-countdown-timer a.countdown-button {
+    box-shadow: 0 0 .4rem .1rem {{ shadow }}2b;
+  }
+{% endstyle %}
+
+{%- liquid
+  assign social_icons = true
+  if settings.social_facebook_link == blank and settings.social_instagram_link == blank and settings.social_youtube_link == blank and settings.social_tiktok_link == blank and settings.social_twitter_link == blank and settings.social_pinterest_link == blank and settings.social_snapchat_link == blank and settings.social_tumblr_link == blank and settings.social_vimeo_link == blank
+    assign social_icons = false
+  endif
+  if section.settings.enable_country_selector or section.settings.enable_language_selector
+    assign language_country_selector = true
+  endif
+  if section.blocks.size > 0
+    assign announcement_bar = true
+  endif
+-%}
+
+{% if social_icons %}
+  {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
+{% endif %}
+
+<div
+  class="utility-bar color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator and section.blocks.size > 0 %} utility-bar--bottom-border{% elsif section.settings.show_line_separator and section.settings.show_social and social_icons%} utility-bar--bottom-border-social-only{% endif %}{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}"
+  {{ block.shopify_attributes }}
+>
+  <div class="page-width utility-bar__grid{% if announcement_bar and language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--3-col{% elsif language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--2-col{% endif %}">
+    {%- if section.settings.show_social and social_icons -%}
+      {%- render 'social-icons' -%}
+    {%- endif -%}
+
+    {%- if section.blocks.size == 1 -%}
+      {%- case section.blocks.first.type -%}
+        {% when 'announcement' %}
+          <div
+            class="announcement-bar{% if section.settings.show_social %} announcement-bar--one-announcement{% endif %}"
+            role="region"
+            aria-label="{{ 'sections.header.announcement' | t }}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if section.blocks.first.settings.text != blank -%}
+              {%- if section.blocks.first.settings.link != blank -%}
+                <a
+                  href="{{ section.blocks.first.settings.link }}"
+                  class="announcement-bar__link link link--text focus-inset animate-arrow"
+                >
+              {%- endif -%}
+              <p class="announcement-bar__message h5">
+                <span>{{ section.blocks.first.settings.text | escape }}</span>
+                {%- if section.blocks.first.settings.link != blank -%}
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-arrow" viewBox="0 0 14 10">
+                    <path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/>
+                  </svg>
+                {%- endif -%}
+              </p>
+              {%- if section.blocks.first.settings.link != blank -%}
+                </a>
+              {%- endif -%}
+            {%- endif -%}
+          </div>
+
+        {% when 'countdown' %}
+          <div
+            class="announcement-bar countdown-section"
+            id="announcement-countdown-timer"
+            role="region"
+            aria-label="{{ 'sections.header.announcement' | t }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="countdown-container">
+              <div
+                class="announcement-countdown-digits"
+                data-end-date="{{ section.blocks.first.settings.end_date | date: '%Y-%m-%d %H:%M:%S' }}"
+              >
+                <div class="heading-wrapper">
+                  {% if section.blocks.first.settings.countdown_heading != blank %}
+                    <p class="timer-heading">{{ section.blocks.first.settings.countdown_heading }}</p>
+                  {% endif %}
+                  {% if section.blocks.first.settings.button_link_countdown != blank %}
+                    <a
+                      href="{{ section.blocks.first.settings.button_link_countdown }}"
+                      class="heading-count-btn countdown-button"
+                      style="
+                        background: {{ section.blocks.first.settings.background_color_button }};
+                        color: {{ section.blocks.first.settings.text_color_button }};
+                      "
+                    >
+                      {{ section.blocks.first.settings.button_text_countdown | default: 'Shop Now' }}
+                      <svg
+                        fill="currentColor"
+                        height="15px"
+                        width="25px"
+                        version="1.1"
+                        id="Layer_1"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 0 330 330"
+                        xml:space="preserve"
+                        stroke="#ffffff"
+                      >
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                          <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255 s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0 c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z">
+                          </path>
+                        </g>
+                      </svg>
+                    </a>
+                  {% endif %}
+                </div>
+
+                <div class="countdown-box">
+                  <div class="countdown-item">
+                    <div class="countdown-number" data-days>00</div>
+                    <div class="countdown-label">Days</div>
+                  </div>
+                  <div class="time-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-number" data-hours>00</div>
+                    <div class="countdown-label">Hours</div>
+                  </div>
+                  <div class="time-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-number" data-minutes>00</div>
+                    <div class="countdown-label">Minutes</div>
+                  </div>
+                  <div class="time-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-number" data-seconds>00</div>
+                    <div class="countdown-label">Seconds</div>
+                  </div>
+                </div>
+                <div class="timeout-message" style="display:none;">
+                  <p>{{ section.blocks.first.settings.timeout_message }}</p>
+                </div>
+              </div>
+              {% if section.blocks.first.settings.button_link_countdown != blank %}
+                <a
+                  href="{{ section.blocks.first.settings.button_link_countdown }}"
+                  class="countdown-button"
+                  style="
+                    background: {{ section.blocks.first.settings.background_color_button }};
+                    color: {{ section.blocks.first.settings.text_color_button }};
+                  "
+                >
+                  {{ section.blocks.first.settings.button_text_countdown | default: 'Shop Now' }}
+                  <svg
+                    fill="currentColor"
+                    height="15px"
+                    width="25px"
+                    version="1.1"
+                    id="Layer_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 330 330"
+                    xml:space="preserve"
+                    stroke="#ffffff"
+                  >
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255 s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0 c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"></path> </g>
+                  </svg>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+      {%- endcase -%}
+
+    {%- elsif section.blocks.size > 1 -%}
+      <slideshow-component
+        class="announcement-bar"
+        role="region"
+        aria-roledescription="{{ 'sections.announcements.carousel' | t }}"
+        aria-label="{{ 'sections.announcements.announcement_bar' | t }}"
+      >
+        <div class="announcement-bar-slider slider-buttons">
+          <button
+            type="button"
+            class="slider-button slider-button--prev"
+            name="previous"
+            aria-label="{{ 'sections.announcements.previous_announcement' | t }}"
+            aria-controls="Slider-{{ section.id }}"
+          >
+            <svg class="icon icon-caret" viewBox="0 0 10 6">
+              <path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/>
+            </svg>
+          </button>
+          <div
+            class="grid grid--1-col slider slider--everywhere"
+            id="Slider-{{ section.id }}"
+            aria-live="polite"
+            aria-atomic="true"
+            data-autoplay="{{ section.settings.auto_rotate }}"
+            data-speed="{{ section.settings.change_slides_speed }}"
+          >
+            {%- for block in section.blocks -%}
+              <div
+                class="slideshow__slide slider__slide grid__item grid--1-col"
+                id="Slide-{{ section.id }}-{{ forloop.index }}"
+                {{ block.shopify_attributes }}
+                role="group"
+                aria-roledescription="{{ 'sections.announcements.announcement' | t }}"
+                aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
+                tabindex="-1"
+              >
+                {%- case block.type -%}
+                  {% when 'announcement' %}
+                    <div
+                      class="announcement-bar__announcement"
+                      role="region"
+                      aria-label="{{ 'sections.header.announcement' | t }}"
+                      {{ block.shopify_attributes }}
+                    >
+                      {%- if block.settings.text != blank -%}
+                        {%- if block.settings.link != blank -%}
+                          <a
+                            href="{{ block.settings.link }}"
+                            class="announcement-bar__link link link--text focus-inset animate-arrow"
+                          >
+                        {%- endif -%}
+                        <p class="announcement-bar__message h5">
+                          <span>{{ block.settings.text | escape }}</span>
+                          {%- if block.settings.link != blank -%}
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              class="icon icon-arrow"
+                              viewBox="0 0 14 10"
+                            >
+                              <path fill="currentColor" fill-rule="evenodd" d="M8.537.808a.5.5 0 0 1 .817-.162l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 1 1-.708-.708L11.793 5.5H1a.5.5 0 0 1 0-1h10.793L8.646 1.354a.5.5 0 0 1-.109-.546" clip-rule="evenodd"/>
+                            </svg>
+                          {%- endif -%}
+                        </p>
+                        {%- if block.settings.link != blank -%}
+                          </a>
+                        {%- endif -%}
+                      {%- endif -%}
+                    </div>
+
+                  {% when 'countdown' %}
+                    <div
+                      class="countdown-section"
+                      id="announcement-countdown-timer"
+                    >
+                      <div class="countdown-container">
+                        <div
+                          class="announcement-countdown-digits"
+                          data-end-date="{{ block.settings.end_date | date: '%Y-%m-%d %H:%M:%S' }}"
+                        >
+                          <div class="heading-wrapper">
+                            {% if block.settings.countdown_heading != blank %}
+                              <p class="timer-heading">{{ block.settings.countdown_heading }}</p>
+                            {% endif %}
+                            {% if block.settings.button_link_countdown != blank %}
+                              <a
+                                href="{{ block.settings.button_link_countdown }}"
+                                class="heading-count-btn countdown-button"
+                                style="
+                                  background: {{ block.settings.background_color_button }};
+                                  color: {{ block.settings.text_color_button }};
+                                "
+                              >
+                                {{ section.blocks.first.settings.button_text_countdown | default: 'Shop Now' }}
+                                <svg
+                                  fill="#ffffff"
+                                  height="15px"
+                                  width="25px"
+                                  version="1.1"
+                                  id="Layer_1"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  xmlns:xlink="http://www.w3.org/1999/xlink"
+                                  viewBox="0 0 330 330"
+                                  xml:space="preserve"
+                                  stroke="#ffffff"
+                                >
+                                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255 s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0 c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"></path> </g>
+                                </svg>
+                              </a>
+                            {% endif %}
+                          </div>
+
+                          <div class="countdown-box" id="announcement-countdown-timer-{{ forloop.index }}">
+                            <div class="countdown-item">
+                              <div class="countdown-number" data-days>00</div>
+                              <div class="countdown-label">Days</div>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="countdown-item">
+                              <div class="countdown-number" data-hours>00</div>
+                              <div class="countdown-label">Hours</div>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="countdown-item">
+                              <div class="countdown-number" data-minutes>00</div>
+                              <div class="countdown-label">Minutes</div>
+                            </div>
+                            <div class="time-separator">:</div>
+                            <div class="countdown-item">
+                              <div class="countdown-number" data-seconds>00</div>
+                              <div class="countdown-label">Seconds</div>
+                            </div>
+                          </div>
+                          <div class="timeout-message" style="display:none;">
+                            <p>{{ block.settings.timeout_message }}</p>
+                          </div>
+                        </div>
+                        {% if block.settings.button_link_countdown != blank %}
+                          <a
+                            href="{{ block.settings.button_link_countdown }}"
+                            class="countdown-button"
+                            style="
+                              background: {{ block.settings.background_color_button }};
+                              color: {{ block.settings.text_color_button }};
+                            "
+                          >
+                            {{ block.settings.button_text_countdown | default: 'Shop Now' }}
+                            <svg
+                              fill="#ffffff"
+                              height="15px"
+                              width="25px"
+                              version="1.1"
+                              id="Layer_1"
+                              xmlns="http://www.w3.org/2000/svg"
+                              xmlns:xlink="http://www.w3.org/1999/xlink"
+                              viewBox="0 0 330 330"
+                              xml:space="preserve"
+                              stroke="#ffffff"
+                            >
+                              <g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path id="XMLID_27_" d="M15,180h263.787l-49.394,49.394c-5.858,5.857-5.858,15.355,0,21.213C232.322,253.535,236.161,255,240,255 s7.678-1.465,10.606-4.394l75-75c5.858-5.857,5.858-15.355,0-21.213l-75-75c-5.857-5.857-15.355-5.857-21.213,0 c-5.858,5.857-5.858,15.355,0,21.213L278.787,150H15c-8.284,0-15,6.716-15,15S6.716,180,15,180z"></path> </g>
+                            </svg>
+                          </a>
+                        {% endif %}
+                      </div>
+                    </div>
+                {%- endcase -%}
+              </div>
+            {%- endfor -%}
+          </div>
+          <button
+            type="button"
+            class="slider-button slider-button--next"
+            name="next"
+            aria-label="{{ 'sections.announcements.next_announcement' | t }}"
+            aria-controls="Slider-{{ section.id }}"
+          >
+            <svg class="icon icon-caret" viewBox="0 0 10 6">
+              <path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
+      </slideshow-component>
+      {%- if request.design_mode -%}
+        <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
+        <style>
+          /* theme editor power preview fix */
+          .announcement-bar-slider .slider__slide[aria-hidden='true'] {
+            visibility: hidden;
+          }
+        </style>
+      {%- endif -%}
+    {%- endif -%}
+    <div class="localization-wrapper">
+      {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
+        <noscript class="small-hide medium-hide">
+          {%- form 'localization', id: 'AnnouncementCountryMobileFormNoScript', class: 'localization-form' -%}
+            <div class="localization-form__select">
+              <h2 class="visually-hidden" id="AnnouncementCountryMobileLabelNoScript">
+                {{ 'localization.country_label' | t }}
+              </h2>
+              <select
+                class="localization-selector link"
+                name="country_code"
+                aria-labelledby="AnnouncementCountryMobileLabelNoScript"
+              >
+                {%- for country in localization.available_countries -%}
+                  <option
+                    value="{{ country.iso_code }}"
+                    {%- if country.iso_code == localization.country.iso_code %}
+                      selected
+                    {% endif %}
+                  >
+                    {{ country.name }} ({{ country.currency.iso_code }}
+                    {{ country.currency.symbol }})
+                  </option>
+                {%- endfor -%}
+              </select>
+              <svg class="icon icon-caret" viewBox="0 0 10 6">
+                <path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <button class="button button--tertiary">{{ 'localization.update_country' | t }}</button>
+          {%- endform -%}
+        </noscript>
+
+        <localization-form class="small-hide medium-hide no-js-hidden">
+          {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
+            <div>
+              <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ 'localization.country_label' | t }}</h2>
+              {%- render 'country-localization', localPosition: 'AnnouncementCountry' -%}
+            </div>
+          {%- endform -%}
+        </localization-form>
+      {% endif %}
+
+      {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
+        <noscript class="small-hide medium-hide">
+          {%- form 'localization', id: 'AnnouncementLanguageMobileFormNoScript', class: 'localization-form' -%}
+            <div class="localization-form__select">
+              <h2 class="visually-hidden" id="AnnouncementLanguageMobileLabelNoScript">
+                {{ 'localization.language_label' | t }}
+              </h2>
+              <select
+                class="localization-selector link"
+                name="locale_code"
+                aria-labelledby="AnnouncementLanguageMobileLabelNoScript"
+              >
+                {%- for language in localization.available_languages -%}
+                  <option
+                    value="{{ language.iso_code }}"
+                    lang="{{ language.iso_code }}"
+                    {%- if language.iso_code == localization.language.iso_code %}
+                      selected
+                    {% endif %}
+                  >
+                    {{ language.endonym_name | capitalize }}
+                  </option>
+                {%- endfor -%}
+              </select>
+              <svg class="icon icon-caret" viewBox="0 0 10 6">
+                <path fill="currentColor" fill-rule="evenodd" d="M9.354.646a.5.5 0 0 0-.708 0L5 4.293 1.354.646a.5.5 0 0 0-.708.708l4 4a.5.5 0 0 0 .708 0l4-4a.5.5 0 0 0 0-.708" clip-rule="evenodd"/>
+              </svg>
+            </div>
+            <button class="button button--tertiary">{{ 'localization.update_language' | t }}</button>
+          {%- endform -%}
+        </noscript>
+
+        <localization-form class="small-hide medium-hide no-js-hidden">
+          {%- form 'localization', id: 'AnnouncementLanguageForm', class: 'localization-form' -%}
+            <div>
+              <h2 class="visually-hidden" id="AnnouncementLanguageLabel">{{ 'localization.language_label' | t }}</h2>
+              {%- render 'language-localization', localPosition: 'AnnouncementLanguage' -%}
+            </div>
+          {%- endform -%}
+        </localization-form>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+<script src="{{ 'announcement-bar.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "t:sections.announcement-bar.name",
+  "max_blocks": 12,
+  "class": "announcement-bar-section",
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-6"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_line_separator",
+      "default": true,
+      "label": "t:sections.header.settings.show_line_separator.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header__1.content",
+      "info": "t:sections.announcement-bar.settings.header__1.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_social",
+      "default": false,
+      "label": "t:sections.announcement-bar.settings.show_social.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header__2.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "auto_rotate",
+      "label": "t:sections.announcement-bar.settings.auto_rotate.label",
+      "default": false
+    },
+    {
+      "type": "range",
+      "id": "change_slides_speed",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "t:sections.announcement-bar.settings.change_slides_speed.label",
+      "default": 5
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header__3.content",
+      "info": "t:sections.announcement-bar.settings.header__3.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "default": false,
+      "label": "t:sections.announcement-bar.settings.enable_country_selector.label"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.announcement-bar.settings.header__4.content",
+      "info": "t:sections.announcement-bar.settings.header__4.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "default": false,
+      "label": "t:sections.announcement-bar.settings.enable_language_selector.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "t:sections.announcement-bar.blocks.announcement.name",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Welcome to our store",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.text.label"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "t:sections.announcement-bar.blocks.announcement.settings.link.label"
+        }
+      ]
+    },
+     {
+      "type": "countdown",
+      "name": "t:sections.announcement-bar.blocks.countdown.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "countdown_heading",
+          "default": "LIMITED-TIME OFFERS",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.text.label"
+        },
+        {
+          "type": "text",
+          "id": "end_date",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.enddate.label",
+          "default": "2025-12-31 23:59:59",
+          "info": "t:sections.announcement-bar.blocks.countdown.settings.enddate.info"
+        },
+        {
+          "type": "text",
+          "id": "timeout_message",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.timeoutmessage.label",
+          "default": "Timer complete message"
+        },
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.background.label",
+          "default": "#121212"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.textcolor.label",
+          "default": "#ffffff"
+        },
+        {
+          "type": "text",
+          "id": "button_text_countdown",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.btntext.label",
+          "default": "Shop all"
+        },
+        {
+          "type": "url",
+          "id": "button_link_countdown",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.btnurl.label"
+        },
+        {
+          "type": "color",
+          "id": "background_color_button",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.btnbackground.label",
+          "default": "transparent"
+        },
+        {
+          "type": "color",
+          "id": "text_color_button",
+          "label": "t:sections.announcement-bar.blocks.countdown.settings.btntextcolor.label",
+          "default": "#ffffff"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.announcement-bar.presets.name",
+      "blocks": [
+        {
+          "type": "announcement"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

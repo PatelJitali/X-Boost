@@ -1,0 +1,404 @@
+{{ 'lookbook.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign background = section.settings.color_scheme.settings.background
+%}
+
+<style>
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top_video | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom_video | times: 0.75 | round: 0 }}px;
+      background-color: {{ background }}
+    }
+  .product-lookbook-pro-subheader,
+    .product-lookbook-pro-header,
+  .lookbook-pro-details .product-title,
+    .lookbook-pro-details .product-price,
+    .lookbook-pro-details .product-description,
+  .hotspot-popup-content .hotspot-popup-title,
+    .hotspot-popup-content .hotspot-popup-price{
+       color: #000000;
+    }
+  .product-panels,
+    .hotspot-popup {
+     background-color: {{ background }};
+  }
+
+
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top_video }}px;
+        padding-bottom: {{ section.settings.padding_bottom_video }}px;
+      }
+    }
+
+    {% unless section.settings.full_width_section %}
+       #shopify-section-{{ section.id }} {
+        background: var(--all-section-default-background);
+        padding-block: 3rem;
+      }
+      #main-lookbook-with-product {
+        border-radius: 3rem;
+        margin: 3rem auto;
+      }
+    {% else %}
+      #main-lookbook-with-product {
+        padding-left: 5rem;
+        padding-right: 5rem;
+      }
+    {% endunless %}
+    .lookbook-main .product-lookbook-pro-header{
+      font-size : {{section.settings.title-size-heading}}px;
+    }
+      .lookbook-main .product-lookbook-pro-subheader{
+      font-size : {{section.settings.tag-line-subheading}}px;
+    }
+</style>
+
+<section
+  id="main-lookbook-with-product"
+  class="lookbook-main {% unless section.settings.full_width_section %}page-width{% endunless %} section-{{ section.id }}-padding"
+>
+  <div class="lookbook-container">
+    {% if section.settings.lookbook_image != blank %}
+      <div class="lookbook-image-wrapper">
+        {{ section.settings.lookbook_image | image_url: width: 1000 | image_tag: class: 'lookbook-image' }}
+
+        {% assign has_hotspots = false %}
+        {% for block in section.blocks %}
+          {% if block.type == 'hotspot' %}
+            {% assign has_hotspots = true %}
+            <div
+              class="hotspot-wrapper"
+              style="left: {{ block.settings.left_position }}%; top: {{ block.settings.top_position }}%;"
+            >
+              <button
+                class="hotspot"
+                style="background-color: {{ block.settings.hotspot_background_color }};"
+                aria-expanded="false"
+                aria-controls="product-panel-{{ block.id }}"
+                aria-label="View product"
+              ></button>
+
+              {% assign popup_class = 'right' %}
+              {% if block.settings.left_position > 50 %}
+                {% assign popup_class = 'left' %}
+              {% endif %}
+
+              <div class="hotspot-popup {{ popup_class }}">
+                {% if block.settings.product != blank %}
+                  {% assign product = all_products[block.settings.product] %}
+                  
+                  {% if product != blank %}
+                    <div class="hospot-popup-pro-img">
+                      {% if product.featured_image != blank %}
+                        {{ product.featured_image | image_url: width: 140 | image_tag }}
+                      {% endif %}
+                    </div>
+                    <div class="hotspot-popup-content">
+                      {% if product.title != blank %}
+                        <h4 class="hotspot-popup-title">{{ product.title }}</h4>
+                      {% endif %}
+                      {% if product.price != blank %}
+                        <p class="hotspot-popup-price">{{ product.price | money }}</p>
+                      {% endif %}
+                    </div>
+
+                  {% endif %}
+                {% else %}
+                  <div class="hospot-popup-pro-img">
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  </div>
+                  <div class="hotspot-popup-content">
+                    <h4 class="hotspot-popup-title">  {{ 'lookbook.pro_title' | t | escape }}</h4>
+                    <p class="hotspot-popup-price">{{ 1999 | money }}</p>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        {% unless has_hotspots %}
+          {% comment %} Single default hotspot when none are configured {% endcomment %}
+          <div
+            class="hotspot-wrapper"
+            style="left: 50%; top: 50%;"
+          >
+            <button
+              class="hotspot"
+              style="background-color: #000000;"
+              aria-expanded="false"
+              aria-controls="default-product-panel-1"
+              aria-label="View demo product"
+            ></button>
+
+            <div class="hotspot-popup right">
+              <div class="hospot-popup-pro-img">
+                {{ 'product-1' | placeholder_svg_tag }}
+              </div>
+              <div class="hotspot-popup-content">
+                <h4 class="hotspot-popup-title">{{ 'lookbook.pro_popup_title' | t | escape }}</h4>
+                <p class="hotspot-popup-price">{{ 1999 | money }}</p>
+              </div>
+            </div>
+          </div>
+        {% endunless %}
+      </div>
+    {% else %}
+      <div class="lookbook-image-wrapper">
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'lookbook-image' }}
+        
+        {% comment %} Single default hotspot for placeholder image {% endcomment %}
+        <div
+          class="hotspot-wrapper"
+          style="left: 50%; top: 50%;"
+        >
+          <button
+            class="hotspot deflaut-hotspost"
+            style="background-color: #000000;"
+            aria-expanded="false"
+            aria-controls="default-product-panel-1"
+            aria-label="View demo product"
+          ></button>
+
+          <div class="hotspot-popup right">
+            <div class="hospot-popup-pro-img">
+              {{ 'product-1' | placeholder_svg_tag }}
+            </div>
+            <div class="hotspot-popup-content">
+              <h4 class="hotspot-popup-title">{{ 'lookbook.pro_popup_title' | t | escape }}</h4>
+              <p class="hotspot-popup-price">{{ 1999 | money }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endif %}
+
+    <div class="product-panels">
+      <div class="product-header-details">
+        <div class="product-header">
+          <div class="product-header-heading">
+            {% if section.settings['product-subheading'] != blank %}
+              <p class="product-lookbook-pro-subheader">{{ section.settings['product-subheading'] }}</p>
+            {% endif %}
+            {% if section.settings['product-heading'] != blank %}
+              <h2 class="product-lookbook-pro-header">{{ section.settings['product-heading'] }}</h2>
+            {% endif %}
+          </div>
+        </div>
+
+        {% assign has_panel_products = false %}
+        {% for block in section.blocks %}
+          {% if block.type == 'hotspot' %}
+            {% assign has_panel_products = true %}
+            <div
+              id="product-panel-{{ block.id }}"
+              class="product-panel"
+              aria-hidden="true"
+            >
+              {% if block.settings.product != blank %}
+                {% assign product = all_products[block.settings.product] %}
+                
+                {% if product != blank %}
+                  <a href="{{ product.url }}" class="product-lookbook-redirect">
+                    <div class="lookbook-pro-image">
+                      {% if product.featured_image != blank %}
+                        {{ product.featured_image | image_url: width: 500 | image_tag: class: 'product-image' }}
+                      {% else %}
+                        {{ 'product-1' | placeholder_svg_tag }}
+                      {% endif %}
+                    </div>
+
+                    <div class="lookbook-pro-details">
+                      {% if product.title != blank %}
+                        <h3 class="product-title">{{ product.title }}</h3>
+                      {% endif %}
+                      {% if product.price != blank %}
+                        <div class="product-price">{{ product.price | money }}</div>
+                      {% endif %}
+                      {% if product.description != blank %}
+                        <div class="product-description">{{ product.description | strip_html | truncatewords: 10 }}</div>
+                      {% endif %}
+                    </div>
+                  </a>
+          
+                {% endif %}
+              {% else %}
+                <!-- Fallback for when no product is selected -->
+                <div class="lookbook-pro-image">
+                  {{ 'product-1' | placeholder_svg_tag }}
+                </div>
+                <div class="lookbook-pro-details">
+                  <h3 class="product-title">{{ 'lookbook.pro_title' | t | escape }}</h3>
+                  <div class="product-price">{{ 1999 | money }}</div>
+                  <div class="product-description">{{ 'lookbook.pro_dec' | t | escape }}</div>
+                </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        {% endfor %}
+
+        {% unless has_panel_products %}
+          {% comment %} Single default product panel when none are configured {% endcomment %}
+          <div
+            id="default-product-panel-1"
+            class="product-panel"
+            aria-hidden="true"
+          >
+            <div class="lookbook-pro-image">
+              {{ 'product-1' | placeholder_svg_tag }}
+            </div>
+            <div class="lookbook-pro-details">
+              <h3 class="product-title">{{ 'lookbook.pro_popup_title' | t | escape }}</h3>
+              <div class="product-price">{{ 1999 | money }}</div>
+              <div class="product-description">{{ 'lookbook.pro_popup_dec' | t | escape }}</div>
+            </div>
+          </div>
+        {% endunless %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="{{ 'lookbook.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "t:sections.lookbook_product.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width_section",
+      "label": "t:sections.lookbook_product.settings.full_width_section_lookbook.label",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "lookbook_image",
+      "label": "t:sections.lookbook_product.settings.lookbook_image.label"
+    },
+    {
+      "type": "text",
+      "id": "product-heading",
+      "label": "t:sections.lookbook_product.settings.product-headin-title.label",
+      "default": "t:sections.lookbook_product.settings.product-headin-title.default"
+    },
+    {
+      "type": "text",
+      "id": "product-subheading",
+      "label": "t:sections.lookbook_product.settings.product-subheading-title.label",
+      "default": "t:sections.lookbook_product.settings.product-subheading-title.default"
+    },
+         {
+      "type": "header",
+      "content": "t:sections.lookbook_product.settings.font-size-lookbook.content"
+    },
+        {
+      "type": "range",
+      "id": "title-size-heading",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.lookbook_product.settings.title-size-heading-lookbook.label",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tag-line-subheading",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.lookbook_product.settings.tag-line-subheading-lookbook.label",
+      "default": 10
+    },
+    {
+      "type": "header",
+      "content": "t:sections.lookbook_product.settings.section-padding-lookbook.content"
+    },
+    {
+      "type": "range",
+      "id": "padding_top_video",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.lookbook_product.settings.padding_top_video-lookbook.label",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom_video",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.lookbook_product.settings.padding_bottom_video-lookbook.label",
+      "default": 36
+    },
+         {
+          "type": "header",
+          "content": "t:sections.image_video_with_text.blocks.image_text.settings.section_colors.label"
+        },
+        {
+          "type": "color_scheme",
+          "id": "color_scheme",
+          "label": "t:sections.all.colors.label",
+          "default": "scheme-5"
+        },
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "t:sections.lookbook_product.blocks.product-hostpot-lookbook.name",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "t:sections.lookbook_product.blocks.product-hostpot-lookbook.settings.product-lookbook.label"
+        },
+        {
+          "type": "range",
+          "id": "left_position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "t:sections.lookbook_product.blocks.product-hostpot-lookbook.settings.left_position-lookbook.label",
+          "default": 50
+        },
+        {
+          "type": "range",
+          "id": "top_position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "label": "t:sections.lookbook_product.blocks.product-hostpot-lookbook.settings.top_position-lookbook.label",
+          "default": 50
+        },
+        {
+          "type": "color",
+          "label": "t:sections.lookbook_product.blocks.product-hostpot-lookbook.settings.hotspot_background_color.label",
+          "id": "hotspot_background_color",
+          "default": "#ffffff"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.lookbook_product.presets.name",
+      "blocks": [
+        {
+          "type": "hotspot"
+        },
+
+      ]
+    }
+  ]
+}
+{% endschema %}

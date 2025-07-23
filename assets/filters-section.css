@@ -1,0 +1,126 @@
+#CCFacetFiltersForm {
+  max-height: 40rem;
+  overflow: auto;
+}
+
+#CCFacetFiltersForm .cc-filter-wrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+}
+
+#CCFacetFiltersForm .cc-filter-title {
+  flex: 0 0 115px;
+  position: sticky;
+  top: 2px;
+}
+
+#custom-filter h2.filter__title {
+  margin-top: 5px;
+}
+#CCFacetFiltersForm .cc-filter-wrapper h3 {
+  margin: 0;
+}
+#CCFacetFiltersForm .cc-filter-wrapper div div.filter-list-wrapper {
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  /* overflow-x: auto; */
+  align-items: baseline;
+  gap: 10px;
+  text-transform: capitalize;
+  padding: 0 5px;
+  margin: 5px 0;
+}
+
+#CCFacetFiltersForm .cc-filter-wrapper div div.filter-list-wrapper div {
+  padding: 1px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  flex: 0 0 auto;
+  background-color: #ffffff;
+}
+
+#CCFacetFiltersForm .cc-filter-value {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+#CCFacetFiltersForm .cc-filter-value input[type="checkbox"] {
+  opacity: 0;
+  position: absolute;
+}
+
+#CCFacetFiltersForm
+  .cc-filter-wrapper
+  div
+  div.filter-list-wrapper
+  div:has(input:checked) {
+  /* box-shadow: 0 0 .3rem .1rem #000000b3; */
+  border: none;
+}
+#CCFacetFiltersForm
+  .cc-filter-wrapper
+  div
+  div.filter-list-wrapper
+  div:has(input:checked)
+  span.facet-checkbox__text-label {
+  font-weight: 600;
+}
+#CCFacetFiltersForm .cc-filter-wrapper div div.filter-list-wrapper div label,
+.cc-filter-wrapper div.filter-list-wrapper div input {
+  cursor: pointer;
+  color: #003666;
+  font-size: 15px;
+  /* padding: 1px 10px; */
+}
+#CCFacetFiltersForm
+  .cc-filter-wrapper
+  div
+  div.filter-list-wrapper
+  div
+  input:checked
+  + label {
+  font-weight: bold;
+}
+
+#CCFacetFiltersForm .cc-filter-wrapper div.facets-wrap.parent-wrap {
+  border: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+#CCFacetFiltersForm .cc-filter-wrapper .facets__label.disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+#CCFacetFiltersForm::-webkit-scrollbar {
+  width: 8px;
+}
+
+#CCFacetFiltersForm::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media only screen and (max-width: 768px) {
+  #CCFacetFiltersForm .cc-filter-wrapper div div.filter-list-wrapper div {
+    padding: 0px 5px;
+  }
+
+  #CCFacetFiltersForm .cc-filter-wrapper div div.filter-list-wrapper div label {
+    font-size: 14px;
+  }
+  #CCFacetFiltersForm .cc-filter-wrapper h3 {
+    font-size: 15px;
+  }
+  #CCFacetFiltersForm .cc-filter-wrapper div div.filter-list-wrapper {
+    gap: 5px;
+  }
+  #CCFacetFiltersForm .cc-filter-title {
+    flex: 0 0 100px;
+  }
+  #custom-filter h2.filter__title {
+     font-size: 22px !important;
+}
+}

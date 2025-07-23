@@ -1,0 +1,413 @@
+{{ 'featured-products-with-tabs.css' | asset_url | stylesheet_tag }}
+{{ 'slick-theme.min.css' | asset_url | stylesheet_tag }}
+{{ 'slick.min.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign text_color = section.settings.color_scheme.settings.text
+%}
+
+{%- style -%}
+   .section-{{ section.id }}-padding {
+     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+   }
+
+   @media screen and (min-width: 750px) {
+     .section-{{ section.id }}-padding {
+       padding-top: {{ section.settings.padding_top }}px;
+       padding-bottom: {{ section.settings.padding_bottom }}px;
+     }
+   }
+
+    {% unless section.settings.full_width_section %}
+      #shopify-section-{{ section.id }} {
+        background: var(--all-section-default-background);
+        padding-block: 3rem;
+      }
+    {% endunless %}
+
+   .products-tabs-{{ section.id }} .collection-tab, .products-tabs-{{ section.id }} .tab-title {
+     color: {{ text_color }};
+     line-height: 1.5;
+   }
+
+   .products-tabs-{{ section.id }} a.collection-tab.active:after, .products-tabs-{{ section.id }} a.collection-tab::after {
+     background: {{ text_color }}
+   }
+
+  {% unless section.settings.enable_slider_arrows %}
+    .products-tabs-{{ section.id }} button.slick-arrow {
+      display: none !important;
+    }
+  {% endunless %}
+
+  #featured-product-tab .tab-product-main .tab-product-image svg{
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 2 / 2.5;
+  }
+{%- endstyle -%}
+<div
+  class="products-tabs-{{ section.id }} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}"
+  id="featured-product-tab"
+>
+  <div class="collection-title{% if section.settings.enable_desktop_slider %} product-carousel{% endif %}{% unless section.settings.full_width_section %} page-width{% endunless %}">
+    <div
+      class="collection-name"
+    >
+      <div class="tab-titles-container">
+        <div
+          class="tab-title"
+          style="font-size:{{ section.settings.font_size }}px; font-weight:{{ section.settings.font_weight }}; text-align:{{ section.settings.font_align }};"
+        >
+          {{ section.settings.title }}
+        </div>
+        <div class="collection-tabs">
+          {% if section.settings['collection-list'] != blank %}
+            {% for collection in section.settings['collection-list'] %}
+              <a
+                class="collection-tab"
+                href="#"
+                data-collection="{{ collection.handle }}"
+                data-url="{{ collection.url }}"
+              >
+                {{- collection.title -}}
+              </a>
+            {% endfor %}
+          {% else %}
+            <a class="collection-tab"> Collection-1 </a>
+            <a class="collection-tab"> Collection-2 </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="collection-products-wrapper">
+        {% if section.settings['collection-list'] != blank %}
+          {% for collection in section.settings['collection-list'] %}
+            <div class="slider-container">
+              <div
+                class="{% if section.settings.enable_desktop_slider %}product-slider {% else %}collection-products{% endif %} {{ section.settings.columns_mobile }}"
+                data-collection="{{ collection.handle }}"
+              >
+                {% assign total_products = collection.products.size %}
+
+                {% assign products_to_show = section.settings.products_to_show %}
+                {% assign max_start = total_products | minus: products_to_show %}
+
+                {%- assign random_seed = 'now' | date: '%N' | slice: 0, 2 -%}
+                {%- assign start_index = random_seed | modulo: max_start -%}
+
+                {% assign products_shown = 0 %}
+                {% for product in collection.products %}
+                  {% if forloop.index0 >= start_index %}
+                    <div class="tab-product-main {% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %}">
+                      <a href="{{ product.url }}" class="tab-product-link">
+                        <div class="tab-product-image">
+                          {{
+                            product.featured_media
+                            | image_url:
+                              width: product.featured_media.preview_image.width,
+                              height: product.featured_media.preview_image.height
+                            | image_tag
+                          }}
+                        </div>
+                        <div class="tab-content">
+                          <div class="tab-product-title">
+                            {{ product.title | truncate: 35 }}
+                          </div>
+                          <div class="tab-product-price">
+                            {% if product.compare_at_price != blank %}
+                              <span class="compare_price">{{ product.compare_at_price | money }}</span>
+                            {% endif %}
+                            <span>{{ product.price | money }}</span>
+                          </div>
+                        </div>
+                      </a>
+                      {% comment %}Wishlist{% endcomment %}
+                      {%- if settings['enable-wishlist'] %}
+                        {%- if settings['enable-product-gridwishlist'] %}
+                          <div class="wishlist-button-collection">
+                            <button
+                              class="wishlist_button"
+                              data-product-title="{{ product.title }}"
+                              data-product-img="{{ product.featured_image | img_url: '400x400' }}"
+                              data-product-price="{{ product.price | money | remove_first: '' }}"
+                              data-product-url="{{ product.url }}"
+                              data-product-id="{{ product.selected_or_first_available_variant.id  }}"
+                            >
+                              <svg width="30px" height="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <rect x="0" fill="none" width="24" height="24"/>
+                                <g>
+                                <path d="M16.5 4.5c2.206 0 4 1.794 4 4 0 4.67-5.543 8.94-8.5 11.023C9.043 17.44 3.5 13.17 3.5 8.5c0-2.206 1.794-4 4-4 1.298 0 2.522.638 3.273 1.706L12 7.953l1.227-1.746c.75-1.07 1.975-1.707 3.273-1.707m0-1.5c-1.862 0-3.505.928-4.5 2.344C11.005 3.928 9.362 3 7.5 3 4.462 3 2 5.462 2 8.5c0 5.72 6.5 10.438 10 12.85 3.5-2.412 10-7.13 10-12.85C22 5.462 19.538 3 16.5 3z"/>
+                                </g>
+                              </svg>
+                            </button>
+                          </div>
+                        {% endif %}
+                      {% endif %}
+                    </div>
+                    {% assign products_shown = products_shown | plus: 1 %}
+                    {% if products_shown >= products_to_show %}{% break %}{% endif %}
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        {% else %}
+          <div class="slider-container" bis_skin_checked="1">
+            <div
+              class="collection-products column_one fade-in"
+              data-collection="automated"
+              style="display: grid;"
+              bis_skin_checked="1"
+            >
+              <div class="tab-product-main  animate--hover-vertical-lift" bis_skin_checked="1">
+                <a class="tab-product-link">
+                  <div class="tab-product-image" bis_skin_checked="1">
+                    {{ 'product-1' | placeholder_svg_tag }}
+                  </div>
+                  <div class="tab-content" bis_skin_checked="1">
+                    <div class="tab-product-title" bis_skin_checked="1">Product title</div>
+                    <div class="tab-product-price" bis_skin_checked="1">
+                      <span class="compare_price"><span class="transcy-money">Rs. 00.00</span></span>
+                      <span><span class="transcy-money">Rs. 00.00</span></span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-product-main  animate--hover-vertical-lift" bis_skin_checked="1">
+                <a class="tab-product-link">
+                  <div class="tab-product-image" bis_skin_checked="1">
+                    {{ 'product-2' | placeholder_svg_tag }}
+                  </div>
+                  <div class="tab-content" bis_skin_checked="1">
+                    <div class="tab-product-title" bis_skin_checked="1">Product title</div>
+                    <div class="tab-product-price" bis_skin_checked="1">
+                      <span class="compare_price"><span class="transcy-money">Rs. 00.00</span></span>
+                      <span><span class="transcy-money">Rs. 00.00</span></span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-product-main  animate--hover-vertical-lift" bis_skin_checked="1">
+                <a class="tab-product-link">
+                  <div class="tab-product-image" bis_skin_checked="1">
+                    {{ 'product-3' | placeholder_svg_tag }}
+                  </div>
+                  <div class="tab-content" bis_skin_checked="1">
+                    <div class="tab-product-title" bis_skin_checked="1">Product title</div>
+                    <div class="tab-product-price" bis_skin_checked="1">
+                      <span class="compare_price"><span class="transcy-money">Rs. 00.00</span></span>
+                      <span><span class="transcy-money">Rs. 00.00</span></span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-product-main  animate--hover-vertical-lift" bis_skin_checked="1">
+                <a class="tab-product-link">
+                  <div class="tab-product-image" bis_skin_checked="1">
+                    {{ 'product-4' | placeholder_svg_tag }}
+                  </div>
+                  <div class="tab-content" bis_skin_checked="1">
+                    <div class="tab-product-title" bis_skin_checked="1">Product title</div>
+                    <div class="tab-product-price" bis_skin_checked="1">
+                      <span class="compare_price"><span class="transcy-money">Rs. 00.00</span></span>
+                      <span><span class="transcy-money">Rs. 00.00</span></span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+              <div class="tab-product-main  animate--hover-vertical-lift" bis_skin_checked="1">
+                <a class="tab-product-link">
+                  <div class="tab-product-image" bis_skin_checked="1">
+                    {{ 'product-5' | placeholder_svg_tag }}
+                  </div>
+                  <div class="tab-content" bis_skin_checked="1">
+                    <div class="tab-product-title" bis_skin_checked="1">Product title</div>
+                    <div class="tab-product-price" bis_skin_checked="1">
+                      <span class="compare_price"><span class="transcy-money">Rs. 00.00</span></span>
+                      <span><span class="transcy-money">Rs. 00.00</span></span>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      {% if section.settings.enable_view_more and section.settings['collection-list'] != blank %}
+        <div class="collection-button">
+          <a class="button" href="#">View More</a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<script src="{{ 'featured-products-with-tabs.js' | asset_url }}" defer></script>
+<script src="{{ 'jquery.min.js' | asset_url }}"></script>
+<script src="{{ 'slick.js' | asset_url }}"></script>
+
+{% schema %}
+{
+  "name": "t:sections.featured_products_tabs.name",
+   "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width_section",
+      "label": "t:sections.featured_products_tabs.settings.full_width_section.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.featured_products_tabs.settings.header.content"
+    },
+     {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.featured_products_tabs.settings.title.label",
+      "default": "t:sections.featured_products_tabs.settings.title.default"
+    },
+    {
+      "type": "range",
+      "id": "font_size",
+      "min": 1,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.featured_products_tabs.settings.title_font_size.label",
+      "default": 30
+    },
+      {
+      "type": "select",
+      "id": "font_weight",
+      "default": "bold",
+      "label": "t:sections.featured_products_tabs.settings.title_font_weight.label",
+      "options": [
+        {
+          "value": "normal",
+          "label": "t:sections.featured_products_tabs.settings.title_font_weight.option_1.label"
+        },
+        {
+          "value": "bold",
+          "label": "t:sections.featured_products_tabs.settings.title_font_weight.option_2.label"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "font_align",
+      "default": "left",
+      "label": "t:sections.featured_products_tabs.settings.title_alignment.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.featured_products_tabs.settings.title_alignment.option_1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.featured_products_tabs.settings.title_alignment.option_2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.featured_products_tabs.settings.title_alignment.option_3.label"
+        },
+      ]
+    },
+     {
+      "type": "header",
+      "content": "t:sections.featured_products_tabs.settings.tab_header.content"
+    },
+    {
+      "type": "collection_list",
+      "id": "collection-list",
+      "label": "t:sections.featured_products_tabs.settings.collection-list.label",
+      "limit": 3
+    },
+   {
+      "type": "checkbox",
+      "id": "enable_desktop_slider",
+      "label": "t:sections.featured_products_tabs.settings.enable_desktop_slider.label",
+      "default": false
+    },
+   {
+      "type": "checkbox",
+      "id": "enable_slider_arrows",
+      "label": "t:sections.featured_products_tabs.settings.enable_slider_arrows.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "default": "column_two",
+      "label": "t:sections.featured_products_tabs.settings.columns_mobile.label",
+      "options": [
+        {
+          "value": "column_one",
+          "label": "t:sections.featured_products_tabs.settings.columns_mobile.option_1.label"
+        },
+        {
+          "value": "column_two",
+          "label": "t:sections.featured_products_tabs.settings.columns_mobile.option_2.label"
+        }
+      ]
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 1,
+      "max": 10,
+      "step": 1,
+      "default": 5,
+      "label": "t:sections.featured_products_tabs.settings.products_to_show.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_view_more",
+      "label": "t:sections.featured_products_tabs.settings.enable_view_more.label",
+      "default": false
+    },
+    {
+        "type": "header",
+        "content": "t:sections.featured_products_tabs.settings.section_header.content"
+      },
+      {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-5"
+      },
+     {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.featured_products_tabs.presets.name"
+    }
+  ]
+}
+{% endschema %}

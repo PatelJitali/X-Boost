@@ -1,0 +1,651 @@
+{
+    "sections": {
+        "vertical_slideshow_Gz7MMg": {
+            "type": "vertical-slideshow",
+            "blocks": {
+                "slide_k7L39D": {
+                    "type": "slide",
+                    "settings": {
+                        "title": "Premium Ski Helmets & Goggles",
+                        "description": "<p>Shop high-performance ski helmets and goggles designed for maximum safety and comfort. <\/p>",
+                        "button_text": "Shop Now",
+                        "button_link": "shopify:\/\/collections\/snow-helmets",
+                        "background_image": "shopify:\/\/shop_images\/photorealistic-wintertime-scene-with-people-snowboarding_1_145cd338-7fff-4ba1-86d2-f446bd511ba3.jpg",
+                        "mobile_image": "shopify:\/\/shop_images\/2_3e1b3d1c-d982-4dd1-83a8-499dab09ae46.webp",
+                        "content_position": "top-right",
+                        "content_alignment": "right",
+                        "image_overlay_opacity": 20,
+                        "color_scheme": "scheme-1",
+                        "content_animation": "right"
+                    }
+                },
+                "slide_BxkLX4": {
+                    "type": "slide",
+                    "settings": {
+                        "title": "Winter Snowboarding Gear",
+                        "description": "<p>Explore our collection of high-performance snowboards, bindings, and gear. Premium equipment for all skill levels.<\/p>",
+                        "button_text": "Check Now",
+                        "button_link": "shopify:\/\/collections\/snowboards",
+                        "background_image": "shopify:\/\/shop_images\/full-shot-skier-having-fun-outdoors_23-2148939150.jpg",
+                        "mobile_image": "shopify:\/\/shop_images\/full-shot-woman-with-ski-equipment_23-2148931162.webp",
+                        "content_position": "middle-left",
+                        "content_alignment": "left",
+                        "image_overlay_opacity": 20,
+                        "color_scheme": "scheme-1",
+                        "content_animation": "zoomIn"
+                    }
+                },
+                "slide_RVaLnw": {
+                    "type": "slide",
+                    "settings": {
+                        "title": "Winter Sports Goggles",
+                        "description": "<p>Shop high-quality ski goggles featuring anti-fog technology and UV protection.<\/p>",
+                        "button_text": "Connect Now",
+                        "button_link": "shopify:\/\/collections\/snow-goggles",
+                        "background_image": "shopify:\/\/shop_images\/5_3c042c66-90ff-4471-87a3-ffd59c745f5a.jpg",
+                        "mobile_image": "shopify:\/\/shop_images\/3_1.webp",
+                        "content_position": "bottom-left",
+                        "content_alignment": "left",
+                        "image_overlay_opacity": 20,
+                        "color_scheme": "scheme-1",
+                        "content_animation": "left"
+                    }
+                }
+            },
+            "block_order": [
+                "slide_k7L39D",
+                "slide_BxkLX4",
+                "slide_RVaLnw"
+            ],
+            "settings": {
+                "slider_direction": "horizontal",
+                "slider_effect": "slide",
+                "slider_height": "70rem",
+                "mobile_slider_height": "45rem",
+                "slider_speed": 2500,
+                "autoplay": true,
+                "title_font_size": 42,
+                "title_font_weight": "700",
+                "des_font_size": 18,
+                "des_font_weight": "400",
+                "show_content_desktop_block": true,
+                "show_content_mobile": true,
+                "padding_top": 0,
+                "padding_bottom": 0
+            }
+        },
+        "marquee_bNnKfT": {
+            "type": "marquee",
+            "blocks": {
+                "content_4jaW9m": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "text",
+                        "text": "Free delivery from ₹500 and free returns",
+                        "text_size": 20,
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                },
+                "content_bHX6Xp": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "text",
+                        "text": "Big News! Our New Collection is LIVE",
+                        "text_size": 20,
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                },
+                "content_NmBYhj": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "text",
+                        "text": "Join Us for Our Grand Opening Event",
+                        "text_size": 20,
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                },
+                "content_rJwC9q": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "text",
+                        "text": "Returns extended to 60 days",
+                        "text_size": 20,
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                }
+            },
+            "block_order": [
+                "content_4jaW9m",
+                "content_bHX6Xp",
+                "content_NmBYhj",
+                "content_rJwC9q"
+            ],
+            "settings": {
+                "animation_type": "fade-in",
+                "scroll_speed": "30000",
+                "scroll_direction": "left",
+                "pause_on_hover": true,
+                "color_scheme": "scheme-6",
+                "padding_top": 0,
+                "padding_bottom": 0
+            }
+        },
+        "featured_products_with_tabs_Cy37iG": {
+            "type": "featured-products-with-tabs",
+            "settings": {
+                "full_width_section": true,
+                "title": "Featured Products",
+                "font_size": 30,
+                "font_weight": "bold",
+                "font_align": "left",
+                "collection-list": [
+                    "winter-jackets",
+                    "winter-gloves",
+                    "ski-boots"
+                ],
+                "enable_desktop_slider": false,
+                "enable_slider_arrows": true,
+                "columns_mobile": "column_one",
+                "products_to_show": 5,
+                "enable_view_more": true,
+                "color_scheme": "scheme-5",
+                "padding_top": 20,
+                "padding_bottom": 20
+            }
+        },
+        "video_with_text_JXpDGx": {
+            "type": "video-with-text",
+            "blocks": {
+                "image_text_WwaqEc": {
+                    "type": "image_text",
+                    "settings": {
+                        "layout_style": "media-first",
+                        "tag_line": "Stylish and Warm Beanies for Winter Days",
+                        "title": "Cozy Winter Beanies",
+                        "description": "<p>Stay warm and stylish with our cozy winter beanies. Available in a variety of colors and designs for warm beanies<\/p>",
+                        "button_text": "SHOP NOW",
+                        "button_link": "#",
+                        "image": "shopify:\/\/shop_images\/ai-generated-9223568_960_720.webp",
+                        "video_url": "",
+                        "show_controls": false,
+                        "enable_autoplay": true,
+                        "enable_loop": true,
+                        "enable_muted": true,
+                        "color_scheme": "scheme-4"
+                    }
+                },
+                "image_text_xUNqfR": {
+                    "type": "image_text",
+                    "settings": {
+                        "layout_style": "media-first",
+                        "tag_line": "Durable Winter Gloves | Perfect for Cold Weather",
+                        "title": "Winter Gloves",
+                        "description": "<p>Keep your hands warm with our durable winter gloves. ideal for outdoor use in cold and snowy conditions.<\/p>",
+                        "button_text": "SHOP NOW",
+                        "button_link": "#",
+                        "video_url": "",
+                        "video": "",
+                        "show_controls": false,
+                        "enable_autoplay": true,
+                        "enable_loop": true,
+                        "enable_muted": true,
+                        "color_scheme": "scheme-4"
+                    }
+                },
+                "image_text_LMBHnD": {
+                    "type": "image_text",
+                    "settings": {
+                        "layout_style": "media-first",
+                        "tag_line": "Warm and Durable Snow Boots for Winter Adventures",
+                        "title": "Waterproof Snow Boots",
+                        "description": "<p>Tackle the snow in style with our waterproof snow boots. Designed to keep your feet warm during winter hikes.<\/p>",
+                        "button_text": "SHOP NOW",
+                        "button_link": "",
+                        "image": "shopify:\/\/shop_images\/realistic-ladies-winter-boots-white-background_1057389-78214_c9af0817-6a3b-49d8-a6f2-944e026a2cc1.webp",
+                        "video_url": "",
+                        "show_controls": false,
+                        "enable_autoplay": true,
+                        "enable_loop": true,
+                        "enable_muted": true,
+                        "color_scheme": "scheme-4"
+                    }
+                }
+            },
+            "block_order": [
+                "image_text_WwaqEc",
+                "image_text_xUNqfR",
+                "image_text_LMBHnD"
+            ],
+            "settings": {
+                "full_width_section": true,
+                "slider-show": true,
+                "infinite_scroll": true,
+                "arrow": true,
+                "speed": 500,
+                "autoplay": false,
+                "arrow_position": "top",
+                "previous_button": "fa fa-angle-left",
+                "next_button": "fa fa-angle-right",
+                "tag-line": 12,
+                "title-size": 27,
+                "description-size": 16,
+                "animation_type": "fade-in",
+                "padding_top_video": 60,
+                "padding_bottom_video": 56,
+                "color_scheme": "scheme-5"
+            }
+        },
+        "countdown_8r6r4G": {
+            "type": "countdown",
+            "blocks": {
+                "image_984Ym7": {
+                    "type": "image",
+                    "settings": {
+                        "left_image": "shopify:\/\/shop_images\/7_36b9ec04-9c91-40c9-a7bb-08790c412a0b.webp"
+                    }
+                },
+                "countdown_YfXbJK": {
+                    "type": "countdown",
+                    "settings": {
+                        "countdown_heading": "LIMITED-TIME OFFERS",
+                        "countdown_subtext": "Grab these exclusive deals before they're gone!",
+                        "end_date": "2025-12-31 23:59:59",
+                        "timeout_message": "Hurry! The time is up—check back soon for more exciting deals!",
+                        "button_text_countdown": "Shop Now",
+                        "button_link_countdown": ""
+                    }
+                },
+                "collection_r9bM6k": {
+                    "type": "collection",
+                    "settings": {
+                        "featured_collection": "winter-jackets",
+                        "products_to_show": 3,
+                        "previous_button": "fa fa-angle-left",
+                        "next_button": "fa fa-angle-right",
+                        "button_text_collection": "Buy Now"
+                    }
+                }
+            },
+            "block_order": [
+                "image_984Ym7",
+                "countdown_YfXbJK",
+                "collection_r9bM6k"
+            ],
+            "settings": {
+                "full_width_section": true,
+                "color_scheme": "scheme-5",
+                "title-size": 27,
+                "tag-line": 16,
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+        "video_with_text_L6gKzp": {
+            "type": "video-with-text",
+            "blocks": {
+                "image_text_h74ffr": {
+                    "type": "image_text",
+                    "settings": {
+                        "layout_style": "text-first",
+                        "tag_line": "Winter Snowboards for All Skill Levels | Durable & Stylish",
+                        "title": "High-Performance Winter Snowboards",
+                        "description": "<p>Hit the slopes with confidence using our high-performance snowboards. Designed for skill levels of the ultimate snowboarding experience.<\/p>",
+                        "button_text": "Shop Winter Gear",
+                        "button_link": "#",
+                        "video_url": "",
+                        "video": "",
+                        "show_controls": false,
+                        "enable_autoplay": true,
+                        "enable_loop": true,
+                        "enable_muted": true,
+                        "color_scheme": "scheme-1"
+                    }
+                }
+            },
+            "block_order": [
+                "image_text_h74ffr"
+            ],
+            "settings": {
+                "full_width_section": false,
+                "slider-show": false,
+                "infinite_scroll": true,
+                "arrow": false,
+                "speed": 300,
+                "autoplay": false,
+                "arrow_position": "top",
+                "previous_button": "fa fa-angle-left",
+                "next_button": "fa fa-angle-right",
+                "tag-line": 12,
+                "title-size": 27,
+                "description-size": 16,
+                "animation_type": "fade-in",
+                "padding_top_video": 28,
+                "padding_bottom_video": 28,
+                "color_scheme": "scheme-5"
+            }
+        },
+        "performance_count_product_Qg6bmj": {
+            "type": "performance-count-product",
+            "blocks": {
+                "count_D4Ntrr": {
+                    "type": "count",
+                    "settings": {
+                        "icon": "recycle",
+                        "count": "95%",
+                        "count_heading": "Recyclable",
+                        "count_content": "<p>This product is designed with sustainability at its core, boasting a remarkable 95% recyclability.<\/p>",
+                        "countup_animate": true,
+                        "counter_duration": 2
+                    }
+                },
+                "count_G6Ji7K": {
+                    "type": "count",
+                    "settings": {
+                        "icon": "gluten_free",
+                        "count": "85%",
+                        "count_heading": "Gluten free",
+                        "count_content": "<p>Indicates that the product or offering is 85% free of gluten, making it suitable for individuals with mild gluten sensitivities or those seeking reduced gluten intake.<\/p>",
+                        "countup_animate": true,
+                        "counter_duration": 2
+                    }
+                },
+                "count_eRDXxY": {
+                    "type": "count",
+                    "settings": {
+                        "icon": "clipboard",
+                        "count": "100%",
+                        "count_heading": "Cotton",
+                        "count_content": "<p>Experience the perfect blend of comfort and durability with Performance Count Cotton. With 100% premium cotton<\/p>",
+                        "countup_animate": true,
+                        "counter_duration": 2
+                    }
+                }
+            },
+            "block_order": [
+                "count_D4Ntrr",
+                "count_G6Ji7K",
+                "count_eRDXxY"
+            ],
+            "settings": {
+                "full_width_section": true,
+                "heading": "",
+                "subcontent": "",
+                "title_font_size": 27,
+                "title_font_weight": "400",
+                "title_alignment": "left",
+                "product": "roxy-flicker-jacket-2016-womens",
+                "custom-prod-desc": "",
+                "btn_text": "Shop Now",
+                "secondary_btn": false,
+                "pro_image_position": "row",
+                "heading_font_size": 27,
+                "text_alignment": "left",
+                "show_divider": true,
+                "text_alignment_counter": "left",
+                "count_font_size": 40,
+                "count_font_weight": "400",
+                "icon_size": 35,
+                "text_style": "fill",
+                "count_heading_font_size": 27,
+                "count_content_font_size": 16,
+                "color_scheme": "",
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+        "multicolumn_pzMw68": {
+            "type": "multicolumn",
+            "blocks": {
+                "column_w4rc3m": {
+                    "type": "column",
+                    "settings": {
+                        "image": "shopify:\/\/shop_images\/ai-generated-9218403_1280.webp",
+                        "title": "",
+                        "text": "",
+                        "link_label": "Snow Helmet",
+                        "link": "shopify:\/\/collections\/snow-helmets"
+                    }
+                },
+                "column_JY447L": {
+                    "type": "column",
+                    "settings": {
+                        "image": "shopify:\/\/shop_images\/alpine-8602315_1280.jpg",
+                        "title": "",
+                        "text": "",
+                        "link_label": "Ski Boots",
+                        "link": "shopify:\/\/collections\/ski-boots"
+                    }
+                },
+                "column_drpAVt": {
+                    "type": "column",
+                    "settings": {
+                        "image": "shopify:\/\/shop_images\/ai-generated-8554533_1280.webp",
+                        "title": "",
+                        "text": "",
+                        "link_label": "Jackets",
+                        "link": "shopify:\/\/collections\/winter-jackets"
+                    }
+                }
+            },
+            "block_order": [
+                "column_w4rc3m",
+                "column_JY447L",
+                "column_drpAVt"
+            ],
+            "disabled": true,
+            "settings": {
+                "title": "",
+                "heading_size": "h1",
+                "image_width": "full",
+                "image_ratio": "portrait",
+                "columns_desktop": 3,
+                "column_alignment": "left",
+                "background_style": "none",
+                "button_label": "",
+                "button_link": "",
+                "color_scheme": "scheme-4",
+                "columns_mobile": "1",
+                "swipe_on_mobile": false,
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+        "lookbook_bmriPg": {
+            "type": "lookbook",
+            "blocks": {
+                "hotspot_fkyGYe": {
+                    "type": "hotspot",
+                    "settings": {
+                        "product": "anon-talan-helmet-2015",
+                        "left_position": 78,
+                        "top_position": 19,
+                        "hotspot_background_color": "#ffffff"
+                    }
+                }
+            },
+            "block_order": [
+                "hotspot_fkyGYe",
+                "hotspot_QJxq6w",
+                "hotspot_a8yk3F"
+            ],
+            "settings": {
+                "full_width_section": true,
+                "lookbook_image": "shopify:\/\/shop_images\/photorealistic-wintertime-scene-with-people-snowboarding.webp",
+                "product-heading": "Lowest Price Deal",
+                "product-subheading": "Limited Time",
+                "title-size-heading": 27,
+                "tag-line-subheading": 12,
+                "padding_top_video": 36,
+                "padding_bottom_video": 36,
+                "color_scheme": "scheme-7"
+            }
+        },
+        "tabination_yPGRXD": {
+            "type": "tabination",
+            "blocks": {
+                "tab_HMbf9G": {
+                    "type": "tab",
+                    "settings": {
+                        "image": "shopify:\/\/shop_images\/8.webp",
+                        "title": "Premium Boards All Terrain Adventures",
+                        "subtitle": "Snowboards for Every Ride | High-Performance Boards",
+                        "tab-description": "Explore our collection of top-quality snowboards, designed for every skill level. Find the perfect board for powder, park, or all-mountain adventures. Shop now!",
+                        "icon": "smile"
+                    }
+                },
+                "tab_EbCehN": {
+                    "type": "tab",
+                    "settings": {
+                        "image": "shopify:\/\/shop_images\/freepik__a-pair-of-black-ski-boots-on-a-snowboard-in-a-snow__1593.jpg",
+                        "title": "Premium Winter Boots",
+                        "subtitle": "Winter Boots for Cold Weather | Stylish & Durable Footwear",
+                        "tab-description": "Discover winter boots built for warmth, durability, and style. our collection ensures unbeatable protection and all-day comfort. Perfect for every winter adventure!",
+                        "icon": "phone"
+                    }
+                },
+                "tab_cG98py": {
+                    "type": "tab",
+                    "settings": {
+                        "image": "shopify:\/\/shop_images\/freepik__the-style-is-candid-image-photography-with-natural__76154.jpg",
+                        "title": "Premium Winter Gloves",
+                        "subtitle": "Shop Winter Gloves - Stay Warm in Style | Premium Quality",
+                        "tab-description": "Discover our collection of premium winter gloves designed for warmth, comfort, and style. Perfect for outdoor adventures and everyday wear to my shop!",
+                        "icon": "thumbs-up"
+                    }
+                },
+                "tab_3yF9qj": {
+                    "type": "tab",
+                    "settings": {
+                        "image": "shopify:\/\/shop_images\/people-enjoying-snow-sports.jpg",
+                        "title": "Premium Winter Jacket",
+                        "subtitle": "From Day to Night, Always in Style",
+                        "tab-description": "A timeless wardrobe staple crafted from premium material, offering durability, comfort, and effortless style for any occasion.",
+                        "icon": "heart"
+                    }
+                }
+            },
+            "block_order": [
+                "tab_HMbf9G",
+                "tab_EbCehN",
+                "tab_cG98py",
+                "tab_3yF9qj"
+            ],
+            "settings": {
+                "full_width_section": true,
+                "animation_type": "fade-in",
+                "font_size_title": 20,
+                "font-weight-title": "400",
+                "font_size_description": 15,
+                "font-weight-description": "400",
+                "color_scheme": "scheme-4",
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+        "marquee_NEKeNR": {
+            "type": "marquee",
+            "blocks": {
+                "content_bfM9MJ": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "logo",
+                        "text": "Your scrolling text here",
+                        "text_size": 20,
+                        "logo_image": "shopify:\/\/shop_images\/snowboard-logo-design-free-vector.png",
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                },
+                "content_aFpjYb": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "logo",
+                        "text": "Your scrolling text here",
+                        "text_size": 16,
+                        "logo_image": "shopify:\/\/shop_images\/images_1e748095-20d5-4799-9da2-2993fd8538c7.png",
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                },
+                "content_wCWfwk": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "logo",
+                        "text": "Your scrolling text here",
+                        "text_size": 16,
+                        "logo_image": "shopify:\/\/shop_images\/images_f386e924-a9e1-4638-9471-010315780f35.jpg",
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                },
+                "content_bAwdB4": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "logo",
+                        "text": "Your scrolling text here",
+                        "text_size": 16,
+                        "logo_image": "shopify:\/\/shop_images\/download_b89c933b-259f-4363-997e-650d76da83ca.png",
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                },
+                "content_6TQEa7": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "logo",
+                        "text": "Your scrolling text here",
+                        "text_size": 16,
+                        "logo_image": "shopify:\/\/shop_images\/download_0f6b29f9-1faf-40a6-8e67-5fc83f3d29e3.png",
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                },
+                "content_PQR6XP": {
+                    "type": "content",
+                    "settings": {
+                        "content_type": "logo",
+                        "text": "Your scrolling text here",
+                        "text_size": 16,
+                        "logo_image": "shopify:\/\/shop_images\/creative-word-sign-illustration-logo-r-to-run-shoe-icon-logo-template-free-vector.png",
+                        "logo_link": "",
+                        "icon": "heart"
+                    }
+                }
+            },
+            "block_order": [
+                "content_bfM9MJ",
+                "content_aFpjYb",
+                "content_wCWfwk",
+                "content_bAwdB4",
+                "content_6TQEa7",
+                "content_PQR6XP"
+            ],
+            "settings": {
+                "animation_type": "fade-in",
+                "scroll_speed": "30000",
+                "scroll_direction": "left",
+                "pause_on_hover": true,
+                "color_scheme": "",
+                "padding_top": 0,
+                "padding_bottom": 0
+            }
+        }
+    },
+    "order": [
+        "vertical_slideshow_Gz7MMg",
+        "marquee_bNnKfT",
+        "featured_products_with_tabs_Cy37iG",
+        "video_with_text_JXpDGx",
+        "countdown_8r6r4G",
+        "video_with_text_L6gKzp",
+        "performance_count_product_Qg6bmj",
+        "multicolumn_pzMw68",
+        "lookbook_bmriPg",
+        "tabination_yPGRXD",
+        "marquee_NEKeNR"
+    ]
+}

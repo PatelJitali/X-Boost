@@ -1,0 +1,517 @@
+<!-- sections/compare-products.liquid -->
+
+{{ 'compare-products.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign background = section.settings.color_scheme.settings.background
+  assign background_gradient = section.settings.color_scheme.settings.background_gradient
+  assign text_color = section.settings.color_scheme.settings.text
+  assign solid_button_background = section.settings.color_scheme.settings.button
+  assign solid_button_label = section.settings.color_scheme.settings.button_label
+  assign outline_button = section.settings.color_scheme.settings.secondary_button_label
+  assign shadow = section.settings.color_scheme.settings.shadow
+%}
+
+{% style %}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+
+    {% unless section.settings.full_width_section %}
+    .compare-products-{{ section.id }} {
+         border-radius: 3rem;
+         /* margin: 3rem auto; */
+        box-shadow: 0 0 .4rem .1rem #0000002b;
+      }
+     {% endunless %}
+
+    /* New CSS */
+    .compare-products-{{ section.id }} table td .detail-btn {
+      background-color: {{ solid_button_background }};
+      color: {{ solid_button_label }}
+    }
+
+   .compare-products-{{ section.id }} tr:nth-child(even) {
+    background-color: {{ solid_button_background }};
+  }
+
+  .compare-products-{{ section.id }} tr:nth-child(even) > * {
+    color: {{ background }};
+  }
+
+    @media only screen and (max-width: 768px) {
+      .compare-products-{{ section.id }} .compare_product__title {
+        /* font-size: calc({{ section.settings.title_font_size }}px - 70%) !important; */
+        font-size: 18px !important;
+      }
+    }
+{% endstyle %}
+
+{% assign product_to_compare = '' %}
+{% if section.settings.compare_with_current %}
+  {% assign product_to_compare = section.settings.product_to_compare | minus: 1 %}
+{% else %}
+  {% assign product_to_compare = section.settings.product_to_compare %}
+{% endif %}
+
+{% if section.settings.compare_product_list != blank %}
+  <div
+    class="compare-products-{{ section.id }} cc-compare-products {% unless section.settings.full_width_section %}page-width {% endunless %}section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}"
+    id="compare-products"
+  >
+    <div
+      class="{% if section.settings.full_width_section %}page-width{% endif %}"
+    >
+      {% if section.settings['compare-product-title'] != blank %}
+        <div class="title-wrape">
+          <h2
+            class="compare_product__title"
+            style="
+              font-weight: {{ section.settings.title_font_weight }};
+              font-size: {{ section.settings.title_font_size }}px;
+              text-align: {{ section.settings.title_alignment }};
+              width: 100%;
+                text-transform: uppercase;
+            "
+          >
+            {{ section.settings['compare-product-title'] }}
+          </h2>
+        </div>
+      {% endif %}
+      {% if section.settings.compare_product_list != blank %}
+        <div class="table-wrape">
+          <table cellspacing="0" cellpadding="0">
+            <tr>
+              <th></th>
+              {% if section.settings.compare_with_current and section.settings.compare_product_list != blank %}
+                <td>
+                  <p class="image">
+                    {{ product.images.first | image_url: height: product.images.first.height | image_tag }}
+                  </p>
+                  <p>{{ product.title | truncate: 30 }}</p>
+                  {% if section.settings.show_stock %}
+                    {%- if product.selected_or_first_available_variant.inventory_management == 'shopify' -%}
+                      {%- if product.selected_or_first_available_variant.inventory_quantity > 0 -%}
+                        {%- if product.selected_or_first_available_variant.inventory_quantity <= 10 -%}
+                          Low stock
+                        {%- else -%}
+                          <p class="in-stock">
+                            <svg class="icon icon-inventory-status">
+                              <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                            </svg>
+                            In Stock
+                          </p>
+                        {%- endif -%}
+                      {%- else -%}
+                        {%- if product.selected_or_first_available_variant.inventory_policy == 'continue' -%}
+                          <p class="in-stock">
+                            <svg class="icon icon-inventory-status">
+                              <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                            </svg>
+                            In Stock
+                          </p>
+                        {%- else -%}
+                          <p class="out-of-stock">
+                            <svg class="icon icon-inventory-status">
+                              <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                            </svg>
+                            Out of Stock
+                          </p>
+                        {%- endif -%}
+                      {%- endif -%}
+                    {% elsif product.selected_or_first_available_variant.inventory_management == null %}
+                      <p class="in-stock">
+                        <svg class="icon icon-inventory-status">
+                          <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                        </svg>
+                        In Stock
+                      </p>
+                    {% else %}
+                      ―
+                    {%- endif -%}
+                  {% endif %}
+                </td>
+              {% endif %}
+              {% for compare_products in section.settings.compare_product_list %}
+                {% unless forloop.index > product_to_compare %}
+                  {% assign compare_products_id = compare_products.id | append: ',' %}
+                  {% unless compare_products_id contains product.id %}
+                    <td>
+                      <p class="image">
+                        {{
+                          compare_products.media[0].src
+                          | image_url: width: compare_products.media[0].width, height: compare_products.media[0].height
+                          | image_tag
+                        }}
+                      </p>
+                      <p>{{ compare_products.title | truncate: 30 }}</p>
+                      {% if section.settings.show_stock %}
+                        {%- if compare_products.selected_or_first_available_variant.inventory_management == 'shopify'
+                        -%}
+                          {%- if compare_products.selected_or_first_available_variant.inventory_quantity > 0 -%}
+                            {%- if compare_products.selected_or_first_available_variant.inventory_quantity <= 10 -%}
+                              <p class="low-stock">
+                                <svg class="icon icon-inventory-status">
+                                  <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                                </svg>
+                                Low Stock
+                              </p>
+                            {%- else -%}
+                              <p class="in-stock">
+                                <svg class="icon icon-inventory-status">
+                                  <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                                </svg>
+                                In Stock
+                              </p>
+                            {%- endif -%}
+                          {%- else -%}
+                            {%- if compare_products.selected_or_first_available_variant.inventory_policy == 'continue'
+                            -%}
+                              <p class="in-stock">
+                                <svg class="icon icon-inventory-status">
+                                  <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                                </svg>
+                                In Stock
+                              </p>
+                            {%- else -%}
+                              <p class="out-of-stock">
+                                <svg class="icon icon-inventory-status">
+                                  <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                                </svg>
+                                Out of Stock
+                              </p>
+                            {%- endif -%}
+                          {%- endif -%}
+                        {% elsif compare_products.selected_or_first_available_variant.inventory_management == null %}
+                          <p class="in-stock">
+                            <svg class="icon icon-inventory-status">
+                              <circle cx="7.5" cy="7.5" r="7.5" fill="currentColor"/><circle cx="7.5" cy="7.5" r="5" fill="currentColor" stroke="#FFF"/>
+                            </svg>
+                            In Stock
+                          </p>
+                        {% else %}
+                          ―
+                        {%- endif -%}
+                      {% endif %}
+                    </td>
+                  {% endunless %}
+                {% endunless %}
+              {% endfor %}
+            </tr>
+
+            <tr>
+              <th>Price</th>
+              {% if section.settings.compare_with_current %}
+                <td class="current-product price">{{ product.price | money_with_currency }}</td>
+              {% endif %}
+              {% for compare_products in section.settings.compare_product_list %}
+                {% unless forloop.index > product_to_compare %}
+                  {% assign compare_products_id = compare_products.id | append: ',' %}
+                  {% unless compare_products_id contains product.id %}
+                    <td class="price">{{ compare_products.price | money_with_currency }}</td>
+                  {% endunless %}
+                {% endunless %}
+              {% endfor %}
+            </tr>
+
+            {% if section.settings.has_variants %}
+              <tr>
+                <th>Has variants?</th>
+                {% if section.settings.compare_with_current %}
+                  <td class="current-product">
+                    {% if product.has_only_default_variant %}No{% else %}Yes{% endif %}
+                  </td>
+                {% endif %}
+                {% for compare_products in section.settings.compare_product_list %}
+                  {% unless forloop.index > product_to_compare %}
+                    {% assign compare_products_id = compare_products.id | append: ',' %}
+                    {% unless compare_products_id contains product.id %}
+                      <td>
+                        {% if compare_products.has_only_default_variant %}No{% else %}Yes{% endif %}
+                      </td>
+                    {% endunless %}
+                  {% endunless %}
+                {% endfor %}
+              </tr>
+            {% endif %}
+
+            {% if section.settings.available_stocks %}
+              <tr>
+                <th>Available Stock</th>
+                {% if section.settings.compare_with_current %}
+                  <td class="current-product">
+                    {% if product.selected_or_first_available_variant.inventory_quantity > 0 %}
+                      {{ product.selected_or_first_available_variant.inventory_quantity }}
+                    {% elsif product.selected_or_first_available_variant.inventory_management == null %}
+                      50+
+                    {% else %}
+                      ―
+                    {% endif %}
+                  </td>
+                {% endif %}
+                {% for compare_products in section.settings.compare_product_list %}
+                  {% unless forloop.index > product_to_compare %}
+                    {% assign compare_products_id = compare_products.id | append: ',' %}
+                    {% unless compare_products_id contains product.id %}
+                      <td>
+                        {% if compare_products.selected_or_first_available_variant.inventory_quantity > 0 %}
+                          {{ compare_products.selected_or_first_available_variant.inventory_quantity }}
+                        {% elsif compare_products.selected_or_first_available_variant.inventory_management == null %}
+                          50+
+                        {% else %}
+                          ―
+                        {% endif %}
+                      </td>
+                    {% endunless %}
+                  {% endunless %}
+                {% endfor %}
+              </tr>
+            {% endif %}
+
+            {% if section.settings.show_vendor %}
+              <tr>
+                <th>Vendor</th>
+                {% if section.settings.compare_with_current %}
+                  <td class="current-product">{{ product.vendor }}</td>
+                {% endif %}
+                {% for compare_products in section.settings.compare_product_list %}
+                  {% unless forloop.index > product_to_compare %}
+                    {% assign compare_products_id = compare_products.id | append: ',' %}
+                    {% unless compare_products_id contains product.id %}
+                      <td>{{ compare_products.vendor }}</td>
+                    {% endunless %}
+                  {% endunless %}
+                {% endfor %}
+              </tr>
+            {% endif %}
+
+            {% if section.settings.show_product_type %}
+              <tr>
+                <th>Type</th>
+                {% if section.settings.compare_with_current %}
+                  <td class="current-product">{{ product.type }}</td>
+                {% endif %}
+                {% for compare_products in section.settings.compare_product_list %}
+                  {% unless forloop.index > product_to_compare %}
+                    {% assign compare_products_id = compare_products.id | append: ',' %}
+                    {% unless compare_products_id contains product.id %}
+                      <td>{{ compare_products.type }}</td>
+                    {% endunless %}
+                  {% endunless %}
+                {% endfor %}
+              </tr>
+            {% endif %}
+
+            <tr>
+              <th></th>
+              {% if section.settings.compare_with_current %}
+                <td class="current-product">
+                  <a href="#" class="detail-btn">
+                    <span>{{ section.settings.button_text | default: 'More Details' }}</span>
+                  </a>
+                </td>
+              {% endif %}
+              {% for compare_products in section.settings.compare_product_list %}
+                {% unless forloop.index > product_to_compare %}
+                  {% assign compare_products_id = compare_products.id | append: ',' %}
+                  {% unless compare_products_id contains product.id %}
+                    <td>
+                      <a href="{{ compare_products.url }}" class="detail-btn" target="_blank">
+                        <span>{{ section.settings.button_text | default: 'More Details' }}</span>
+                      </a>
+                    </td>
+                  {% endunless %}
+                {% endunless %}
+              {% endfor %}
+            </tr>
+          </table>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "t:sections.compare_products.name",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "full_width_section",
+      "label": "t:sections.compare_products.settings.full_width_section.label",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "t:sections.compare_products.settings.header.content"
+    },
+      {
+        "type": "text",
+        "id": "compare-product-title",
+        "label": "t:sections.compare_products.settings.compare-product-title.label",
+        "default": "t:sections.compare_products.settings.compare-product-title.default"
+      },
+       {
+        "type": "range",
+        "id": "title_font_size",
+        "min": 10,
+        "max": 80,
+        "step": 1,
+        "default": 30,
+         "unit": "px",
+        "label": "t:sections.compare_products.settings.title_font_size.label"
+      },
+      {
+        "type": "select",
+        "id": "title_font_weight",
+        "label": "t:sections.compare_products.settings.title_font_weight.label",
+        "options": [
+          {
+            "label": "t:sections.compare_products.settings.title_font_weight.option_1.label",
+            "value": "400"
+          },
+          {
+            "label": "t:sections.compare_products.settings.title_font_weight.option_2.label",
+            "value": "700"
+          }
+        ],
+        "default": "400"
+      },
+       {
+        "type": "select",
+        "id": "title_alignment",
+        "label": "t:sections.compare_products.settings.title_alignment.label",
+        "options": [
+          {
+            "label": "t:sections.compare_products.settings.title_alignment.option_1.label",
+            "value": "left"
+          },
+          {
+            "label": "t:sections.compare_products.settings.title_alignment.option_2.label",
+            "value": "center"
+          },
+          {
+            "label": "t:sections.compare_products.settings.title_alignment.option_3.label",
+            "value": "right"
+          }
+        ],
+        "default": "center"
+      },
+    {
+      "type": "header",
+      "content": "t:sections.compare_products.settings.settings_header.content",
+       "info": "t:sections.compare_products.settings.settings_header.info"
+    },
+    {
+      "type": "product_list",
+      "id": "compare_product_list",
+      "label": "t:sections.compare_products.settings.compare_product_list.label",
+      "limit": 5
+    },
+    {
+      "type": "range",
+      "id": "product_to_compare",
+      "max": 5,
+      "min": 2,
+      "step": 1,
+      "default": 5,
+      "label": "t:sections.compare_products.settings.compare_product_list.label",
+    },
+    {
+      "type": "checkbox",
+      "id": "compare_with_current",
+      "label": "t:sections.compare_products.settings.compare_with_current.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_stock",
+      "label": "t:sections.compare_products.settings.show_stock.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "has_variants",
+      "label": "t:sections.compare_products.settings.has_variants.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "available_stocks",
+      "label": "t:sections.compare_products.settings.available_stocks.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "t:sections.compare_products.settings.show_vendor.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_type",
+      "label": "t:sections.compare_products.settings.show_product_type.label",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:sections.compare_products.settings.button_text.label",
+      "default": "t:sections.compare_products.settings.button_text.default"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.compare_products.settings.color_header.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-8"
+    },
+    {
+    "type": "header",
+    "content": "t:sections.all.padding.section_padding_heading"
+  },
+  {
+    "type": "range",
+    "id": "padding_top",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "t:sections.all.padding.padding_top",
+    "default": 36
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "unit": "px",
+    "label": "t:sections.all.padding.padding_bottom",
+    "default": 36
+  }
+  ],
+  "blocks": [],
+  "enabled_on": {
+    "templates": [
+      "product"
+    ]
+  },
+  "presets": [
+    {
+      "name": "t:sections.compare_products.presets.name"
+    }
+  ]
+}
+{% endschema %}

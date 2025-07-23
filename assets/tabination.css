@@ -1,0 +1,241 @@
+.tabs-section .main-tab-contanier {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 30px 20px;
+  background: #fff !important;
+  /* border-radius: 20px; */
+  border: 1px solid #eee;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  /* margin-bottom: 15px; */
+  position: relative;
+  border-radius: var(--all-section-border-radius);
+}
+
+.tabs-section .main-tab-contanier.active {
+  /* background: #f8f8f8; */
+  border-color: #ddd;
+}
+
+.tabs-section .tabs-section-contanier {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* padding: 20px; */
+}
+
+.tabs-section .image-container {
+  flex: 1;
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 600px;
+  position: sticky;
+  top: 10px;
+}
+
+.tabs-section .image-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: 20px; */
+  border-radius: var(--all-section-border-radius);
+}
+
+.tabs-section .image-container svg {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--all-section-border-radius);
+  border: 1px solid #d0d0d0;
+}
+
+.tabs-section .tab-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.tabs-section .tab-image.active {
+  opacity: 1;
+}
+
+.tabs-section .tabs-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.tabs-section .tab-button {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  gap: 10px;
+}
+
+.tabs-section .main-tab-contanier.active {
+  background: #f8f8f8;
+  border-color: #ddd;
+}
+
+.tabs-section .icon-accordion-minus {
+  display: none;
+}
+
+.tabs-section .main-tab-contanier.active .icon-accordion-plus {
+  display: none;
+}
+
+.tabs-section .main-tab-contanier.active .icon-accordion-minus {
+  display: block;
+}
+
+.tabs-section .tab-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.tabs-section .icon-accordion {
+  font-size: 20px;
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  /* margin-left: 10px; */
+}
+
+.tabs-section .tab-description {
+  flex-basis: 100%;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.tabs-section .main-tab-contanier.active .tab-description {
+  /* margin-left: 42px; */
+  height: auto;
+}
+.tabs-section .tab-content {
+  flex-grow: 1;
+  /* margin-left: 21px; */
+}
+
+.tabs-section .tab-title {
+  margin: 0;
+}
+
+.tabs-section .tab-subtitle {
+  color: #0000008b;
+  margin: 5px 0 0;
+}
+
+/* animation css */
+.tabs-section.animate {
+  opacity: 0;
+  transition: all 0.8s ease-in-out;
+}
+
+.tabs-section.animate.fade-in.active {
+  opacity: 1;
+}
+
+.tabs-section.animate.slide-up.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.tabs-section.animate.slide-down.active {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.tabs-section.animate.zoom-in.active {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.tabs-section.animate.slide-up {
+  transform: translateY(20px);
+}
+
+.tabs-section.animate.slide-down {
+  transform: translateY(-20px);
+}
+
+.tabs-section.animate.zoom-in {
+  transform: scale(0.9);
+}
+
+.tabs-section {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.tabs-section.in-view {
+  opacity: 1;
+}
+
+.main-tab-contanier {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.tabs-section.in-view .main-tab-contanier {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.tabs-section.in-view .main-tab-contanier:nth-child(1) {
+  transition-delay: 0.2s;
+}
+
+.tabs-section.in-view .main-tab-contanier:nth-child(2) {
+  transition-delay: 0.4s;
+}
+
+.tabs-section.in-view .main-tab-contanier:nth-child(3) {
+  transition-delay: 0.6s;
+}
+
+.tabs-section.in-view .main-tab-contanier:nth-child(4) {
+  transition-delay: 0.8s;
+}
+
+.tabs-section .tab-title,
+.tabs-section .tab-description,
+.tabs-section .icon-accordion-minus,
+.tabs-section .icon-accordion-plus,
+.tabs-section .tab-icon {
+  color: #000000;
+}
+
+@media (max-width: 767px) {
+  .tabs-section .tabs-section-contanier {
+    flex-direction: column;
+    gap: 25px;
+  }
+  .tabs-section .image-container {
+    aspect-ratio: 1;
+    position: relative;
+  }
+  .tabs-section .main-tab-contanier {
+    padding: 20px 20px;
+  }
+  .tabs-section .tab-title {
+    font-size: 18px;
+  }
+  .tabs-section .tab-subtitle {
+    font-size: 13px !important;
+  }
+}

@@ -1,0 +1,472 @@
+<!-- sections/cc-countdown.liquid -->
+
+{{ 'countdown.css' | asset_url | stylesheet_tag }}
+{{ 'slick-theme.min.css' | asset_url | stylesheet_tag }}
+{{ 'slick.min.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/fontawesome.min.css">
+
+{% liquid
+  assign background = section.settings.color_scheme.settings.background
+  assign background_gradient = section.settings.color_scheme.settings.background_gradient
+  assign text_color = section.settings.color_scheme.settings.text
+  assign solid_button_background = section.settings.color_scheme.settings.button
+  assign solid_button_label = section.settings.color_scheme.settings.button_label
+  assign outline_button = section.settings.color_scheme.settings.secondary_button_label
+  assign shadow = section.settings.color_scheme.settings.shadow
+%}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+  {% unless section.settings.full_width_section %}
+       #shopify-section-{{ section.id }} {
+        background: var(--all-section-default-background);
+        padding-block: 3rem;
+      }
+    #cc-countdown {
+       border-radius: 3rem;
+       /* margin: 3rem auto; */
+       box-shadow: 0 0 .4rem .1rem {{shadow}}2b;
+       max-width: 1400px;
+    }
+  {% else %}
+   #cc-countdown {
+     padding-left: 5rem;
+     padding-right: 5rem;
+    }
+   {% endunless %}
+
+  #cc-countdown .promo-image,
+  #cc-countdown .countdown-section,
+  #cc-countdown .product-container{
+     box-shadow: 0 0 .4rem .1rem {{shadow}}1b;
+    margin: 1px;
+   border-radius: var(--all-section-border-radius);
+  }
+
+
+
+  #cc-countdown .countdown-button,
+   #cc-countdown .view-details{
+      background-color: #003666;
+      color: #ffffff;
+    }
+   #cc-countdown .countdown-container .timeout-message{
+     color: {{ solid_button_label }};
+   }
+  .promo-layout-section .timer-heading {
+    font-size: {{section.settings.title-size}}px;
+  }
+  .promo-layout-section .timer-subtitle{
+    font-size: {{section.settings.tag-line}}px;
+  }
+  @media only screen and (max-width: 768px) {
+      #cc-countdown {
+        padding: 2rem 1rem;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0 auto;
+      }
+   }
+{% endstyle %}
+
+<section
+  class="promo-layout-section {% unless section.settings.full_width_section %}page-width {% endunless %} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}"
+  id="cc-countdown"
+>
+  <div class="promo-container ">
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when 'image' %}
+          <div class="promo-image count-sec-{{ forloop.index }}">
+            {% if block.settings.left_image != blank %}
+              <img
+                src="{{ block.settings.left_image | img_url: '800x' }}"
+                alt="{{ block.settings.left_image.alt | escape }}"
+                loading="lazy"
+                class="main-image"
+                height=""
+                width=""
+              >
+            {% else %}
+              {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+            {% endif %}
+          </div>
+
+        {% when 'countdown' %}
+          <div class="countdown-section count-sec-{{ forloop.index }}">
+            <div class="countdown-container">
+              {% if block.settings.countdown_heading != blank %}
+                <p class="timer-heading">{{ block.settings.countdown_heading }}</p>
+              {% endif %}
+              {% if block.settings.countdown_subtext != blank %}
+                <p class="timer-subtitle">{{ block.settings.countdown_subtext }}</p>
+              {% endif %}
+
+              <div
+                class="countdown-digits"
+                data-end-date="{{ block.settings.end_date | date: '%Y-%m-%d %H:%M:%S' }}"
+              >
+                <div class="countdown-box" id="countdown-timer">
+                  <div class="countdown-item">
+                    <div class="countdown-number" data-days>00</div>
+                    <div class="countdown-label">Days</div>
+                  </div>
+                  <div class="time-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-number" data-hours>00</div>
+                    <div class="countdown-label">Hours</div>
+                  </div>
+                  <div class="time-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-number" data-minutes>00</div>
+                    <div class="countdown-label">Minutes</div>
+                  </div>
+                  <div class="time-separator">:</div>
+                  <div class="countdown-item">
+                    <div class="countdown-number" data-seconds>00</div>
+                    <div class="countdown-label">Seconds</div>
+                  </div>
+                </div>
+                <div class="timeout-message" style="display:none;">
+                  <p>{{ block.settings.timeout_message }}</p>
+                </div>
+              </div>
+              <a
+                href="{{ block.settings.button_link_countdown }}"
+                class="button"
+              >
+                <span>{{ block.settings.button_text_countdown | default: 'Shop All' }}</span>
+              </a>
+            </div>
+          </div>
+
+        {% when 'collection' %}
+        {% if block.settings.featured_collection != blank %}
+  <div class="product-container coutdown-product-{{ section.id }} animate-left count-sec-{{ forloop.index }}">
+    {% assign collection = collections[block.settings.featured_collection] %}
+    {% if collection.products.size > 0 %}
+      {% for product in collection.products limit: block.settings.products_to_show %}
+        <div class="product-card">
+          {% if product.featured_image != blank %}
+            <div class="product-image">
+              <img
+                src="{{ product.featured_image | img_url: 'medium' }}"
+                alt="{{ product.featured_image.alt | escape }}"
+                loading="lazy"
+                height=""
+                width=""
+              >
+            </div>
+          {% else %}
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          {% endif %}
+          <div class="product-info">
+            <h3 class="product-title">{{ product.title }}</h3>
+            <div class="product-price">
+              {% if product.compare_at_price > product.price %}
+                <span class="compare-price">{{ product.compare_at_price | money }}</span>
+                <span class="sale-price">{{ product.price | money }}</span>
+              {% else %}
+                <span class="regular-price">{{ product.price | money }}</span>
+              {% endif %}
+            </div>
+            <a
+              href="{{ product.url }}"
+              class="button"
+            >
+              <span>{{ block.settings.button_text_collection | default: 'More Details' }}</span>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      {% comment %} Show two placeholder products when collection is empty {% endcomment %}
+      {% for i in (1..2) %}
+        <div class="product-card">
+          <div class="product-image">
+            {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+          <div class="product-info">
+            <h3 class="product-title">{{ 'lookbook.pro_title' | t | escape }}</h3>
+            <div class="product-price">
+              <span class="regular-price">{{ 1999 | money }}</span>
+            </div>
+            <a href="#" class="button">
+              <span>{{ block.settings.button_text_collection | default: 'More Details' }}</span>
+            </a>
+          </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% else %}
+  {% comment %} Show two placeholder products when no collection is selected {% endcomment %}
+  <div class="product-container coutdown-product-{{ section.id }} animate-left count-sec-1">
+    {% for i in (1..2) %}
+      <div class="product-card">
+        <div class="product-image">
+          {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+        </div>
+        <div class="product-info">
+          <h3 class="product-title">{{ 'lookbook.pro_title' | t | escape }}</h3>
+          <div class="product-price">
+            <span class="regular-price">{{ 1999 | money }}</span>
+          </div>
+          <a href="#" class="button">
+            <span>{{ block.settings.button_text_collection | default: 'More Details' }}</span>
+          </a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+      {% endcase %}
+    {% endfor %}
+  </div>
+</section>
+<script src="{{ 'jquery.min.js' | asset_url }}"></script>
+<script src="{{ 'slick.js' | asset_url }}"></script>
+<script src="{{ 'countdown.js' | asset_url }}" defer="defer"></script>
+
+<script>
+  $('.coutdown-product-{{ section.id }}').slick({
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    {% for block in section.blocks %}
+      prevArrow: '<button class="slick-left-arrow-collection"><span><i class="{{ block.settings.previous_button  | default: 'fa-solid fa-angle-left' }}"></i></span></button>',
+    nextArrow: '<button class="slick-right-arrow-collection"><span><i class="{{ block.settings.next_button | default: 'fa-solid fa-angle-right' }}"></i></span></button>',
+      {% endfor %}
+    responsive: [
+      {
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true
+        }
+      },
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  });
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.countdown_timer_layout.name",
+  "settings": [
+         {
+        "type": "checkbox",
+        "id": "full_width_section",
+        "label": "t:sections.countdown_timer_layout.settings.full_width_section.label",
+        "default": true
+      },
+          {
+      "type": "header",
+      "content": "t:sections.countdown_timer_layout.settings.section_header.content"
+    },
+
+          {
+        "type": "color_scheme",
+        "id": "color_scheme",
+        "label": "t:sections.all.colors.label",
+        "default": "scheme-5"
+      },
+     {
+      "type": "header",
+      "content": "t:sections.countdown_timer_layout.settings.font_size-coutdown.content"
+    },
+        {
+      "type": "range",
+      "id": "title-size",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.countdown_timer_layout.settings.description-size-coutdown.label",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "tag-line",
+      "min": 10,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.countdown_timer_layout.settings.title-size-coutdown.label",
+      "default": 10
+    },
+
+      {
+        "type": "header",
+        "content": "t:sections.all.padding.section_padding_heading"
+      },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "t:sections.countdown_timer_layout.blocks.image.name",
+       "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "left_image",
+          "label": "t:sections.countdown_timer_layout.blocks.image.settings.left_image.label"
+        },
+             {
+          "type": "paragraph",
+          "content": "t:sections.countdown_timer_layout.blocks.image.settings.paragraph.content"
+        },
+      ]
+    },
+
+    {
+      "type": "countdown",
+      "name": "t:sections.countdown_timer_layout.blocks.countdown.name",
+       "limit": 1,
+      "settings": [
+        {
+          "type": "text",
+          "id": "countdown_heading",
+          "label": "t:sections.countdown_timer_layout.blocks.countdown.settings.countdown_heading.label",
+          "default": "t:sections.countdown_timer_layout.blocks.countdown.settings.countdown_heading.default"
+        },
+        {
+          "type": "text",
+          "id": "countdown_subtext",
+          "label": "t:sections.countdown_timer_layout.blocks.countdown.settings.countdown_subtext.label",
+          "default": "t:sections.countdown_timer_layout.blocks.countdown.settings.countdown_subtext.default"
+        },
+        {
+          "type": "text",
+          "id": "end_date",
+          "label": "t:sections.countdown_timer_layout.blocks.countdown.settings.end_date.label",
+          "default": "t:sections.countdown_timer_layout.blocks.countdown.settings.end_date.default",
+          "info": "t:sections.countdown_timer_layout.blocks.countdown.settings.end_date.info"
+        },
+        {
+          "type": "text",
+          "id": "timeout_message",
+          "label": "t:sections.countdown_timer_layout.blocks.countdown.settings.timeout_message.label",
+          "default": "t:sections.countdown_timer_layout.blocks.countdown.settings.timeout_message.default"
+        },
+        {
+          "type": "text",
+          "id": "button_text_countdown",
+          "label": "t:sections.countdown_timer_layout.blocks.countdown.settings.button_text_countdown.label",
+          "default": "t:sections.countdown_timer_layout.blocks.countdown.settings.button_text_countdown.default"
+        },
+        {
+          "type": "url",
+          "id": "button_link_countdown",
+          "label": "t:sections.countdown_timer_layout.blocks.countdown.settings.button_link_countdown.label"
+        }
+
+      ]
+    },
+    {
+      "type": "collection",
+      "name": "t:sections.countdown_timer_layout.blocks.collection.name",
+       "limit": 1,
+      "settings": [
+        {
+          "type": "collection",
+          "id": "featured_collection",
+          "label": "t:sections.countdown_timer_layout.blocks.collection.settings.featured_collection.label"
+        },
+        {
+          "type": "range",
+          "id": "products_to_show",
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "default": 3,
+          "label": "t:sections.countdown_timer_layout.blocks.collection.settings.products_to_show.label"
+        },
+        {
+          "type": "text",
+          "id": "previous_button",
+          "label": "t:sections.countdown_timer_layout.blocks.collection.settings.previous_button.label",
+          "default": "t:sections.countdown_timer_layout.blocks.collection.settings.previous_button.default"
+        },
+         {
+          "type": "text",
+          "id": "next_button",
+          "label": "t:sections.countdown_timer_layout.blocks.collection.settings.next_button.label",
+          "default": "t:sections.countdown_timer_layout.blocks.collection.settings.next_button.default"
+        },
+
+        {
+          "type": "text",
+          "id": "button_text_collection",
+          "label": "t:sections.countdown_timer_layout.blocks.collection.settings.button_text_collection.label",
+          "default": "t:sections.countdown_timer_layout.blocks.collection.settings.button_text_collection.default"
+        },
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.countdown_timer_layout.presets.name",
+            "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "countdown"
+        },
+        {
+          "type": "collection"
+        },
+      ]
+    }
+  ]
+}
+{% endschema %}

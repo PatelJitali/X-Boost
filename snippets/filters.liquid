@@ -1,0 +1,74 @@
+{% assign remove_filters = section.settings.remove_filters | downcase %}
+<cc-facet-filters-form class="facets">
+  <form id="CCFacetFiltersForm">
+    <div class="cc-active-facets cc-active-facets-desktop">
+      {% for filter in collection.filters %}
+        {% assign filter_label = filter.label | downcase %}
+        {% unless remove_filters contains filter_label %}
+          {%- if collection.terms -%}
+            <input type="hidden" name="q" value="{{ collection.terms | escape }}">
+            <input name="options[prefix]" type="hidden" value="last">
+          {%- endif -%}
+          {% unless filter.label == 'Price' %}
+            <div class="cc-filter-wrapper" id="FacetsWrapperDesktop">
+              <div class="cc-filter-title">
+                <h3>{{ filter.label }}:</h3>
+              </div>
+              <div class="cc-filter-value">
+                <div class="facets-wrap parent-wrap">
+                  <div class="filter-list-wrapper">
+                    {% liquid
+                      assign sorted_values = filter.values
+                      if filter.operator == 'AND'
+                        assign active_filter_values = filter.values | where: 'active', true
+                        assign inactive_filter_values = filter.values | where: 'active', false
+                        assign sorted_values = active_filter_values | concat: inactive_filter_values
+                      endif
+                    %}
+                    {%- for value in sorted_values -%}
+                      {% assign input_id = 'Filter-'
+                        | append: filter.param_name
+                        | escape
+                        | append: '-'
+                        | append: forloop.index
+                      %}
+                      {%- capture label_class -%}
+                      facets__label
+                  {%- endcapture -%}
+                      {%- capture text_value -%}
+                              <span class="facet-checkbox__text" aria-hidden="true">
+                                <span class="facet-checkbox__text-label">{{- value.label | escape }}</span>
+                              </span>
+                            {%- endcapture -%}
+                      <div>
+                        {% comment %}
+                          <input type="checkbox" name="{{ value.label }}" value="{{ value.value }}" id="{{ value.label }}">
+                          <label for="{{ value.label }}">{{ value.label }}</label>
+                        {% endcomment %}
+                        <label for="{{ input_id }}" class="{{ label_class }}">
+                          <input
+                            type="checkbox"
+                            name="{{ value.param_name }}"
+                            value="{{ value.value }}"
+                            id="{{ input_id }}"
+                            {% if value.active %}
+                              checked
+                            {% endif %}
+                            {% if is_disabled %}
+                              disabled
+                            {% endif %}
+                          >
+                          {{ text_value }}
+                        </label>
+                      </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endunless %}
+        {% endunless %}
+      {% endfor %}
+    </div>
+  </form>
+</cc-facet-filters-form>

@@ -1,0 +1,90 @@
+{% comment %}Next/Previous Product Feature - START{% endcomment %}
+{{ 'next-previous-product.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign image_size = settings['next-prev-img-size']
+
+  assign background = settings.next_prev_color_scheme.settings.background
+  assign text_color = settings.next_prev_color_scheme.settings.text
+  assign shadow = settings.next_prev_color_scheme.settings.shadow
+%}
+
+{% style %}
+  #next-previous-products .prev_product_btn.prev_product_image, #next-previous-products .next_product_btn.next_product_image {
+    height: {{ image_size }}px;
+    width: auto;
+    aspect-ratio: 3 / 4;
+    padding: 5px;
+  }
+
+  #next-previous-products .prev_product_btn, #next-previous-products .next_product_btn {
+    background-color: {{ background }};
+    color: {{ text_color }};
+    box-shadow: 0 0 .5rem .1rem {{ shadow }}3b;
+  }
+{% endstyle %}
+
+<div class="next_prev_product_buttons" id="next-previous-products">
+  {%- liquid
+    assign previous_product = collection.previous_product
+    assign next_product = collection.next_product
+    assign previous_product_url = ''
+    assign next_product_url = ''
+    if previous_product or next_product
+      assign previous_product_url = previous_product.url
+      assign next_product_url = next_product.url
+      assign previous_product_img = previous_product.featured_image
+      assign next_product_img = next_product.featured_image
+    else
+      assign collection_list = product.collections[0].handle
+      assign previous_product = null
+      assign next_product = null
+      assign last = collections[collection_list].products_count
+
+      for prod in collections[collection_list].products
+        if prod.handle == product.handle
+          assign prev = forloop.index | minus: 2
+          assign next = forloop.index
+          if prev >= 0
+            assign previous_product = collections[collection_list].products[prev]
+            assign previous_product_url = previous_product.url
+            assign previous_product_img = previous_product.featured_image
+          endif
+          if last >= next
+            assign next_product = collections[collection_list].products[next]
+            assign next_product_url = next_product.url
+            assign next_product_img = next_product.featured_image
+          endif
+          break
+        endif
+      endfor
+    endif
+  -%}
+
+  {% if settings.show_type == 'text' %}
+    {% if previous_product_url != blank %}
+      <a href="{{ previous_product_url }}" class="prev_product_btn prev_product_btn_text"> {{ 'next_previous_product.prev_label' | t }} </a>
+    {% endif %}
+    {% if next_product_url != blank %}
+      <a href="{{ next_product_url }}" class="next_product_btn next_product_btn_text">{{ 'next_previous_product.next_label' | t }}</a>
+    {% endif %}
+  {% else %}
+    {% if previous_product_url != blank %}
+      <a href="{{ previous_product_url }}" class="prev_product_btn prev_product_image">
+        {{
+          previous_product_img
+          | image_url: width: previous_product_img.width, height: previous_product_img.height
+          | image_tag
+        -}}
+        <span class="tooltiptext">{{ 'next_previous_product.prev_label_tooltip' | t }}</span>
+      </a>
+    {% endif %}
+    {% if next_product_url != blank %}
+      <a href="{{ next_product_url }}" class="next_product_btn next_product_image">
+        {{- next_product_img | image_url: width: next_product_img.width, height: next_product_img.height | image_tag -}}
+        <span class="tooltiptext">{{ 'next_previous_product.next_label_tooltip' | t }}</span>
+      </a>
+    {% endif %}
+  {% endif %}
+</div>
+{% comment %}Next/Previous Product Feature - END{% endcomment %}

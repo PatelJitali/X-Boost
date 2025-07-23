@@ -1,0 +1,317 @@
+.lookbook-main .lookbook-container {
+  display: flex;
+  gap: 2rem;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.lookbook-main .lookbook-image-wrapper {
+  position: relative;
+  flex-basis: 70%;
+  width: 100%;
+  max-height: 650px;
+  /* height: 100%; */
+}
+
+.lookbook-main .lookbook-image-wrapper svg {
+  box-shadow: inset 0 0 0.3rem 0.1rem #0000002b;
+  border-radius: 15px;
+  height: 100%;
+    width: 100%;
+  background: #ffffff;
+}
+
+.lookbook-main .lookbook-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* border-radius: 12px; */
+  border-radius: var(--all-section-border-radius);
+}
+
+/* Hotspot Styles */
+.lookbook-main .hotspot-wrapper {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.lookbook-main .hotspot {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #000;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 2;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  padding: 0;
+  background: none;
+}
+
+.lookbook-main .hotspot::after {
+  content: "";
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  border: 1px solid v;
+  border-radius: 50%;
+  top: -4px;
+  left: -4px;
+  animation: pulse 2s infinite;
+  background-color: white;
+}
+
+/* Hotspot Popup Styles */
+.lookbook-main .hotspot-popup {
+  position: absolute;
+  background: white;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  width: 300px;
+  z-index: 10;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  pointer-events: none;
+}
+
+.lookbook-main .hotspot-popup.right {
+  left: calc(100% + 15px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+.lookbook-main .hospot-popup-pro-img {
+  max-width: 81px;
+}
+.lookbook-main .hotspot-popup.left {
+  right: calc(100% + 15px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lookbook-main .hotspot-popup img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.lookbook-main .hotspot-popup-content {
+  flex: 1;
+}
+
+.lookbook-main .hotspot-popup-title {
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0 0 6px;
+  /* color: #000; */
+  text-align: start;
+}
+
+.lookbook-main .hotspot-popup-price {
+  font-size: 13px;
+  /* color: #666; */
+  margin: 0;
+  text-align: start;
+}
+
+.lookbook-main .hotspot-wrapper:hover .hotspot-popup {
+  opacity: 1;
+  visibility: visible;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.8);
+    opacity: 0;
+  }
+}
+
+.lookbook-main .hotspot:hover {
+  transform: scale(1.15);
+  background: #000;
+  border-color: #fff;
+}
+
+.lookbook-main .hotspot[aria-expanded="true"] {
+  background: #000;
+  border-color: #fff;
+}
+
+.lookbook-main .product-header-details {
+  padding: 2rem;
+}
+
+/* Product Panel Styles */
+.lookbook-main .product-panels {
+  flex-basis: 30%;
+  position: relative;
+  border-radius: var(--all-section-border-radius);
+  background-color: #fff;
+  align-content: center;
+  box-shadow: 0 0 0.3rem 0.1rem #0000001b;
+}
+
+.lookbook-main .product-panel {
+  /* background: #fff; */
+  border-radius: 16px;
+  padding: 0px;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+  /* box-shadow: 0 10px 30px rgb(6 4 4 / 8%); */
+}
+
+.lookbook-main .product-panel[aria-hidden="false"] {
+  display: block;
+  opacity: 1;
+  animation: slideUpIn 0.4s ease;
+}
+
+@keyframes slideUpIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.lookbook-main .product-image {
+  width: 100%;
+  height: 100%;
+  /* border-radius: 12px; */
+  /* margin-bottom: 15px; */
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); */
+  border-radius: var(--all-section-border-radius);
+}
+
+.lookbook-main .product-title {
+  font-size: 16px;
+  font-weight: 600;
+  /* color: #1a1a1a; */
+  text-align: center;
+  /* margin: 3px; */
+}
+
+.lookbook-main .product-price {
+  font-size: 16px;
+  /* color: #666; */
+  margin-bottom: 10px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.lookbook-main .product-header {
+  /* margin-bottom: 20px; */
+  text-align: center;
+}
+
+.lookbook-main .product-lookbook-pro-header {
+  /* font-size: 24px; */
+  font-weight: 600;
+  /* margin: 8px; */
+  /* color: #1a1a1a; */
+}
+
+.lookbook-main .product-lookbook-pro-subheader {
+  /* font-size: 16px; */
+  /* color: #666; */
+  /* margin-top: 10px; */
+      margin: 0px 0px;
+}
+
+.lookbook-main .product-description {
+  font-size: 16px;
+  /* color: #666; */
+  /* margin-bottom: 10px; */
+  text-align: center;
+}
+
+.lookbook-main .lookbook-pro-image {
+  max-width: 10vw;
+  margin: 0 auto;
+}
+
+.lookbook-main .product-lookbook-redirect {
+  text-decoration: none;
+}
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+  .lookbook-main .lookbook-container {
+    flex-direction: column;
+  }
+
+  .lookbook-main .hotspot-popup {
+    width: 180px;
+  }
+
+  .lookbook-main .hotspot-popup img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .lookbook-main .hotspot {
+    width: 15px;
+    height: 15px;
+  }
+
+  .lookbook-main .lookbook-image-wrapper {
+    max-width: 100%;
+  }
+
+  .lookbook-main .lookbook-pro-image {
+    max-width: 30vw;
+  }
+
+  .lookbook-main .product-panels {
+    max-width: 100%;
+  }
+
+  .lookbook-main .hotspot::after {
+    width: 20px;
+    height: 20px;
+    top: -4px;
+    left: -4px;
+  }
+
+  .lookbook-main .product-panel {
+    /* padding: 20px; */
+  }
+
+  .lookbook-main .product-title {
+    font-size: 15px;
+            margin: 0;
+  }
+
+  .lookbook-main .product-price {
+    font-size: 12px;
+    /* margin-bottom: 10px; */
+     margin: 0;
+  }
+
+  .lookbook-main .hotspot-popup {
+    display: none;
+  }
+  .lookbook-main .product-lookbook-pro-header {
+    font-size: 22px !important;
+    margin: 5px 0px;
+  }
+  .lookbook-main .product-description {
+    font-size: 15px;
+  }
+}

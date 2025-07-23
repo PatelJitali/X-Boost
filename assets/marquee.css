@@ -1,0 +1,202 @@
+.marquee-section {
+  overflow: hidden;
+  width: 100%;
+}
+
+.marquee-section .marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 25px 0;
+}
+
+.marquee-section .marquee-wrapper {
+  display: flex;
+  position: relative;
+  width: max-content;
+  flex-wrap: nowrap;
+}
+
+.marquee-section .marquee-item:has(span) {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  max-height: 130px;
+  width: auto;
+  height: 100%;
+}
+.marquee-section .marquee-item {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 10px;
+  max-height: 130px;
+  width: 130px;
+  height: auto;
+}
+
+.marquee-section .marquee-logo img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+  vertical-align: middle;
+  margin: 0 5px;
+  mix-blend-mode: multiply;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-section .marquee-text span {
+  white-space: nowrap;
+}
+
+.marquee-section .marquee-both {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.marquee-section .marquee-logo a:hover img {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+/* Animation CSS */
+
+.marquee-section .animations {
+  opacity: 0;
+  transition: all 0.5s ease-in-out;
+}
+
+.marquee-section .animations.active {
+  opacity: 1;
+}
+
+.marquee-section .animations.fade-in.active {
+  animation: fadeIn 1s forwards;
+}
+
+.marquee-section .animations.slide-up.active {
+  animation: slideUp 1s forwards;
+}
+
+.marquee-section .animations.slide-down.active {
+  animation: slideDown 1s forwards;
+}
+
+.marquee-section .animations.zoom-in.active {
+  animation: zoomIn 1s forwards;
+}
+.marquee-section .marquee-logo svg {
+  display: block !important;
+  width: 100px;
+  height: 100px;
+  box-shadow: inset 0 0 0.3rem 0.1rem #0000002b;
+  border-radius: 15px;
+}
+
+@keyframes fade-in-up {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.fade-in-up {
+  animation: fade-in-up 1.2s ease-in-out;
+}
+
+@keyframes flip-in {
+  from {
+    transform: rotateY(90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotateY(0deg);
+    opacity: 1;
+  }
+}
+.flip-in {
+  animation: flip-in 1s ease-in-out;
+}
+
+@keyframes bounce-in {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-20px);
+  }
+  60% {
+    transform: translateY(-10px);
+  }
+}
+.bounce-in {
+  animation: bounce-in 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-90deg);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0);
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 768px) {
+  .marquee-section .marquee-item {
+    padding: 0 10px;
+  }
+  .marquee-section .marquee-text span {
+    font-size: 15px !important;
+  }
+}

@@ -1,0 +1,43 @@
+{% liquid
+  assign outline_button = settings.wishlist_popup_color_scheme.settings.secondary_button_label
+
+  assign product_card_bg = settings['wishlist-product-card-bg']
+  assign product_card_text = settings['wishlist-product-card-text']
+%}
+
+{% style %}
+  #wishlist .wishlist-product__list {
+    background-color: {{ product_card_bg }};
+    color: {{ product_card_text }};
+    box-shadow: 0 0 .4rem .1rem {{ outline_button }}2b;
+  }
+
+  #wishlist .wishlist-product-title, #wishlist .wishlist-remove-btn {
+    color: {{ product_card_text }};
+  }
+{% endstyle %}
+
+<div class="wishlist-content color-{{ settings.wishlist_popup_color_scheme }}" id="wishlist">
+  {% if customer %}
+    <span class="close-btn">&times;</span>
+    <div class="recently-title">
+      <h2 class="wishlist-heading">
+        <b>{{ settings.wishlist_popup_title }}</b>
+      </h2>
+    </div>
+    <div class="js-wishlistBlock"></div>
+  {% else %}
+    <div class="login-content">
+      <span class="close-btn">&times;</span>
+      <div class="empty-block"></div>
+      <div class="recently-title">
+        <p class="login-text">{{ 'wishlist.wishlist_required' | t }}</p>
+        <div class="inline-richtext h2 scroll-trigger animate--slide-in">
+          <button class="wishlist-login-button button">
+            <a class="wishlist-login" href="/account/login">{{ 'wishlist.wishlist_login_label' | t }}</a>
+          </button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,286 @@
+#cc-testimonial .slick-track {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  cursor: grab;
+}
+#cc-testimonial .three-slides .slick-track {
+  gap: 25px;
+}
+#cc-testimonial .slick-track:active {
+  cursor: grabbing;
+}
+#cc-testimonial .slick-slide.slick-center {
+  transform: scale(1.1);
+  padding: 1rem;
+}
+#cc-testimonial .cc-testimonial-images img,
+#cc-testimonial .cc-testimonial-images svg.placeholder_svg_tag {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+#cc-testimonial .slick-dots li button:before {
+  font-size: 35px;
+}
+
+#cc-testimonial button.slick-left-arrow {
+  right: 6rem;
+  left: auto;
+}
+
+#cc-testimonial button.slick-right-arrow {
+  right: 1rem;
+}
+
+#cc-testimonial button.slick-arrow {
+  position: absolute;
+  z-index: 1;
+  border-radius: 50%;
+  font-size: 20px;
+  padding: 10px 15px;
+  border: 1px solid lightgrey;
+  background-color: #ffffff;
+  cursor: pointer;
+  top: -4rem;
+}
+
+#cc-testimonial .cc-testimonial-content-container {
+  padding: 2rem;
+  align-content: center;
+  height: 30rem;
+  overflow: hidden;
+}
+
+#cc-testimonial .cc-testimonial-image-container {
+  height: 30rem;
+}
+#cc-testimonial .cc-testimonial-images {
+  height: 100%;
+  width: 100%;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+#cc-testimonial .slick-slide {
+  padding: 2rem 3rem;
+  align-content: center;
+  place-self: center;
+}
+
+#cc-testimonial .slick-slide {
+  padding: 2rem 1rem;
+}
+
+#cc-testimonial .cc-testimonial-container .slick-slide > div,
+#cc-testimonial .cc-testimonial-content-container .slick-slide > div {
+  height: 100%;
+  width: 100%;
+  box-shadow: 0px 0px 0.2rem 0.1rem #0000002b;
+  align-content: center;
+  background-color: #ffffff;
+  /* border-radius: 10px; */
+  overflow: hidden;
+  border-radius: var(--all-section-border-radius);
+}
+
+#cc-testimonial li.slick-active {
+  width: 30px;
+  height: 10px;
+}
+
+#cc-testimonial .slick-dots li.slick-active button {
+  height: 10px;
+  width: 30px;
+}
+
+#cc-testimonial .slick-dots li.slick-active button:before {
+  width: 30px;
+  height: 10px;
+  color: transparent;
+  border: 1px solid #000000;
+  border-radius: 10px;
+}
+
+#cc-testimonial button.slick-disabled {
+  opacity: 0.5;
+  cursor: unset;
+}
+
+/* Content CSS */
+#cc-testimonial .cc-testimonial-content-container .author_logo {
+  height: 80px;
+  width: auto;
+  justify-items: center;
+}
+
+#cc-testimonial .cc-testimonial-content-container .author_content {
+  font-size: 16px;
+}
+
+#cc-testimonial .cc-testimonial-content-container .author_logo img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+#cc-testimonial .cc-testimonial-content-container .author_name {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: end;
+}
+
+#cc-testimonial .cc-testimonial-content-container .author_rating {
+  font-size: 30px;
+  text-align: center;
+  color: #ffa500;
+}
+
+#cc-testimonial .cc-testimonial-content-container span.empty-stars {
+  color: #000000;
+  opacity: 0.3;
+}
+
+#cc-testimonial .author_logo_name_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#cc-testimonial .single-slides .cc-testimonial-content-container {
+  max-height: 40rem;
+  /* height: auto; */
+}
+
+#cc-testimonial .single-slides .cc-testimonial-image-container {
+  height: 45rem;
+}
+
+#cc-testimonial .cc-testimonial-content-container .author_content p,
+#cc-testimonial .cc-testimonial-content-container .author_name {
+  color: #000000;
+}
+
+.page-width .cc-testimonial-content-container .author_logo {
+  height: 70px !important;
+}
+
+.page-width .cc-testimonial-content-container .author_content p,
+.page-width .cc-testimonial-content-container .author_name {
+  margin: 0;
+  color: #000000;
+}
+
+#cc-testimonial .title-wrape .testimonial__title {
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 1460px) {
+  #cc-testimonial .cc-testimonial-content-container .author_content p {
+    margin: 0;
+    color: #000000;
+  }
+}
+@media screen and (max-width: 1200px) {
+  #cc-testimonial .cc-testimonial-content-container .author_content {
+    font-size: 14px;
+  }
+  #cc-testimonial .cc-testimonial-content-container .author_rating {
+    font-size: 27px;
+  }
+  #cc-testimonial .cc-testimonial-content-container .author_logo {
+    height: 70px;
+  }
+}
+
+@media screen and (max-width: 1023px) {
+  #cc-testimonial .cc-testimonial-content-container .author_logo {
+    height: 80px;
+  }
+  #cc-testimonial .slick-track {
+    gap: 2px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #cc-testimonial .slick-slide {
+    padding: 1rem 4rem;
+  }
+
+  #cc-testimonial .cc-testimonial-content-container {
+    padding: 1rem 2rem;
+  }
+
+  #cc-testimonial button.slick-left-arrow {
+    right: 8rem;
+  }
+
+  #cc-testimonial button.slick-right-arrow {
+    right: 3rem;
+  }
+
+  #cc-testimonial button.slick-arrow {
+    font-size: 18px;
+  }
+
+  #cc-testimonial .slick-dotted.slick-slider {
+    margin-top: 2.5rem;
+  }
+
+  #cc-testimonial .single-slides .cc-testimonial-image-container {
+    height: 30rem;
+  }
+}
+
+@media screen and (max-width: 430px) {
+  #cc-testimonial .slick-slide {
+    padding: 1rem 0rem;
+  }
+
+  #cc-testimonial .cc-testimonial-content-container {
+    padding: 1rem 2rem;
+  }
+
+  #cc-testimonial button.slick-left-arrow {
+    right: 5.5rem;
+    left: auto;
+  }
+
+  #cc-testimonial button.slick-right-arrow {
+    right: 1rem;
+  }
+
+  #cc-testimonial button.slick-arrow {
+    font-size: 15px;
+    padding: 10px 14px;
+  }
+
+  #cc-testimonial .cc-testimonial-content-container .author_content p {
+    margin: 10px 0;
+  }
+
+  #cc-testimonial .cc-testimonial-content-container .author_logo {
+    height: 60px;
+  }
+
+  #cc-testimonial .cc-testimonial-content-container .author_rating {
+    font-size: 25px;
+  }
+
+  #cc-testimonial .cc-testimonial-content-container .author_content {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  #cc-testimonial .cc-testimonial-container.two-slides {
+    max-width: 1024px;
+    margin: 0 auto 35px;
+  }
+
+  #cc-testimonial .cc-testimonial-container.single-slides {
+    max-width: 900px;
+    margin: 0 auto 35px;
+  }
+}

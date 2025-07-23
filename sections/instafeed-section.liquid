@@ -1,0 +1,452 @@
+<!-- sections/cc-instafeed-section.liquid -->
+{{ 'slick-theme.min.css' | asset_url | stylesheet_tag }}
+{{ 'slick.min.css' | asset_url | stylesheet_tag }}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/fontawesome.min.css">
+
+{{ 'instafeed-section.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign background = section.settings.color_scheme.settings.background
+  assign shadow = section.settings.color_scheme.settings.shadow
+%}
+
+{% style %}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+
+  #instafeed-wrapper .instagram-item {
+    border-radius: {{ section.settings.border_radius }}px;
+    box-shadow: 0 0 .3rem .1rem #0000001b;
+        margin: 3px;
+  }
+
+  .instafeed-container .instagram-item svg {
+    stroke: {{ background }}
+  }
+
+   #instafeed-wrapper .slick-arrow {
+     box-shadow: 0 0 0.5rem 0.1rem {{ shadow }}2b;
+  }
+
+    {% if section.settings.layout_type == 'grid' %}
+       #instafeed-container {
+         display: grid;
+         grid-template-columns: repeat({{ section.settings.desktop_columns }}, 1fr) !important;
+         gap: 10px;
+       }
+     {% endif %}
+
+    @media (max-width: 767px) {
+  #instafeed-wrapper .instagram-text .instagram-title {
+    font-size: 22px !important;
+  }
+
+     #instafeed-wrapper .instagram-text .instagram-sub-title {
+        font-size: 12px !important;
+     }
+
+  {% if section.settings.layout_type == 'grid' %}
+       #instafeed-container {
+         display: grid !important;
+         grid-template-columns: repeat({{ section.settings.mobile_columns }}, 1fr) !important;
+         gap: 10px !important;
+         padding: 10px !important;
+       }
+     {% endif %}
+    }
+{% endstyle %}
+
+<section
+  class="instafeed-container section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}"
+  id="instafeed-wrapper"
+>
+  <div class="instagram-text {% if section.settings.layout_type == 'carousel' %}carousel{% endif %}">
+    {% if section.settings['sub-title-top'] != blank %}
+      <div class="instagram-main-subtitle">
+        <h3
+          class="instagram-sub-title"
+          style="
+            font-weight: {{ section.settings.title_font_weight }};
+            text-align: {{ section.settings.title_alignment }};
+            width: 100%;
+          "
+        >
+          {{ section.settings['sub-title-top'] }}
+        </h3>
+      </div>
+    {% endif %}
+    {% if section.settings.title != blank %}
+      <div class="instagram-maintitle">
+        <h2
+          class="instagram-title"
+          style="
+            font-weight: {{ section.settings.title_font_weight }};
+            font-size: {{ section.settings.title_font_size }}px;
+            text-align: {{ section.settings.title_alignment }};
+            width: 100%;
+          "
+        >
+          {{ section.settings.title }}
+        </h2>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if section.settings.access_token != blank %}
+    <div id="instafeed-container" class="instafeed-slider">
+      {% for i in (1..section.settings.post_count) %}
+        <div class="instagram-item">
+          <a href="#" target="_blank">
+            <img src="" alt="Instagram Image" loading="lazy">
+          </a>
+          <i class="fa-brands fa-instagram instagram-icon"></i>
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div id="instafeed-container" class="instafeed-slider">
+      {% for block in section.blocks %}
+        <div class="instagram-item">
+          {% if block.settings.url != blank %}
+            <a href="{{ block.settings.url }}" target="_blank">
+          {% endif %}
+          {% if block.settings.image != blank %}
+            <img src="{{ block.settings.image | img_url: 'master' }}" alt="Instagram Image" loading="lazy">
+          {% else %}
+            {{ 'image' | placeholder_svg_tag }}
+          {% endif %}
+          {% if block.settings.url != blank %}
+            </a>
+          {% endif %}
+          <i class="fa-brands fa-instagram instagram-icon"></i>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+
+<script src="{{ 'jquery.min.js' | asset_url }}"></script>
+<script src="{{ 'slick.js' | asset_url }}"></script>
+<script src="https://cdn.jsdelivr.net/gh/stevenschobert/instafeed.js@2.0.0rc1/src/instafeed.min.js"></script>
+
+{% schema %}
+{
+  "name": "t:sections.instagram_feed_section.name",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "text",
+      "id": "sub-title-top",
+      "label": "t:sections.instagram_feed_section.settings.sub-title-top.label",
+      "default": "t:sections.instagram_feed_section.settings.sub-title-top.default"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "t:sections.instagram_feed_section.settings.title.label",
+      "default": "t:sections.instagram_feed_section.settings.title.default"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "default": 30,
+      "unit": "px",
+      "label": "t:sections.instagram_feed_section.settings.title_font_size.label"
+    },
+    {
+      "type": "select",
+      "id": "title_font_weight",
+      "label": "t:sections.instagram_feed_section.settings.title_font_weight.label",
+      "options": [
+        {
+          "label": "t:sections.instagram_feed_section.settings.title_font_weight.option_1.label",
+          "value": "400"
+        },
+        {
+          "label": "t:sections.instagram_feed_section.settings.title_font_weight.option_2.label",
+          "value": "700"
+        }
+      ],
+      "default": "400"
+    },
+    {
+      "type": "select",
+      "id": "title_alignment",
+      "label": "t:sections.instagram_feed_section.settings.title_alignment.label",
+      "options": [
+        {
+          "label": "t:sections.instagram_feed_section.settings.title_alignment.option_1.label",
+          "value": "left"
+        },
+        {
+          "label": "t:sections.instagram_feed_section.settings.title_alignment.option_2.label",
+          "value": "center"
+        },
+        {
+          "label": "t:sections.instagram_feed_section.settings.title_alignment.option_3.label",
+          "value": "right"
+        }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.instagram_feed_section.settings.instafeed_header.content"
+    },
+    {
+      "type": "text",
+      "id": "access_token",
+      "label": "t:sections.instagram_feed_section.settings.access_token.label",
+      "info": " 💡 [Get Access Token?](https://codecrewinfotech.com/how-to-get-instagram-access-token/)"
+
+    },
+    {
+      "type": "range",
+      "id": "post_count",
+      "label": "t:sections.instagram_feed_section.settings.post_count.label",
+      "default": 6,
+      "min": 1,
+      "max": 30
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "min": 0,
+      "max": 25,
+      "step": 1,
+      "unit": "px",
+      "label": "t:sections.instagram_feed_section.settings.border_radius.label",
+      "default": 0
+    },
+    {
+      "type": "select",
+      "id": "layout_type",
+      "label": "t:sections.instagram_feed_section.settings.layout_type.label",
+      "options": [
+        {
+          "value": "grid",
+          "label": "t:sections.instagram_feed_section.settings.layout_type.option_1.label"
+        },
+        {
+          "value": "carousel",
+          "label": "t:sections.instagram_feed_section.settings.layout_type.option_2.label"
+        }
+      ],
+      "default": "carousel"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.instagram_feed_section.settings.section_grid.content"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "label": "t:sections.instagram_feed_section.settings.desktop_columns.label",
+      "min": 4,
+      "max": 7,
+      "step": 1,
+      "default": 6
+    },
+    {
+      "type": "range",
+      "id": "mobile_columns",
+      "label": "t:sections.instagram_feed_section.settings.mobile_columns.label",
+      "min": 1,
+      "max": 3,
+      "step": 1,
+      "default": 2,
+      "info": "t:sections.instagram_feed_section.settings.mobile_columns.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.instagram_feed_section.settings.section_carousel.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "arrows-carousel",
+      "label": "t:sections.instagram_feed_section.settings.arrows-carousel.label",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.instagram_feed_section.settings.section_header.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-5"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "t:sections.instagram_feed_section.blocks.image_text_insta.name",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:sections.instagram_feed_section.blocks.image_text_insta.settings.tag_line_img.label"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:sections.instagram_feed_section.blocks.image_text_insta.settings.title_url.label",
+          "info": "t:sections.instagram_feed_section.blocks.image_text_insta.settings.title_url.info"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.instagram_feed_section.presets.name",
+        "blocks": [
+        {
+          "type": "image"
+        },
+          {
+          "type": "image"
+        },
+          {
+          "type": "image"
+        },
+          {
+          "type": "image"
+        },
+          {
+          "type": "image"
+        },
+          {
+          "type": "image"
+        },
+          {
+          "type": "image"
+        }
+  ],
+     }
+  ]
+}
+{% endschema %}
+
+<script type="text/javascript">
+  var layout = '{{ section.settings.layout_type }}';
+
+  {% if section.settings.access_token != blank %}
+    var userFeed = new Instafeed({
+      get: 'user',
+      target: "instafeed-container",
+      resolution: 'low_resolution',
+      accessToken: '{{ section.settings.access_token }}',
+      limit: {{ section.settings.post_count }},
+      after: function () {
+        var container = document.getElementById('instafeed-container');
+        Array.from(container.children).forEach(function (item) {
+          item.classList.add('instagram-item');
+
+          var icon = document.createElement('i');
+          icon.className = 'fa-brands fa-instagram instagram-icon';
+          item.appendChild(icon);
+        });
+
+        if (layout === 'carousel') {
+          $('.instafeed-slider').slick({
+            slidesToShow: {{ section.settings.desktop_columns }},
+            slidesToScroll: 3,
+            speed: 700,
+            infinite: false,
+            arrows: {{ section.settings['arrows-carousel'] }},
+            prevArrow: '<button class="slick-left-arrow"><span><i class="{{ section.settings.previous_button | default: 'fa-solid fa-angle-left' }}"></i></span></button>',
+            nextArrow: '<button class="slick-right-arrow"><span><i class="{{ section.settings.next_button | default: 'fa-solid fa-angle-right' }}"></i></span></button>',
+            responsive: [
+              {
+                breakpoint: 1024,
+                settings: {
+                  slidesToShow: 4,
+                  slidesToScroll: 2,
+                },
+              },
+              {
+                breakpoint: 600,
+                settings: {
+                  slidesToShow: {{ section.settings.mobile_columns }},
+                  slidesToScroll: 1,
+                },
+              },
+            ],
+          });
+        }
+      }
+    });
+
+    userFeed.run();
+  {% else %}
+    //  Carousel Initialization for Block Images
+    $(document).ready(function(){
+      if (layout === 'carousel') {
+        $('.instafeed-slider').slick({
+          slidesToShow: {{ section.settings.desktop_columns }},
+          slidesToScroll: 3,
+          speed: 700,
+          infinite: false,
+          arrows: {{ section.settings['arrows-carousel'] }},
+          prevArrow: '<button class="slick-left-arrow"><span><i class="{{ section.settings.previous_button | default: 'fa-solid fa-angle-left' }}"></i></span></button>',
+          nextArrow: '<button class="slick-right-arrow"><span><i class="{{ section.settings.next_button | default: 'fa-solid fa-angle-right' }}"></i></span></button>',
+          responsive: [
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 4,
+                slidesToScroll: 2,
+              },
+            },
+            {
+              breakpoint: 600,
+              settings: {
+                slidesToShow: {{ section.settings.mobile_columns }},
+                slidesToScroll: 1,
+              },
+            },
+          ],
+        });
+      }
+    });
+
+  {% endif %}
+</script>

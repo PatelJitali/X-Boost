@@ -1,0 +1,227 @@
+{
+    "sections": {
+        "main": {
+            "type": "main-product",
+            "blocks": {
+                "vendor": {
+                    "type": "text",
+                    "settings": {
+                        "text": "{{ product.vendor }}",
+                        "text_style": "uppercase"
+                    }
+                },
+                "title": {
+                    "type": "title",
+                    "settings": {}
+                },
+                "price": {
+                    "type": "price",
+                    "settings": {}
+                },
+                "variant_picker": {
+                    "type": "variant_picker",
+                    "settings": {
+                        "picker_type": "button",
+                        "swatch_shape": "circle"
+                    }
+                },
+                "quantity_selector": {
+                    "type": "quantity_selector",
+                    "settings": {}
+                },
+                "inventory_pjjWCN": {
+                    "type": "inventory",
+                    "settings": {
+                        "text_style": "body",
+                        "inventory_threshold": 10,
+                        "show_inventory_quantity": true
+                    }
+                },
+                "buy_buttons": {
+                    "type": "buy_buttons",
+                    "settings": {
+                        "show_dynamic_checkout": true,
+                        "show_gift_card_recipient": true
+                    }
+                }
+            },
+            "block_order": [
+                "vendor",
+                "title",
+                "price",
+                "variant_picker",
+                "quantity_selector",
+                "inventory_pjjWCN",
+                "buy_buttons"
+            ],
+            "settings": {
+                "enable_sticky_info": true,
+                "color_scheme": "scheme-5",
+                "media_size": "small",
+                "constrain_to_viewport": true,
+                "media_fit": "contain",
+                "gallery_layout": "thumbnail_slider",
+                "media_position": "left",
+                "image_zoom": "lightbox",
+                "mobile_thumbnails": "show",
+                "hide_variants": true,
+                "enable_video_looping": false,
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+        "product_info_tabs_NWBrHG": {
+            "type": "product-info-tabs",
+            "settings": {
+                "full_width_section": false,
+                "product_tabs-title": "",
+                "title_font_size": 22,
+                "title_font_weight": "400",
+                "title_alignment": "left",
+                "show_description__tab": true,
+                "description_title": "Product Information",
+                "show_product_description": true,
+                "description_content": "<p>Description is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<\/p>",
+                "show_shipping_info__tab": true,
+                "shipping_info_title": "Shipping Information",
+                "shipping_info_page": "data-sale-opt-out",
+                "shipping_info_content": "<p>Shipping Info is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout.<\/p>",
+                "show_reviews__tab": true,
+                "reviews_title": "Reviews",
+                "review_page": "reviews",
+                "review_scripts": "<p>'Absolutely love this product! The quality exceeded my expectations, and the customer service was outstanding. Will definitely buy again!' — Emily R.</p>",
+                "show_size_guide__tab": true,
+                "size_guide_title": "Size Guide",
+                "size_guide_page": "size-guide",
+                "size_guide_html": "",
+                "color_scheme": "scheme-4",
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+        "compare_products_y9cDUz": {
+            "type": "compare-products",
+            "settings": {
+                "full_width_section": true,
+                "compare-product-title": "Compare with similar items",
+                "title_font_size": 27,
+                "title_font_weight": "700",
+                "title_alignment": "center",
+                "compare_product_list": [
+                    "rossignol-angus-magtek-snowboard-2016",
+                    "burton-antler-flying-v-snowboard-2016",
+                    "burton-blunt-snowboard-2016",
+                    "burton-clash-snowboard-2016",
+                    "burton-custom-20th"
+                ],
+                "product_to_compare": 5,
+                "compare_with_current": true,
+                "show_stock": true,
+                "has_variants": true,
+                "available_stocks": true,
+                "show_vendor": true,
+                "show_product_type": true,
+                "button_text": "More Details",
+                "color_scheme": "scheme-5",
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+        "testimonials_kxtkr9": {
+            "type": "testimonials",
+            "blocks": {
+                "slide_WRA7fP": {
+                    "type": "slide",
+                    "settings": {
+                        "show_testimonial_content": true,
+                        "author_logo": "shopify:\/\/shop_images\/2500x2500-1.png",
+                        "testimonial_content": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<\/p>",
+                        "author_name": "Author",
+                        "show_ratings": true,
+                        "testimonial_rating": 4
+                    }
+                },
+                "slide_Li8nmz": {
+                    "type": "slide",
+                    "settings": {
+                        "show_testimonial_content": true,
+                        "author_logo": "shopify:\/\/shop_images\/2500x2500-1.png",
+                        "testimonial_content": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<\/p>",
+                        "author_name": "Author",
+                        "show_ratings": true,
+                        "testimonial_rating": 4
+                    }
+                },
+                "slide_YGypxG": {
+                    "type": "slide",
+                    "settings": {
+                        "show_testimonial_content": true,
+                        "author_logo": "shopify:\/\/shop_images\/2500x2500-1_1d4d5f75-7094-4220-90bb-5ba37aa85346.png",
+                        "testimonial_content": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<\/p>",
+                        "author_name": "Author",
+                        "show_ratings": true,
+                        "testimonial_rating": 4
+                    }
+                },
+                "slide_wHYDPP": {
+                    "type": "slide",
+                    "settings": {
+                        "show_testimonial_content": true,
+                        "author_logo": "shopify:\/\/shop_images\/2500x2500-1.png",
+                        "testimonial_content": "<p>Lorem Ipsumis simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.<\/p>",
+                        "author_name": "Author",
+                        "show_ratings": true,
+                        "testimonial_rating": 4
+                    }
+                }
+            },
+            "block_order": [
+                "slide_WRA7fP",
+                "slide_Li8nmz",
+                "slide_YGypxG",
+                "slide_wHYDPP"
+            ],
+            "settings": {
+                "full_width_section": true,
+                "testimonial-title": "Our Happy Customers",
+                "title_font_size": 27,
+                "title_font_weight": "700",
+                "title_alignment": "left",
+                "infinite_scroll": true,
+                "arrow": true,
+                "dots": true,
+                "slide_show": 3,
+                "autoplay": true,
+                "speed": 2000,
+                "color_scheme": "scheme-6",
+                "padding_top": 36,
+                "padding_bottom": 36
+            }
+        },
+        "related-products": {
+            "type": "related-products",
+            "settings": {
+                "heading": "You may also like",
+                "heading_size": "h2",
+                "products_to_show": 4,
+                "columns_desktop": 4,
+                "color_scheme": "scheme-5",
+                "image_ratio": "square",
+                "image_shape": "default",
+                "show_secondary_image": false,
+                "show_vendor": false,
+                "show_rating": false,
+                "columns_mobile": "2",
+                "padding_top": 36,
+                "padding_bottom": 28
+            }
+        }
+    },
+    "order": [
+        "main",
+        "product_info_tabs_NWBrHG",
+        "compare_products_y9cDUz",
+        "testimonials_kxtkr9",
+        "related-products"
+    ]
+}

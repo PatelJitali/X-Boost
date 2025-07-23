@@ -1,0 +1,102 @@
+.performance-count .section-heading {
+  padding: 30px;
+}
+.section-heading .heading,
+.section-heading p {
+  margin: 0;
+}
+.performance-count .pro_desc-wrapper .pro_desc-text span {
+  font-size: 16px;
+}
+.performance-count .toggle-desc-link {
+  font-size: 16px;
+}
+.performance-count .pro_detail {
+  display: flex;
+  align-items: center;
+}
+.pro-info {
+  flex-basis: 50%;
+  padding: 0 5rem 0 0;
+}
+.pro_detail .pro_image {
+  flex-basis: 50%;
+  text-align: center;
+}
+.pro-info .pro_btn {
+  margin-top: 35px;
+}
+.performance-count .pro_count_details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 25px;
+  row-gap: 15px;
+  padding: 30px 0px;
+  justify-content: center;
+}
+.performance-count .pro_count_details .pro_count {
+  padding: 30px;
+  flex-basis: 33.33%;
+  /* border-radius: 10px; */
+  border-radius: var(--all-section-border-radius);
+}
+.pro_count .count-no {
+  margin: 0;
+}
+
+#performance-count .pro_detail .pro_image svg {
+  fill: currentColor;
+  box-shadow: inset 0 0 0.3rem 0.1rem #0000002b;
+  border-radius: 15px;
+}
+
+#performance-count .pro_detail.first-order .pro_image {
+  padding-inline-start: 5rem;
+}
+/* media query */
+@media screen and (max-width: 1024px) {
+  .performance-count .pro_detail {
+    flex-direction: column-reverse !important;
+  }
+  .performance-count .pro_detail.first-order .pro_image {
+    border-left: none !important;
+    border-right: none !important;
+    position: relative !important;
+  }
+
+  .pro-info {
+    flex-basis: 100%;
+    padding: 0;
+  }
+  .pro_detail .pro_image {
+    flex-basis: 100%;
+  }
+
+  .performance-count .pro_count_details .pro_count {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+  .pro_detail .pro_image img,
+  .pro_detail .pro_image svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .performance-count .pro_count_details {
+    padding: 30px 15px;
+  }
+  #performance-count {
+    padding-left: 0rem !important;
+    padding-right: 0rem !important;
+  }
+  .performance-count .pro_desc-wrapper .pro_desc-text span {
+    font-size: 15px;
+  }
+  .performance-count .toggle-desc-link {
+    font-size: 15px;
+  }
+  #performance-count .pro_detail.first-order .pro_image {
+    padding-inline-start: 0;
+  }
+}

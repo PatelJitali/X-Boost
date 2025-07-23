@@ -1,0 +1,390 @@
+{{ 'sticky-add-to-cart.css' | asset_url | stylesheet_tag }}
+
+{% liquid
+  assign background = settings.sticky_cart_color_scheme.settings.background
+  assign background_gradient = settings.sticky_cart_color_scheme.settings.background_gradient
+  assign text_color = settings.sticky_cart_color_scheme.settings.text
+  assign solid_button_background = settings.sticky_cart_color_scheme.settings.button
+  assign solid_button_label = settings.sticky_cart_color_scheme.settings.button_label
+  assign outline_button = settings.sticky_cart_color_scheme.settings.secondary_button_label
+  assign shadow = settings.sticky_cart_color_scheme.settings.shadow
+
+  assign block_position = settings.sticky_cart_position
+%}
+
+{% style %}
+  {% unless settings['sticky-btn-full-width'] %}
+    #cc-sticky-bar .sticky-bar {
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    @media only screen and (min-width: 768px){
+      #cc-sticky-bar .sticky-bar {
+        border-radius: 1rem;
+        bottom: 5px;
+      }
+    }
+  {% endunless %}
+
+    #cc-sticky-bar .cc-sticky-bar-title span a {
+      color: {{ text_color }}
+    }
+
+    #cc-sticky-bar .cc-sticky-bar-price .quentity_wrapper .price-per-item__container .quantity:after {
+      border: 1px solid {{ outline_button }};
+    }
+
+    #cc-sticky-bar .cc-sticky-bar-price span.sticky-bar-close {
+      background-color: {{ solid_button_background }};
+      color: {{ solid_button_label }};
+    }
+
+  {% if block_position == 'right' %}
+    @media only screen and (min-width: 768px){
+
+      #cc-sticky-bar .sticky-bar {
+        flex-direction: column;
+        height: auto;
+        width: max-content;
+        max-width: 50rem;
+        max-height: 50rem;
+        overflow: hidden;
+        right: 10px;
+        bottom: 10px;
+        left: auto;
+        transform: unset;
+        border-radius: 1rem;
+        animation: lowerRight .5s ease forwards;
+      }
+
+      #cc-sticky-bar .cc-sticky-bar-price span.sticky-bar-close {
+        top: 10px;
+        right: 10px;
+        transform: unset;
+        width: 25px;
+        height: 25px;
+      }
+      @keyframes lowerRight {
+        0% {
+          opacity: 0;
+          transform: translate3d(100%, 0, 0);
+        }
+        100% {
+          opacity: 1;
+          translate3d(0, 0, 0);
+        }
+      }
+    }
+    {% elsif block_position == 'left' %}
+    @media only screen and (min-width: 768px){
+        #cc-sticky-bar .sticky-bar {
+          flex-direction: column;
+          height: auto;
+          width: max-content;
+          max-width: 50rem;
+          max-height: 50rem;
+          overflow: hidden;
+          right: auto;
+          bottom: 10px;
+          left: 10px;
+          transform: unset;
+          border-radius: 1rem;
+          animation: lowerLeft .5s ease forwards;
+        }
+        #cc-sticky-bar .cc-sticky-bar-price span.sticky-bar-close {
+          top: 10px;
+          right: 10px;
+          transform: unset;
+          width: 28px;
+          height: 28px;
+        }
+      @keyframes lowerLeft {
+        0% {
+          opacity: 0;
+          transform: translate3d(-100%, 0, 0);
+        }
+        100% {
+          opacity: 1;
+          transform: translate3d(0, 0, 0);
+        }
+      }
+    }
+    {% endif %}
+{% endstyle %}
+<div
+  class="cc-sticky-add-to-cart{% if settings['hide_on_mobile'] %} hide_on_mobile{% endif %}"
+  id="cc-sticky-bar"
+  style="display: none;"
+>
+  <div
+    class="sticky-bar{% unless settings['sticky-btn-full-width'] %} page-width{% endunless %} color-{{ settings['sticky_cart_color_scheme'] }}"
+    style="display: flex;"
+  >
+    <div class="product-title-sticky">
+      <ul
+        class="cc-product__media-list"
+      >
+        <li
+          id=""
+          class="cc-product__media-item"
+        >
+          {{
+            product.featured_image
+            | image_url: width: product.featured_image.width, height: product.featured_image.height
+            | image_tag
+          }}
+        </li>
+      </ul>
+      <div class="cc-sticky-bar-title">
+        <span class="sticky-title"
+          ><a href="#">{{ product.title | truncatewords: 5 }}</a></span
+        >
+      </div>
+    </div>
+
+    <div class="cc-sticky-bar-price">
+      <div class="quentity_wrapper">
+        <div
+          id="Quantity-Form-{{ section.id }}"
+          class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %} cc-quantity_container"
+          {{ block.shopify_attributes }}
+        >
+          <label class="quantity__label form__label cc-quantity__label" for="Quantity-{{ section.id }}">
+            {{ 'products.product.quantity.label' | t }}
+          </label>
+          <div class="price-per-item__container">
+            <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
+              <button class="quantity__button" name="minus" type="button">
+                <span class="visually-hidden">
+                  {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
+                </span>
+                <span class="svg-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-minus" viewBox="0 0 10 2">
+                    <path fill="currentColor" fill-rule="evenodd" d="M.5 1C.5.7.7.5 1 .5h8a.5.5 0 1 1 0 1H1A.5.5 0 0 1 .5 1" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+              </button>
+              <input
+                class="quantity__input"
+                type="number"
+                name="quantity"
+                id="Quantity-{{ section.id }}"
+                data-cart-quantity="{{ cart_qty }}"
+                data-min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                min="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                {% if product.selected_or_first_available_variant.quantity_rule.max != null %}
+                  data-max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                  max="{{ product.selected_or_first_available_variant.quantity_rule.max }}"
+                {% endif %}
+                step="{{ product.selected_or_first_available_variant.quantity_rule.increment }}"
+                value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
+                form="{{ product_form_id }}"
+              >
+              <button class="quantity__button" name="plus" type="button">
+                <span class="visually-hidden">
+                  {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
+                </span>
+                <span class="svg-wrapper">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" class="icon icon-plus" viewBox="0 0 10 10">
+                    <path fill="currentColor" fill-rule="evenodd" d="M1 4.51a.5.5 0 0 0 0 1h3.5l.01 3.5a.5.5 0 0 0 1-.01V5.5l3.5-.01a.5.5 0 0 0-.01-1H5.5L5.49.99a.5.5 0 0 0-1 .01v3.5l-3.5.01z" clip-rule="evenodd"/>
+                  </svg>
+                </span>
+              </button>
+            </quantity-input>
+            {%- liquid
+              assign volume_pricing_array = product.selected_or_first_available_variant.quantity_price_breaks | sort: 'quantity' | reverse
+              assign current_qty_for_volume_pricing = cart_qty | plus: product.selected_or_first_available_variant.quantity_rule.min
+              if cart_qty > 0
+                assign current_qty_for_volume_pricing = cart_qty | plus: product.selected_or_first_available_variant.quantity_rule.increment
+              endif
+            -%}
+            {%- if product.quantity_price_breaks_configured? -%}
+              <price-per-item
+                id="Price-Per-Item-{{ section.id }}"
+                data-section-id="{{ section.id }}"
+                data-variant-id="{{ product.selected_or_first_available_variant.id }}"
+              >
+                {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
+                  {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
+                  <div class="price-per-item">
+                    {%- if variant_price_compare -%}
+                      <dl class="price-per-item--current">
+                        <dt class="visually-hidden">
+                          {{ 'products.product.price.regular_price' | t }}
+                        </dt>
+                        <dd>
+                          <s class="variant-item__old-price">
+                            {{ variant_price_compare | money_with_currency }}
+                          </s>
+                        </dd>
+                      </dl>
+                    {%- endif -%}
+                    {%- if current_qty_for_volume_pricing < volume_pricing_array.last.minimum_quantity -%}
+                      {%- assign variant_price = product.selected_or_first_available_variant.price
+                        | money_with_currency
+                      -%}
+                      <span class="price-per-item--current">
+                        {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
+                      </span>
+                    {%- else -%}
+                      {%- for price_break in volume_pricing_array -%}
+                        {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
+                          {%- assign price_break_price = price_break.price | money_with_currency -%}
+                          <span class="price-per-item--current">
+                            {{- 'products.product.volume_pricing.price_at_each' | t: price: price_break_price -}}
+                          </span>
+                          {%- break -%}
+                        {%- endif -%}
+                      {%- endfor -%}
+                    {%- endif -%}
+                  </div>
+                {%- else -%}
+                  {%- assign variant_price = product.selected_or_first_available_variant.price | money_with_currency -%}
+                  {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
+                  <div class="price-per-item">
+                    {%- if variant_price_compare -%}
+                      <dl class="price-per-item--current">
+                        <dt class="visually-hidden">
+                          {{ 'products.product.price.regular_price' | t }}
+                        </dt>
+                        <dd>
+                          <s class="variant-item__old-price">
+                            {{ variant_price_compare | money_with_currency }}
+                          </s>
+                        </dd>
+                        <dt class="visually-hidden">
+                          {{ 'products.product.price.sale_price' | t }}
+                        </dt>
+                        <dd>
+                          <span class="price-per-item--current">
+                            {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
+                          </span>
+                        </dd>
+                      </dl>
+                    {%- else -%}
+                      <span class="price-per-item--current">
+                        {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
+                      </span>
+                    {%- endif -%}
+                  </div>
+                {%- endif -%}
+              </price-per-item>
+            {%- endif -%}
+          </div>
+          <div class="quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
+            {%- if product.selected_or_first_available_variant.quantity_rule.increment > 1 -%}
+              <span class="divider">
+                {{-
+                  'products.product.quantity.multiples_of'
+                  | t: quantity: product.selected_or_first_available_variant.quantity_rule.increment
+                -}}
+              </span>
+            {%- endif -%}
+            {%- if product.selected_or_first_available_variant.quantity_rule.min > 1 -%}
+              <span class="divider">
+                {{-
+                  'products.product.quantity.minimum_of'
+                  | t: quantity: product.selected_or_first_available_variant.quantity_rule.min
+                -}}
+              </span>
+            {%- endif -%}
+            {%- if product.selected_or_first_available_variant.quantity_rule.max != null -%}
+              <span class="divider">
+                {{-
+                  'products.product.quantity.maximum_of'
+                  | t: quantity: product.selected_or_first_available_variant.quantity_rule.max
+                -}}
+              </span>
+            {%- endif -%}
+          </div>
+          {%- if product.quantity_price_breaks_configured? -%}
+            <volume-pricing class="parent-display" id="Volume-{{ section.id }}">
+              {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
+                <span class="caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
+                <ul class="list-unstyled">
+                  <li>
+                    <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
+                    {%- assign price = product.selected_or_first_available_variant.price | money_with_currency -%}
+                    <span data-text="{{ 'products.product.volume_pricing.price_at_each' | t: price: variant_price }}">
+                      {{- 'sections.quick_order_list.each' | t: money: price -}}
+                    </span>
+                  </li>
+                  {%- for price_break in product.selected_or_first_available_variant.quantity_price_breaks -%}
+                    {%- assign price_break_price = price_break.price | money_with_currency -%}
+                    <li class="{%- if forloop.index >= 3 -%}show-more-item hidden{%- endif -%}">
+                      <span>
+                        {{- price_break.minimum_quantity -}}
+                        <span aria-hidden="true">+</span></span
+                      >
+                      <span data-text="{{ 'products.product.volume_pricing.price_at_each' | t: price: price_break_price }}">
+                        {{- 'sections.quick_order_list.each' | t: money: price_break_price -}}
+                      </span>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+                {%- if product.selected_or_first_available_variant.quantity_price_breaks.size >= 3 -%}
+                  <show-more-button>
+                    <button
+                      class="button-show-more link underlined-link"
+                      id="Show-More-{{ section.id }}"
+                      type="button"
+                    >
+                      <span class="label-show-more label-text"
+                        ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t }}
+                      </span>
+                    </button>
+                  </show-more-button>
+                {%- endif -%}
+              {%- endif -%}
+            </volume-pricing>
+          {%- endif -%}
+        </div>
+        <div class="product-form__buttons">
+          <button
+            id="ProductSubmitButton-{{ section.id }}"
+            type="submit"
+            form="{{ product_form_id }}"
+            name="add"
+            class="product-form__submit button button--full-width{% if settings.sticky-btn-style %} button--secondary{% endif %} cc_cart_button"
+            {% if product.selected_or_first_available_variant.available == false
+              or quantity_rule_soldout
+              or product.selected_or_first_available_variant == null
+            %}
+              disabled
+            {% endif %}
+          >
+            <span>
+              {%- if product.selected_or_first_available_variant == null -%}
+                {{ 'products.product.unavailable' | t }}
+              {%- elsif product.selected_or_first_available_variant.available == false or quantity_rule_soldout -%}
+                {{ 'products.product.sold_out' | t }}
+              {%- else -%}
+                {{ 'products.product.add_to_cart' | t }}
+              {%- endif -%}
+            </span>
+          </button>
+        </div>
+      </div>
+      <span class="sticky-bar-close">
+        <svg
+          fill="currentColor"
+          height="18px"
+          width="18px"
+          version="1.1"
+          id="Capa_1"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          viewBox="0 0 490 490"
+          xml:space="preserve"
+          stroke="currentColor"
+        >
+          <g id="SVGRepo_bgCarrier" stroke-width="0"/>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
+          <g id="SVGRepo_iconCarrier"> <polygon points="456.851,0 245,212.564 33.149,0 0.708,32.337 212.669,245.004 0.708,457.678 33.149,490 245,277.443 456.851,490 489.292,457.678 277.331,245.004 489.292,32.337 "/> </g>
+        </svg>
+      </span>
+
+      <script src="{{ 'sticky-add-to-cart.js' | asset_url }}" defer="defer"></script>
+    </div>
+  </div>
+</div>
