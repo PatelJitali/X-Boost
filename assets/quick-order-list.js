@@ -57,9 +57,9 @@ if (!customElements.get('quick-order-list-remove-all-button')) {
 
       toggleConfirmation(showConfirmation, showInfo) {
         this.quickOrderList
-          .querySelector('.quick-order-list-total__confirmation')
+          .querySelector('.xboost-quick-order-list-total__confirmation')
           .classList.toggle('hidden', showConfirmation);
-        this.quickOrderList.querySelector('.quick-order-list-total__info').classList.toggle('hidden', showInfo);
+        this.quickOrderList.querySelector('.xboost-quick-order-list-total__info').classList.toggle('hidden', showInfo);
       }
     }
   );
@@ -75,9 +75,9 @@ if (!customElements.get('quick-order-list')) {
         this.quickOrderListId = `${this.dataset.section}-${this.dataset.productId}`;
         this.defineInputsAndQuickOrderTable();
 
-        this.variantItemStatusElement = document.getElementById('shopping-cart-variant-item-status');
+        this.variantItemStatusElement = document.getElementById('xboost-shopping-cart-variant-item-status');
         const form = this.querySelector('form');
-        this.inputFieldHeight = this.querySelector('.variant-item__quantity-wrapper').offsetHeight;
+        this.inputFieldHeight = this.querySelector('.xboost-variant-item__quantity-wrapper').offsetHeight;
         this.isListInsideModal = document.querySelector('.quick-add-bulk');
         this.stickyHeaderElement = document.querySelector('sticky-header');
         this.getTableHead();
@@ -138,7 +138,7 @@ if (!customElements.get('quick-order-list')) {
 
       defineInputsAndQuickOrderTable() {
         this.allInputsArray = Array.from(this.querySelectorAll('input[type="number"]'));
-        this.quickOrderListTable = this.querySelector('.quick-order-list__table');
+        this.quickOrderListTable = this.querySelector('.xboost-quick-order-list__table');
         this.quickOrderListTable.addEventListener('focusin', this.switchVariants.bind(this));
       }
 
@@ -208,7 +208,7 @@ if (!customElements.get('quick-order-list')) {
             selector: '.shopify-section',
           },
           {
-            id: `quick-order-list-live-region-text-${this.dataset.productId}`,
+            id: `xboost-quick-order-list-live-region-text-${this.dataset.productId}`,
             section: 'cart-live-region-text',
             selector: '.shopify-section',
           },
@@ -279,7 +279,7 @@ if (!customElements.get('quick-order-list')) {
       }
 
       getTableHead() {
-        return document.querySelector('.quick-order-list__table thead');
+        return document.querySelector('.xboost-quick-order-list__table thead');
       }
 
       getTotalBar() {
@@ -403,13 +403,13 @@ if (!customElements.get('quick-order-list')) {
         this.errorMessageTemplate =
           this.errorMessageTemplate ??
           document.getElementById(`QuickOrderListErrorTemplate-${this.dataset.productId}`).cloneNode(true);
-        const errorElements = document.querySelectorAll('.quick-order-list-error');
+        const errorElements = document.querySelectorAll('.xboost-quick-order-list-error');
 
         errorElements.forEach((errorElement) => {
           errorElement.innerHTML = '';
           if (!message) return;
           const updatedMessageElement = this.errorMessageTemplate.cloneNode(true);
-          updatedMessageElement.content.querySelector('.quick-order-list-error-message').innerText = message;
+          updatedMessageElement.content.querySelector('.xboost-quick-order-list-error-message').innerText = message;
           errorElement.appendChild(updatedMessageElement.content);
         });
       }
@@ -454,22 +454,22 @@ if (!customElements.get('quick-order-list')) {
 
       cleanErrors(id) {
         // this.querySelectorAll('.desktop-row-error').forEach((error) => error.classList.add('hidden'));
-        // this.querySelectorAll(`.variant-item__error-text`).forEach((error) => error.innerHTML = '');
+        // this.querySelectorAll(`.xboost-variant-item__error-text`).forEach((error) => error.innerHTML = '');
       }
 
       updateLiveRegions(id, message) {
         const variantItemErrorDesktop = document.getElementById(`Quick-order-list-item-error-desktop-${id}`);
         const variantItemErrorMobile = document.getElementById(`Quick-order-list-item-error-mobile-${id}`);
         if (variantItemErrorDesktop) {
-          variantItemErrorDesktop.querySelector('.variant-item__error-text').innerHTML = message;
+          variantItemErrorDesktop.querySelector('.xboost-variant-item__error-text').innerHTML = message;
           variantItemErrorDesktop.closest('tr').classList.remove('hidden');
         }
         if (variantItemErrorMobile)
-          variantItemErrorMobile.querySelector('.variant-item__error-text').innerHTML = message;
+          variantItemErrorMobile.querySelector('.xboost-variant-item__error-text').innerHTML = message;
 
         this.variantItemStatusElement.setAttribute('aria-hidden', true);
 
-        const cartStatus = document.getElementById('quick-order-list-live-region-text');
+        const cartStatus = document.getElementById('xboost-quick-order-list-live-region-text');
         cartStatus.setAttribute('aria-hidden', false);
 
         setTimeout(() => {

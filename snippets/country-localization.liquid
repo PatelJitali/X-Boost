@@ -28,7 +28,7 @@
 <div class="disclosure">
   <button
     type="button"
-    class="disclosure__button localization-form__select localization-selector link link--text caption-large"
+    class="disclosure__button localization-form__select xboost-localization-selector link link--text xboost-caption-large"
     aria-expanded="false"
     aria-controls="{{ localPosition }}-country-results"
     aria-describedby="{{ localPosition }}Label"
@@ -69,7 +69,7 @@
           >
             {{- 'icon-reset.svg' | inline_asset_content -}}
           </button>
-          <div class="country-filter__search-icon field__button motion-reduce">
+          <div class="country-filter__search-icon field__button xboost-motion-reduce">
             {{- 'icon-search.svg' | inline_asset_content -}}
           </div>
         </div>
@@ -96,7 +96,7 @@
           {%- for country in popular_countries -%}
             <li class="disclosure__item" tabindex="-1">
               <a
-                class="link link--text disclosure__link caption-large focus-inset"
+                class="link link--text disclosure__link xboost-caption-large focus-inset"
                 href="#"
                 {% if country.iso_code == localization.country.iso_code %}
                   aria-current="true"
@@ -112,7 +112,7 @@
                   {{- 'icon-checkmark.svg' | inline_asset_content -}}
                 </span>
                 <span class="country">{{- country.name }}</span>
-                <span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">
+                <span class="localization-form__currency xboost-motion-reduce{% unless show_currencies %} hidden{% endunless %}">
                   {{ country.currency.iso_code }}
                   {{ country.currency.symbol -}}
                 </span>
@@ -125,7 +125,7 @@
         {%- for country in localization.available_countries -%}
           <li class="disclosure__item" tabindex="-1">
             <a
-              class="link link--text disclosure__link caption-large focus-inset"
+              class="link link--text disclosure__link xboost-caption-large focus-inset"
               href="#"
               {% if country.iso_code == localization.country.iso_code %}
                 aria-current="true"
@@ -141,7 +141,7 @@
                 {{- 'icon-checkmark.svg' | inline_asset_content -}}
               </span>
               <span class="country">{{- country.name }}</span>
-              <span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">
+              <span class="localization-form__currency xboost-motion-reduce{% unless show_currencies %} hidden{% endunless %}">
                 {{ country.currency.iso_code }}
                 {{ country.currency.symbol -}}
               </span>

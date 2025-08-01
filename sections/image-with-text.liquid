@@ -62,7 +62,7 @@
         <div class="image-with-text__text-item grid__item">
           <div
             id="ImageWithText--{{ section.id }}"
-            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
+            class="image-with-text__content image-with-text__content--{{ section.settings.desktop_content_position }} image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} image-with-text__content--{{ section.settings.height }} xboost-content-container{% unless remove_color_classes %} gradient color-{{ section.settings.color_scheme }}{% else %} background-transparent{% endunless %}"
           >
             {%- for block in section.blocks -%}
               {% case block.type %}
@@ -385,11 +385,11 @@
               "label": "t:sections.image-with-text.blocks.caption.settings.text_style.options__1.label"
             },
             {
-              "value": "caption-with-letter-spacing",
+              "value": "xboost-caption-with-letter-spacing",
               "label": "t:sections.image-with-text.blocks.caption.settings.text_style.options__2.label"
             }
           ],
-          "default": "caption-with-letter-spacing",
+          "default": "xboost-caption-with-letter-spacing",
           "label": "t:sections.image-with-text.blocks.caption.settings.text_style.label"
         },
         {

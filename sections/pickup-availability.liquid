@@ -11,7 +11,7 @@
 
     <div class="pickup-availability-info">
       {%- if closest_location.available -%}
-        <p class="caption-large">
+        <p class="xboost-caption-large">
           {{
             'products.product.pickup_availability.pick_up_available_at_html'
             | t: location_name: closest_location.location.name
@@ -30,7 +30,7 @@
           {%- endif -%}
         </button>
       {%- else -%}
-        <p class="caption-large">
+        <p class="xboost-caption-large">
           {{
             'products.product.pickup_availability.pick_up_unavailable_at_html'
             | t: location_name: closest_location.location.name
@@ -83,7 +83,7 @@
       {%- for availability in pick_up_availabilities -%}
         <li class="pickup-availability-list__item">
           <h3 class="h4">{{ availability.location.name | escape }}</h3>
-          <p class="pickup-availability-preview caption-large">
+          <p class="pickup-availability-preview xboost-caption-large">
             {%- if availability.available -%}
               <span class="svg-wrapper">
                 {{- 'icon-tick.svg' | inline_asset_content -}}

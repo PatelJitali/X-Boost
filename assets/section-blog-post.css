@@ -81,7 +81,7 @@
   text-decoration: none;
 }
 
-.article-template__link .icon-wrap {
+.article-template__link .xboost-icon-wrap {
   display: flex;
   margin-right: 1rem;
   transform: rotate(180deg);

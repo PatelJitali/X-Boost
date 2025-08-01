@@ -1,9 +1,9 @@
 $(document).ready(function () {
-  const countdownContainer = $(".announcement-countdown-digits");
+  const countdownContainer = $(".xboost-announcement-countdown-digits");
   const endDateStr = countdownContainer.attr("data-end-date");
-  const timeoutMessage = $(".timeout-message");
-  const countdownTimer = $(".countdown-box");
-  const shopall = $(".countdown-button");
+  const timeoutMessage = $(".xboost-timeout-message");
+  const countdownTimer = $(".xboost-countdown-box");
+  const shopall = $(".xboost-countdown-button");
 
   if (endDateStr) {
     const endDate = new Date(endDateStr);

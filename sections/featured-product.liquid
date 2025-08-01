@@ -100,7 +100,7 @@
                   {% render block %}
                 {%- when 'text' -%}
                   <p
-                    class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                    class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} xboost-caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                     {{ block.shopify_attributes }}
                   >
                     {{- block.settings.text -}}
@@ -152,7 +152,7 @@
                   {%- endunless -%}
                 {%- when 'sku' -%}
                   <p
-                    class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
+                    class="product__sku{% if block.settings.text_style == 'uppercase' %} xboost-caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
                     id="Sku-{{ section.id }}"
                     role="status"
                     {{ block.shopify_attributes }}
@@ -240,7 +240,7 @@
                                     {{ 'products.product.price.regular_price' | t }}
                                   </dt>
                                   <dd>
-                                    <s class="variant-item__old-price">
+                                    <s class="xboost-variant-item__old-price">
                                       {{ variant_price_compare | money_with_currency }}
                                     </s>
                                   </dd>
@@ -280,7 +280,7 @@
                                     {{ 'products.product.price.regular_price' | t }}
                                   </dt>
                                   <dd>
-                                    <s class="variant-item__old-price">
+                                    <s class="xboost-variant-item__old-price">
                                       {{ variant_price_compare | money_with_currency }}
                                     </s>
                                   </dd>
@@ -303,7 +303,7 @@
                         </price-per-item>
                       {%- endif -%}
                     </div>
-                    <div class="quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
+                    <div class="xboost-quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
                       {%- if product.selected_or_first_available_variant.quantity_rule.increment > 1 -%}
                         <span class="divider">
                           {{-
@@ -330,9 +330,9 @@
                       {%- endif -%}
                     </div>
                     {%- if product.quantity_price_breaks_configured? -%}
-                      <volume-pricing class="parent-display" id="Volume-{{ section.id }}">
+                      <volume-pricing class="xboost-parent-display" id="Volume-{{ section.id }}">
                         {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
-                          <span class="caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
+                          <span class="xboost-caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
                           <ul class="list-unstyled">
                             <li>
                               <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
@@ -360,11 +360,11 @@
                           {%- if product.selected_or_first_available_variant.quantity_price_breaks.size >= 3 -%}
                             <show-more-button>
                               <button
-                                class="button-show-more link underlined-link"
+                                class="xboost-button-show-more link underlined-link"
                                 id="Show-More-{{ section.id }}"
                                 type="button"
                               >
-                                <span class="label-show-more label-text"
+                                <span class="xboost-label-show-more label-text"
                                   ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t }}
                                 </span>
                               </button>
@@ -396,7 +396,7 @@
                   {{ block.settings.custom_liquid }}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
-                    <div class="rating-wrapper">
+                    <div class="xboost-rating-wrapper">
                       {% liquid
                         assign rating_decimal = 0
                         assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
@@ -417,13 +417,13 @@
                           style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
                         ></span>
                       </div>
-                      <p class="rating-text caption">
+                      <p class="xboost-rating-text caption">
                         <span aria-hidden="true">
                           {{- product.metafields.reviews.rating.value }} /
                           {{ product.metafields.reviews.rating.value.scale_max -}}
                         </span>
                       </p>
-                      <p class="rating-count caption">
+                      <p class="xboost-rating-count caption">
                         <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
                         <span class="visually-hidden">
                           {{- product.metafields.reviews.rating_count }}
@@ -442,7 +442,7 @@
               {% else %}
                 href="{{ product.url }}"
               {% endif %}
-              class="link product__view-details animate-arrow"
+              class="link xboost-product__view-details animate-arrow"
             >
               {{ 'products.product.view_full_details' | t }}
               {{- 'icon-arrow.svg' | inline_asset_content -}}

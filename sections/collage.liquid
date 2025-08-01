@@ -21,7 +21,7 @@
 <div class="color-{{ section.settings.color_scheme }} gradient isolate">
   <div class="page-width section-{{ section.id }}-padding">
     {%- if section.settings.heading != blank -%}
-      <h2 class="collage-wrapper-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <h2 class="xboost-collage-wrapper-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         {{ section.settings.heading }}
       </h2>
     {%- endif -%}
@@ -29,7 +29,7 @@
       {% assign skip_card_product_styles = false %}
       {%- for block in section.blocks -%}
         <div
-          class="collage__item collage__item--{{ block.type }} collage__item--{{ section.settings.desktop_layout }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="xboost-collage__item xboost-collage__item--{{ block.type }} xboost-collage__item--{{ section.settings.desktop_layout }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {{ block.shopify_attributes }}
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
@@ -39,7 +39,7 @@
           {%- assign placeholder_image_index = forloop.index0 | modulo: 4 | plus: 1 -%}
           {%- case block.type -%}
             {%- when 'image' -%}
-              <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}card-wrapper {{ section.settings.card_styles }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+              <div class="xboost-collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}card-wrapper {{ section.settings.card_styles }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
                 <div
                   class="media media--transparent ratio"
                   {% if block.settings.image != blank %}
@@ -113,11 +113,11 @@
                 placeholder_image: placeholder_image
               %}
             {%- when 'video' -%}
-              <div class="collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}{{ section.settings.card_styles }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
+              <div class="xboost-collage-card {% if section.settings.card_styles == 'none' %}global-media-settings{% else %}{{ section.settings.card_styles }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
                 <modal-opener data-modal="#PopupModal-{{ block.id }}">
                   <div class="deferred-media">
                     <button
-                      class="deferred-media__poster full-unstyled-link"
+                      class="deferred-media__poster xboost-full-unstyled-link"
                       type="button"
                       aria-label="{{ 'sections.video.load_video' | t: description: block.settings.description | escape }}"
                       aria-haspopup="dialog"
@@ -131,7 +131,7 @@
                           style="--ratio-percent: 100%"
                         {% endif %}
                       >
-                        <span class="deferred-media__poster-button motion-reduce">
+                        <span class="deferred-media__poster-button xboost-motion-reduce">
                           <span class="svg-wrapper">
                             {{- 'icon-play.svg' | inline_asset_content -}}
                           </span>
@@ -163,10 +163,10 @@
                 </modal-opener>
                 <modal-dialog
                   id="PopupModal-{{ block.id }}"
-                  class="modal-video media-modal color-{{ settings.color_schemes | first }}"
+                  class="xboost-modal-video media-modal color-{{ settings.color_schemes | first }}"
                 >
                   <div
-                    class="modal-video__content"
+                    class="xboost-modal-video__content"
                     role="dialog"
                     aria-label="{{ block.settings.description | escape }}"
                     aria-modal="true"
@@ -175,15 +175,15 @@
                     <button
                       id="ModalClose-{{ block.id }}"
                       type="button"
-                      class="modal-video__toggle"
+                      class="xboost-modal-video__toggle"
                       aria-label="{{ 'accessibility.close' | t }}"
                     >
                       <span class="svg-wrapper">
                         {{- 'icon-close.svg' | inline_asset_content -}}
                       </span>
                     </button>
-                    <div class="modal-video__content-info">
-                      <deferred-media class="modal-video__video template-popup">
+                    <div class="xboost-modal-video__content-info">
+                      <deferred-media class="xboost-modal-video__video template-popup">
                         <template>
                           {%- if block.settings.video_url.type == 'youtube' -%}
                             <iframe
@@ -299,11 +299,11 @@
           "label": "t:sections.collage.settings.card_styles.options__1.label"
         },
         {
-          "value": "product-card-wrapper",
+          "value": "xboost-product-card-wrapper",
           "label": "t:sections.collage.settings.card_styles.options__2.label"
         }
       ],
-      "default": "product-card-wrapper",
+      "default": "xboost-product-card-wrapper",
       "info": "t:sections.collage.settings.card_styles.info",
       "label": "t:sections.collage.settings.card_styles.label"
     },

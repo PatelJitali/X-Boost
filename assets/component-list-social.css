@@ -22,7 +22,7 @@
   color: rgb(var(--color-foreground));
 }
 
-.utility-bar .list-social__link {
+.x-boost-utility-bar .list-social__link {
   padding: 0 0.8rem;
   height: 3.8rem;
 }

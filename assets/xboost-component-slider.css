@@ -117,7 +117,7 @@ slider-component.slider-component-full-width {
   }
 }
 
-.slider--everywhere {
+.xboost-slider--everywhere {
   position: relative;
   flex-wrap: inherit;
   overflow-x: auto;
@@ -127,7 +127,7 @@ slider-component.slider-component-full-width {
   margin-bottom: 1rem;
 }
 
-.slider.slider--everywhere .slider__slide {
+.slider.xboost-slider--everywhere .slider__slide {
   margin-bottom: 0;
   scroll-snap-align: center;
 }
@@ -311,31 +311,31 @@ slider-component.slider-component-full-width {
   color: rgb(var(--color-foreground));
 }
 
-.slider-buttons {
+.xboost-slider-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 @media screen and (min-width: 990px) {
-  .slider:not(.slider--everywhere):not(.slider--desktop) + .slider-buttons {
+  .slider:not(.xboost-slider--everywhere):not(.slider--desktop) + .xboost-slider-buttons {
     display: none;
   }
 }
 
 @media screen and (max-width: 989px) {
-  .slider--desktop:not(.slider--tablet) + .slider-buttons {
+  .slider--desktop:not(.slider--tablet) + .xboost-slider-buttons {
     display: none;
   }
 }
 
 @media screen and (min-width: 750px) {
-  .slider--mobile + .slider-buttons {
+  .slider--mobile + .xboost-slider-buttons {
     display: none;
   }
 }
 
-.slider-button {
+.xboost-slider-button {
   color: rgba(var(--color-foreground), 0.75);
   background: transparent;
   border: none;
@@ -351,7 +351,7 @@ slider-component.slider-component-full-width {
   color: rgb(var(--color-foreground));
 }
 
-.slider-button .icon {
+.xboost-slider-button .icon {
   height: 0.6rem;
 }
 
@@ -364,7 +364,7 @@ slider-component.slider-component-full-width {
   transform: rotate(-90deg);
 }
 
-.slider-button--prev .icon {
+.xboost-slider-button--prev .icon {
   transform: rotate(90deg);
 }
 
@@ -372,6 +372,6 @@ slider-component.slider-component-full-width {
   transform: rotate(-90deg) scale(1.1);
 }
 
-.slider-button--prev:not([disabled]):hover .icon {
+.xboost-slider-button--prev:not([disabled]):hover .icon {
   transform: rotate(90deg) scale(1.1);
 }

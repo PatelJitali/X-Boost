@@ -51,7 +51,7 @@
             {% endif %}
           >
             {%- if filter_type == 'horizontal' and results.filters != empty -%}
-              <h2 class="facets__heading caption-large text-body" id="verticalTitle" tabindex="-1">
+              <h2 class="facets__heading xboost-caption-large text-body" id="verticalTitle" tabindex="-1">
                 {{ 'products.facets.filter_by_label' | t }}
               </h2>
             {%- endif -%}
@@ -61,7 +61,7 @@
                 <div class="active-facets-vertical-filter">
                   {%- unless results.filters == empty -%}
                     <h2
-                      class="facets__heading facets__heading--vertical caption-large text-body"
+                      class="facets__heading facets__heading--vertical xboost-caption-large text-body"
                       id="verticalTitle"
                       tabindex="-1"
                     >
@@ -136,7 +136,7 @@
                     {% endif %}
                   >
                     <summary
-                      class="facets__summary caption-large focus-offset"
+                      class="facets__summary xboost-caption-large focus-offset"
                       aria-label="{{ filter.label | escape }} ({{ 'products.facets.filters_selected.one' | t: count: filter.active_values.size }})"
                     >
                       <div>
@@ -158,7 +158,7 @@
                     </summary>
                     <div
                       id="Facet-{{ forloop.index }}-{{ section.id }}"
-                      class="parent-display {% if filter_type == 'horizontal' %}facets__display{% else %}facets__display-vertical{% endif %}"
+                      class="xboost-parent-display {% if filter_type == 'horizontal' %}facets__display{% else %}facets__display-vertical{% endif %}"
                     >
                       {%- if filter_type != 'vertical' -%}
                         <div class="facets__header">
@@ -282,11 +282,11 @@
                       {%- if filter.values.size > show_more_number and filter_type == 'vertical' -%}
                         <show-more-button>
                           <button
-                            class="button-show-more link underlined-link"
+                            class="xboost-button-show-more link underlined-link"
                             id="Show-More-{{ forloop.index }}-{{ section.id }}"
                             type="button"
                           >
-                            <span class="label-show-more label-text"
+                            <span class="xboost-label-show-more label-text"
                               ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t -}}
                             </span>
                             <span class="label-show-less label-text hidden"
@@ -306,7 +306,7 @@
                       open
                     {% endif %}
                   >
-                    <summary class="facets__summary caption-large focus-offset">
+                    <summary class="facets__summary xboost-caption-large focus-offset">
                       <div>
                         <span>{{ filter.label | escape }}</span>
                         {{- 'icon-caret.svg' | inline_asset_content -}}
@@ -390,14 +390,14 @@
           {%- if enable_sorting -%}
             <div class="facet-filters sorting caption">
               <div class="facet-filters__field">
-                <h2 class="facet-filters__label caption-large text-body">
+                <h2 class="facet-filters__label xboost-caption-large text-body">
                   <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
                 </h2>
                 <div class="select">
                   {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
                   <select
                     name="sort_by"
-                    class="facet-filters__sort select__select caption-large"
+                    class="facet-filters__sort select__select xboost-caption-large"
                     id="SortBy"
                     aria-describedby="a11y-refresh-page-message"
                   >
@@ -830,14 +830,14 @@
       <form id="FacetSortDrawerForm" class="facets__form">
         <div class="facet-filters sorting caption small-hide">
           <div class="facet-filters__field">
-            <h2 class="facet-filters__label caption-large text-body">
+            <h2 class="facet-filters__label xboost-caption-large text-body">
               <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
             </h2>
             <div class="select">
               {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
               <select
                 name="sort_by"
-                class="facet-filters__sort select__select caption-large"
+                class="facet-filters__sort select__select xboost-caption-large"
                 id="SortBy"
                 aria-describedby="a11y-refresh-page-message"
               >

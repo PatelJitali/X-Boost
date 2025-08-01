@@ -22,7 +22,7 @@
   text-decoration-thickness: 0.2rem;
 }
 
-.list-menu--disclosure.localization-selector {
+.list-menu--disclosure.xboost-localization-selector {
   max-height: 18rem;
   overflow: auto;
   width: 10rem;

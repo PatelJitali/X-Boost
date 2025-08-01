@@ -107,17 +107,17 @@
   margin-top: 0;
 }
 
-.cart-notification-product__image {
+.xboost-cart-notification-product__image {
   display: inline-flex;
   margin-right: 1.5rem;
   margin-top: 0.5rem;
 }
 
-.cart-notification-product__image:after {
+.xboost-cart-notification-product__image:after {
   content: none;
 }
 
-.cart-notification-product__name {
+.xboost-cart-notification-product__name {
   margin-bottom: 0.5rem;
   margin-top: 0;
 }

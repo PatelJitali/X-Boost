@@ -1,6 +1,6 @@
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'xboost-component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -82,10 +82,10 @@
         {%- endfor -%}
       </ul>
       {%- if show_mobile_slider -%}
-        <div class="slider-buttons">
+        <div class="xboost-slider-buttons">
           <button
             type="button"
-            class="slider-button slider-button--prev"
+            class="xboost-slider-button xboost-slider-button--prev"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
           >
@@ -101,7 +101,7 @@
           </div>
           <button
             type="button"
-            class="slider-button slider-button--next"
+            class="xboost-slider-button slider-button--next"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
           >

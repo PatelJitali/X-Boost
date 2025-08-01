@@ -164,14 +164,14 @@
           <form class="facets-vertical-form" id="FacetSortForm">
             <div class="facet-filters sorting caption">
               <div class="facet-filters__field">
-                <h2 class="facet-filters__label caption-large text-body">
+                <h2 class="facet-filters__label xboost-caption-large text-body">
                   <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
                 </h2>
                 <div class="select">
                   {%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
                   <select
                     name="sort_by"
-                    class="facet-filters__sort select__select caption-large"
+                    class="facet-filters__sort select__select xboost-caption-large"
                     id="SortBy"
                     aria-describedby="a11y-refresh-page-message"
                   >
@@ -306,18 +306,18 @@
                       {%- when 'page' -%}
                         <div class="article-card-wrapper card-wrapper underline-links-hover">
                           <div
-                            class="card card--card card--text ratio color-{{ settings.blog_card_color_scheme }}"
+                            class="card card--card xboost-card--text ratio color-{{ settings.blog_card_color_scheme }}"
                             style="--ratio-percent: 100%;"
                           >
-                            <div class="card__content">
-                              <div class="card__information">
-                                <h3 class="card__heading">
-                                  <a href="{{ item.url }}" class="full-unstyled-link">
+                            <div class="xboost-card__content">
+                              <div class="xboost-card__information">
+                                <h3 class="xboost-card__heading">
+                                  <a href="{{ item.url }}" class="xboost-full-unstyled-link">
                                     {{ item.title | truncate: 50 | escape }}
                                   </a>
                                 </h3>
                               </div>
-                              <div class="card__badge {{ settings.badge_position }}">
+                              <div class="xboost-card__badge {{ settings.badge_position }}">
                                 <span class="badge color-{{ settings.color_schemes | first }}">
                                   {{- 'templates.search.page' | t -}}
                                 </span>

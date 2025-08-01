@@ -27,14 +27,14 @@
   display: inline-flex;
 }
 
-.share-button + .product__view-details {
+.share-button + .xboost-product__view-details {
   display: inline-flex;
   float: right;
   align-items: center;
   min-height: 4.4rem;
 }
 
-.share-button + .product__view-details::after {
+.share-button + .xboost-product__view-details::after {
   content: '';
   clear: both;
   display: table;

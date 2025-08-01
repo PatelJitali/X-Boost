@@ -1,4 +1,4 @@
-.product--no-media .rating-wrapper {
+.product--no-media .xboost-rating-wrapper {
   text-align: center;
 }
 
@@ -44,11 +44,11 @@
   -webkit-text-fill-color: transparent;
 }
 
-.rating-text {
+.xboost-rating-text {
   display: none;
 }
 
-.rating-count {
+.xboost-rating-count {
   display: inline-block;
   margin: 0;
 }
@@ -58,7 +58,7 @@
     display: none;
   }
 
-  .rating-text {
+  .xboost-rating-text {
     display: block;
   }
 }

@@ -8,7 +8,7 @@
 <div class="disclosure">
   <button
     type="button"
-    class="disclosure__button localization-form__select localization-selector link link--text caption-large"
+    class="disclosure__button localization-form__select xboost-localization-selector link link--text xboost-caption-large"
     aria-expanded="false"
     aria-controls="{{ localPosition }}List"
     aria-describedby="{{ localPosition }}Label"
@@ -21,7 +21,7 @@
       {%- for language in localization.available_languages -%}
         <li class="disclosure__item" tabindex="-1">
           <a
-            class="link link--text disclosure__link caption-large focus-inset"
+            class="link link--text disclosure__link xboost-caption-large focus-inset"
             href="#"
             hreflang="{{ language.iso_code }}"
             lang="{{ language.iso_code }}"

@@ -371,7 +371,7 @@
     --alpha-button-background: 0;
   }
 
-  .banner--desktop-transparent .content-container:after {
+  .banner--desktop-transparent .xboost-content-container:after {
     display: none;
   }
 }

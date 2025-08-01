@@ -1,4 +1,4 @@
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'xboost-component-slider.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-article-card.css' | asset_url | stylesheet_tag }}
 {{ 'section-featured-blog.css' | asset_url | stylesheet_tag }}
@@ -96,24 +96,24 @@
                   class="
                     card article-card card--{{ settings.blog_card_style }}
                     {% if settings.blog_card_style == 'card' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}
-                    {% if section.settings.show_image %} card--media{% else %} card--text{% endif %}
+                    {% if section.settings.show_image %} xboost-card--media{% else %} xboost-card--text{% endif %}
                   "
                   style=" {% if settings.blog_card_style == 'standard' %} --ratio-percent: 100%;{% elsif settings.blog_card_style == 'card' %} --ratio-percent: 0%;{% endif %}"
                 >
                   <div
-                    class="card__inner{% if settings.blog_card_style == 'standard' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %} ratio"
+                    class="xboost-card__inner{% if settings.blog_card_style == 'standard' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %} ratio"
                     style="--ratio-percent: 80%;"
                   >
                     {%- if section.settings.show_image == true -%}
-                      <div class="article-card__image-wrapper card__media">
+                      <div class="article-card__image-wrapper xboost-card__media">
                         <div class="article-card__image media">
                           {{ placeholder_image | placeholder_svg_tag: 'blog-placeholder-svg' }}
                         </div>
                       </div>
                     {%- endif -%}
-                    <div class="card__content">
-                      <div class="card__information">
-                        <h3 class="card__heading h2">
+                    <div class="xboost-card__content">
+                      <div class="xboost-card__information">
+                        <h3 class="xboost-card__heading h2">
                           {{ 'sections.featured_blog.onboarding_title' | t }}
                         </h3>
                         <p class="article-card__excerpt rte-width">
@@ -122,9 +122,9 @@
                       </div>
                     </div>
                   </div>
-                  <div class="card__content">
-                    <div class="card__information">
-                      <h3 class="card__heading h2">
+                  <div class="xboost-card__content">
+                    <div class="xboost-card__information">
+                      <h3 class="xboost-card__heading h2">
                         {{ 'sections.featured_blog.onboarding_title' | t }}
                       </h3>
                       <p class="article-card__excerpt rte-width">
@@ -139,10 +139,10 @@
         {%- endif -%}
       </ul>
       {%- if posts_exceed_limit -%}
-        <div class="slider-buttons{% if section.settings.post_limit < 3 %} medium-hide{% endif %}{% if section.settings.post_limit < 2 %} small-hide{% endif %}">
+        <div class="xboost-slider-buttons{% if section.settings.post_limit < 3 %} medium-hide{% endif %}{% if section.settings.post_limit < 2 %} small-hide{% endif %}">
           <button
             type="button"
-            class="slider-button slider-button--prev"
+            class="xboost-slider-button xboost-slider-button--prev"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
           >
@@ -158,7 +158,7 @@
           </div>
           <button
             type="button"
-            class="slider-button slider-button--next"
+            class="xboost-slider-button slider-button--next"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
           >

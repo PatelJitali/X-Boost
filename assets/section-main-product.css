@@ -51,7 +51,7 @@ product-info {
     margin-bottom: 2rem;
   }
 
-  .product__media-container .slider-buttons {
+  .product__media-container .xboost-slider-buttons {
     display: none;
   }
 
@@ -241,7 +241,7 @@ a.product__text {
   color: rgba(var(--color-foreground), 0.75);
 }
 
-.product__text.caption-with-letter-spacing {
+.product__text.xboost-caption-with-letter-spacing {
   text-transform: uppercase;
 }
 
@@ -258,15 +258,15 @@ a.product__text {
   display: none;
 }
 
-.product__title + .product__text.caption-with-letter-spacing {
+.product__title + .product__text.xboost-caption-with-letter-spacing {
   margin-top: -1.5rem;
 }
 
-.product__text.caption-with-letter-spacing + .product__title {
+.product__text.xboost-caption-with-letter-spacing + .product__title {
   margin-top: 0;
 }
 
-.product__accordion .accordion__content {
+.product__accordion .xboost-accordion__content {
   padding: 0 1rem;
 }
 
@@ -328,7 +328,7 @@ a.product__text {
 
 .product--no-media .product-form__quantity,
 .product--no-media .share-button,
-.product--no-media .product__view-details,
+.product--no-media .xboost-product__view-details,
 .product--no-media .product__pickup-availabilities,
 .product--no-media .product-form {
   display: flex;
@@ -987,7 +987,7 @@ a.product__text {
     scroll-padding-left: 0.5rem;
   }
 
-  .product__media-wrapper .slider-mobile-gutter .slider-button {
+  .product__media-wrapper .slider-mobile-gutter .xboost-slider-button {
     display: none;
   }
 
@@ -995,7 +995,7 @@ a.product__text {
     width: calc(25% - 0.8rem);
   }
 
-  .product--thumbnail_slider .slider-mobile-gutter .slider-button {
+  .product--thumbnail_slider .slider-mobile-gutter .xboost-slider-button {
     display: flex;
   }
 }
@@ -1161,21 +1161,21 @@ a.product__text {
   padding-bottom: 100%;
 }
 
-.product:not(.featured-product) .product__view-details {
+.product:not(.featured-product) .xboost-product__view-details {
   display: none;
 }
 
-.product__view-details {
+.xboost-product__view-details {
   display: block;
   text-decoration: none;
 }
 
-.product__view-details:hover {
+.xboost-product__view-details:hover {
   text-decoration: underline;
   text-underline-offset: 0.3rem;
 }
 
-.product__view-details .icon {
+.xboost-product__view-details .icon {
   width: 1.2rem;
   margin-left: 1.2rem;
   flex-shrink: 0;

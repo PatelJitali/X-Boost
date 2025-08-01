@@ -6,9 +6,9 @@ if (!customElements.get('quantity-popover')) {
         super();
         this.mql = window.matchMedia('(min-width: 990px)');
         this.mqlTablet = window.matchMedia('(min-width: 750px)');
-        this.infoButtonDesktop = this.querySelector('.quantity-popover__info-button--icon-only');
-        this.infoButtonMobile = this.querySelector('.quantity-popover__info-button--icon-with-label');
-        this.popoverInfo = this.querySelector('.quantity-popover__info');
+        this.infoButtonDesktop = this.querySelector('.xboost-quantity-popover__info-button--icon-only');
+        this.infoButtonMobile = this.querySelector('.xboost-quantity-popover__info-button--icon-with-label');
+        this.popoverInfo = this.querySelector('.xboost-quantity-popover__info');
         this.closeButton = this.querySelector('.button-close');
         this.eventMouseEnterHappened = false;
 
@@ -51,9 +51,9 @@ if (!customElements.get('quantity-popover')) {
 
           this.popoverInfo.toggleAttribute('hidden');
 
-          button.classList.toggle('quantity-popover__info-button--open');
+          button.classList.toggle('xboost-quantity-popover__info-button--open');
 
-          this.infoButtonDesktop.classList.add('quantity-popover__info-button--icon-only--animation');
+          this.infoButtonDesktop.classList.add('xboost-quantity-popover__info-button--icon-only--animation');
         }
 
         const isOpen = button.getAttribute('aria-expanded') === 'true';
@@ -77,9 +77,9 @@ if (!customElements.get('quantity-popover')) {
 
         if (!isButtonChild && !isPopoverChild) {
           button.setAttribute('aria-expanded', 'false');
-          button.classList.remove('quantity-popover__info-button--open');
+          button.classList.remove('xboost-quantity-popover__info-button--open');
           this.popoverInfo.setAttribute('hidden', '');
-          this.infoButtonDesktop.classList.remove('quantity-popover__info-button--icon-only--animation');
+          this.infoButtonDesktop.classList.remove('xboost-quantity-popover__info-button--icon-only--animation');
         }
 
         this.eventMouseEnterHappened = false;

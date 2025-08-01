@@ -128,11 +128,20 @@
           id=""
           class="cc-product__media-item"
         >
-          {{
-            product.featured_image
-            | image_url: width: product.featured_image.width, height: product.featured_image.height
-            | image_tag
-          }}
+          
+          {% if product.featured_image %}
+  {{
+    product.featured_image
+    | image_url: width: product.featured_image.width, height: product.featured_image.height
+    | image_tag
+  }}
+{% else %}
+    <div style="min-width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+    {{ 'product-1' | placeholder_svg_tag }}
+  </div>
+
+{% endif %}
+
         </li>
       </ul>
       <div class="cc-sticky-bar-title">
@@ -213,7 +222,7 @@
                           {{ 'products.product.price.regular_price' | t }}
                         </dt>
                         <dd>
-                          <s class="variant-item__old-price">
+                          <s class="xboost-variant-item__old-price">
                             {{ variant_price_compare | money_with_currency }}
                           </s>
                         </dd>
@@ -248,7 +257,7 @@
                           {{ 'products.product.price.regular_price' | t }}
                         </dt>
                         <dd>
-                          <s class="variant-item__old-price">
+                          <s class="xboost-variant-item__old-price">
                             {{ variant_price_compare | money_with_currency }}
                           </s>
                         </dd>
@@ -271,7 +280,7 @@
               </price-per-item>
             {%- endif -%}
           </div>
-          <div class="quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
+          <div class="xboost-quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
             {%- if product.selected_or_first_available_variant.quantity_rule.increment > 1 -%}
               <span class="divider">
                 {{-
@@ -298,9 +307,9 @@
             {%- endif -%}
           </div>
           {%- if product.quantity_price_breaks_configured? -%}
-            <volume-pricing class="parent-display" id="Volume-{{ section.id }}">
+            <volume-pricing class="xboost-parent-display" id="Volume-{{ section.id }}">
               {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
-                <span class="caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
+                <span class="xboost-caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
                 <ul class="list-unstyled">
                   <li>
                     <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
@@ -325,11 +334,11 @@
                 {%- if product.selected_or_first_available_variant.quantity_price_breaks.size >= 3 -%}
                   <show-more-button>
                     <button
-                      class="button-show-more link underlined-link"
+                      class="xboost-button-show-more link underlined-link"
                       id="Show-More-{{ section.id }}"
                       type="button"
                     >
-                      <span class="label-show-more label-text"
+                      <span class="xboost-label-show-more label-text"
                         ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t }}
                       </span>
                     </button>

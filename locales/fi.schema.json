@@ -447,7 +447,7 @@
         }
       }
     },
-    "announcement-bar": {
+    "xboost-announcement-bar": {
       "name": "Ilmoituspalkki",
       "blocks": {
         "announcement": {

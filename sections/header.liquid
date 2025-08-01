@@ -143,7 +143,7 @@
                 {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
                 {{ settings.logo | image_url: width: 600 | image_tag:
-                  class: 'header__heading-logo motion-reduce',
+                  class: 'header__heading-logo xboost-motion-reduce',
                   widths: widths,
                   height: logo_height,
                   width: settings.logo_width,
@@ -201,8 +201,8 @@
       {%- endif -%}
     {%- endif -%}
 
-    <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
-      <div class="desktop-localization-wrapper">
+    <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization xboost-header-localization{% endif %}">
+      <div class="xboost-desktop-localization-wrapper">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
           <localization-form class="small-hide medium-hide" data-prevent-hide>
             {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
@@ -228,17 +228,16 @@
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
       <!-- Wishlist Icon -->
-      {% if settings['enable-wishlist'] %}
-          <div class="button-floating header__icon">
-             <svg width="25px" height="25px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="3" stroke="currentColor" fill="none">
-              <path d="M9.06,25C7.68,17.3,12.78,10.63,20.73,10c7-.55,10.47,7.93,11.17,9.55a.13.13,0,0,0,.25,0c3.25-8.91,9.17-9.29,11.25-9.5C49,9.45,56.51,13.78,55,23.87c-2.16,14-23.12,29.81-23.12,29.81S11.79,40.05,9.06,25Z"/>
-            </svg>
+       {% if settings['enable-wishlist'] %}
+          <div class="button-floating header__icon header__icon--wishlidt focus-inset">
+            <span class="svg-wrapper">
+            {{- 'icon-heart.svg' | inline_asset_content -}}
+            </span>
           <div class="wishlist-count-bubble">
             <span class="wishlist-count"></span>
           </div>
          </div>
       {% endif %}
-
 
       {%- if shop.customer_accounts_enabled -%}
         <a
@@ -284,7 +283,7 @@
           {% endif %}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
-          <div class="cart-count-bubble">
+          <div class="xboost-cart-count-bubble">
             {%- if cart.item_count < 100 -%}
               <span aria-hidden="true">{{ cart.item_count }}</span>
             {%- endif -%}

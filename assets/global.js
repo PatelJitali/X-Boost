@@ -487,7 +487,7 @@ class MenuDrawer extends HTMLElement {
       summary.addEventListener("click", this.onSummaryClick.bind(this))
     );
     this.querySelectorAll(
-      "button:not(.localization-selector):not(.country-selector__close-button):not(.country-filter__reset-button)"
+      "button:not(.xboost-localization-selector):not(.country-selector__close-button):not(.country-filter__reset-button)"
     ).forEach((button) =>
       button.addEventListener("click", this.onCloseButtonClick.bind(this))
     );
@@ -769,7 +769,7 @@ class BulkModal extends HTMLElement {
               "text/html"
             );
             const sourceQty = html.querySelector(
-              ".quick-order-list-container"
+              ".xboost-quick-order-list-container"
             ).parentNode;
             this.innerHTML = sourceQty.innerHTML;
           })
@@ -959,16 +959,16 @@ customElements.define("slider-component", SliderComponent);
 class SlideshowComponent extends SliderComponent {
   constructor() {
     super();
-    this.sliderControlWrapper = this.querySelector(".slider-buttons");
+    this.sliderControlWrapper = this.querySelector(".xboost-slider-buttons");
     this.enableSliderLooping = true;
 
     if (!this.sliderControlWrapper) return;
 
-    this.sliderFirstItemNode = this.slider.querySelector(".slideshow__slide");
+    this.sliderFirstItemNode = this.slider.querySelector(".xboost-slideshow__slide");
     if (this.sliderItemsToShow.length > 0) this.currentPage = 1;
 
-    this.announcementBarSlider = this.querySelector(".announcement-bar-slider");
-    // Value below should match --duration-announcement-bar CSS value
+    this.announcementBarSlider = this.querySelector(".xboost-announcement-bar-slider");
+    // Value below should match --duration-xboost-announcement-barCSS value
     this.announcerBarAnimationDelay = this.announcementBarSlider ? 250 : 0;
 
     this.sliderControlLinksArray = Array.from(
@@ -1193,8 +1193,8 @@ class SlideshowComponent extends SliderComponent {
     const nextSlide = this.sliderItems[nextIndex];
     const currentSlide = this.sliderItems[currentIndex];
 
-    const animationClassIn = "announcement-bar-slider--fade-in";
-    const animationClassOut = "announcement-bar-slider--fade-out";
+    const animationClassIn = "xboost-announcement-bar-slider--fade-in";
+    const animationClassOut = "xboost-announcement-bar-slider--fade-out";
 
     const isFirstSlide = currentIndex === 0;
     const isLastSlide = currentIndex === itemsCount - 1;

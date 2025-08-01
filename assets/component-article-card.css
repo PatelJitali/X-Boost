@@ -46,12 +46,12 @@
   text-underline-offset: 0.3rem;
 }
 
-.article-card .card__heading {
+.article-card .xboost-card__heading {
   margin-bottom: 0.6rem;
 }
 
-.blog-articles .article-card .card__information,
-.blog__posts .article-card .card__information {
+.blog-articles .article-card .xboost-card__information,
+.blog__posts .article-card .xboost-card__information {
   padding-left: 2rem;
   padding-right: 2rem;
 }

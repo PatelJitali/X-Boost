@@ -553,7 +553,7 @@
         "info": "Standard-styled cards have no borders when an image shape is active."
       }
     },
-    "announcement-bar": {
+    "xboost-announcement-bar": {
       "name": "Announcement bar",
       "settings": {
         "auto_rotate": {

@@ -100,8 +100,8 @@ function createWishlistToggleHandler() {
           item.productTitle
         }">
                       </a>
-                      <h3 class="c-product__title card__heading h5">
-                          <a class="full-unstyled-link wishlist-product-title" href="${
+                      <h3 class="c-product__title xboost-card__heading h5">
+                          <a class="xboost-full-unstyled-link wishlist-product-title" href="${
                             item.productUrl
                           }">${item.productTitle}</a>
                         <span class="wishlist-tooltip">${
@@ -116,8 +116,8 @@ function createWishlistToggleHandler() {
                           )}')" class="wishlist-remove-btn"><span class="wishlist-close-btn">&times;</span></button>
                           <product-form data-section-id="template--23644041314582__product-grid"><form method="post" action="/cart/add" id="quick-add-template--23644041314582__product-grid9556926923030" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" name="id" value="${
                             item.productId
-                          }" class="product-variant-id">
-                      <button id="quick-add-template--23644041314582__product-grid9556926923030-submit" type="submit" name="add" class="quick-add__submit button button--full-width button--secondary wishlist-cart-btn" aria-haspopup="dialog" aria-labelledby="quick-add-template--23644041314582__product-grid9556926923030-submit title-template--23644041314582__product-grid-9556926923030" aria-live="polite" data-sold-out-message="true">
+                          }" class="xboost-product-variant-id">
+                      <button id="quick-add-template--23644041314582__product-grid9556926923030-submit" type="submit" name="add" class="xboost-quick-add__submit button button--full-width button--secondary wishlist-cart-btn" aria-haspopup="dialog" aria-labelledby="quick-add-template--23644041314582__product-grid9556926923030-submit title-template--23644041314582__product-grid-9556926923030" aria-live="polite" data-sold-out-message="true">
                       <span>Add to cart</span>             
                       <span class="sold-out-message hidden">Sold out</span>
                       <div class="loading__spinner hidden">

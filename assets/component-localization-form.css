@@ -84,7 +84,7 @@
   top: calc(50% - 0.2rem);
 }
 
-.localization-selector.link {
+.xboost-localization-selector.link {
   text-decoration: none;
   appearance: none;
   -webkit-appearance: none;
@@ -99,11 +99,11 @@
   padding-top: 1.5rem;
 }
 
-.localization-selector option {
+.xboost-localization-selector option {
   color: #000000;
 }
 
-.localization-selector + .disclosure__list-wrapper {
+.xboost-localization-selector + .disclosure__list-wrapper {
   opacity: 1;
   animation: animateLocalization var(--duration-default) ease;
 }
@@ -338,12 +338,12 @@
 }
 
 /* Header localization */
-.header-localization .localization-form:only-child {
+.xboost-header-localization .localization-form:only-child {
   margin: 0;
   padding: 0;
 }
 
-.header-localization .disclosure .localization-form__select {
+.xboost-header-localization .disclosure .localization-form__select {
   font-size: 1.4rem;
   letter-spacing: 0.06rem;
   height: auto;
@@ -351,66 +351,66 @@
   background: transparent;
 }
 
-.header-localization .disclosure .localization-form__select:hover {
+.xboost-header-localization .disclosure .localization-form__select:hover {
   text-decoration: underline;
 }
 
-.header-localization .localization-form__select.link:after,
-.header-localization .localization-form__select.link:before {
+.xboost-header-localization .localization-form__select.link:after,
+.xboost-header-localization .localization-form__select.link:before {
   box-shadow: none;
 }
 
-.header-localization .localization-form__select.link:focus-visible {
+.xboost-header-localization .localization-form__select.link:focus-visible {
   outline: 0.2rem solid rgba(var(--color-foreground), 0.5);
   outline-offset: -0.2rem;
   box-shadow: 0 0 0.2rem 0 rgba(var(--color-foreground), 0.3);
 }
 
 /* Header icons (desktop) */
-.desktop-localization-wrapper {
+.xboost-desktop-localization-wrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-.desktop-localization-wrapper .localization-selector + .disclosure__list-wrapper {
+.xboost-desktop-localization-wrapper .xboost-localization-selector + .disclosure__list-wrapper {
   animation: animateMenuOpen var(--duration-default) ease;
 }
 
-.desktop-localization-wrapper .localization-form:only-child {
+.xboost-desktop-localization-wrapper .localization-form:only-child {
   padding: 0;
 }
 
-.header-localization:not(.menu-drawer__localization) {
+.xboost-header-localization:not(.menu-drawer__localization) {
   align-items: center;
 }
 
-.js .header-localization:not(.menu-drawer__localization) .localization-form__select {
+.js .xboost-header-localization:not(.menu-drawer__localization) .localization-form__select {
   padding: 0 2.7rem 0 1.2rem;
   width: max-content;
   height: 3.8rem;
 }
 
-.header-localization:not(.menu-drawer__localization) .localization-form:only-child .localization-form__select {
+.xboost-header-localization:not(.menu-drawer__localization) .localization-form:only-child .localization-form__select {
   margin: 0;
 }
 
-.header-localization:not(.menu-drawer__localization).localization-form__select > span {
+.xboost-header-localization:not(.menu-drawer__localization).localization-form__select > span {
   max-width: 20ch;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.header-localization:not(.menu-drawer__localization) localization-form:only-child .localization-form__select > span {
+.xboost-header-localization:not(.menu-drawer__localization) localization-form:only-child .localization-form__select > span {
   max-width: 26ch;
 }
 
-.header-localization:not(.menu-drawer__localization) .localization-form__select .icon-caret {
+.xboost-header-localization:not(.menu-drawer__localization) .localization-form__select .icon-caret {
   right: 0.8rem;
 }
 
-.header-localization:not(.menu-drawer__localization) .disclosure__list-wrapper {
+.xboost-header-localization:not(.menu-drawer__localization) .disclosure__list-wrapper {
   bottom: initial;
   top: 100%;
   right: 0;

@@ -182,7 +182,7 @@ class CCFacetFiltersForm extends HTMLElement {
     const sourceWrapElement = source.querySelector('.facets-wrap');
 
     if (sourceWrapElement && targetWrapElement) {
-      const isShowingMore = Boolean(target.querySelector('show-more-button .label-show-more.hidden'));
+      const isShowingMore = Boolean(target.querySelector('show-more-button .xboost-label-show-more.hidden'));
       if (isShowingMore) {
         sourceWrapElement
           .querySelectorAll('.facets__item.hidden')

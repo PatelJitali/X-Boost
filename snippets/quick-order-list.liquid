@@ -14,7 +14,7 @@
 {% # theme-check-disable %}
 {%- assign items_in_cart = cart | line_items_for: product | sum: 'quantity' -%}
 {% # theme-check-enable %}
-<div class="quick-order-list-container color-{{ section.settings.color_scheme }}{% unless is_modal %} gradient{% endunless %}">
+<div class="xboost-quick-order-list-container color-{{ section.settings.color_scheme }}{% unless is_modal %} gradient{% endunless %}">
   <quick-order-list
     class="page-width section-{{ section.id }}-padding"
     id="{{ section.id }}-{{ product.id }}"
@@ -24,26 +24,26 @@
   >
     <form
       action="{{ routes.cart_update_url }}"
-      class="quick-order-list__contents critical-hidden"
+      class="xboost-quick-order-list__contents critical-hidden"
       method="post"
-      id="QuickOrderList"
+      id="xboost-QuickOrderList"
     >
-      <div class="quick-order-list__container" id="main-variant-items">
+      <div class="xboost-quick-order-list__container" id="main-variant-items">
         <div class="js-contents">
-          <table class="quick-order-list__table">
+          <table class="xboost-quick-order-list__table">
             <caption class="visually-hidden">
               {{ 'sections.cart.title' | t }}
             </caption>
             <thead>
               <tr>
-                <th class="caption-with-letter-spacing" scope="col">
+                <th class="xboost-caption-with-letter-spacing" scope="col">
                   {%- if product.has_only_default_variant -%}
                     {{ 'sections.quick_order_list.product' | t }}
                   {%- else -%}
                     {{ 'sections.quick_order_list.variant' | t }}
                   {%- endif -%}
                 </th>
-                <th class="large-up-hide right caption-with-letter-spacing" scope="col">
+                <th class="large-up-hide right xboost-caption-with-letter-spacing" scope="col">
                   {%- if product.has_only_default_variant -%}
                     {{ 'sections.quick_order_list.product_total' | t }}
                   {%- else -%}
@@ -51,18 +51,18 @@
                   {%- endif -%}
                 </th>
                 <th
-                  class="quick-order-list__table-heading--wide small-hide medium-hide caption-with-letter-spacing"
+                  class="xboost-quick-order-list__table-heading--wide small-hide medium-hide xboost-caption-with-letter-spacing"
                   scope="col"
                 >
                   {{ 'products.product.quantity.label' | t }}
                 </th>
                 <th
-                  class="quick-order-list__table-heading--wide small-hide medium-hide caption-with-letter-spacing"
+                  class="xboost-quick-order-list__table-heading--wide small-hide medium-hide xboost-caption-with-letter-spacing"
                   scope="col"
                 >
                   {{ 'sections.cart.headings.price' | t }}
                 </th>
-                <th class="small-hide medium-hide right caption-with-letter-spacing" scope="col">
+                <th class="small-hide medium-hide right xboost-caption-with-letter-spacing" scope="col">
                   {%- if product.has_only_default_variant -%}
                     {{ 'sections.quick_order_list.product_total' | t }}
                   {%- else -%}
@@ -103,13 +103,13 @@
 
       <p
         class="visually-hidden"
-        id="quick-order-list-live-region-text-{{ product.id }}"
+        id="xboost-quick-order-list-live-region-text-{{ product.id }}"
         aria-live="polite"
         role="status"
       ></p>
       <p
         class="visually-hidden"
-        id="shopping-cart-variant-item-status"
+        id="xboost-shopping-cart-variant-item-status"
         aria-live="polite"
         aria-hidden="true"
         role="status"
@@ -119,7 +119,7 @@
     </form>
 
     {%- if product.has_only_default_variant or product.variants.size == 1 -%}
-      <span class="quick-order-list-error">
+      <span class="xboost-quick-order-list-error">
         {% comment %} Populated by JS {% endcomment %}
       </span>
     {%- else -%}
@@ -127,7 +127,7 @@
         class="quick-order-list__total{% unless is_modal %} gradient{% endunless %}"
         id="quick-order-list-total-{{ product.id }}-{{ section.id }}"
       >
-        <div class="quick-order-list-total__info">
+        <div class="xboost-quick-order-list-total__info">
           <div class="quick-order-list-total__column small-hide medium-hide">
             <div class="quick-order-list-buttons">
               <a
@@ -151,7 +151,7 @@
                 </quick-order-list-remove-all-button>
               </div>
             </div>
-            <span class="quick-order-list__message caption-large" role="status">
+            <span class="quick-order-list__message xboost-caption-large" role="status">
               <span class="quick-order-list__message-icon hidden">
                 <span class="svg-wrapper">
                   {{- 'icon-checkmark.svg' | inline_asset_content -}}
@@ -159,7 +159,7 @@
               </span>
               <span class="quick-order-list__message-text"></span>
             </span>
-            <span class="quick-order-list-error">
+            <span class="xboost-quick-order-list-error">
               {% comment %} Populated by JS {% endcomment %}
             </span>
           </div>
@@ -179,7 +179,7 @@
               </span>
               <p class="totals__subtotal h5">{{ 'sections.quick_order_list.product_total' | t }}</p>
             </div>
-            <small class="tax-note caption-large rte">
+            <small class="tax-note xboost-caption-large rte">
               {%- if cart.duties_included and cart.taxes_included -%}
                 {%- if shop.shipping_policy.body == blank -%}
                   {{ 'sections.cart.duties_and_taxes_included_shipping_at_checkout_without_policy' | t }}
@@ -243,7 +243,7 @@
                 </quick-order-list-remove-all-button>
               </div>
             </div>
-            <span class="quick-order-list__message caption-large" role="status">
+            <span class="quick-order-list__message xboost-caption-large" role="status">
               <span class="quick-order-list__message-icon hidden">
                 <span class="svg-wrapper">
                   {{- 'icon-checkmark.svg' | inline_asset_content -}}
@@ -251,12 +251,12 @@
               </span>
               <span class="quick-order-list__message-text"></span>
             </span>
-            <span class="quick-order-list-error">
+            <span class="xboost-quick-order-list-error">
               {% comment %} Populated by JS {% endcomment %}
             </span>
           </div>
         </div>
-        <div class="quick-order-list-total__confirmation hidden">
+        <div class="xboost-quick-order-list-total__confirmation hidden">
           <span class="text-body">
             {{ 'sections.quick_order_list.remove_all_items_confirmation' | t: quantity: items_in_cart }}
           </span>
@@ -264,7 +264,7 @@
             data-action="remove"
           >
             <button
-              class="quick-order-list__button-confirm button button--secondary"
+              class="xboost-quick-order-list__button-confirm button button--secondary"
               type="button"
             >
               {{- 'sections.quick_order_list.remove_all' | t -}}
@@ -274,7 +274,7 @@
             data-action="cancel"
           >
             <button
-              class="quick-order-list__button-cancel button button--tertiary"
+              class="xboost-quick-order-list__button-cancel button button--tertiary"
               type="button"
             >
               {{- 'sections.quick_order_list.cancel' | t -}}
@@ -286,6 +286,6 @@
   </quick-order-list>
   <template id="QuickOrderListErrorTemplate-{{ product.id }}">
     {{ 'icon-error.svg' | inline_asset_content }}
-    <span class="quick-order-list-error-message caption-large" role="alert"></span>
+    <span class="xboost-quick-order-list-error-message xboost-caption-large" role="alert"></span>
   </template>
 </div>

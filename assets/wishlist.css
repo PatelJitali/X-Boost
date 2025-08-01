@@ -317,7 +317,7 @@ body.overflow {
   display: flex;
   text-decoration: none;
   background: transparent;
-  color: inherit;
+  /* color: inherit; */
   align-items: center;
   cursor: pointer;
 }

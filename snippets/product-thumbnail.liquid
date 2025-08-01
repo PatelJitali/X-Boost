@@ -58,7 +58,7 @@
     data-modal="#ProductModal-{{ modal_id }}"
   >
     <span
-      class="product__media-icon motion-reduce quick-add-hidden{% if media.media_type == 'image' %} product__media-icon--{{ section.settings.image_zoom }}{% endif %}"
+      class="product__media-icon xboost-motion-reduce quick-add-hidden{% if media.media_type == 'image' %} product__media-icon--{{ section.settings.image_zoom }}{% endif %}"
       aria-hidden="true"
     >
       {% case media.media_type %}
@@ -107,7 +107,7 @@
       <deferred-media class="deferred-media media media--transparent" data-media-id="{{ media.id }}">
     {%- endif -%}
     <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
-      <span class="deferred-media__poster-button motion-reduce">
+      <span class="deferred-media__poster-button xboost-motion-reduce">
         {%- if media.media_type == 'model' -%}
           <span class="visually-hidden">{{ 'products.product.media.play_model' | t }}</span>
           <span class="svg-wrapper">

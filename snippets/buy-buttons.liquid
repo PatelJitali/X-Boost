@@ -53,7 +53,7 @@
           %}
             disabled
           {% endif %}
-          class="product-variant-id"
+          class="xboost-product-variant-id"
         >
 
         {%- if gift_card_recipient_feature_active -%}
@@ -137,7 +137,7 @@
             {{- 'icon-unavailable.svg' | inline_asset_content -}}
           </span>
           <div class="pickup-availability-info">
-            <p class="caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
+            <p class="xboost-caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
             <button class="pickup-availability-button link link--text underlined-link">
               {{ 'products.product.pickup_availability.refresh' | t }}
             </button>

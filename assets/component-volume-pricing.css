@@ -32,7 +32,7 @@ div.volume-pricing-note {
 }
 
 .volume-pricing-note span,
-volume-pricing .label-show-more {
+volume-pricing .xboost-label-show-more {
   font-size: 1.2rem;
   letter-spacing: 0.07rem;
 }
@@ -62,8 +62,8 @@ volume-pricing show-more-button {
   margin-left: 0;
 }
 
-.price-per-item__container .variant-item__old-price,
-.price__regular .variant-item__old-price {
+.price-per-item__container .xboost-variant-item__old-price,
+.price__regular .xboost-variant-item__old-price {
   color: rgba(var(--color-foreground), 0.75);
   font-size: 1.2rem;
   letter-spacing: 0.07rem;
