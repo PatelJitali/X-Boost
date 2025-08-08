@@ -294,7 +294,7 @@ h2,
     0 0 0.5rem 0.4rem rgba(var(--color-foreground), 0.3);
 }
 
-.form__message {
+.xboost-form__message {
   align-items: center;
   display: flex;
   font-size: 1.2rem;
@@ -304,7 +304,7 @@ h2,
   opacity: 0.8;
 }
 
-.form__message .icon {
+.xboost-form__message .icon {
   flex-shrink: 0;
   height: 1.3rem;
   margin-right: 0.5rem;

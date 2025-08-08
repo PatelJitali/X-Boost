@@ -308,12 +308,12 @@ quick-add-modal .product__column-sticky {
 }
 
 @media screen and (min-width: 750px) {
-  quick-add-modal .product:not(.product--no-media) .product__media-wrapper {
+  quick-add-modal .product:not(.product--no-media) .xboost-product__media-wrapper {
     max-width: 45%;
     width: calc(45% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
-  quick-add-modal .product:not(.product--no-media) .product__info-wrapper {
+  quick-add-modal .product:not(.product--no-media) .xboost-product__info-wrapper {
     padding-top: 2rem;
     padding-left: 4rem;
     max-width: 54%;
@@ -334,16 +334,16 @@ quick-add-modal .page-width {
   padding: 0;
 }
 
-quick-add-modal .product__title > h1 {
+quick-add-modal .xboost-product__title > h1 {
   display: none;
 }
 
-quick-add-modal .product__title > a {
+quick-add-modal .xboost-product__title > a {
   display: block;
   text-decoration: none;
 }
 
-quick-add-modal .product__title > a:hover {
+quick-add-modal .xboost-product__title > a:hover {
   color: rgb(var(--color-foreground));
   text-decoration: underline;
   text-underline-offset: 0.2rem;
@@ -360,12 +360,12 @@ quick-add-modal .product-form__buttons {
   box-sizing: border-box;
 }
 
-quick-add-modal .product-media-container.constrain-height {
+quick-add-modal .xboost-product-media-container.xboost-constrain-height {
   --viewport-offset: calc((var(--modal-height-offset) + var(--modal-padding) + var(--popup-border-width)) * 2);
 }
 
 @media screen and (min-width: 750px) {
-  quick-add-modal .product-media-container.constrain-height {
+  quick-add-modal .xboost-product-media-container.xboost-constrain-height {
     --constrained-min-height: 400px;
   }
 }
@@ -395,7 +395,7 @@ quick-add-bulk quantity-input {
   justify-content: space-between;
 }
 
-quick-add-bulk .quantity__input {
+quick-add-bulk .xboost-quantity__input {
   max-width: calc(6.5rem / var(--font-body-scale));
   flex-grow: 0;
 }

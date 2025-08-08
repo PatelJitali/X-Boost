@@ -42,7 +42,7 @@ volume-pricing show-more-button {
 }
 
 .product-form__input price-per-item,
-.price-per-item__container {
+.xboost-price-per-item__container {
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -62,7 +62,7 @@ volume-pricing show-more-button {
   margin-left: 0;
 }
 
-.price-per-item__container .xboost-variant-item__old-price,
+.xboost-price-per-item__container .xboost-variant-item__old-price,
 .price__regular .xboost-variant-item__old-price {
   color: rgba(var(--color-foreground), 0.75);
   font-size: 1.2rem;

@@ -9,7 +9,7 @@
   background: transparent;
 }
 
-.video-section__media.global-media-settings--full-width {
+.video-section__media.xboost-global-media-settings--full-width {
   padding-bottom: var(--ratio-percent);
 }
 
@@ -43,6 +43,6 @@
   background: #000000;
 }
 
-.video-section__media.media-fit-cover video {
+.video-section__media.xboost-media-fit-cover video {
   object-fit: cover;
 }

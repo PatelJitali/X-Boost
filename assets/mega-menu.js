@@ -1,11 +1,11 @@
 $(document).ready(function() {
   // Function to initialize a specific mega menu
   function initializeMegaMenu(menuContainer) {
-    const firstLink = $(menuContainer).find('.mega-menu__link--level-2').first();
+    const firstLink = $(menuContainer).find('.xboost-mega-menu__link--level-2').first();
     const firstList = firstLink.siblings('.list-unstyled');
     
     // Reset all menus in this container
-    $(menuContainer).find('.mega-menu__link--level-2').css({
+    $(menuContainer).find('.xboost-mega-menu__link--level-2').css({
       'text-decoration': 'none',
       'color': '' 
     });
@@ -30,11 +30,11 @@ $(document).ready(function() {
   }
 
   // Handle mouse enter on mega menu links
-  $('.mega-menu__links').on('mouseenter', '.mega-menu__link--level-2', function() {
-    const menuContainer = $(this).closest('.mega-menu__links');
+  $('.xboost-mega-menu__links').on('mouseenter', '.xboost-mega-menu__link--level-2', function() {
+    const menuContainer = $(this).closest('.xboost-mega-menu__links');
     
     // Reset all links and lists in this menu
-    menuContainer.find('.mega-menu__link--level-2').css({
+    menuContainer.find('.xboost-mega-menu__link--level-2').css({
       'text-decoration': 'none',
       'color': '' 
     });
@@ -62,14 +62,14 @@ $(document).ready(function() {
   // Handle when details element is opened
   $('details.mega-menu').on('toggle', function() {
     if (this.open) {
-      const menuContainer = $(this).find('.mega-menu__links');
+      const menuContainer = $(this).find('.xboost-mega-menu__links');
       initializeMegaMenu(menuContainer);
     }
   });
 
   // Initialize all open mega menus on page load
   $('details.mega-menu[open]').each(function() {
-    const menuContainer = $(this).find('.mega-menu__links');
+    const menuContainer = $(this).find('.xboost-mega-menu__links');
     initializeMegaMenu(menuContainer);
   });
 });

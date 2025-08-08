@@ -8,10 +8,10 @@
   {% render 'header-search', input_id: 'My-Id'%}
 {% endcomment %}
 
-<details-modal class="header__search">
+<details-modal class="xboost-header__search">
   <details>
     <summary
-      class="header__icon header__icon--search header__icon--summary link focus-inset modal__toggle"
+      class="xboost-header__icon xboost-header__icon--search xboost-header__icon--summary link focus-inset xboost-modal__toggle"
       aria-haspopup="dialog"
       aria-label="{{ 'general.search.search' | t }}"
     >
@@ -19,31 +19,31 @@
         <span class="svg-wrapper">
           {{- 'icon-search.svg' | inline_asset_content -}}
         </span>
-        <span class="svg-wrapper header__icon-close">
+        <span class="svg-wrapper xboost-header__icon-close">
           {{- 'icon-close.svg' | inline_asset_content -}}
         </span>
       </span>
     </summary>
     <div
-      class="search-modal modal__content gradient"
+      class="xboost-search-modal modal__content gradient"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
     >
-      <div class="modal-overlay"></div>
+      <div class="xboost-modal-overlay"></div>
       <div
-        class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
+        class="xboost-search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-search-modal__content-top{% else %} xboost-search-modal__content-bottom{% endif %}"
         tabindex="-1"
       >
         {%- if settings.predictive_search_enabled -%}
-          <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
+          <predictive-search class="xboost-search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
         {%- else -%}
-          <search-form class="search-modal__form">
+          <search-form class="xboost-search-modal__form">
         {%- endif -%}
-        <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="search xboost-search-modal__form">
           <div class="field">
             <input
-              class="search__input field__input"
+              class="xboost-search__input xboost-field__input"
               id="{{ input_id }}"
               type="search"
               name="q"
@@ -62,18 +62,18 @@
                 spellcheck="false"
               {%- endif -%}
             >
-            <label class="field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
+            <label class="xboost-field__label" for="{{ input_id }}">{{ 'general.search.search' | t }}</label>
             <input type="hidden" name="options[prefix]" value="last">
             <button
               type="reset"
-              class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+              class="xboost-reset__button xboost-field__button{% if search.terms == blank %} hidden{% endif %}"
               aria-label="{{ 'general.search.reset' | t }}"
             >
               <span class="svg-wrapper">
                 {{- 'icon-reset.svg' | inline_asset_content -}}
               </span>
             </button>
-            <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+            <button class="xboost-search__button xboost-field__button" aria-label="{{ 'general.search.search' | t }}">
               <span class="svg-wrapper">
                 {{- 'icon-search.svg' | inline_asset_content -}}
               </span>
@@ -81,11 +81,11 @@
           </div>
 
           {%- if settings.predictive_search_enabled -%}
-            <div class="predictive-search predictive-search--header" tabindex="-1" data-predictive-search>
-              {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+            <div class="predictive-search xboost-predictive-search--header" tabindex="-1" data-predictive-search>
+              {%- render 'loading-spinner', class: 'xboost-predictive-search__loading-state' -%}
             </div>
 
-            <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+            <span class="xboost-predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
           {%- endif -%}
         </form>
         {%- if settings.predictive_search_enabled -%}
@@ -95,7 +95,7 @@
         {%- endif -%}
         <button
           type="button"
-          class="search-modal__close-button modal__close-button link link--text focus-inset"
+          class="xboost-search-modal__close-button xboost-modal__close-button link link--text focus-inset"
           aria-label="{{ 'accessibility.close' | t }}"
         >
           <span class="svg-wrapper">

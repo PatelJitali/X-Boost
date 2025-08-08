@@ -28,7 +28,7 @@
 <div class="disclosure">
   <button
     type="button"
-    class="disclosure__button localization-form__select xboost-localization-selector link link--text xboost-caption-large"
+    class="xboost-disclosure__button xboost-localization-form__select xboost-localization-selector link link--text xboost-caption-large"
     aria-expanded="false"
     aria-controls="{{ localPosition }}-country-results"
     aria-describedby="{{ localPosition }}Label"
@@ -40,12 +40,12 @@
     </span>
     {{ 'icon-caret.svg' | inline_asset_content }}
   </button>
-  <div class="disclosure__list-wrapper country-selector" hidden>
-    <div class="country-filter{% unless show_country_filter %} country-filter--no-padding{% endunless %}">
+  <div class="xboost-disclosure__list-wrapper xboost-country-selector" hidden>
+    <div class="xboost-country-filter{% unless show_country_filter %} xboost-country-filter--no-padding{% endunless %}">
       {% if show_country_filter %}
         <div class="field">
           <input
-            class="country-filter__input field__input"
+            class="xboost-country-filter__input xboost-field__input"
             id="country-filter-input"
             type="search"
             name="country_filter"
@@ -61,21 +61,21 @@
             autocapitalize="off"
             spellcheck="false"
           >
-          <label class="field__label" for="country-filter-input">{{ 'localization.search' | t }}</label>
+          <label class="xboost-field__label" for="country-filter-input">{{ 'localization.search' | t }}</label>
           <button
             type="reset"
-            class="country-filter__reset-button field__button hidden"
+            class="xboost-country-filter__reset-button xboost-field__button hidden"
             aria-label="{{ 'general.search.reset' | t }}"
           >
             {{- 'icon-reset.svg' | inline_asset_content -}}
           </button>
-          <div class="country-filter__search-icon field__button xboost-motion-reduce">
+          <div class="xboost-country-filter__search-icon xboost-field__button xboost-motion-reduce">
             {{- 'icon-search.svg' | inline_asset_content -}}
           </div>
         </div>
       {% endif %}
       <button
-        class="country-selector__close-button button--small link"
+        class="xboost-country-selector__close-button button--small link"
         type="button"
         aria-label="{{ 'accessibility.close' | t }}"
       >
@@ -84,19 +84,19 @@
     </div>
     <div id="sr-country-search-results" class="visually-hidden" aria-live="polite"></div>
     <div
-      class="disclosure__list country-selector__list{% if show_currencies %} country-selector__list--with-multiple-currencies{% endif %}"
+      class="xboost-disclosure__list xboost-country-selector__list{% if show_currencies %} xboost-country-selector__list--with-multiple-currencies{% endif %}"
       id="{{ localPosition }}-country-results"
     >
       {% if show_popular_countries %}
         <ul
           role="list"
-          class="list-unstyled popular-countries"
+          class="list-unstyled xboost-popular-countries"
           aria-label="{{ 'localization.popular_countries_regions' | t }}"
         >
           {%- for country in popular_countries -%}
-            <li class="disclosure__item" tabindex="-1">
+            <li class="xboost-disclosure__item" tabindex="-1">
               <a
-                class="link link--text disclosure__link xboost-caption-large focus-inset"
+                class="link link--text xboost-disclosure__link xboost-caption-large focus-inset"
                 href="#"
                 {% if country.iso_code == localization.country.iso_code %}
                   aria-current="true"
@@ -112,7 +112,7 @@
                   {{- 'icon-checkmark.svg' | inline_asset_content -}}
                 </span>
                 <span class="country">{{- country.name }}</span>
-                <span class="localization-form__currency xboost-motion-reduce{% unless show_currencies %} hidden{% endunless %}">
+                <span class="xboost-localization-form__currency xboost-motion-reduce{% unless show_currencies %} hidden{% endunless %}">
                   {{ country.currency.iso_code }}
                   {{ country.currency.symbol -}}
                 </span>
@@ -123,9 +123,9 @@
       {% endif %}
       <ul role="list" class="list-unstyled countries">
         {%- for country in localization.available_countries -%}
-          <li class="disclosure__item" tabindex="-1">
+          <li class="xboost-disclosure__item" tabindex="-1">
             <a
-              class="link link--text disclosure__link xboost-caption-large focus-inset"
+              class="link link--text xboost-disclosure__link xboost-caption-large focus-inset"
               href="#"
               {% if country.iso_code == localization.country.iso_code %}
                 aria-current="true"
@@ -141,7 +141,7 @@
                 {{- 'icon-checkmark.svg' | inline_asset_content -}}
               </span>
               <span class="country">{{- country.name }}</span>
-              <span class="localization-form__currency xboost-motion-reduce{% unless show_currencies %} hidden{% endunless %}">
+              <span class="xboost-localization-form__currency xboost-motion-reduce{% unless show_currencies %} hidden{% endunless %}">
                 {{ country.currency.iso_code }}
                 {{ country.currency.symbol -}}
               </span>
@@ -151,6 +151,6 @@
       </ul>
     </div>
   </div>
-  <div class="country-selector__overlay"></div>
+  <div class="xboost-country-selector__overlay"></div>
 </div>
 <input type="hidden" name="country_code" value="{{ localization.country.iso_code }}">

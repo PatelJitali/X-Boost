@@ -436,8 +436,8 @@
 
 /* End of image filter specific styles */
 
-.list-menu__item label,
-.list-menu__item input[type='checkbox'] {
+.xboost-list-menu__item label,
+.xboost-list-menu__item input[type='checkbox'] {
   cursor: pointer;
 }
 
@@ -557,7 +557,7 @@
   margin-right: 0.6rem;
 }
 
-.facets__price .field__label {
+.facets__price .xboost-field__label {
   left: 1.5rem;
 }
 

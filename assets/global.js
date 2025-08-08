@@ -303,7 +303,7 @@ class QuantityInput extends HTMLElement {
   validateQtyRules() {
     const value = parseInt(this.input.value);
     if (this.input.min) {
-      const buttonMinus = this.querySelector(".quantity__button[name='minus']");
+      const buttonMinus = this.querySelector(".xboost-quantity__button[name='minus']");
       buttonMinus.classList.toggle(
         "disabled",
         parseInt(value) <= parseInt(this.input.min)
@@ -311,7 +311,7 @@ class QuantityInput extends HTMLElement {
     }
     if (this.input.max) {
       const max = parseInt(this.input.max);
-      const buttonPlus = this.querySelector(".quantity__button[name='plus']");
+      const buttonPlus = this.querySelector(".xboost-quantity__button[name='plus']");
       buttonPlus.classList.toggle("disabled", value >= max);
     }
   }
@@ -487,7 +487,7 @@ class MenuDrawer extends HTMLElement {
       summary.addEventListener("click", this.onSummaryClick.bind(this))
     );
     this.querySelectorAll(
-      "button:not(.xboost-localization-selector):not(.country-selector__close-button):not(.country-filter__reset-button)"
+      "button:not(.xboost-localization-selector):not(.xboost-country-selector__close-button):not(.xboost-country-filter__reset-button)"
     ).forEach((button) =>
       button.addEventListener("click", this.onCloseButtonClick.bind(this))
     );
@@ -844,8 +844,8 @@ class SliderComponent extends HTMLElement {
     this.slider = this.querySelector('[id^="Slider-"]');
     this.sliderItems = this.querySelectorAll('[id^="Slide-"]');
     this.enableSliderLooping = false;
-    this.currentPageElement = this.querySelector(".slider-counter--current");
-    this.pageTotalElement = this.querySelector(".slider-counter--total");
+    this.currentPageElement = this.querySelector(".xboost-slider-counter--current");
+    this.pageTotalElement = this.querySelector(".xboost-slider-counter--total");
     this.prevButton = this.querySelector('button[name="previous"]');
     this.nextButton = this.querySelector('button[name="next"]');
 

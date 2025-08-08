@@ -7,7 +7,7 @@ quick-order-list .quantity {
   min-height: calc((var(--inputs-border-width) * 2) + 3.5rem);
 }
 
-quick-order-list .quantity__button {
+quick-order-list .xboost-quantity__button {
   width: calc(3.5rem / var(--font-body-scale));
 }
 
@@ -32,11 +32,11 @@ quick-order-list .quantity__button {
   z-index: 0;
 }
 
-.xboost-variant-item__quantity .quantity__button {
+.xboost-variant-item__quantity .xboost-quantity__button {
   z-index: 1;
 }
 
-.xboost-variant-item__image-container.global-media-settings::after {
+.xboost-variant-item__image-container.xboost-global-media-settings::after {
   content: none;
 }
 
@@ -627,12 +627,12 @@ quick-order-list-remove-button:hover .icon-remove {
     max-width: 36rem;
   }
 
-  quick-order-list .tax-note {
+  quick-order-list .xboost-tax-note {
     text-align: center;
   }
 }
 
-quick-order-list .tax-note {
+quick-order-list .xboost-tax-note {
   margin: 0 0 2rem;
   display: block;
   width: 100%;

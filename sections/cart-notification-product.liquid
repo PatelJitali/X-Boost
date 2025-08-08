@@ -2,7 +2,7 @@
   {%- for item in cart.items -%}
     <div id="xboost-cart-notification-product-{{ item.key }}" class="cart-item">
       {%- if item.image -%}
-        <div class="xboost-cart-notification-product__image global-media-settings">
+        <div class="xboost-cart-notification-product__image xboost-global-media-settings">
           <img
             src="{{ item.image | image_url: width: 140 }}"
             alt="{{ item.image.alt | escape }}"

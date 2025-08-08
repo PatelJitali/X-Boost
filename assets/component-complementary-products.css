@@ -98,7 +98,7 @@ product-recommendations.is-accordion + .accordion {
   margin-top: 0;
 }
 
-.complementary-products-contains-quick-add .underline-links-hover:hover a {
+.complementary-products-contains-quick-add .xboost-underline-links-hover:hover a {
   text-decoration: initial;
 }
 
@@ -132,11 +132,11 @@ product-recommendations.is-accordion + .accordion {
   display: none;
 }
 
-.complementary-products__container .xboost-quick-add__submit:not(.animate-arrow) .xboost-icon-wrap {
+.complementary-products__container .xboost-quick-add__submit:not(.xboost-animate-arrow) .xboost-icon-wrap {
   transition: transform var(--duration-short) ease;
 }
 
-.complementary-products__container .xboost-quick-add__submit:not(.animate-arrow):hover .xboost-icon-wrap {
+.complementary-products__container .xboost-quick-add__submit:not(.xboost-animate-arrow):hover .xboost-icon-wrap {
   transform: rotate(90deg);
 }
 

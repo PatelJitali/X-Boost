@@ -186,13 +186,13 @@ details[open].menu-opening > .menu-drawer__submenu {
   position: relative;
 }
 
-.header--has-social .menu-drawer__utility-links {
+.xboost-header--has-social .menu-drawer__utility-links {
   padding: 2rem 3rem;
 }
 
 @media screen and (max-width: 749px) {
-  .header--has-account:where(
-      :not(.header--has-social):not(.header--has-localizations)
+  .xboost-header--has-account:where(
+      :not(.xboost-header--has-social):not(.xboost-header--has-localizations)
     )
     .menu-drawer__utility-links {
     padding: 2rem 3rem;
@@ -200,7 +200,7 @@ details[open].menu-opening > .menu-drawer__submenu {
 }
 
 @media screen and (max-width: 989px) {
-  .header--has-localizations:where(:not(.header--has-social))
+  .xboost-header--has-localizations:where(:not(.xboost-header--has-social))
     .menu-drawer__utility-links {
     padding: 2rem 3rem;
   }

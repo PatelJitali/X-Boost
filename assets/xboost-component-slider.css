@@ -7,7 +7,7 @@ slider-component {
   display: block;
 }
 
-slider-component.slider-component-full-width {
+slider-component.xboost-slider-component-full-width {
   --desktop-margin-left-first-item: 1.5rem;
 }
 
@@ -57,7 +57,7 @@ slider-component.slider-component-full-width {
     padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
   }
 
-  .slider.slider--mobile.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
+  .slider.slider--mobile.xboost-contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
     padding-bottom: var(--focus-outline-padding);
   }
 
@@ -108,7 +108,7 @@ slider-component.slider-component-full-width {
     padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
   }
 
-  .slider.slider--tablet.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
+  .slider.slider--tablet.xboost-contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
     padding-bottom: var(--focus-outline-padding);
   }
 
@@ -133,7 +133,7 @@ slider-component.slider-component-full-width {
 }
 
 @media screen and (min-width: 990px) {
-  .slider-component-desktop.page-width {
+  .xboost-slider-component-desktop.page-width {
     max-width: none;
   }
 
@@ -167,17 +167,17 @@ slider-component.slider-component-full-width {
     scroll-margin-left: var(--desktop-margin-left-first-item);
   }
 
-  .slider-component-full-width .slider--desktop {
+  .xboost-slider-component-full-width .slider--desktop {
     scroll-padding-left: 1.5rem;
   }
 
-  .slider-component-full-width .slider--desktop .slider__slide:first-child {
+  .xboost-slider-component-full-width .slider--desktop .slider__slide:first-child {
     margin-left: 1.5rem;
     scroll-margin-left: 1.5rem;
   }
 
   /* Fix to show some space at the end of our sliders in all browsers */
-  .slider-component-full-width .slider--desktop:after {
+  .xboost-slider-component-full-width .slider--desktop:after {
     padding-left: 1.5rem;
   }
 
@@ -201,7 +201,7 @@ slider-component.slider-component-full-width {
     width: calc((100% - var(--desktop-margin-left-first-item)) - var(--grid-desktop-horizontal-spacing) * 9);
   }
 
-  .slider.slider--desktop.contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
+  .slider.slider--desktop.xboost-contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
     padding-bottom: var(--focus-outline-padding);
   }
 
@@ -241,7 +241,7 @@ slider-component.slider-component-full-width {
   border-radius: 0.4rem;
 }
 
-.slider-counter {
+.xboost-slider-counter {
   display: flex;
   justify-content: center;
   min-width: 4.4rem;
@@ -360,7 +360,7 @@ slider-component.slider-component-full-width {
   cursor: not-allowed;
 }
 
-.slider-button--next .icon {
+.xboost-slider-button--next .icon {
   transform: rotate(-90deg);
 }
 
@@ -368,7 +368,7 @@ slider-component.slider-component-full-width {
   transform: rotate(90deg);
 }
 
-.slider-button--next:not([disabled]):hover .icon {
+.xboost-slider-button--next:not([disabled]):hover .icon {
   transform: rotate(-90deg) scale(1.1);
 }
 

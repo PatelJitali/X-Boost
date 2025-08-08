@@ -29,7 +29,7 @@
             </p>
           {% endif %}
           {%- if section.settings.heading != blank -%}
-            <h2 class="xboost-collapsible-content__heading inline-richtext {{ section.settings.heading_size }}">
+            <h2 class="xboost-collapsible-content__heading xboost-inline-richtext {{ section.settings.heading_size }}">
               {{ section.settings.heading }}
             </h2>
           {%- else -%}
@@ -40,7 +40,7 @@
           {%- if section.settings.image != blank -%}
             <div class="grid__item xboost-collapsible-content__grid-item">
               <div
-                class="xboost-collapsible-content__media xboost-collapsible-content__media--{{ section.settings.image_ratio }} media global-media-settings gradient"
+                class="xboost-collapsible-content__media xboost-collapsible-content__media--{{ section.settings.image_ratio }} media xboost-global-media-settings gradient"
                 {% if section.settings.image_ratio == 'adapt' %}
                   style="padding-bottom: {{ 1 | divided_by: section.settings.image.aspect_ratio | times: 100 }}%;"
                 {% endif %}
@@ -82,7 +82,7 @@
                 >
                   <summary id="Summary-{{ block.id }}-{{ section.id }}">
                     {% render 'icon-accordion', icon: block.settings.icon %}
-                    <h3 class="xboost-accordion__title inline-richtext h4">
+                    <h3 class="xboost-accordion__title xboost-inline-richtext h4">
                       {{ block.settings.heading | default: block.settings.page.title | escape }}
                     </h3>
                     {{- 'icon-caret.svg' | inline_asset_content -}}

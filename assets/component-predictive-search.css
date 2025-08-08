@@ -28,7 +28,7 @@
 }
 
 @media screen and (max-width: 749px) {
-  .predictive-search--header {
+  .xboost-predictive-search--header {
     right: 0;
     left: 0;
     top: 100%;
@@ -103,12 +103,12 @@ predictive-search .spinner {
   line-height: 0;
 }
 
-predictive-search:not([loading]) .predictive-search__loading-state,
+predictive-search:not([loading]) .xboost-predictive-search__loading-state,
 predictive-search:not([loading]) .predictive-search-status__loading {
   display: none;
 }
 
-predictive-search[loading] .predictive-search__loading-state {
+predictive-search[loading] .xboost-predictive-search__loading-state {
   display: flex;
   justify-content: center;
   padding: 1rem;
@@ -118,7 +118,7 @@ predictive-search[loading] .predictive-search__search-for-button {
   display: none;
 }
 
-predictive-search[loading] .predictive-search__results-groups-wrapper ~ .predictive-search__loading-state {
+predictive-search[loading] .predictive-search__results-groups-wrapper ~ .xboost-predictive-search__loading-state {
   display: none;
 }
 

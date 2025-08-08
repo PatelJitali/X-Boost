@@ -40,10 +40,10 @@
       assign ratio = 1
     endif
   -%}
-  <div class="card-wrapper xboost-product-card-wrapper underline-links-hover">
+  <div class="card-wrapper xboost-product-card-wrapper xboost-underline-links-hover">
     <div
       class="
-        card card--{{ settings.card_style }}
+        xboost-card card--{{ settings.card_style }}
         {% if card_product.featured_media %} xboost-card--media{% else %} xboost-card--text{% endif %}
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}
         {% if image_shape and image_shape != 'default' %} xboost-card--shape{% endif %}
@@ -185,7 +185,7 @@
               >
                 <span
                   aria-hidden="true"
-                  class="rating-star"
+                  class="xboost-rating-star"
                   style="--rating: {{ card_product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ card_product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
                 ></span>
               </div>
@@ -218,7 +218,7 @@
                   <button class="xboost-card__information-volume-pricing-note xboost-card__information-volume-pricing-note--button xboost-card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} xboost-quantity-popover__info-button--icon-only button button button--tertiary medium-hide small-hide">
                     <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
                   </button>
-                  <button class="xboost-card__information-volume-pricing-note xboost-card__information-volume-pricing-note--button xboost-card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} xboost-quantity-popover__info-button--icon-with-label button button--tertiary large-up-hide">
+                  <button class="xboost-card__information-volume-pricing-note xboost-card__information-volume-pricing-note--button xboost-card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} xboost-quantity-popover__info-button--icon-with-label button button--tertiary xboost-large-up-hide">
                     <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
                   </button>
               {% else %}
@@ -253,7 +253,7 @@
                     </div>
                   {%- endif -%}
                   <button
-                    class="button-close button button--tertiary large-up-hide"
+                    class="button-close button button--tertiary xboost-large-up-hide"
                     type="button"
                     aria-label="{{ 'accessibility.close' | t }}"
                   >
@@ -303,7 +303,7 @@
                   id="{{ product_form_id }}-submit"
                   type="submit"
                   name="add"
-                  class="xboost-quick-add__submit button button--full-width button--secondary{% if horizontal_quick_add %} xboost-card--horizontal__quick-add animate-arrow{% endif %}"
+                  class="xboost-quick-add__submit button button--full-width button--secondary{% if horizontal_quick_add %} xboost-card--horizontal__quick-add xboost-animate-arrow{% endif %}"
                   aria-haspopup="dialog"
                   aria-labelledby="{{ product_form_id }}-submit title-{{ section_id }}-{{ card_product.id }}"
                   data-product-url="{{ card_product.url }}"
@@ -328,7 +328,7 @@
                   <button
                     id="ModalClose-{{ card_product.id }}"
                     type="button"
-                    class="xboost-quick-add-modal__toggle"
+                    class="xboost-quick-add-xboost-modal__toggle"
                     aria-label="{{ 'accessibility.close' | t }}"
                   >
                     {{- 'icon-close.svg' | inline_asset_content -}}
@@ -455,7 +455,7 @@
                   <button
                     id="ModalClose-{{ card_product.id }}"
                     type="button"
-                    class="xboost-quick-add-modal__toggle"
+                    class="xboost-quick-add-xboost-modal__toggle"
                     aria-label="{{ 'accessibility.close' | t }}"
                   >
                     {{- 'icon-close.svg' | inline_asset_content -}}
@@ -470,7 +470,7 @@
                           <div
                             class="xboost-quick-add__product-media"
                           >
-                            <div class="xboost-quick-add__product-container global-media-settings">
+                            <div class="xboost-quick-add__product-container xboost-global-media-settings">
                               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
                               <img
                                 srcset="
@@ -502,13 +502,13 @@
                           {% else %}
                             href="{{ card_product.url }}"
                           {% endif %}
-                          class="link xboost-product__view-details animate-arrow small-hide medium-hide"
+                          class="link xboost-product__view-details xboost-animate-arrow small-hide medium-hide"
                         >
                           {{ 'products.product.view_full_details' | t -}}
                           {{- 'icon-arrow.svg' | inline_asset_content -}}
                         </a>
                       </div>
-                      <div class="xboost-quick-add-modal__content-info--bulk-details large-up-hide">
+                      <div class="xboost-quick-add-modal__content-info--bulk-details xboost-large-up-hide">
                         <a href="{{ card_product.url }}" class="xboost-full-unstyled-link">
                           <h3>{{ card_product.title | escape }}</h3>
                         </a>
@@ -576,10 +576,10 @@
       assign ratio = 0.8
     endif
   -%}
-  <div class="card-wrapper xboost-product-card-wrapper underline-links-hover">
+  <div class="card-wrapper xboost-product-card-wrapper xboost-underline-links-hover">
     <div
       class="
-        card card--{{ settings.card_style }}
+        xboost-card card--{{ settings.card_style }}
         {% if extend_height %} xboost-card--extend-height{% endif %}
         {% if image_shape and image_shape != 'default' %} xboost-card--shape{% endif %}
         {% if settings.card_style == 'card' %} color-{{ settings.card_color_scheme }} gradient{% endif %}

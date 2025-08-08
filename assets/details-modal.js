@@ -21,7 +21,7 @@ class DetailsModal extends HTMLElement {
   }
 
   onBodyClick(event) {
-    if (!this.contains(event.target) || event.target.classList.contains('modal-overlay')) this.close(false);
+    if (!this.contains(event.target) || event.target.classList.contains('xboost-modal-overlay')) this.close(false);
   }
 
   open(event) {

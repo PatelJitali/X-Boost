@@ -30,7 +30,7 @@
       color: {{ text_color }}
     }
 
-    #cc-sticky-bar .cc-sticky-bar-price .quentity_wrapper .price-per-item__container .quantity:after {
+    #cc-sticky-bar .cc-sticky-bar-price .quentity_wrapper .xboost-price-per-item__container .quantity:after {
       border: 1px solid {{ outline_button }};
     }
 
@@ -155,15 +155,15 @@
       <div class="quentity_wrapper">
         <div
           id="Quantity-Form-{{ section.id }}"
-          class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %} cc-quantity_container"
+          class="product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %} cc-quantity_container"
           {{ block.shopify_attributes }}
         >
-          <label class="quantity__label form__label cc-quantity__label" for="Quantity-{{ section.id }}">
+          <label class="xboost-quantity__label xboost-form__label cc-quantity__label" for="Quantity-{{ section.id }}">
             {{ 'products.product.quantity.label' | t }}
           </label>
-          <div class="price-per-item__container">
+          <div class="xboost-price-per-item__container">
             <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
-              <button class="quantity__button" name="minus" type="button">
+              <button class="xboost-quantity__button" name="minus" type="button">
                 <span class="visually-hidden">
                   {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
                 </span>
@@ -174,7 +174,7 @@
                 </span>
               </button>
               <input
-                class="quantity__input"
+                class="xboost-quantity__input"
                 type="number"
                 name="quantity"
                 id="Quantity-{{ section.id }}"
@@ -189,7 +189,7 @@
                 value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                 form="{{ product_form_id }}"
               >
-              <button class="quantity__button" name="plus" type="button">
+              <button class="xboost-quantity__button" name="plus" type="button">
                 <span class="visually-hidden">
                   {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
                 </span>
@@ -217,7 +217,7 @@
                   {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                   <div class="price-per-item">
                     {%- if variant_price_compare -%}
-                      <dl class="price-per-item--current">
+                      <dl class="xboost-price-per-item--current">
                         <dt class="visually-hidden">
                           {{ 'products.product.price.regular_price' | t }}
                         </dt>
@@ -232,14 +232,14 @@
                       {%- assign variant_price = product.selected_or_first_available_variant.price
                         | money_with_currency
                       -%}
-                      <span class="price-per-item--current">
+                      <span class="xboost-price-per-item--current">
                         {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                       </span>
                     {%- else -%}
                       {%- for price_break in volume_pricing_array -%}
                         {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
                           {%- assign price_break_price = price_break.price | money_with_currency -%}
-                          <span class="price-per-item--current">
+                          <span class="xboost-price-per-item--current">
                             {{- 'products.product.volume_pricing.price_at_each' | t: price: price_break_price -}}
                           </span>
                           {%- break -%}
@@ -252,7 +252,7 @@
                   {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                   <div class="price-per-item">
                     {%- if variant_price_compare -%}
-                      <dl class="price-per-item--current">
+                      <dl class="xboost-price-per-item--current">
                         <dt class="visually-hidden">
                           {{ 'products.product.price.regular_price' | t }}
                         </dt>
@@ -265,13 +265,13 @@
                           {{ 'products.product.price.sale_price' | t }}
                         </dt>
                         <dd>
-                          <span class="price-per-item--current">
+                          <span class="xboost-price-per-item--current">
                             {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                           </span>
                         </dd>
                       </dl>
                     {%- else -%}
-                      <span class="price-per-item--current">
+                      <span class="xboost-price-per-item--current">
                         {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                       </span>
                     {%- endif -%}

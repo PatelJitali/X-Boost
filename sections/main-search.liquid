@@ -43,7 +43,7 @@
     }
   }
 
-  .search__button .icon {
+  .xboost-search__button .icon {
     height: 1.8rem;
   }
 </style>
@@ -91,7 +91,7 @@
           <form action="{{ routes.search_url }}" method="get" role="search" class="search">
             <div class="field">
               <input
-                class="search__input field__input"
+                class="xboost-search__input xboost-field__input"
                 id="Search-In-Template"
                 type="search"
                 name="q"
@@ -110,27 +110,27 @@
                   spellcheck="false"
                 {%- endif -%}
               >
-              <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
+              <label class="xboost-field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
               <input name="options[prefix]" type="hidden" value="last">
 
               {%- if settings.predictive_search_enabled -%}
                 <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
-                  {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+                  {%- render 'loading-spinner', class: 'xboost-predictive-search__loading-state' -%}
                 </div>
 
-                <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+                <span class="xboost-predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
               {%- endif -%}
 
               <button
                 type="reset"
-                class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+                class="xboost-reset__button xboost-field__button{% if search.terms == blank %} hidden{% endif %}"
                 aria-label="{{ 'general.search.reset' | t }}"
               >
                 <span class="svg-wrapper">
                   {{- 'icon-reset.svg' | inline_asset_content -}}
                 </span>
               </button>
-              <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+              <button type="submit" class="xboost-search__button xboost-field__button" aria-label="{{ 'general.search.search' | t }}">
                 <span class="svg-wrapper">
                   {{- 'icon-search.svg' | inline_asset_content -}}
                 </span>
@@ -164,7 +164,7 @@
           <form class="facets-vertical-form" id="FacetSortForm">
             <div class="facet-filters sorting caption">
               <div class="facet-filters__field">
-                <h2 class="facet-filters__label xboost-caption-large text-body">
+                <h2 class="facet-filters__label xboost-caption-large xboost-text-body">
                   <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
                 </h2>
                 <div class="select">
@@ -194,7 +194,7 @@
             </div>
 
             <div class="product-count-vertical light" role="status">
-              <h2 class="product-count__text text-body">
+              <h2 class="product-count__text xboost-text-body">
                 <span id="ProductCountDesktop">
                   {%- if search.results_count -%}
                     {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
@@ -245,7 +245,7 @@
             >
               <div class="loading-overlay gradient"></div>
               <div class="title-wrapper center">
-                <h2 class="title title--primary">
+                <h2 class="title xboost-title--primary">
                   {{ 'sections.collection_template.empty' | t -}}
                   <br>
                   {{
@@ -304,7 +304,7 @@
                           lazy_load: lazy_load
                         %}
                       {%- when 'page' -%}
-                        <div class="article-card-wrapper card-wrapper underline-links-hover">
+                        <div class="xboost-article-card-wrapper card-wrapper xboost-underline-links-hover">
                           <div
                             class="card card--card xboost-card--text ratio color-{{ settings.blog_card_color_scheme }}"
                             style="--ratio-percent: 100%;"

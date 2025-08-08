@@ -209,7 +209,7 @@ class PredictiveSearch extends SearchForm {
   }
 
   setLiveRegionLoadingState() {
-    this.statusElement = this.statusElement || this.querySelector('.predictive-search-status');
+    this.statusElement = this.statusElement || this.querySelector('.xboost-predictive-search-status');
     this.loadingText = this.loadingText || this.getAttribute('data-loading-text');
 
     this.setLiveRegionText(this.loadingText);

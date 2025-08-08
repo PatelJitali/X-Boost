@@ -20,7 +20,7 @@
   </h1>
   {%- form 'create_customer', novalidate: 'novalidate' -%}
     {%- if form.errors -%}
-      <h2 class="form__message" tabindex="-1" autofocus>
+      <h2 class="xboost-form__message" tabindex="-1" autofocus>
         <span class="svg-wrapper">
           {{- 'icon-error.svg' | inline_asset_content -}}
         </span>
@@ -94,7 +94,7 @@
       </label>
     </div>
     {%- if form.errors contains 'email' -%}
-      <span id="RegisterForm-email-error" class="form__message">
+      <span id="RegisterForm-email-error" class="xboost-form__message">
         <span class="svg-wrapper">
           {{- 'icon-error.svg' | inline_asset_content -}}
         </span>
@@ -119,7 +119,7 @@
       </label>
     </div>
     {%- if form.errors contains 'password' -%}
-      <span id="RegisterForm-password-error" class="form__message">
+      <span id="RegisterForm-password-error" class="xboost-form__message">
         <span class="svg-wrapper">
           {{- 'icon-error.svg' | inline_asset_content -}}
         </span>

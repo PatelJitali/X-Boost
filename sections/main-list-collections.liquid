@@ -32,7 +32,7 @@
 {%- endstyle -%}
 
 <div class="{% unless section.settings.full_width_section %}page-width {% else %}full-width {% endunless %}color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
-  <h1 class="title title--primary inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <h1 class="title xboost-title--primary xboost-inline-richtext{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     {{ section.settings.title }}
   </h1>
   {%- liquid
@@ -60,7 +60,7 @@
     >
       {%- for collection in collections -%}
         <li
-          class="collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="xboost-collection-list__item grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
             style="--animation-order: {{ forloop.index }};"

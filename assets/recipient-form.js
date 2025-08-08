@@ -141,7 +141,7 @@ if (!customElements.get('recipient-form')) {
 
         if (this.errorMessageList) this.errorMessageList.innerHTML = '';
 
-        this.querySelectorAll('.recipient-fields .form__message').forEach((field) => {
+        this.querySelectorAll('.recipient-fields .xboost-form__message').forEach((field) => {
           field.classList.add('hidden');
           const textField = field.querySelector('.error-message');
           if (textField) textField.innerText = '';

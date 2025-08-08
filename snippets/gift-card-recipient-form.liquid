@@ -35,7 +35,7 @@
         hidden
       {% endunless %}
     >
-      <h2 class="form__message" tabindex="-1" autofocus>
+      <h2 class="xboost-form__message" tabindex="-1" autofocus>
         {{- 'icon-error.svg' | inline_asset_content -}}
         <span class="error-message">{{ 'templates.contact.form.error_heading' | t }}</span>
       </h2>
@@ -66,7 +66,7 @@
       <div class="recipient-fields__field">
         <div class="field">
           <input
-            class="field__input"
+            class="xboost-field__input"
             id="Recipient-email-{{ section.id }}"
             type="email"
             placeholder="{{ 'recipient.form.email' | t }}"
@@ -77,7 +77,7 @@
               aria-describedby="RecipientForm-email-error-{{ section.id }}"
             {% endif %}
           >
-          <label class="field__label" for="Recipient-email-{{ section.id }}">
+          <label class="xboost-field__label" for="Recipient-email-{{ section.id }}">
             <span class="recipient-email-label required">{{ 'recipient.form.email_label' | t }}</span>
             <span class="recipient-email-label optional">
               {{- 'recipient.form.email_label_optional_for_no_js_behavior' | t -}}
@@ -87,7 +87,7 @@
 
         <div
           id="RecipientForm-email-error-{{ section.id }}"
-          class="form__message{% unless form.errors contains 'email' %} hidden{% endunless %}"
+          class="xboost-form__message{% unless form.errors contains 'email' %} hidden{% endunless %}"
         >
           {{- 'icon-error.svg' | inline_asset_content -}}
           <span class="error-message">
@@ -101,7 +101,7 @@
       <div class="recipient-fields__field">
         <div class="field">
           <input
-            class="field__input"
+            class="xboost-field__input"
             autocomplete="name"
             type="text"
             id="Recipient-name-{{ section.id }}"
@@ -113,14 +113,14 @@
               aria-describedby="RecipientForm-name-error-{{ section.id }}"
             {% endif %}
           >
-          <label class="field__label" for="Recipient-name-{{ section.id }}">
+          <label class="xboost-field__label" for="Recipient-name-{{ section.id }}">
             {{- 'recipient.form.name_label' | t -}}
           </label>
         </div>
 
         <div
           id="RecipientForm-name-error-{{ section.id }}"
-          class="form__message{% unless form.errors contains 'name' %} hidden{% endunless %}"
+          class="xboost-form__message{% unless form.errors contains 'name' %} hidden{% endunless %}"
         >
           {{- 'icon-error.svg' | inline_asset_content -}}
           <span class="error-message">
@@ -139,7 +139,7 @@
           <textarea
             rows="10"
             id="Recipient-message-{{ section.id }}"
-            class="text-area field__input"
+            class="xboost-text-area xboost-field__input"
             name="properties[Message]"
             maxlength="{{ max_chars_message }}"
             placeholder="{{ 'recipient.form.message' | t }}"
@@ -149,18 +149,18 @@
               aria-describedby="RecipientForm-message-error-{{ section.id }}"
             {% endif %}
           >{{ form.message }}</textarea>
-          <label class="form__label field__label" for="Recipient-message-{{ section.id }}">
+          <label class="xboost-form__label xboost-field__label" for="Recipient-message-{{ section.id }}">
             {{ message_label_rendered }}
           </label>
         </div>
 
-        <label class="form__label recipient-form-field-label recipient-form-field-label--space-between">
+        <label class="xboost-form__label recipient-form-field-label recipient-form-field-label--space-between">
           <span>{{ max_chars_message_rendered }}</span>
         </label>
 
         <div
           id="RecipientForm-message-error-{{ section.id }}"
-          class="form__message{% unless form.errors contains 'message' %} hidden{% endunless %}"
+          class="xboost-form__message{% unless form.errors contains 'message' %} hidden{% endunless %}"
         >
           {{- 'icon-error.svg' | inline_asset_content -}}
           <span class="error-message">
@@ -174,7 +174,7 @@
       <div class="recipient-fields__field">
         <div class="field">
           <input
-            class="field__input text-body"
+            class="xboost-field__input xboost-text-body"
             autocomplete="send_on"
             type="date"
             id="Recipient-send-on-{{ section.id }}"
@@ -187,14 +187,14 @@
               aria-describedby="RecipientForm-send_on-error-{{ section.id }}"
             {% endif %}
           >
-          <label class="form__label field__label" for="Recipient-send-on-{{ section.id }}">
+          <label class="xboost-form__label xboost-field__label" for="Recipient-send-on-{{ section.id }}">
             {{ 'recipient.form.send_on_label' | t }}
           </label>
         </div>
 
         <div
           id="RecipientForm-send_on-error-{{ section.id }}"
-          class="form__message{% unless form.errors contains 'send_on' %} hidden{% endunless %}"
+          class="xboost-form__message{% unless form.errors contains 'send_on' %} hidden{% endunless %}"
         >
           {{- 'icon-error.svg' | inline_asset_content -}}
           <span class="error-message">

@@ -23,11 +23,11 @@
       assign ratio = media_aspect_ratio
     endif
   -%}
-  <div class="article-card-wrapper card-wrapper underline-links-hover">
+  <div class="xboost-article-card-wrapper card-wrapper xboost-underline-links-hover">
     {% comment %} <article aria-labelledby="Article-{{ article.id }}"> {% endcomment %}
     <div
       class="
-        card article-card
+        xboost-card article-card
         card--{{ settings.blog_card_style }}
         {% if media_height and media_height != 'adapt' %} article-card__image--{{ media_height }}{% endif %}
         {% if article.image and show_image %} xboost-card--media{% else %} xboost-card--text{% endif %}
@@ -41,7 +41,7 @@
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if show_image == true and article.image -%}
-          <div class="article-card__image-wrapper xboost-card__media">
+          <div class="xboost-article-card__image-wrapper xboost-card__media">
             <div
               class="article-card__image media media--hover-effect"
               {% if section.settings.media_height == 'adapt' %}
@@ -82,7 +82,7 @@
             </h3>
             <div class="article-card__info xboost-caption-with-letter-spacing h5">
               {%- if show_date -%}
-                <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
+                <span class="xboost-circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
               {%- endif -%}
               {%- if show_author -%}
                 <span>{{ article.author }}</span>
@@ -90,7 +90,7 @@
             </div>
             {%- if show_excerpt -%}
               {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
-                <p class="article-card__excerpt rte-width">
+                <p class="xboost-article-card__excerpt xboost-rte-width">
                   {%- if article.excerpt.size > 0 -%}
                     {{ article.excerpt | strip_html | truncatewords: 30 }}
                   {%- else -%}
@@ -121,7 +121,7 @@
           </h3>
           <div class="article-card__info xboost-caption-with-letter-spacing h5">
             {%- if show_date -%}
-              <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
+              <span class="xboost-circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
             {%- endif -%}
             {%- if show_author -%}
               <span>{{ article.author }}</span>
@@ -129,7 +129,7 @@
           </div>
           {%- if show_excerpt -%}
             {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
-              <p class="article-card__excerpt rte-width">
+              <p class="xboost-article-card__excerpt xboost-rte-width">
                 {%- if article.excerpt.size > 0 -%}
                   {{ article.excerpt | strip_html | truncatewords: 30 }}
                 {%- else -%}

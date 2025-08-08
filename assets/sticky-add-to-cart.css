@@ -66,7 +66,7 @@
   text-decoration: none;
 }
 
-#cc-sticky-bar .cc-sticky-bar-price .product-form__quantity .form__label {
+#cc-sticky-bar .cc-sticky-bar-price .xboost-product-form__quantity .xboost-form__label {
   margin-bottom: 0;
   font-size: 15px;
   font-weight: bold;
@@ -75,7 +75,7 @@
 #cc-sticky-bar
   .cc-sticky-bar-price
   .quentity_wrapper
-  .price-per-item__container
+  .xboost-price-per-item__container
   .quantity:before {
   background: transparent;
   border-radius: 10px;
@@ -84,7 +84,7 @@
 #cc-sticky-bar
   .cc-sticky-bar-price
   .quentity_wrapper
-  .price-per-item__container
+  .xboost-price-per-item__container
   .quantity:after {
   border-radius: 10px;
 }
@@ -92,20 +92,20 @@
 #cc-sticky-bar
   .cc-sticky-bar-price
   .quentity_wrapper
-  .quantity__button:not(:focus-visible):not(.focused),
+  .xboost-quantity__button:not(:focus-visible):not(.focused),
 .cc-sticky-bar-price
   .quentity_wrapper
-  .quantity__input:not(:focus-visible):not(.focused) {
+  .xboost-quantity__input:not(:focus-visible):not(.focused) {
   width: 35px;
 }
 
 #cc-sticky-bar
   .cc-sticky-bar-price
   .quentity_wrapper
-  .quantity__button:focus-visible,
-.cc-sticky-bar-price .quentity_wrapper .quantity__input:focus-visible,
-.cc-sticky-bar-price .quentity_wrapper .quantity__button:focus,
-.cc-sticky-bar-price .quentity_wrapper .quantity__input:focus {
+  .xboost-quantity__button:focus-visible,
+.cc-sticky-bar-price .quentity_wrapper .xboost-quantity__input:focus-visible,
+.cc-sticky-bar-price .quentity_wrapper .xboost-quantity__button:focus,
+.cc-sticky-bar-price .quentity_wrapper .xboost-quantity__input:focus {
   width: 35px;
   background: transparent;
   border: none;
@@ -118,7 +118,7 @@
   width: max-content;
 }
 
-#cc-sticky-bar .cc-sticky-bar-price .quentity_wrapper .quantity__button {
+#cc-sticky-bar .cc-sticky-bar-price .quentity_wrapper .xboost-quantity__button {
   width: 35px;
 }
 
@@ -159,7 +159,7 @@
 }
 
 @media only screen and (max-width: 768px) {
-  #cc-sticky-bar .cc-sticky-bar-price .product-form__quantity .form__label {
+  #cc-sticky-bar .cc-sticky-bar-price .xboost-product-form__quantity .xboost-form__label {
     display: none;
   }
 

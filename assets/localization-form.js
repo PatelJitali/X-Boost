@@ -8,12 +8,12 @@ if (!customElements.get('localization-form')) {
         this.header = document.querySelector('.header-wrapper');
         this.elements = {
           input: this.querySelector('input[name="locale_code"], input[name="country_code"]'),
-          button: this.querySelector('button.localization-form__select'),
-          panel: this.querySelector('.disclosure__list-wrapper'),
+          button: this.querySelector('button.xboost-localization-form__select'),
+          panel: this.querySelector('.xboost-disclosure__list-wrapper'),
           search: this.querySelector('input[name="country_filter"]'),
-          closeButton: this.querySelector('.country-selector__close-button'),
-          resetButton: this.querySelector('.country-filter__reset-button'),
-          searchIcon: this.querySelector('.country-filter__search-icon'),
+          closeButton: this.querySelector('.xboost-country-selector__close-button'),
+          resetButton: this.querySelector('.xboost-country-filter__reset-button'),
+          searchIcon: this.querySelector('.xboost-country-filter__search-icon'),
           liveRegion: this.querySelector('#sr-country-search-results'),
         };
         this.addEventListener('keyup', this.onContainerKeyUp.bind(this));
@@ -130,7 +130,7 @@ if (!customElements.get('localization-form')) {
 
       closeSelector(event) {
         if (
-          event.target.classList.contains('country-selector__overlay') ||
+          event.target.classList.contains('xboost-country-selector__overlay') ||
           !this.contains(event.target) ||
           !this.contains(event.relatedTarget)
         ) {
@@ -147,7 +147,7 @@ if (!customElements.get('localization-form')) {
 
       filterCountries() {
         const searchValue = this.normalizeString(this.elements.search.value);
-        const popularCountries = this.querySelector('.popular-countries');
+        const popularCountries = this.querySelector('.xboost-popular-countries');
         const allCountries = this.querySelectorAll('a');
         let visibleCountries = allCountries.length;
 
@@ -175,8 +175,8 @@ if (!customElements.get('localization-form')) {
           );
         }
 
-        this.querySelector('.country-selector').scrollTop = 0;
-        this.querySelector('.country-selector__list').scrollTop = 0;
+        this.querySelector('.xboost-country-selector').scrollTop = 0;
+        this.querySelector('.xboost-country-selector__list').scrollTop = 0;
       }
 
       resetFilter(event) {

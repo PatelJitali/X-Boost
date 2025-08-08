@@ -27,30 +27,30 @@
 
 <cart-items class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
   <div class="page-width">
-    <div class="title-wrapper-with-link">
-      <h1 class="title title--primary">{{ 'sections.cart.title' | t }}</h1>
+    <div class="xboost-title-wrapper-with-link">
+      <h1 class="title xboost-title--primary">{{ 'sections.cart.title' | t }}</h1>
       <a href="{{ routes.all_products_collection_url }}" class="underlined-link">
         {{- 'general.continue_shopping' | t -}}
       </a>
     </div>
 
-    <div class="cart__warnings">
-      <h1 class="cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
+    <div class="xboost-cart__warnings">
+      <h1 class="xboost-cart__empty-text">{{ 'sections.cart.empty' | t }}</h1>
       <a href="{{ routes.all_products_collection_url }}" class="button">
         {{ 'general.continue_shopping' | t }}
       </a>
 
       {%- if shop.customer_accounts_enabled and customer == null -%}
-        <h2 class="cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
-        <p class="cart__login-paragraph">
+        <h2 class="xboost-cart__login-title">{{ 'sections.cart.login.title' | t }}</h2>
+        <p class="xboost-cart__login-paragraph">
           {{ 'sections.cart.login.paragraph_html' | t: link: routes.account_login_url }}
         </p>
       {%- endif -%}
     </div>
 
-    <form action="{{ routes.cart_url }}" class="cart__contents critical-hidden" method="post" id="cart">
-      <div class="cart__items" id="main-cart-items" data-id="{{ section.id }}">
-        <div class="js-contents">
+    <form action="{{ routes.cart_url }}" class="xboost-cart__contents critical-hidden" method="post" id="cart">
+      <div class="xboost-cart__items" id="main-cart-items" data-id="{{ section.id }}">
+        <div class="xboost-js-contents">
           {%- if cart != empty -%}
             <table class="cart-items">
               <caption class="visually-hidden">
@@ -61,11 +61,11 @@
                   <th class="xboost-caption-with-letter-spacing" colspan="2" scope="col">
                     {{ 'sections.cart.headings.product' | t }}
                   </th>
-                  <th class="medium-hide large-up-hide right xboost-caption-with-letter-spacing" colspan="1" scope="col">
+                  <th class="medium-hide xboost-large-up-hide right xboost-caption-with-letter-spacing" colspan="1" scope="col">
                     {{ 'sections.cart.headings.total' | t }}
                   </th>
                   <th
-                    class="cart-items__heading--wide cart-items__heading--quantity small-hide xboost-caption-with-letter-spacing"
+                    class="xboost-cart-items__heading--wide xboost-cart-items__heading--quantity small-hide xboost-caption-with-letter-spacing"
                     colspan="1"
                     scope="col"
                   >
@@ -80,14 +80,14 @@
               <tbody>
                 {%- for item in cart.items -%}
                   <tr class="cart-item" id="CartItem-{{ item.index | plus: 1 }}">
-                    <td class="cart-item__media">
+                    <td class="xboost-cart-item__media">
                       {% if item.image %}
                         {% comment %} Leave empty space due to a:empty CSS display: none rule {% endcomment %}
-                        <a href="{{ item.url }}" class="cart-item__link" aria-hidden="true" tabindex="-1"> </a>
-                        <div class="cart-item__image-container gradient global-media-settings">
+                        <a href="{{ item.url }}" class="xboost-cart-item__link" aria-hidden="true" tabindex="-1"> </a>
+                        <div class="xboost-cart-item__image-container gradient xboost-global-media-settings">
                           <img
                             src="{{ item.image | image_url: width: 300 }}"
-                            class="cart-item__image"
+                            class="xboost-cart-item__image"
                             alt="{{ item.image.alt | escape }}"
                             loading="lazy"
                             width="150"
@@ -97,25 +97,25 @@
                       {% endif %}
                     </td>
 
-                    <td class="cart-item__details">
+                    <td class="xboost-cart-item__details">
                       {%- if settings.show_vendor -%}
                         <p class="xboost-caption-with-letter-spacing">{{ item.product.vendor }}</p>
                       {%- endif -%}
 
-                      <a href="{{ item.url }}" class="cart-item__name h4 break">{{ item.product.title | escape }}</a>
+                      <a href="{{ item.url }}" class="xboost-cart-item__name h4 break">{{ item.product.title | escape }}</a>
 
                       {%- if item.original_price != item.final_price -%}
-                        <div class="cart-item__discounted-prices">
+                        <div class="xboost-cart-item__discounted-prices">
                           <span class="visually-hidden">
                             {{ 'products.product.price.regular_price' | t }}
                           </span>
-                          <s class="cart-item__old-price xboost-product-option">
+                          <s class="xboost-cart-item__old-price xboost-product-option">
                             {{- item.original_price | money -}}
                           </s>
                           <span class="visually-hidden">
                             {{ 'products.product.price.sale_price' | t }}
                           </span>
-                          <strong class="cart-item__final-price xboost-product-option">
+                          <strong class="xboost-cart-item__final-price xboost-product-option">
                             {{ item.final_price | money }}
                           </strong>
                         </div>
@@ -161,9 +161,9 @@
                         <p class="xboost-product-option">{{ item.selling_plan_allocation.selling_plan.name }}</p>
                       {%- endif -%}
 
-                      <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
+                      <ul class="xboost-discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                         {%- for discount in item.line_level_discount_allocations -%}
-                          <li class="discounts__discount">
+                          <li class="xboost-discounts__discount">
                             {{- 'icon-discount.svg' | inline_asset_content -}}
                             {{ discount.discount_application.title | escape }}
                           </li>
@@ -171,28 +171,28 @@
                       </ul>
                     </td>
 
-                    <td class="cart-item__totals right medium-hide large-up-hide">
+                    <td class="xboost-cart-item__totals right medium-hide xboost-large-up-hide">
                       {%- render 'loading-spinner' -%}
-                      <div class="cart-item__price-wrapper">
+                      <div class="xboost-cart-item__price-wrapper">
                         {%- if item.original_line_price != item.final_line_price -%}
-                          <dl class="cart-item__discounted-prices">
+                          <dl class="xboost-cart-item__discounted-prices">
                             <dt class="visually-hidden">
                               {{ 'products.product.price.regular_price' | t }}
                             </dt>
                             <dd>
-                              <s class="cart-item__old-price price price--end">
+                              <s class="xboost-cart-item__old-price price xboost-price--end">
                                 {{ item.original_line_price | money }}
                               </s>
                             </dd>
                             <dt class="visually-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
-                            <dd class="price price--end">
+                            <dd class="price xboost-price--end">
                               {{ item.final_line_price | money }}
                             </dd>
                           </dl>
                         {%- else -%}
-                          <span class="price price--end">
+                          <span class="price xboost-price--end">
                             {{ item.original_line_price | money }}
                           </span>
                         {%- endif -%}
@@ -224,9 +224,9 @@
                         assign has_vol_pricing = true
                       endif
                     -%}
-                    <td class="cart-item__quantity{% if has_qty_rules or has_vol_pricing %} cart-item__quantity--info{% endif %}">
+                    <td class="xboost-cart-item__quantity{% if has_qty_rules or has_vol_pricing %} xboost-cart-item__quantity--info{% endif %}">
                       <quantity-popover>
-                        <div class="cart-item__quantity-wrapper xboost-quantity-popover-wrapper">
+                        <div class="xboost-cart-item__quantity-wrapper xboost-quantity-popover-wrapper">
                           <label class="visually-hidden" for="Quantity-{{ item.index | plus: 1 }}">
                             {{ 'products.product.quantity.label' | t }}
                           </label>
@@ -240,8 +240,8 @@
                                 {{- 'icon-info.svg' | inline_asset_content -}}
                               </button>
                             {%- endif -%}
-                            <quantity-input class="quantity cart-quantity">
-                              <button class="quantity__button" name="minus" type="button">
+                            <quantity-input class="xboost-quantity cart-quantity">
+                              <button class="xboost-quantity__button" name="minus" type="button">
                                 <span class="visually-hidden">
                                   {{- 'products.product.quantity.decrease' | t: product: item.product.title | escape -}}
                                 </span>
@@ -250,7 +250,7 @@
                                 </span>
                               </button>
                               <input
-                                class="quantity__input"
+                                class="xboost-quantity__input"
                                 data-quantity-variant-id="{{ item.variant.id }}"
                                 type="number"
                                 name="updates[]"
@@ -268,7 +268,7 @@
                                 id="Quantity-{{ item.index | plus: 1 }}"
                                 data-index="{{ item.index | plus: 1 }}"
                               >
-                              <button class="quantity__button" name="plus" type="button">
+                              <button class="xboost-quantity__button" name="plus" type="button">
                                 <span class="visually-hidden">
                                   {{- 'products.product.quantity.increase' | t: product: item.product.title | escape -}}
                                 </span>
@@ -296,7 +296,7 @@
                         {%- if has_qty_rules or has_vol_pricing -%}
                           <button
                             type="button"
-                            class="xboost-quantity-popover__info-button xboost-quantity-popover__info-button--icon-with-label button button--tertiary large-up-hide"
+                            class="xboost-quantity-popover__info-button xboost-quantity-popover__info-button--icon-with-label button button--tertiary xboost-large-up-hide"
                             aria-expanded="false"
                           >
                             {{- 'icon-info.svg' | inline_asset_content -}}
@@ -311,7 +311,7 @@
                         {%- endif -%}
                         {%- if has_vol_pricing or has_qty_rules -%}
                           <div
-                            class="cart-items__info xboost-global-settings-popup xboost-quantity-popover__info"
+                            class="xboost-cart-items__info xboost-global-settings-popup xboost-quantity-popover__info"
                             tabindex="-1"
                             hidden
                           >
@@ -347,7 +347,7 @@
                               {%- endif -%}
                             </div>
                             <button
-                              class="button-close button button--tertiary large-up-hide"
+                              class="button-close button button--tertiary xboost-large-up-hide"
                               type="button"
                               aria-label="{{ 'accessibility.close' | t }}"
                             >
@@ -378,8 +378,8 @@
                             {%- endif -%}
                           </div>
                         {%- endif -%}
-                        <div class="cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
-                          <small class="cart-item__error-text"></small>
+                        <div class="xboost-cart-item__error" id="Line-item-error-{{ item.index | plus: 1 }}" role="alert">
+                          <small class="xboost-cart-item__error-text"></small>
                           <span class="svg-wrapper">
                             {{- 'icon-error.svg' | inline_asset_content -}}
                           </span>
@@ -387,28 +387,28 @@
                       </quantity-popover>
                     </td>
 
-                    <td class="cart-item__totals right small-hide">
+                    <td class="xboost-cart-item__totals right small-hide">
                       {%- render 'loading-spinner' -%}
-                      <div class="cart-item__price-wrapper">
+                      <div class="xboost-cart-item__price-wrapper">
                         {%- if item.original_line_price != item.final_line_price -%}
-                          <dl class="cart-item__discounted-prices">
+                          <dl class="xboost-cart-item__discounted-prices">
                             <dt class="visually-hidden">
                               {{ 'products.product.price.regular_price' | t }}
                             </dt>
                             <dd>
-                              <s class="cart-item__old-price price price--end">
+                              <s class="xboost-cart-item__old-price price xboost-price--end">
                                 {{ item.original_line_price | money }}
                               </s>
                             </dd>
                             <dt class="visually-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
-                            <dd class="price price--end">
+                            <dd class="price xboost-price--end">
                               {{ item.final_line_price | money }}
                             </dd>
                           </dl>
                         {%- else -%}
-                          <span class="price price--end">
+                          <span class="price xboost-price--end">
                             {{ item.original_line_price | money }}
                           </span>
                         {%- endif -%}

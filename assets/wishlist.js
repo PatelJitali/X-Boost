@@ -70,7 +70,7 @@ function createWishlistToggleHandler() {
   function displayWishlist() {
     const wishlistData = JSON.parse(localStorage.getItem("wishlist")) || [];
     const wishlistCountBubble = document.querySelector(
-      ".wishlist-count-bubble .wishlist-count"
+      ".xboost-wishlist-count-bubble .xboost-wishlist-count"
     );
 
     wishlistCountBubble.innerHTML = wishlistData.length;
@@ -100,7 +100,7 @@ function createWishlistToggleHandler() {
           item.productTitle
         }">
                       </a>
-                      <h3 class="c-product__title xboost-card__heading h5">
+                      <h3 class="c-xboost-product__title xboost-card__heading h5">
                           <a class="xboost-full-unstyled-link wishlist-product-title" href="${
                             item.productUrl
                           }">${item.productTitle}</a>

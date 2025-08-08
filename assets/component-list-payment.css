@@ -1,4 +1,4 @@
-.list-payment {
+.xboost-list-payment {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -8,14 +8,14 @@
 }
 
 @media screen and (min-width: 750px) {
-  .list-payment {
+  .xboost-list-payment {
     justify-content: flex-end;
     margin: -0.5rem;
     padding-top: 0;
   }
 }
 
-.list-payment__item {
+.xboost-list-payment__item {
   align-items: center;
   display: flex;
   padding: 0.5rem;

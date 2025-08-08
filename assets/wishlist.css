@@ -54,7 +54,7 @@
   padding: 5px 5px;
 }
 
-#wishlist .c-product__title:hover .wishlist-tooltip {
+#wishlist .c-xboost-product__title:hover .wishlist-tooltip {
   visibility: visible;
 }
 
@@ -155,7 +155,7 @@
     padding: 8px 5px;
     font-size: 13px;
   }
-  #wishlist .c-product h3.c-product__title,
+  #wishlist .c-product h3.c-xboost-product__title,
   #wishlist .c-product p {
     margin: 5px 0;
   }
@@ -358,7 +358,7 @@ body.overflow {
 .c-product img:hover {
   transform: scale(1.2);
 }
-.c-product h3.c-product__title {
+.c-product h3.c-xboost-product__title {
   margin-top: 10px;
   position: relative;
 }

@@ -13,7 +13,7 @@
 }
 
 .customer > h1,
-.customer__title {
+.xboost-customer__title {
   margin-top: 0;
 }
 
@@ -41,12 +41,12 @@
   color: rgb(var(--color-foreground));
 }
 
-.customer h2.form__message {
+.customer h2.xboost-form__message {
   font-size: calc(var(--font-heading-scale) * 1.8rem);
 }
 
 @media only screen and (min-width: 750px) {
-  .customer h2.form__message {
+  .customer h2.xboost-form__message {
     font-size: calc(var(--font-heading-scale) * 2.2rem);
   }
 }

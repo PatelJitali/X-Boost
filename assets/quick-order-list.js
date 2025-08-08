@@ -200,7 +200,7 @@ if (!customElements.get('quick-order-list')) {
           {
             id: this.quickOrderListId,
             section: document.getElementById(this.quickOrderListId).dataset.section,
-            selector: `#${this.quickOrderListId} .js-contents`,
+            selector: `#${this.quickOrderListId} .xboost-js-contents`,
           },
           {
             id: 'cart-icon-bubble',
@@ -258,7 +258,7 @@ if (!customElements.get('quick-order-list')) {
               ? sectionElement.querySelector(section.selector)
               : sectionElement;
           if (elementToReplace) {
-            if (section.selector === `#${this.quickOrderListId} .js-contents` && this.ids.length > 0) {
+            if (section.selector === `#${this.quickOrderListId} .xboost-js-contents` && this.ids.length > 0) {
               this.ids.flat().forEach((i) => {
                 elementToReplace.querySelector(`#Variant-${i}`).innerHTML = this.getSectionInnerHTML(
                   parsedState.sections[section.section],
