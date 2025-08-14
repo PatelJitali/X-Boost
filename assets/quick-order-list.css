@@ -23,7 +23,7 @@ quick-order-list .xboost-quantity__button {
   pointer-events: none;
 }
 
-.quick-order-list__total {
+.xboost-quick-order-list__total {
   padding-top: 2rem;
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.08);
 }
@@ -41,7 +41,7 @@ quick-order-list .xboost-quantity__button {
 }
 
 @media screen and (min-width: 990px) {
-  .quick-order-list__total {
+  .xboost-quick-order-list__total {
     position: sticky;
     bottom: 0;
     z-index: 2;
@@ -123,7 +123,7 @@ quick-order-list .xboost-quantity__button {
     max-width: 100%;
   }
 
-  .xboost-variant-item__inner .small-hide {
+  .xboost-variant-item__inner .xboost-small-hide {
     display: flex;
     flex-direction: column;
     align-self: center;
@@ -206,7 +206,7 @@ quick-order-list-remove-button {
   align-self: center;
 }
 
-.xboost-quick-order-list__button-cancel {
+.xboost-xboost-quick-order-list__button-cancel {
   font-size: 1.5rem;
   letter-spacing: 0.06rem;
 }
@@ -222,11 +222,11 @@ quick-order-list-remove-button {
     margin-top: 1rem;
   }
 
-  .quick-order-list-total__column {
+  .xboost-quick-order-list-total__column {
     flex-wrap: wrap;
   }
 
-  .quick-order-list__message,
+  .xboost-quick-order-list__message,
   .xboost-quick-order-list-error {
     padding-bottom: 1rem;
   }
@@ -257,27 +257,27 @@ quick-order-list-remove-button .icon-remove {
   padding: 0;
 }
 
-.variant-remove-total {
+.xboost-variant-remove-total {
   position: relative;
   align-self: center;
 }
 
-.variant-remove-total .button--tertiary {
+.xboost-variant-remove-total .button--tertiary {
   width: max-content;
 }
 
-.variant-remove-total .icon-remove {
+.xboost-variant-remove-total .icon-remove {
   width: 1.2rem;
   height: 1.2rem;
   margin-right: 0.8rem;
 }
 
-.quick-order-list__message {
+.xboost-quick-order-list__message {
   margin-top: 1rem;
   display: block;
 }
 
-.quick-order-list__message .svg-wrapper {
+.xboost-quick-order-list__message .svg-wrapper {
   margin-right: 1rem;
   width: 1.3rem;
 }
@@ -305,12 +305,12 @@ quick-order-list-remove-button .icon-remove {
     padding-top: 5rem;
   }
 
-  .variant-remove-total .loading__spinner {
+  .xboost-variant-remove-total .loading__spinner {
     left: 2rem;
     top: 1.2rem;
   }
 
- .variant-remove-total--empty .loading__spinner {
+ .xboost-variant-remove-total--empty .loading__spinner {
     top: -1rem;
   }
 }
@@ -324,13 +324,13 @@ quick-order-list-remove-button:hover .icon-remove {
   text-underline-offset: 0.3rem;
 }
 
-.variant-remove-total {
+.xboost-variant-remove-total {
   position: relative;
   align-self: center;
 }
 
 .variant-item .loading__spinner:not(.hidden) ~ *,
-.variant-remove-total .loading__spinner:not(.hidden) ~ * {
+.xboost-variant-remove-total .loading__spinner:not(.hidden) ~ * {
   visibility: hidden;
 }
 
@@ -428,29 +428,29 @@ quick-order-list-remove-button:hover .icon-remove {
     display: none;
   }
 
-  .variant-remove-total {
+  .xboost-variant-remove-total {
     margin-top: 1rem;
     text-align: center;
   }
 
-  .quick-order-list__message {
+  .xboost-quick-order-list__message {
     text-align: center;
   }
 
-  .quick-order-list-total__column,
-  .quick-order-list-buttons {
+  .xboost-quick-order-list-total__column,
+  .xboost-quick-order-list-buttons {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 100%;
   }
 
-  .quick-order-list__button {
+  .xboost-quick-order-list__button {
     max-width: 36rem;
   }
 }
 
-.quick-order-list__button-text {
+.xboost-quick-order-list__button-text {
   text-align: center;
 }
 
@@ -517,7 +517,7 @@ quick-order-list-remove-button:hover .icon-remove {
     margin-right: 3rem;
   }
 
-  .quick-order-list__total-items {
+  .xboost-quick-order-list__total-items {
     width: calc(((11rem / var(--font-body-scale) + var(--inputs-border-width) * 2)));
     margin-left: calc(15px + 3.4rem);
     flex-direction: column;
@@ -526,11 +526,11 @@ quick-order-list-remove-button:hover .icon-remove {
 
 @media screen and (min-width: 990px) {
   .xboost-quick-order-list__table thead th:first-child,
-  .quick-order-list-total__column {
+  .xboost-quick-order-list-total__column {
     width: 37%;
   }
 
-  .quick-order-list-buttons {
+  .xboost-quick-order-list-buttons {
     display: flex;
   }
 
@@ -539,26 +539,26 @@ quick-order-list-remove-button:hover .icon-remove {
   }
 }
 
-.quick-order-list__total-items {
+.xboost-quick-order-list__total-items {
   display: flex;
   align-items: center;
 }
 
-.quick-order-list__total-items span,
-.totals__subtotal-value {
+.xboost-quick-order-list__total-items span,
+.xboost-totals__subtotal-value {
   margin-top: 0;
   margin-bottom: 0;
   color: rgb(var(--color-foreground));
 }
 
-.quick-order-list__total-items p,
-.totals__subtotal {
+.xboost-quick-order-list__total-items p,
+.xboost-totals__subtotal {
   margin-top: 0.2rem;
   opacity: 0.75;
   margin-bottom: 0;
 }
 
-.quick-order-list__total-items p {
+.xboost-quick-order-list__total-items p {
   text-align: center;
 }
 
@@ -571,7 +571,7 @@ quick-order-list-remove-button:hover .icon-remove {
   min-height: 10rem;
 }
 
-.quick-order-list-total__price {
+.xboost-quick-order-list-total__price {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-end;
@@ -580,18 +580,18 @@ quick-order-list-remove-button:hover .icon-remove {
   width: min-content;
 }
 
-.quick-order-list-total__price .button {
+.xboost-quick-order-list-total__price .button {
   margin-right: 2rem;
 }
 
 @media screen and (max-width: 989px) {
-  .quick-order-list-total__price {
+  .xboost-quick-order-list-total__price {
     justify-content: center;
     text-align: center;
     width: 100%;
   }
 
-  .totals__product-total {
+  .xboost-totals__product-total {
     display: flex;
     justify-content: center;
     width: 100%;
@@ -599,17 +599,17 @@ quick-order-list-remove-button:hover .icon-remove {
     padding-bottom: 2rem;
   }
 
-  .totals__subtotal-value,
-  .quick-order-list__total-items span {
+  .xboost-totals__subtotal-value,
+  .xboost-quick-order-list__total-items span {
     margin-right: 1.2rem;
   }
 
-  .quick-order-list__total-items {
+  .xboost-quick-order-list__total-items {
     margin-top: 1rem;
     margin-bottom: 1.3rem;
   }
 
-  .quick-order-list-total__price .button {
+  .xboost-quick-order-list-total__price .button {
     margin-bottom: 2rem;
   }
 
@@ -622,7 +622,7 @@ quick-order-list-remove-button:hover .icon-remove {
     margin-top: 2rem;
   }
 
-  .xboost-quick-order-list__button-confirm {
+  .xboost-xboost-quick-order-list__button-confirm {
     width: 100%;
     max-width: 36rem;
   }

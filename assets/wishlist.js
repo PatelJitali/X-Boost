@@ -139,7 +139,7 @@ function createWishlistToggleHandler() {
   }
   function initWishlistButtons() {
     const wishlistButtons = document.querySelectorAll(
-      ".wishlist_button[data-product-title]"
+      ".xboost-wishlist_button[data-product-title]"
     );
     const wishlistData = JSON.parse(localStorage.getItem("wishlist")) || [];
 

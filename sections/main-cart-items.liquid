@@ -48,7 +48,7 @@
       {%- endif -%}
     </div>
 
-    <form action="{{ routes.cart_url }}" class="xboost-cart__contents critical-hidden" method="post" id="cart">
+    <form action="{{ routes.cart_url }}" class="xboost-cart__contents xboost-critical-hidden" method="post" id="cart">
       <div class="xboost-cart__items" id="main-cart-items" data-id="{{ section.id }}">
         <div class="xboost-js-contents">
           {%- if cart != empty -%}
@@ -61,17 +61,17 @@
                   <th class="xboost-caption-with-letter-spacing" colspan="2" scope="col">
                     {{ 'sections.cart.headings.product' | t }}
                   </th>
-                  <th class="medium-hide xboost-large-up-hide right xboost-caption-with-letter-spacing" colspan="1" scope="col">
+                  <th class="xboost-medium-hide xboost-large-up-hide right xboost-caption-with-letter-spacing" colspan="1" scope="col">
                     {{ 'sections.cart.headings.total' | t }}
                   </th>
                   <th
-                    class="xboost-cart-items__heading--wide xboost-cart-items__heading--quantity small-hide xboost-caption-with-letter-spacing"
+                    class="xboost-cart-items__heading--wide xboost-cart-items__heading--quantity xboost-small-hide xboost-caption-with-letter-spacing"
                     colspan="1"
                     scope="col"
                   >
                     {{ 'sections.cart.headings.quantity' | t }}
                   </th>
-                  <th class="small-hide right xboost-caption-with-letter-spacing" colspan="1" scope="col">
+                  <th class="xboost-small-hide right xboost-caption-with-letter-spacing" colspan="1" scope="col">
                     {{ 'sections.cart.headings.total' | t }}
                   </th>
                 </tr>
@@ -171,7 +171,7 @@
                       </ul>
                     </td>
 
-                    <td class="xboost-cart-item__totals right medium-hide xboost-large-up-hide">
+                    <td class="xboost-cart-item__totals right xboost-medium-hide xboost-large-up-hide">
                       {%- render 'loading-spinner' -%}
                       <div class="xboost-cart-item__price-wrapper">
                         {%- if item.original_line_price != item.final_line_price -%}
@@ -235,7 +235,7 @@
                               <button
                                 type="button"
                                 aria-expanded="false"
-                                class="xboost-quantity-popover__info-button xboost-quantity-popover__info-button--icon-only button button--tertiary small-hide medium-hide"
+                                class="xboost-quantity-popover__info-button xboost-quantity-popover__info-button--icon-only button button--tertiary xboost-small-hide xboost-medium-hide"
                               >
                                 {{- 'icon-info.svg' | inline_asset_content -}}
                               </button>
@@ -387,7 +387,7 @@
                       </quantity-popover>
                     </td>
 
-                    <td class="xboost-cart-item__totals right small-hide">
+                    <td class="xboost-cart-item__totals right xboost-small-hide">
                       {%- render 'loading-spinner' -%}
                       <div class="xboost-cart-item__price-wrapper">
                         {%- if item.original_line_price != item.final_line_price -%}

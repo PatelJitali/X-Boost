@@ -28,16 +28,16 @@
     data-product-id="{{ product.id }}"
   >
     {% if recommendations.performed and recommendations.products_count > 0 %}
-      <h2 class="related-products__heading xboost-inline-richtext {{ section.settings.heading_size }}">
+      <h2 class="xboost-related-products__heading xboost-inline-richtext {{ section.settings.heading_size }}">
         {{ section.settings.heading }}
       </h2>
       <ul
-        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down"
+        class="grid product-grid grid--{{ section.settings.columns_desktop }}-col-desktop xboost-grid--{{ section.settings.columns_mobile }}-col-tablet-down"
         role="list"
       >
         {% assign skip_card_product_styles = false %}
         {% for recommendation in recommendations.products %}
-          <li class="grid__item">
+          <li class="xboost-grid__item">
             {% render 'card-product',
               card_product: recommendation,
               media_aspect_ratio: section.settings.image_ratio,

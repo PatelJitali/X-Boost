@@ -41,7 +41,7 @@
             {%- when 'image' -%}
               <div class="xboost-collage-card {% if section.settings.card_styles == 'none' %}xboost-global-media-settings{% else %}card-wrapper {{ section.settings.card_styles }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
                 <div
-                  class="media media--transparent ratio"
+                  class="media xboost-media--transparent ratio"
                   {% if block.settings.image != blank %}
                     style="--ratio-percent: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%"
                   {% else %}
@@ -124,7 +124,7 @@
                       data-media-id="{{ block.settings.video_url.id }}"
                     >
                       <div
-                        class="media media--transparent ratio"
+                        class="media xboost-media--transparent ratio"
                         {% if block.settings.cover_image != blank %}
                           style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"
                         {% else %}

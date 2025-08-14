@@ -220,7 +220,7 @@
           >
             {%- for block in section.blocks -%}
               <div
-                class="xboost-slideshow__slide slider__slide grid__item grid--1-col"
+                class="xboost-slideshow__slide slider__slide xboost-grid__item grid--1-col"
                 id="Slide-{{ section.id }}-{{ forloop.index }}"
                 {{ block.shopify_attributes }}
                 role="group"
@@ -386,7 +386,7 @@
     {%- endif -%}
     <div class="xboost-localization-wrapper">
       {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-        <noscript class="small-hide medium-hide">
+        <noscript class="xboost-small-hide xboost-medium-hide">
           {%- form 'localization', id: 'AnnouncementCountryMobileFormNoScript', class: 'localization-form' -%}
             <div class="xboost-localization-form__select">
               <h2 class="visually-hidden" id="xboost-AnnouncementCountryMobileLabelNoScript">
@@ -417,7 +417,7 @@
           {%- endform -%}
         </noscript>
 
-        <localization-form class="small-hide medium-hide no-js-hidden">
+        <localization-form class="xboost-small-hide xboost-medium-hide no-js-hidden">
           {%- form 'localization', id: 'AnnouncementCountryForm', class: 'localization-form' -%}
             <div>
               <h2 class="visually-hidden" id="AnnouncementCountryLabel">{{ 'localization.country_label' | t }}</h2>
@@ -428,7 +428,7 @@
       {% endif %}
 
       {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-        <noscript class="small-hide medium-hide">
+        <noscript class="xboost-small-hide xboost-medium-hide">
           {%- form 'localization', id: 'AnnouncementLanguageMobileFormNoScript', class: 'localization-form' -%}
             <div class="xboost-localization-form__select">
               <h2 class="visually-hidden" id="xboost-AnnouncementLanguageMobileLabelNoScript">
@@ -459,7 +459,7 @@
           {%- endform -%}
         </noscript>
 
-        <localization-form class="small-hide medium-hide no-js-hidden">
+        <localization-form class="xboost-small-hide xboost-medium-hide no-js-hidden">
           {%- form 'localization', id: 'AnnouncementLanguageForm', class: 'localization-form' -%}
             <div>
               <h2 class="visually-hidden" id="xboost-AnnouncementLanguageLabel">{{ 'localization.language_label' | t }}</h2>

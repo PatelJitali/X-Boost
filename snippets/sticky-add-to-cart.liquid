@@ -162,7 +162,7 @@
             {{ 'products.product.quantity.label' | t }}
           </label>
           <div class="xboost-price-per-item__container">
-            <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
+            <quantity-input class="xboost-quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
               <button class="xboost-quantity__button" name="minus" type="button">
                 <span class="visually-hidden">
                   {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}

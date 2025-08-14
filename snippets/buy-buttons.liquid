@@ -122,7 +122,7 @@
     -%}
 
     <pickup-availability
-      class="product__pickup-availabilities quick-add-hidden"
+      class="product__pickup-availabilities xboost-quick-add-hidden"
       {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %}
         available
       {% endif %}
@@ -132,13 +132,13 @@
       data-product-page-color-scheme="gradient color-{{ section.settings.color_scheme }}"
     >
       <template>
-        <pickup-availability-preview class="pickup-availability-preview">
+        <pickup-availability-preview class="xboost-pickup-availability-preview">
           <span class="svg-wrapper">
             {{- 'icon-unavailable.svg' | inline_asset_content -}}
           </span>
-          <div class="pickup-availability-info">
+          <div class="xboost-pickup-availability-info">
             <p class="xboost-caption-large">{{ 'products.product.pickup_availability.unavailable' | t }}</p>
-            <button class="pickup-availability-button link link--text underlined-link">
+            <button class="xboost-pickup-availability-button link link--text underlined-link">
               {{ 'products.product.pickup_availability.refresh' | t }}
             </button>
           </div>

@@ -237,16 +237,16 @@ details[open].menu-opening > .menu-drawer__submenu {
   transform: scale(1.07);
 }
 
-.menu-drawer .list-social {
+.menu-drawer .xboost-list-social {
   justify-content: flex-start;
   margin-left: -1.25rem;
 }
 
-.menu-drawer .list-social:empty {
+.menu-drawer .xboost-list-social:empty {
   display: none;
 }
 
-.menu-drawer .list-social__link {
+.menu-drawer .xboost-list-social__link {
   padding: 1.1rem 1.1rem;
 }
 

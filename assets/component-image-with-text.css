@@ -1,8 +1,8 @@
-.image-with-text .grid {
+.xboost-image-with-text .grid {
   margin-bottom: 0;
 }
 
-.image-with-text .grid__item {
+.xboost-image-with-text .xboost-grid__item {
   position: relative;
 }
 
@@ -12,7 +12,7 @@
   }
 }
 
-.image-with-text__media {
+.xboost-image-with-text__media {
   min-height: 100%;
   overflow: visible;
 }
@@ -92,7 +92,7 @@
   z-index: 1;
 }
 
-.image-with-text .grid__item::after {
+.xboost-image-with-text .xboost-grid__item::after {
   content: '';
   position: absolute;
   top: 0;
@@ -102,57 +102,57 @@
   z-index: -1;
 }
 
-.image-with-text:not(.image-with-text--overlap) .xboost-image-with-text__media-item:after {
+.xboost-image-with-text:not(.xboost-image-with-text--overlap) .xboost-image-with-text__media-item:after {
   border-radius: var(--media-radius);
   box-shadow: var(--media-shadow-horizontal-offset) var(--media-shadow-vertical-offset) var(--media-shadow-blur-radius)
     rgba(var(--color-shadow), var(--media-shadow-opacity));
 }
 
-.image-with-text:not(.image-with-text--overlap) .xboost-image-with-text__text-item:after {
+.xboost-image-with-text:not(.xboost-image-with-text--overlap) .xboost-image-with-text__text-item:after {
   border-radius: var(--text-boxes-radius);
   box-shadow: var(--text-boxes-shadow-horizontal-offset) var(--text-boxes-shadow-vertical-offset)
     var(--text-boxes-shadow-blur-radius) rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
 }
 
-.image-with-text .xboost-image-with-text__media-item > * {
+.xboost-image-with-text .xboost-image-with-text__media-item > * {
   border-radius: var(--media-radius);
   overflow: hidden;
   box-shadow: var(--media-shadow-horizontal-offset) var(--media-shadow-vertical-offset) var(--media-shadow-blur-radius)
     rgba(var(--color-shadow), var(--media-shadow-opacity));
 }
 
-.image-with-text .xboost-global-media-settings {
+.xboost-image-with-text .xboost-global-media-settings {
   overflow: hidden !important;
 }
 
-.image-with-text .xboost-image-with-text__text-item > * {
+.xboost-image-with-text .xboost-image-with-text__text-item > * {
   border-radius: var(--text-boxes-radius);
   overflow: hidden;
   box-shadow: var(--text-boxes-shadow-horizontal-offset) var(--text-boxes-shadow-vertical-offset)
     var(--text-boxes-shadow-blur-radius) rgba(var(--color-shadow), var(--text-boxes-shadow-opacity));
 }
 
-.image-with-text:not(.image-with-text--overlap) .xboost-image-with-text__media-item > *,
-.image-with-text:not(.image-with-text--overlap) .xboost-image-with-text__text-item > * {
+.xboost-image-with-text:not(.xboost-image-with-text--overlap) .xboost-image-with-text__media-item > *,
+.xboost-image-with-text:not(.xboost-image-with-text--overlap) .xboost-image-with-text__text-item > * {
   box-shadow: none;
 }
 
 @media screen and (max-width: 749px) {
-  .image-with-text.collapse-corners:not(.image-with-text--overlap) .xboost-image-with-text__media-item:after,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap) .grid__item .image-with-text__media,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media img,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap) .image-with-text__media .placeholder-svg {
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap) .xboost-image-with-text__media-item:after,
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap) .xboost-grid__item .xboost-image-with-text__media,
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap) .xboost-image-with-text__media img,
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap) .xboost-image-with-text__media .placeholder-svg {
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
   }
 
-  .image-with-text.collapse-corners:not(.image-with-text--overlap) .xboost-image-with-text__text-item:after,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap) .grid__item .xboost-image-with-text__content {
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap) .xboost-image-with-text__text-item:after,
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap) .xboost-grid__item .xboost-image-with-text__content {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
   }
 
-  .image-with-text.xboost-collapse-borders:not(.image-with-text--overlap) .xboost-image-with-text__content {
+  .xboost-image-with-text.xboost-collapse-borders:not(.xboost-image-with-text--overlap) .xboost-image-with-text__content {
     border-top: 0;
   }
 }
@@ -167,7 +167,7 @@
   text-align: center;
 }
 
-.image-with-text--overlap .xboost-image-with-text__content {
+.xboost-image-with-text--overlap .xboost-image-with-text__content {
   width: 90%;
   margin: -3rem auto 0;
 }
@@ -202,12 +202,12 @@
     text-align: center;
   }
 
-  .image-with-text--overlap .xboost-image-with-text__text-item {
+  .xboost-image-with-text--overlap .xboost-image-with-text__text-item {
     display: flex;
     padding: 3rem 0;
   }
 
-  .image-with-text--overlap .xboost-image-with-text__content {
+  .xboost-image-with-text--overlap .xboost-image-with-text__content {
     height: auto;
     width: calc(100% + 4rem);
     min-width: calc(100% + 4rem);
@@ -215,24 +215,24 @@
     margin-left: -4rem;
   }
 
-  .image-with-text--overlap .xboost-image-with-text__grid--reverse .xboost-image-with-text__content {
+  .xboost-image-with-text--overlap .xboost-image-with-text__grid--reverse .xboost-image-with-text__content {
     margin-left: 0;
     margin-right: -4rem;
   }
 
-  .image-with-text--overlap .xboost-image-with-text__grid--reverse .xboost-image-with-text__text-item {
+  .xboost-image-with-text--overlap .xboost-image-with-text__grid--reverse .xboost-image-with-text__text-item {
     justify-content: flex-end;
   }
 
-  .image-with-text--overlap .xboost-image-with-text__media-item--top {
+  .xboost-image-with-text--overlap .xboost-image-with-text__media-item--top {
     align-self: flex-start;
   }
 
-  .image-with-text--overlap .xboost-image-with-text__media-item--middle {
+  .xboost-image-with-text--overlap .xboost-image-with-text__media-item--middle {
     align-self: center;
   }
 
-  .image-with-text--overlap .xboost-image-with-text__media-item--bottom {
+  .xboost-image-with-text--overlap .xboost-image-with-text__media-item--bottom {
     align-self: flex-end;
   }
 
@@ -241,85 +241,85 @@
     flex-grow: 0;
   }
 
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .grid:not(.xboost-image-with-text__grid--reverse)
     .xboost-image-with-text__media-item:after,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .grid:not(.xboost-image-with-text__grid--reverse)
-    .image-with-text__media,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+    .xboost-image-with-text__media,
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .grid:not(.xboost-image-with-text__grid--reverse)
-    .image-with-text__media
+    .xboost-image-with-text__media
     img,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .grid:not(.xboost-image-with-text__grid--reverse)
-    .image-with-text__media
+    .xboost-image-with-text__media
     .placeholder-svg,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .xboost-image-with-text__grid--reverse
     .xboost-image-with-text__text-item:after,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .xboost-image-with-text__grid--reverse
     .xboost-image-with-text__content,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .xboost-image-with-text__grid--reverse
     .xboost-image-with-text__content:after {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
   }
 
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .grid:not(.xboost-image-with-text__grid--reverse)
     .xboost-image-with-text__text-item:after,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .grid:not(.xboost-image-with-text__grid--reverse)
     .xboost-image-with-text__content,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .grid:not(.xboost-image-with-text__grid--reverse)
     .xboost-image-with-text__content:after,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .xboost-image-with-text__grid--reverse
     .xboost-image-with-text__media-item:after,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .xboost-image-with-text__grid--reverse
-    .image-with-text__media,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+    .xboost-image-with-text__media,
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .xboost-image-with-text__grid--reverse
-    .image-with-text__media
+    .xboost-image-with-text__media
     img,
-  .image-with-text.collapse-corners:not(.image-with-text--overlap)
+  .xboost-image-with-text.collapse-corners:not(.xboost-image-with-text--overlap)
     .xboost-image-with-text__grid--reverse
-    .image-with-text__media
+    .xboost-image-with-text__media
     .placeholder-svg {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
   }
 
-  .image-with-text.xboost-collapse-borders:not(.image-with-text--overlap)
+  .xboost-image-with-text.xboost-collapse-borders:not(.xboost-image-with-text--overlap)
     .grid:not(.xboost-image-with-text__grid--reverse)
     .xboost-image-with-text__content {
     border-left: 0;
   }
 
-  .image-with-text.xboost-collapse-borders:not(.image-with-text--overlap)
+  .xboost-image-with-text.xboost-collapse-borders:not(.xboost-image-with-text--overlap)
     .xboost-image-with-text__grid--reverse
     .xboost-image-with-text__content {
     border-right: 0;
   }
 }
 
-.image-with-text:not(.collapse-corners, .image-with-text--overlap) .xboost-image-with-text__media-item {
+.xboost-image-with-text:not(.collapse-corners, .xboost-image-with-text--overlap) .xboost-image-with-text__media-item {
   z-index: 2;
 }
 
 /* Needed for gradient continuity with or without animation so that transparent PNG images come up as we would expect */
-.image-with-text.image-with-text--overlap .backround-transparent,
-.image-with-text:not(.image-with-text--overlap) .xboost-background-transparent {
+.xboost-image-with-text.xboost-image-with-text--overlap .backround-transparent,
+.xboost-image-with-text:not(.xboost-image-with-text--overlap) .xboost-background-transparent {
   background: transparent;
 }
 
 /* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
-.image-with-text .gradient {
+.xboost-image-with-text .gradient {
   transform: perspective(0);
 }
 
@@ -395,7 +395,7 @@
 
 /* check for flexbox gap in older Safari versions */
 @supports not (inset: 10px) {
-  .image-with-text .grid {
+  .xboost-image-with-text .grid {
     margin-left: 0;
   }
 }
@@ -404,14 +404,14 @@
   Multirow
   note: consider removing from this stylesheet if multirow-specific styles increase signficantly
 */
-.multirow__inner {
+.xboost-multirow__inner {
   display: flex;
   flex-direction: column;
   row-gap: var(--grid-mobile-vertical-spacing);
 }
 
 @media screen and (min-width: 750px) {
-  .multirow__inner {
+  .xboost-multirow__inner {
     row-gap: var(--grid-desktop-vertical-spacing);
   }
 }

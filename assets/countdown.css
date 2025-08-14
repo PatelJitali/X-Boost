@@ -28,7 +28,7 @@
 }
 /* .promo-layout-section .product-title,
 .promo-layout-section .compare-price,
-.promo-layout-section .regular-price,
+.promo-layout-section .xboost-regular-price,
 .promo-layout-section .xboost-timer-heading,
 .promo-layout-section .timer-subtitle {
   color: #003666;
@@ -142,7 +142,7 @@
   opacity: 0.7;
 }
 
-.promo-layout-section .regular-price {
+.promo-layout-section .xboost-regular-price {
   font-weight: 600;
 }
 

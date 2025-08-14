@@ -34,7 +34,7 @@
 <div class="card-wrapper xboost-animate-arrow {% if wrapper_class and wrapper_class != 'none' %}{{ wrapper_class }}{% else %}xboost-collection-card-wrapper{% endif %}">
   <div
     class="
-      card
+      xboost-card
       card--{{ card_style }}
       {% if card_collection.featured_image %} xboost-card--media{% else %} xboost-card--text{% endif %}
       {% if card_style == 'card' %} color-{{ card_color_scheme }} gradient{% endif %}
@@ -49,7 +49,7 @@
     >
       {%- if card_collection.featured_image -%}
         <div class="xboost-card__media">
-          <div class="media media--transparent media--hover-effect">
+          <div class="media xboost-media--transparent media--hover-effect">
             <img
               srcset="
                 {%- if card_collection.featured_image.width >= 165 -%}{{ card_collection.featured_image | image_url: width: 165 }} 165w,{%- endif -%}

@@ -215,7 +215,7 @@ if (!customElements.get('quick-order-list')) {
           {
             id: `quick-order-list-total-${this.dataset.productId}-${this.dataset.section}`,
             section: document.getElementById(this.quickOrderListId).dataset.section,
-            selector: `#${this.quickOrderListId} .quick-order-list__total`,
+            selector: `#${this.quickOrderListId} .xboost-quick-order-list__total`,
           },
           {
             id: 'CartDrawer',
@@ -283,7 +283,7 @@ if (!customElements.get('quick-order-list')) {
       }
 
       getTotalBar() {
-        return this.querySelector('.quick-order-list__total');
+        return this.querySelector('.xboost-quick-order-list__total');
       }
 
       scrollQuickOrderListTable() {
@@ -369,7 +369,7 @@ if (!customElements.get('quick-order-list')) {
       }
 
       updateMultipleQty(items) {
-        this.querySelector('.variant-remove-total .loading__spinner')?.classList.remove('hidden');
+        this.querySelector('.xboost-variant-remove-total .loading__spinner')?.classList.remove('hidden');
         const ids = Object.keys(items);
 
         const body = JSON.stringify({
@@ -394,7 +394,7 @@ if (!customElements.get('quick-order-list')) {
             this.setErrorMessage(window.cartStrings.error);
           })
           .finally(() => {
-            this.querySelector('.variant-remove-total .loading__spinner')?.classList.add('hidden');
+            this.querySelector('.xboost-variant-remove-total .loading__spinner')?.classList.add('hidden');
             this.requestStarted = false;
           });
       }
@@ -415,8 +415,8 @@ if (!customElements.get('quick-order-list')) {
       }
 
       updateMessage(quantity = null) {
-        const messages = this.querySelectorAll('.quick-order-list__message-text');
-        const icons = this.querySelectorAll('.quick-order-list__message-icon');
+        const messages = this.querySelectorAll('.xboost-quick-order-list__message-text');
+        const icons = this.querySelectorAll('.xboost-quick-order-list__message-icon');
 
         if (quantity === null || isNaN(quantity)) {
           messages.forEach((message) => (message.innerHTML = ''));

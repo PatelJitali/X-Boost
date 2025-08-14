@@ -69,6 +69,6 @@ input::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-.template-search__results {
+.xboost-template-search__results {
   position: relative;
 }

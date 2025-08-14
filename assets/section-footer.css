@@ -53,7 +53,7 @@
 .field:hover.field:after,
 .field:hover.field:after,
 .select:hover.select:after,
-.select__select:hover.select__select:after,
+.xboost-select__select:hover.xboost-select__select:after,
 .customer .field:hover.field:after,
 .customer select:hover.select:after,
 .xboost-localization-form__select:hover.xboost-localization-form__select:after {
@@ -73,13 +73,13 @@
     display: block;
   }
 
-  .xboost-footer-block.grid__item {
+  .xboost-footer-block.xboost-grid__item {
     padding: 0;
     margin: 4rem 0;
     width: 100%;
   }
 
-  .xboost-footer-block.grid__item:first-child {
+  .xboost-footer-block.xboost-grid__item:first-child {
     margin-top: 0;
   }
 
@@ -229,7 +229,7 @@
   text-align: center;
 }
 
-.footer__list-social.list-social:only-child {
+.footer__list-social.xboost-list-social:only-child {
   justify-content: center;
 }
 
@@ -292,7 +292,7 @@
     gap: 3rem;
   }
 
-  .footer__list-social.list-social,
+  .footer__list-social.xboost-list-social,
   .xboost-footer__follow-on-shop,
   .xboost-footer-block__newsletter {
     display: flex;
@@ -494,11 +494,11 @@
 
 .xboost-footer-block:only-child
   .xboost-footer-block__brand-info
-  .footer__list-social.list-social {
+  .footer__list-social.xboost-list-social {
   justify-content: center;
 }
 
-.xboost-footer-block__brand-info .footer__list-social.list-social {
+.xboost-footer-block__brand-info .footer__list-social.xboost-list-social {
   justify-content: flex-start;
 }
 
@@ -565,7 +565,7 @@
       margin-left: -3rem;
     }
 
-    .xboost-footer__content-top .grid__item {
+    .xboost-footer__content-top .xboost-grid__item {
       padding-left: 3rem;
     }
   }

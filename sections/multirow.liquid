@@ -43,16 +43,16 @@
 -%}
 
 <div class="multirow section-{{ section.id }}-padding gradient color-{{ section.settings.section_color_scheme }}">
-  <div class="multirow__inner page-width">
+  <div class="xboost-multirow__inner page-width">
     {%- for block in section.blocks -%}
       <div
-        class="image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="xboost-image-with-text isolate{{ borders_class }}{{ corners_class }}{{ padding_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {{ block.shopify_attributes }}
       >
         <div class="xboost-image-with-text__grid grid xboost-grid--gapless grid--1-col grid--{% if section.settings.desktop_image_width == 'medium' %}2-col-tablet{% else %}3-col-tablet{% endif %}{% if section.settings.image_layout contains 'alternate' %}{% cycle odd_class, even_class %}{% else %}{{ odd_class }}{% endif %}">
-          <div class="xboost-image-with-text__media-item xboost-image-with-text__media-item--{{ section.settings.desktop_image_width }} xboost-image-with-text__media-item--{{ section.settings.desktop_content_position }} grid__item">
+          <div class="xboost-image-with-text__media-item xboost-image-with-text__media-item--{{ section.settings.desktop_image_width }} xboost-image-with-text__media-item--{{ section.settings.desktop_content_position }} xboost-grid__item">
             <div
-              class="image-with-text__media xboost-image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} xboost-global-media-settings{% if block.settings.image != blank %} media{% else %} xboost-image-with-text__media--placeholder placeholder{% endif %}"
+              class="xboost-image-with-text__media xboost-image-with-text__media--{{ section.settings.image_height }} gradient color-{{ section.settings.row_color_scheme }} xboost-global-media-settings{% if block.settings.image != blank %} media{% else %} xboost-image-with-text__media--placeholder placeholder{% endif %}"
               {% if section.settings.image_height == 'adapt' and block.settings.image != blank %}
                 style="padding-bottom: {{ 1 | divided_by: block.settings.image.aspect_ratio | times: 100 }}%;"
               {% endif %}
@@ -72,7 +72,7 @@
               {%- endif -%}
             </div>
           </div>
-          <div class="xboost-image-with-text__text-item grid__item">
+          <div class="xboost-image-with-text__text-item xboost-grid__item">
             <div class="xboost-image-with-text__content xboost-image-with-text__content--{{ section.settings.desktop_content_position }} xboost-image-with-text__content--desktop-{{ section.settings.desktop_content_alignment }} xboost-image-with-text__content--mobile-{{ section.settings.mobile_content_alignment }} xboost-image-with-text__content--{{ section.settings.image_height }} xboost-content-container{% unless no_content_background and no_content_styles %} gradient color-{{ section.settings.row_color_scheme }}{% else %} xboost-background-transparent{% endunless %}">
               {%- if block.settings.caption -%}
                 <p class="xboost-image-with-text__text xboost-image-with-text__text--caption xboost-caption-with-letter-spacing xboost-caption-with-letter-spacing--medium">

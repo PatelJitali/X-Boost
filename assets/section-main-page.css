@@ -2,17 +2,17 @@
   margin-top: 0;
 }
 
-.main-page-title {
+.xboost-main-page-title {
   margin-bottom: 3rem;
 }
 
 @media screen and (min-width: 750px) {
-  .main-page-title {
+  .xboost-main-page-title {
     margin-bottom: 4rem;
   }
 }
 
-.page-placeholder-wrapper {
+.xboost-page-placeholder-wrapper {
   display: flex;
   justify-content: center;
 }

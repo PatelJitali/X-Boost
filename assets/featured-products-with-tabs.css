@@ -129,7 +129,7 @@
 /* #featured-product-tab
   .tab-product-main
   .wishlist-button-collection
-  .wishlist_button
+  .xboost-wishlist_button
   svg {
   width: 35px;
   height: 35px;
@@ -138,7 +138,7 @@
 #featured-product-tab
   .tab-product-main
   .wishlist-button-collection
-  .wishlist_button {
+  .xboost-wishlist_button {
   padding: 0;
 }
 

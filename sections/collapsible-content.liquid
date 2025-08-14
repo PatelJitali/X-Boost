@@ -38,7 +38,7 @@
         </div>
         <div class="grid grid--1-col grid--2-col-tablet xboost-collapsible-content__grid{% if section.settings.desktop_layout == 'image_second' %} xboost-collapsible-content__grid--reverse{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {%- if section.settings.image != blank -%}
-            <div class="grid__item xboost-collapsible-content__grid-item">
+            <div class="xboost-grid__item xboost-collapsible-content__grid-item">
               <div
                 class="xboost-collapsible-content__media xboost-collapsible-content__media--{{ section.settings.image_ratio }} media xboost-global-media-settings gradient"
                 {% if section.settings.image_ratio == 'adapt' %}
@@ -68,7 +68,7 @@
               </div>
             </div>
           {% endif %}
-          <div class="grid__item">
+          <div class="xboost-grid__item">
             {%- for block in section.blocks -%}
               <div
                 class="accordion{% if section.settings.layout == 'row' %} xboost-content-container color-{{ section.settings.container_color_scheme }} gradient{% endif %}"

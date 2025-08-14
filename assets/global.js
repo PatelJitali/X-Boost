@@ -972,7 +972,7 @@ class SlideshowComponent extends SliderComponent {
     this.announcerBarAnimationDelay = this.announcementBarSlider ? 250 : 0;
 
     this.sliderControlLinksArray = Array.from(
-      this.sliderControlWrapper.querySelectorAll(".slider-counter__link")
+      this.sliderControlWrapper.querySelectorAll(".xboost-slider-counter__link")
     );
     this.sliderControlLinksArray.forEach((link) =>
       link.addEventListener("click", this.linkToSlide.bind(this))
@@ -1013,8 +1013,8 @@ class SlideshowComponent extends SliderComponent {
     this.addEventListener("focusin", this.focusInHandling.bind(this));
     this.addEventListener("focusout", this.focusOutHandling.bind(this));
 
-    if (this.querySelector(".slideshow__autoplay")) {
-      this.sliderAutoplayButton = this.querySelector(".slideshow__autoplay");
+    if (this.querySelector(".xboost-slideshow__autoplay")) {
+      this.sliderAutoplayButton = this.querySelector(".xboost-slideshow__autoplay");
       this.sliderAutoplayButton.addEventListener(
         "click",
         this.autoPlayToggle.bind(this)
@@ -1064,17 +1064,17 @@ class SlideshowComponent extends SliderComponent {
 
   update() {
     super.update();
-    this.sliderControlButtons = this.querySelectorAll(".slider-counter__link");
+    this.sliderControlButtons = this.querySelectorAll(".xboost-slider-counter__link");
     this.prevButton.removeAttribute("disabled");
 
     if (!this.sliderControlButtons.length) return;
 
     this.sliderControlButtons.forEach((link) => {
-      link.classList.remove("slider-counter__link--active");
+      link.classList.remove("xboost-slider-counter__link--active");
       link.removeAttribute("aria-current");
     });
     this.sliderControlButtons[this.currentPage - 1].classList.add(
-      "slider-counter__link--active"
+      "xboost-slider-counter__link--active"
     );
     this.sliderControlButtons[this.currentPage - 1].setAttribute(
       "aria-current",
@@ -1134,13 +1134,13 @@ class SlideshowComponent extends SliderComponent {
 
   togglePlayButtonState(pauseAutoplay) {
     if (pauseAutoplay) {
-      this.sliderAutoplayButton.classList.add("slideshow__autoplay--paused");
+      this.sliderAutoplayButton.classList.add("xboost-slideshow__autoplay--paused");
       this.sliderAutoplayButton.setAttribute(
         "aria-label",
         window.accessibilityStrings.playSlideshow
       );
     } else {
-      this.sliderAutoplayButton.classList.remove("slideshow__autoplay--paused");
+      this.sliderAutoplayButton.classList.remove("xboost-slideshow__autoplay--paused");
       this.sliderAutoplayButton.setAttribute(
         "aria-label",
         window.accessibilityStrings.pauseSlideshow
@@ -1347,7 +1347,7 @@ class ProductRecommendations extends HTMLElement {
           this.remove();
         }
 
-        if (html.querySelector(".grid__item")) {
+        if (html.querySelector(".xboost-grid__item")) {
           this.classList.add("product-recommendations--loaded");
         }
       })

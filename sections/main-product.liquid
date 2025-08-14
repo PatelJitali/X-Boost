@@ -75,13 +75,13 @@
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
   <div class="page-width">
     <div class="product product--{{ section.settings.media_size }} product--{{ section.settings.media_position }} product--{{ section.settings.gallery_layout }} product--mobile-{{ section.settings.mobile_thumbnails }} grid grid--1-col {% if product.media.size > 0 %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-      <div class="grid__item xboost-product__media-wrapper">
+      <div class="xboost-grid__item xboost-product__media-wrapper">
         {% render 'product-media-gallery', variant_images: variant_images %}
       </div>
-      <div class="xboost-product__info-wrapper grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="xboost-product__info-wrapper xboost-grid__item{% if settings.page_width > 1400 and section.settings.media_size == "small" %} xboost-product__info-wrapper--extra-padding{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
         <section
           id="ProductInfo-{{ section.id }}"
-          class="xboost-product__info-container{% if section.settings.enable_sticky_info %} product__column-sticky{% endif %}"
+          class="xboost-product__info-container{% if section.settings.enable_sticky_info %} xboost-product__column-sticky{% endif %}"
         >
           {%- assign product_form_id = 'product-form-' | append: section.id -%}
 
@@ -115,7 +115,7 @@
                   -%}
                 </div>
                 {%- if product.quantity_price_breaks_configured? -%}
-                  <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+                  <div class="xboost-volume-pricing-note" id="Volume-Note-{{ section.id }}">
                     <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                   </div>
                 {%- endif -%}
@@ -142,7 +142,7 @@
                 </div>
               {%- when 'inventory' -%}
                 <p
-                  class="product__inventory{% if block.settings.text_style == 'uppercase' %} xboost-caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
+                  class="xboost-product__inventory{% if block.settings.text_style == 'uppercase' %} xboost-caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.inventory_management != 'shopify' %} visibility-hidden{% endif %}"
                   {{ block.shopify_attributes }}
                   id="Inventory-{{ section.id }}"
                   role="status"
@@ -193,7 +193,7 @@
                 </p>
               {%- when 'description' -%}
                 {%- if product.description != blank -%}
-                  <div class="product__description rte quick-add-hidden" {{ block.shopify_attributes }}>
+                  <div class="xboost-product__description rte xboost-quick-add-hidden" {{ block.shopify_attributes }}>
                     {{ product.description }}
                   </div>
                 {%- endif -%}
@@ -213,11 +213,11 @@
                 {% if block.settings.heading != blank
                   and product.selected_or_first_available_variant.metafields.custom.details.value != blank
                 %}
-                  <div class="product__accordion accordion quick-add-hidden" {{ block.shopify_attributes }}>
+                  <div class="xboost-product__accordion accordion xboost-quick-add-hidden" {{ block.shopify_attributes }}>
                     <details id="Details-{{ block.id }}-{{ section.id }}">
                       <summary>
                         {% if block.settings.heading != blank or block.settings.page.title != blank %}
-                          <div class="summary__title">
+                          <div class="xboost-summary__title">
                             {% render 'icon-accordion', icon: block.settings.icon %}
                             <h2 class="h4 xboost-accordion__title xboost-inline-richtext">
                               {{ block.settings.heading | default: block.settings.page.title | escape }}
@@ -257,7 +257,7 @@
                     </span>
                   </label>
                   <div class="xboost-price-per-item__container">
-                    <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
+                    <quantity-input class="xboost-quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
                       <button class="xboost-quantity__button" name="minus" type="button">
                         <span class="visually-hidden">
                           {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
@@ -448,13 +448,13 @@
                 </div>
               {%- when 'popup' -%}
                 <modal-opener
-                  class="product-popup-modal__opener quick-add-hidden"
+                  class="xboost-product-popup-modal__opener xboost-quick-add-hidden"
                   data-modal="#PopupModal-{{ block.id }}"
                   {{ block.shopify_attributes }}
                 >
                   <button
                     id="ProductPopup-{{ block.id }}"
-                    class="product-popup-modal__button link"
+                    class="xboost-product-popup-modal__button link"
                     type="button"
                     aria-haspopup="dialog"
                   >
@@ -481,7 +481,7 @@
                 {% if settings['enable-wishlist'] %}
                   {% if settings['enable-product-pagewishlist'] %}
                     <button
-                      class="wishlist_button button button--full-width button--secondary"
+                      class="xboost-wishlist_button button button--full-width button--secondary"
                       data-product-title="{{ product.title }}"
                       data-product-img="{{ product.featured_image | img_url: '400x400' }}"
                       data-product-price="{{ product.price | money | remove_first: '' }}"
@@ -543,7 +543,7 @@
                 {%- endif -%}
               {%- when 'complementary' -%}
                 <product-recommendations
-                  class="complementary-products quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
+                  class="complementary-products xboost-quick-add-hidden{% if block.settings.make_collapsible_row %} is-accordion{% endif %}{% if block.settings.enable_quick_add %} complementary-products-contains-quick-add{% endif %}"
                   data-url="{{ routes.product_recommendations_url }}?limit={{ block.settings.product_list_limit }}&intent=complementary"
                   data-section-id="{{ section.id }}"
                   data-product-id="{{ product.id }}"
@@ -553,15 +553,15 @@
                       aria-label="{{ 'accessibility.complementary_products' | t }}"
                       {{ block.shopify_attributes -}}
                       {% if block.settings.make_collapsible_row %}
-                        class="product__accordion accordion"
+                        class="xboost-product__accordion accordion"
                       {% endif %}
                     >
-                      <div class="complementary-products__container">
+                      <div class="xboost-complementary-products__container">
                         {%- if block.settings.make_collapsible_row -%}
                           <details id="Details-{{ block.id }}-{{ section.id }}" open>
                             <summary>
                         {%- endif %}
-                        <div class="summary__title">
+                        <div class="xboost-summary__title">
                           {%- if block.settings.make_collapsible_row -%}
                             {% render 'icon-accordion', icon: block.settings.icon %}
                             <h2 class="h4 xboost-accordion__title">{{ block.settings.block_heading }}</h2>
@@ -581,7 +581,7 @@
                           -%}
                           <div
                             id="Slider-{{ block.id }}"
-                            class="xboost-contains-card contains-card--product complementary-slider grid grid--1-col slider xboost-slider--everywhere"
+                            class="xboost-contains-card xboost-contains-card--product complementary-slider grid grid--1-col slider xboost-slider--everywhere"
                             role="list"
                             {% if number_of_slides > 1 %}
                               aria-label="{{ 'general.slider.name' | t }}"
@@ -591,7 +591,7 @@
                             {%- for i in (1..number_of_slides) -%}
                               <div
                                 id="Slide-{{ block.id }}-{{ forloop.index }}"
-                                class="complementary-slide complementary-slide--{{ settings.card_style }} grid__item slider__slide xboost-slideshow__slide"
+                                class="xboost-complementary-slide xboost-complementary-slide--{{ settings.card_style }} xboost-grid__item slider__slide xboost-slideshow__slide"
                                 tabindex="-1"
                                 role="group"
                                 {% if number_of_slides > 1 %}
@@ -640,17 +640,17 @@
                                   {{- 'icon-caret.svg' | inline_asset_content -}}
                                 </span>
                               </button>
-                              <div class="xboost-slider-counter slider-counter--{{ block.settings.pagination_style }}{% if block.settings.pagination_style == 'counter' or block.settings.pagination_style == 'numbers' %} caption{% endif %}">
+                              <div class="xboost-slider-counter xboost-slider-counter--{{ block.settings.pagination_style }}{% if block.settings.pagination_style == 'counter' or block.settings.pagination_style == 'numbers' %} caption{% endif %}">
                                 {%- if block.settings.pagination_style == 'counter' -%}
                                   <span class="xboost-slider-counter--current">1</span>
                                   <span aria-hidden="true"> / </span>
                                   <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
                                   <span class="xboost-slider-counter--total">{{ number_of_slides }}</span>
                                 {%- else -%}
-                                  <div class="slideshow__control-wrapper">
+                                  <div class="xboost-slideshow__control-wrapper">
                                     {%- for i in (1..number_of_slides) -%}
                                       <button
-                                        class="slider-counter__link slider-counter__link--{{ block.settings.pagination_style }} link"
+                                        class="xboost-slider-counter__link xboost-slider-counter__link--{{ block.settings.pagination_style }} link"
                                         aria-label="{{ 'sections.slideshow.load_slide' | t }} {{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                                         aria-controls="Slider-{{ block.id }}"
                                       >
@@ -706,23 +706,23 @@
 
     {% assign popups = section.blocks | where: 'type', 'popup' %}
     {%- for block in popups -%}
-      <modal-dialog id="PopupModal-{{ block.id }}" class="product-popup-modal" {{ block.shopify_attributes }}>
+      <modal-dialog id="PopupModal-{{ block.id }}" class="xboost-product-popup-modal" {{ block.shopify_attributes }}>
         <div
           role="dialog"
           aria-label="{{ block.settings.text }}"
           aria-modal="true"
-          class="product-popup-modal__content"
+          class="xboost-product-popup-modal__content"
           tabindex="-1"
         >
           <button
             id="ModalClose-{{ block.id }}"
             type="button"
-            class="product-popup-xboost-modal__toggle"
+            class="xboost-product-popup-modal__toggle"
             aria-label="{{ 'accessibility.close' | t }}"
           >
             {{- 'icon-close.svg' | inline_asset_content -}}
           </button>
-          <div class="product-popup-modal__content-info">
+          <div class="xboost-product-popup-modal__content-info">
             <h1 class="h2">{{ block.settings.page.title | escape }}</h1>
             {{ block.settings.page.content }}
           </div>

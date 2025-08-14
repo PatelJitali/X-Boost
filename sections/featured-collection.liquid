@@ -90,7 +90,7 @@
       <ul
         id="Slider-{{ section.id }}"
         data-id="{{ section.id }}"
-        class="grid product-grid xboost-contains-card contains-card--product{% if settings.card_style == 'standard' %} xboost-contains-card--standard{% endif %} xboost-grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} xboost-grid--2-col-tablet-down{% else %} xboost-grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
+        class="grid product-grid xboost-contains-card xboost-contains-card--product{% if settings.card_style == 'standard' %} xboost-contains-card--standard{% endif %} xboost-grid--{{ section.settings.columns_desktop }}-col-desktop{% if section.settings.collection == blank %} xboost-grid--2-col-tablet-down{% else %} xboost-grid--{{ section.settings.columns_mobile }}-col-tablet-down{% endif %}{% if show_mobile_slider or show_desktop_slider %} slider{% if show_desktop_slider %} slider--desktop{% endif %}{% if show_mobile_slider %} slider--tablet grid--peek{% endif %}{% endif %}"
         role="list"
         aria-label="{{ 'general.slider.name' | t }}"
       >
@@ -98,7 +98,7 @@
         {%- for product in section.settings.collection.products limit: section.settings.products_to_show -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="xboost-grid__item{% if show_mobile_slider or show_desktop_slider %} slider__slide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
@@ -120,7 +120,7 @@
               {%- if settings['enable-product-gridwishlist'] %}
                 <div class="wishlist-button-collection">
                   <button
-                    class="wishlist_button"
+                    class="xboost-wishlist_button"
                     data-product-title="{{ product.title }}"
                     data-product-img="{{ product.featured_image | img_url: '400x400' }}"
                     data-product-price="{{ product.price | money | remove_first: '' }}"
@@ -147,7 +147,7 @@
         {%- else -%}
           {%- for i in (1..section.settings.columns_desktop) -%}
             <li
-              class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+              class="xboost-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
               {% if settings.animations_reveal_on_scroll %}
                 data-cascade
                 style="--animation-order: {{ forloop.index }};"

@@ -32,7 +32,7 @@
 
 <div class="facets-container{% if filter_type == 'drawer' %} facets-container-drawer{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
   {%- if filter_type == 'vertical' or filter_type == 'horizontal' -%}
-    <facet-filters-form class="facets small-hide">
+    <facet-filters-form class="facets xboost-small-hide">
       <form
         id="FacetFiltersForm"
         class="{% if filter_type == 'horizontal' %}facets__form{% else %}facets__form-vertical{% endif %}"
@@ -388,16 +388,16 @@
         {%- if filter_type == 'horizontal' -%}
           {% comment %} Sorting and product count are the last elements when filter type is horizontal {% endcomment %}
           {%- if enable_sorting -%}
-            <div class="facet-filters sorting caption">
-              <div class="facet-filters__field">
-                <h2 class="facet-filters__label xboost-caption-large xboost-text-body">
+            <div class="xboost-facet-filters sorting caption">
+              <div class="xboost-facet-filters__field">
+                <h2 class="xboost-facet-filters__label xboost-caption-large xboost-text-body">
                   <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
                 </h2>
                 <div class="select">
                   {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
                   <select
                     name="sort_by"
-                    class="facet-filters__sort select__select xboost-caption-large"
+                    class="xboost-facet-filters__sort xboost-select__select xboost-caption-large"
                     id="SortBy"
                     aria-describedby="a11y-refresh-page-message"
                   >
@@ -420,7 +420,7 @@
             </div>
           {%- endif -%}
           <div class="product-count light" role="status">
-            <h2 class="product-count__text xboost-text-body">
+            <h2 class="xboost-product-count__text xboost-text-body">
               <span id="ProductCountDesktop">
                 {%- if results.results_count -%}
                   {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
@@ -442,16 +442,16 @@
   {%- endif -%}
   {% comment %}  Drawer and mobile filter {% endcomment %}
   <menu-drawer
-    class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} medium-hide xboost-large-up-hide{% endif %}"
+    class="mobile-facets__wrapper{% if filter_type == 'horizontal' or filter_type == 'vertical' %} xboost-medium-hide xboost-large-up-hide{% endif %}"
     data-breakpoint="mobile"
   >
     <details class="mobile-facets__disclosure disclosure-has-popup">
       <summary class="mobile-facets__open-wrapper focus-offset">
-        <span class="mobile-facets__open{% if filter_type == 'drawer' and enable_filtering == false %} medium-hide xboost-large-up-hide{% endif %}">
+        <span class="mobile-facets__open{% if filter_type == 'drawer' and enable_filtering == false %} xboost-medium-hide xboost-large-up-hide{% endif %}">
           <span class="svg-wrapper">
             {{- 'icon-filter.svg' | inline_asset_content -}}
           </span>
-          <span class="mobile-facets__open-label button-label medium-hide xboost-large-up-hide">
+          <span class="mobile-facets__open-label button-label xboost-medium-hide xboost-large-up-hide">
             {%- if enable_filtering and enable_sorting -%}
               {{ 'products.facets.filter_and_sort' | t }}
             {%- elsif enable_filtering -%}
@@ -460,7 +460,7 @@
               {{ 'products.facets.sort_button' | t }}
             {%- endif -%}
           </span>
-          <span class="mobile-facets__open-label button-label small-hide">
+          <span class="mobile-facets__open-label button-label xboost-small-hide">
             {%- if enable_filtering -%}
               {{ 'products.facets.filter_button' | t }}
             {%- endif -%}
@@ -477,7 +477,7 @@
           <div class="mobile-facets__inner gradient">
             <div class="mobile-facets__header">
               <div class="mobile-facets__header-inner">
-                <h2 class="mobile-facets__heading medium-hide xboost-large-up-hide">
+                <h2 class="mobile-facets__heading xboost-medium-hide xboost-large-up-hide">
                   {%- if enable_filtering and enable_sorting -%}
                     {{ 'products.facets.filter_and_sort' | t }}
                   {%- elsif enable_filtering -%}
@@ -486,7 +486,7 @@
                     {{ 'products.facets.sort_button' | t }}
                   {%- endif -%}
                 </h2>
-                <h2 class="mobile-facets__heading small-hide">
+                <h2 class="mobile-facets__heading xboost-small-hide">
                   {%- if enable_filtering -%}
                     {{ 'products.facets.filter_button' | t }}
                   {%- endif -%}
@@ -721,7 +721,7 @@
               {%- if enable_sorting -%}
                 <div
                   id="Details-Mobile-SortBy-{{ section.id }}"
-                  class="mobile-facets__details js-filter{% if filter_type == 'drawer' %} medium-hide xboost-large-up-hide{% endif %}"
+                  class="mobile-facets__details js-filter{% if filter_type == 'drawer' %} xboost-medium-hide xboost-large-up-hide{% endif %}"
                   data-index="mobile-{{ forloop.index }}"
                 >
                   <div class="mobile-facets__summary">
@@ -730,7 +730,7 @@
                       <div class="select">
                         <select
                           name="sort_by"
-                          class="select__select"
+                          class="xboost-select__select"
                           id="SortBy-mobile"
                           aria-describedby="a11y-refresh-page-message"
                         >
@@ -784,7 +784,7 @@
     </details>
   </menu-drawer>
 
-  <div class="active-facets active-facets-mobile medium-hide xboost-large-up-hide">
+  <div class="active-facets active-facets-mobile xboost-medium-hide xboost-large-up-hide">
     {%- for filter in results.filters -%}
       {%- for value in filter.active_values -%}
         <facet-remove>
@@ -826,18 +826,18 @@
   </div>
   {% comment %} Sort, product count and filter pills at the end when filter is type of Drawer for the correct tabbing order {% endcomment %}
   {%- if enable_sorting and filter_type == 'drawer' -%}
-    <facet-filters-form class="facets small-hide">
+    <facet-filters-form class="facets xboost-small-hide">
       <form id="FacetSortDrawerForm" class="facets__form">
-        <div class="facet-filters sorting caption small-hide">
-          <div class="facet-filters__field">
-            <h2 class="facet-filters__label xboost-caption-large xboost-text-body">
+        <div class="xboost-facet-filters sorting caption xboost-small-hide">
+          <div class="xboost-facet-filters__field">
+            <h2 class="xboost-facet-filters__label xboost-caption-large xboost-text-body">
               <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
             </h2>
             <div class="select">
               {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
               <select
                 name="sort_by"
-                class="facet-filters__sort select__select xboost-caption-large"
+                class="xboost-facet-filters__sort xboost-select__select xboost-caption-large"
                 id="SortBy"
                 aria-describedby="a11y-refresh-page-message"
               >
@@ -871,10 +871,10 @@
     </facet-filters-form>
   {%- endif -%}
   <div
-    class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} medium-hide xboost-large-up-hide{% endif %}"
+    class="product-count light{% if filter_type == 'vertical' or filter_type == 'horizontal' %} xboost-medium-hide xboost-large-up-hide{% endif %}"
     role="status"
   >
-    <h2 class="product-count__text xboost-text-body">
+    <h2 class="xboost-product-count__text xboost-text-body">
       <span id="ProductCount">
         {%- if results.results_count -%}
           {{ 'templates.search.results_with_count' | t: terms: results.terms, count: results.results_count }}
@@ -891,7 +891,7 @@
     {%- render 'loading-spinner' -%}
   </div>
   {%- if filter_type == 'drawer' -%}
-    <facet-filters-form class="facets facets-pill small-hide">
+    <facet-filters-form class="facets facets-pill xboost-small-hide">
       <form id="FacetFiltersPillsForm" class="facets__form">
         <div class="active-facets active-facets-desktop">
           {%- for filter in results.filters -%}

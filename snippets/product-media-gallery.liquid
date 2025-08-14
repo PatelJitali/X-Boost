@@ -46,14 +46,14 @@
   id="MediaGallery-{{ section.id }}"
   role="region"
   {% if section.settings.enable_sticky_info %}
-    class="product__column-sticky"
+    class="xboost-product__column-sticky"
   {% endif %}
   aria-label="{{ 'products.product.media.gallery_viewer' | t }}"
   data-desktop-layout="{{ section.settings.gallery_layout }}"
 >
   <div id="GalleryStatus-{{ section.id }}" class="visually-hidden" role="status"></div>
   <slider-component id="GalleryViewer-{{ section.id }}" class="xboost-slider-mobile-gutter">
-    <a class="skip-to-content-link button visually-hidden quick-add-hidden" href="#ProductInfo-{{ section.id }}">
+    <a class="skip-to-content-link button visually-hidden xboost-quick-add-hidden" href="#ProductInfo-{{ section.id }}">
       {{ 'accessibility.skip_to_product_info' | t }}
     </a>
     <ul
@@ -65,7 +65,7 @@
         {%- assign featured_media = product.selected_or_first_available_variant.featured_media -%}
         <li
           id="Slide-{{ section.id }}-{{ featured_media.id }}"
-          class="product__media-item grid__item slider__slide is-active{% if single_media_visible %} product__media-item--single{% endif %}{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          class="product__media-item xboost-grid__item slider__slide is-active{% if single_media_visible %} product__media-item--single{% endif %}{% if featured_media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
           data-media-id="{{ section.id }}-{{ featured_media.id }}"
         >
           {%- assign media_position = 1 -%}
@@ -97,7 +97,7 @@
         {%- unless media.id == product.selected_or_first_available_variant.featured_media.id -%}
           <li
             id="Slide-{{ section.id }}-{{ media.id }}"
-            class="product__media-item grid__item slider__slide{% if single_media_visible %} product__media-item--single{% endif %}{% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            class="product__media-item xboost-grid__item slider__slide{% if single_media_visible %} product__media-item--single{% endif %}{% if product.selected_or_first_available_variant.featured_media == nil and forloop.index == 1 %} is-active{% endif %}{% if media.media_type != 'image' %} product__media-item--full{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
             data-media-id="{{ section.id }}-{{ media.id }}"
           >
             {%- liquid
@@ -125,7 +125,7 @@
         {%- endunless -%}
       {%- endfor -%}
     </ul>
-    <div class="xboost-slider-buttons quick-add-hidden{% if hide_mobile_slider %} small-hide{% endif %}">
+    <div class="xboost-slider-buttons xboost-quick-add-hidden{% if hide_mobile_slider %} xboost-small-hide{% endif %}">
       <button
         type="button"
         class="xboost-slider-button xboost-slider-button--prev"
@@ -183,11 +183,11 @@
   -%}
     <slider-component
       id="GalleryThumbnails-{{ section.id }}"
-      class="thumbnail-slider xboost-slider-mobile-gutter quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} medium-hide xboost-large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
+      class="thumbnail-slider xboost-slider-mobile-gutter xboost-quick-add-hidden{% unless section.settings.gallery_layout contains 'thumbnail' %} xboost-medium-hide xboost-large-up-hide{% endunless %}{% if section.settings.mobile_thumbnails != 'show' %} xboost-small-hide{% endif %}{% if media_count <= 3 %} thumbnail-slider--no-slide{% endif %}"
     >
       <button
         type="button"
-        class="xboost-slider-button xboost-slider-button--prev{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide xboost-large-up-hide{% endif %}"
+        class="xboost-slider-button xboost-slider-button--prev{% if media_count <= 3 %} xboost-small-hide{% endif %}{% if media_count <= 4 %} xboost-medium-hide xboost-large-up-hide{% endif %}"
         name="previous"
         aria-label="{{ 'general.slider.previous_slide' | t }}"
         aria-controls="GalleryThumbnails-{{ section.id }}"
@@ -317,7 +317,7 @@
       </ul>
       <button
         type="button"
-        class="xboost-slider-button xboost-slider-button--next{% if media_count <= 3 %} small-hide{% endif %}{% if media_count <= 4 %} medium-hide xboost-large-up-hide{% endif %}"
+        class="xboost-slider-button xboost-slider-button--next{% if media_count <= 3 %} xboost-small-hide{% endif %}{% if media_count <= 4 %} xboost-medium-hide xboost-large-up-hide{% endif %}"
         name="next"
         aria-label="{{ 'general.slider.next_slide' | t }}"
         aria-controls="GalleryThumbnails-{{ section.id }}"

@@ -6,37 +6,37 @@
   isolation: isolate;
 }
 
-.banner__box {
+.xboost-banner__box {
   text-align: center;
 }
 
 /* Needed for gradient continuity with or without animation, the transform scopes the gradient to its container which happens already when animation are turned on */
-.banner__box.gradient {
+.xboost-banner__box.gradient {
   transform: perspective(0);
 }
 
 @media only screen and (max-width: 749px) {
-  .xboost-banner--content-align-mobile-right .banner__box {
+  .xboost-banner--content-align-mobile-right .xboost-banner__box {
     text-align: right;
   }
 
-  .xboost-banner--content-align-mobile-left .banner__box {
+  .xboost-banner--content-align-mobile-left .xboost-banner__box {
     text-align: left;
   }
 }
 
 @media only screen and (min-width: 750px) {
-  .xboost-banner--content-align-right .banner__box {
+  .xboost-banner--content-align-right .xboost-banner__box {
     text-align: right;
   }
 
-  .xboost-banner--content-align-left .banner__box {
+  .xboost-banner--content-align-left .xboost-banner__box {
     text-align: left;
   }
 
-  .xboost-banner--content-align-left.xboost-banner--desktop-transparent .banner__box,
-  .xboost-banner--content-align-right.xboost-banner--desktop-transparent .banner__box,
-  .banner--medium.xboost-banner--desktop-transparent .banner__box {
+  .xboost-banner--content-align-left.xboost-banner--desktop-transparent .xboost-banner__box,
+  .xboost-banner--content-align-right.xboost-banner--desktop-transparent .xboost-banner__box,
+  .banner--medium.xboost-banner--desktop-transparent .xboost-banner__box {
     max-width: 68rem;
   }
 }
@@ -228,11 +228,11 @@
     height: auto;
   }
 
-  .banner:not(.xboost-banner--mobile-bottom):not(.xboost-email-signup-banner) .banner__box {
+  .banner:not(.xboost-banner--mobile-bottom):not(.xboost-email-signup-banner) .xboost-banner__box {
     background: transparent;
   }
 
-  .banner:not(.xboost-banner--mobile-bottom) .banner__box {
+  .banner:not(.xboost-banner--mobile-bottom) .xboost-banner__box {
     border: none;
     border-radius: 0;
     box-shadow: none;
@@ -333,12 +333,12 @@
   }
 
   .banner:not(.xboost-banner--mobile-bottom) .xboost-field__input,
-  .xboost-banner--mobile-bottom:not(.xboost-banner--stacked) .banner__box.color-scheme-1 {
+  .xboost-banner--mobile-bottom:not(.xboost-banner--stacked) .xboost-banner__box.color-scheme-1 {
     background: transparent;
   }
 }
 
-.banner__box {
+.xboost-banner__box {
   padding: 4rem 1.5rem;
   position: relative;
   height: fit-content;
@@ -349,16 +349,16 @@
   z-index: 1;
 }
 
-.xboost-banner--mobile-bottom .banner__box {
+.xboost-banner--mobile-bottom .xboost-banner__box {
   padding: 4rem 3.5rem;
 }
 
 @media screen and (min-width: 750px) {
-  .banner__box {
+  .xboost-banner__box {
     padding: 4rem 3.5rem;
   }
 
-  .xboost-banner--desktop-transparent .banner__box {
+  .xboost-banner--desktop-transparent .xboost-banner__box {
     padding: 4rem 0;
     background: transparent;
     max-width: 89rem;
@@ -395,32 +395,32 @@
   height: 100%;
 }
 
-.banner__box > * + .xboost-banner__text {
+.xboost-banner__box > * + .xboost-banner__text {
   margin-top: 1.5rem;
 }
 
 @media screen and (min-width: 750px) {
-  .banner__box > * + .xboost-banner__text {
+  .xboost-banner__box > * + .xboost-banner__text {
     margin-top: 2rem;
   }
 }
 
-.banner__box > * + * {
+.xboost-banner__box > * + * {
   margin-top: 1rem;
 }
 
-.banner__box > *:first-child {
+.xboost-banner__box > *:first-child {
   margin-top: 0;
 }
 
 @media screen and (max-width: 749px) {
-  .xboost-banner--stacked .banner__box {
+  .xboost-banner--stacked .xboost-banner__box {
     width: 100%;
   }
 }
 
 @media screen and (min-width: 750px) {
-  .banner__box {
+  .xboost-banner__box {
     width: auto;
     max-width: 71rem;
     min-width: 45rem;
@@ -428,7 +428,7 @@
 }
 
 @media screen and (min-width: 1400px) {
-  .banner__box {
+  .xboost-banner__box {
     max-width: 90rem;
   }
 }
@@ -437,7 +437,7 @@
   margin-bottom: 0;
 }
 
-.banner__box .xboost-banner__heading + * {
+.xboost-banner__box .xboost-banner__heading + * {
   margin-top: 1rem;
 }
 
@@ -471,7 +471,7 @@
   }
 }
 
-.banner__box > * + .xboost-banner__buttons {
+.xboost-banner__box > * + .xboost-banner__buttons {
   margin-top: 2rem;
 }
 

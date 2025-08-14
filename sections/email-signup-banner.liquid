@@ -59,7 +59,7 @@
     </div>
   {%- endif -%}
   <div class="xboost-banner__content xboost-banner__content--{{ section.settings.desktop_content_position }} page-width">
-    <div class="xboost-email-signup-banner__box banner__box newsletter xboost-newsletter__wrapper isolate{% if section.settings.show_background_image == false %} xboost-email-signup-banner__box--no-image{% endif %} xboost-content-container color-{{ section.settings.color_scheme }} gradient xboost-content-container--full-width-mobile">
+    <div class="xboost-email-signup-banner__box xboost-banner__box newsletter xboost-newsletter__wrapper isolate{% if section.settings.show_background_image == false %} xboost-email-signup-banner__box--no-image{% endif %} xboost-content-container color-{{ section.settings.color_scheme }} gradient xboost-content-container--full-width-mobile">
       {%- for block in section.blocks -%}
         {%- case block.type -%}
           {%- when 'heading' -%}

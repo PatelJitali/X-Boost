@@ -2,14 +2,14 @@
 {%- assign pick_up_availabilities = product_variant.store_availabilities | where: 'pick_up_enabled', true -%}
 
 {%- if pick_up_availabilities.size > 0 -%}
-  <pickup-availability-preview class="pickup-availability-preview">
+  <pickup-availability-preview class="xboost-pickup-availability-preview">
     {% assign closest_location = pick_up_availabilities.first %}
 
     {% if closest_location.available %}
       <span class="svg-wrapper">{{ 'icon-tick.svg' | inline_asset_content }}</span>
     {% endif %}
 
-    <div class="pickup-availability-info">
+    <div class="xboost-pickup-availability-info">
       {%- if closest_location.available -%}
         <p class="xboost-caption-large">
           {{
@@ -20,7 +20,7 @@
         <p class="caption">{{ closest_location.pick_up_time }}</p>
         <button
           id="ShowPickupAvailabilityDrawer"
-          class="pickup-availability-button link link--text underlined-link"
+          class="xboost-pickup-availability-button link link--text underlined-link"
           aria-haspopup="dialog"
         >
           {%- if pick_up_availabilities.size == 1 -%}
@@ -39,7 +39,7 @@
         {%- if pick_up_availabilities.size > 1 -%}
           <button
             id="ShowPickupAvailabilityDrawer"
-            class="pickup-availability-button link link--text underlined-link"
+            class="xboost-pickup-availability-button link link--text underlined-link"
             aria-haspopup="dialog"
           >
             {{ 'products.product.pickup_availability.check_other_stores' | t }}
@@ -56,17 +56,17 @@
     aria-modal="true"
     aria-labelledby="PickupAvailabilityHeading"
   >
-    <div class="pickup-availability-header">
-      <h2 class="h3 pickup-availability-drawer-title" id="PickupAvailabilityHeading">
+    <div class="xboost-pickup-availability-header">
+      <h2 class="h3 xboost-pickup-availability-drawer-title" id="PickupAvailabilityHeading">
         {{ product_variant.product.title | escape }}
       </h2>
-      <button class="pickup-availability-drawer-button" type="button" aria-label="{{ 'accessibility.close' | t }}">
+      <button class="xboost-pickup-availability-drawer-button" type="button" aria-label="{{ 'accessibility.close' | t }}">
         {{- 'icon-close.svg' | inline_asset_content -}}
       </button>
     </div>
 
     {%- unless product_variant.product.has_only_default_variant -%}
-      <p class="pickup-availability-variant">
+      <p class="xboost-pickup-availability-variant">
         {%- for product_option in product_variant.product.options_with_values -%}
           {{ product_option.name | escape }}:&nbsp;
           {%- for value in product_option.values -%}
@@ -79,11 +79,11 @@
       </p>
     {%- endunless -%}
 
-    <ul class="pickup-availability-list list-unstyled" role="list" data-store-availability-drawer-content>
+    <ul class="xboost-pickup-availability-list list-unstyled" role="list" data-store-availability-drawer-content>
       {%- for availability in pick_up_availabilities -%}
-        <li class="pickup-availability-list__item">
+        <li class="xboost-pickup-availability-list__item">
           <h3 class="h4">{{ availability.location.name | escape }}</h3>
-          <p class="pickup-availability-preview xboost-caption-large">
+          <p class="xboost-pickup-availability-preview xboost-caption-large">
             {%- if availability.available -%}
               <span class="svg-wrapper">
                 {{- 'icon-tick.svg' | inline_asset_content -}}
@@ -94,7 +94,7 @@
           </p>
 
           {%- assign address = availability.location.address -%}
-          <address class="pickup-availability-address">
+          <address class="xboost-pickup-availability-address">
             {{ address | format_address }}
 
             {%- if address.phone.size > 0 -%}

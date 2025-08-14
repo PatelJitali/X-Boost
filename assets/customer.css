@@ -566,7 +566,7 @@
   display: block;
 }
 
-.order .cart-discount {
+.order .xboost-cart-discount {
   display: block;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -574,7 +574,7 @@
 }
 
 @media screen and (min-width: 750px) {
-  .order td .cart-discount {
+  .order td .xboost-cart-discount {
     display: none;
   }
 }
@@ -610,12 +610,12 @@
   }
 }
 
-.order .properties {
+.order .xboost-properties {
   font-size: 1.4rem;
   margin-top: 1rem;
 }
 
-.order .properties span {
+.order .xboost-properties span {
   display: block;
   line-height: calc(1 + 0.2 / var(--font-body-scale));
 }
@@ -648,7 +648,7 @@
   color: rgba(var(--color-foreground), 0.7);
 }
 
-.order .regular-price {
+.order .xboost-regular-price {
   font-size: 1.3rem;
 }
 

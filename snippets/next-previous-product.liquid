@@ -15,6 +15,7 @@
     width: auto;
     aspect-ratio: 3 / 4;
     padding: 5px;
+    z-index:2;  
   }
 
   #next-previous-products .prev_product_btn, #next-previous-products .next_product_btn {
@@ -121,14 +122,14 @@
       | image_url: width: img_width, height: img_height
       | image_tag
     }}
-    <span class="tooltiptext">{{ 'next_previous_product.prev_label_tooltip' | t }}</span>
+    <span class="tooltiptext">{{ 'next_previous_product.next_label_tooltip' | t }}</span>
   </a>
 {% else %}
   <a href="{{ next_product_url }}" class="next_product_btn next_product_image">
     <div style="width: {{ img_width }}px; height: {{ img_height }}px; display: flex; align-items: center">
       {{ 'product-1' | placeholder_svg_tag }}
     </div>
-    <span class="tooltiptext">{{ 'next_previous_product.prev_label_tooltip' | t }}</span>
+    <span class="tooltiptext">{{ 'next_previous_product.next_label_tooltip' | t }}</span>
   </a>
 {% endif %}
 

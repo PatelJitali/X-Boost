@@ -178,7 +178,7 @@
                 <span class="compare-price">{{ product.compare_at_price | money }}</span>
                 <span class="sale-price">{{ product.price | money }}</span>
               {% else %}
-                <span class="regular-price">{{ product.price | money }}</span>
+                <span class="xboost-regular-price">{{ product.price | money }}</span>
               {% endif %}
             </div>
             <a
@@ -200,7 +200,7 @@
           <div class="product-info">
             <h3 class="product-title">{{ 'lookbook.pro_title' | t | escape }}</h3>
             <div class="product-price">
-              <span class="regular-price">{{ 1999 | money }}</span>
+              <span class="xboost-regular-price">{{ 1999 | money }}</span>
             </div>
             <a href="#" class="button">
               <span>{{ block.settings.button_text_collection | default: 'More Details' }}</span>
@@ -221,7 +221,7 @@
         <div class="product-info">
           <h3 class="product-title">{{ 'lookbook.pro_title' | t | escape }}</h3>
           <div class="product-price">
-            <span class="regular-price">{{ 1999 | money }}</span>
+            <span class="xboost-regular-price">{{ 1999 | money }}</span>
           </div>
           <a href="#" class="button">
             <span>{{ block.settings.button_text_collection | default: 'More Details' }}</span>

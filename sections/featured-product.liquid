@@ -71,7 +71,7 @@
   <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}xboost-background-secondary{% else %}gradient{% endif %}">
     <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}">
       <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-        <div class="grid__item xboost-product__media-wrapper">
+        <div class="xboost-grid__item xboost-product__media-wrapper">
           {%- unless placeholder -%}
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
           {%- else -%}
@@ -85,7 +85,7 @@
             </div>
           {%- endunless -%}
         </div>
-        <div class="xboost-product__info-wrapper grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="xboost-product__info-wrapper xboost-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
             id="ProductInfo-{{ section.id }}"
             class="xboost-product__info-container"
@@ -124,7 +124,7 @@
                     -%}
                   </div>
                   {%- if product.quantity_price_breaks_configured? -%}
-                    <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+                    <div class="xboost-volume-pricing-note" id="Volume-Note-{{ section.id }}">
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                     </div>
                   {%- endif -%}
@@ -184,7 +184,7 @@
                       </span>
                     </label>
                     <div class="xboost-price-per-item__container">
-                      <quantity-input class="quantity">
+                      <quantity-input class="xboost-quantity">
                         <button class="xboost-quantity__button" name="minus" type="button">
                           <span class="visually-hidden">
                             {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}

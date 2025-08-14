@@ -44,7 +44,7 @@
     {%- endunless -%}
     <slider-component class="xboost-slider-mobile-gutter">
       <ul
-        class="multicolumn-list contains-xboost-content-container grid grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
+        class="xboost-multicolumn-list xboost-contains-content-container grid xboost-grid--{{ section.settings.columns_mobile }}-col-tablet-down xboost-grid--{{ section.settings.columns_desktop }}-col-desktop{% if show_mobile_slider %} slider slider--tablet grid--peek{% endif %}"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -63,26 +63,26 @@
             and block.settings.text == blank
             and block.settings.link_label == blank
           -%}
-            {%- assign empty_column = ' multicolumn-list__item--empty' -%}
+            {%- assign empty_column = ' xboost-multicolumn-list__item--empty' -%}
           {%- endif -%}
 
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="multicolumn-list__item grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="xboost-multicolumn-list__item xboost-grid__item{% if section.settings.swipe_on_mobile %} slider__slide{% endif %}{% if section.settings.column_alignment == 'center' %} center{% endif %}{{ empty_column }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
             {% endif %}
           >
-            <div class="multicolumn-card xboost-content-container">
+            <div class="xboost-multicolumn-card xboost-content-container">
               {%- if block.settings.image != blank -%}
                 {% if section.settings.image_ratio == 'adapt' or section.settings.image_ratio == 'circle' %}
                   {% assign spaced_image = true %}
                 {% endif %}
-                <div class="multicolumn-card__image-wrapper multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} multicolumn-card-spacing{% endif %}">
+                <div class="xboost-multicolumn-card__image-wrapper xboost-multicolumn-card__image-wrapper--{{ section.settings.image_width }}-width{% if section.settings.image_width != 'full' or spaced_image %} xboost-multicolumn-card-spacing{% endif %}">
                   <div
-                    class="media media--transparent media--{{ section.settings.image_ratio }}"
+                    class="media xboost-media--transparent media--{{ section.settings.image_ratio }}"
                     {% if section.settings.image_ratio == 'adapt' %}
                       style="padding-bottom: {{ 1 | divided_by: highest_ratio | times: 100 }}%;"
                     {% endif %}
@@ -118,7 +118,7 @@
                   </div>
                 </div>
               {%- endif -%}
-              <div class="multicolumn-card__info">
+              <div class="xboost-multicolumn-card__info">
                 {%- if block.settings.title != blank -%}
                   <h3 class="xboost-inline-richtext">{{ block.settings.title }}</h3>
                 {%- endif -%}
@@ -173,7 +173,7 @@
         </div>
       {%- endif -%}
     </slider-component>
-    <div class="center{% if show_mobile_slider %} small-hide medium-hide{% endif %}">
+    <div class="center{% if show_mobile_slider %} xboost-small-hide xboost-medium-hide{% endif %}">
       {%- if section.settings.button_label != blank -%}
         <a
           class="button button--primary"

@@ -59,7 +59,7 @@
       >
         {%- if card_product.featured_media -%}
           <div class="xboost-card__media{% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}">
-            <div class="media media--transparent media--hover-effect">
+            <div class="media xboost-media--transparent media--hover-effect">
               {% comment %}theme-check-disable ImgLazyLoading{% endcomment %}
               <img
                 srcset="
@@ -215,7 +215,7 @@
                   endif
                 %}
                 <quantity-popover>
-                  <button class="xboost-card__information-volume-pricing-note xboost-card__information-volume-pricing-note--button xboost-card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} xboost-quantity-popover__info-button--icon-only button button button--tertiary medium-hide small-hide">
+                  <button class="xboost-card__information-volume-pricing-note xboost-card__information-volume-pricing-note--button xboost-card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} xboost-quantity-popover__info-button--icon-only button button button--tertiary xboost-medium-hide xboost-small-hide">
                     <span class="caption">{{ 'products.product.volume_pricing.note' | t }}</span>
                   </button>
                   <button class="xboost-card__information-volume-pricing-note xboost-card__information-volume-pricing-note--button xboost-card__information-volume-pricing-note--button-{{ settings.card_text_alignment }} xboost-quantity-popover__info-button--icon-with-label button button--tertiary xboost-large-up-hide">
@@ -502,7 +502,7 @@
                           {% else %}
                             href="{{ card_product.url }}"
                           {% endif %}
-                          class="link xboost-product__view-details xboost-animate-arrow small-hide medium-hide"
+                          class="link xboost-product__view-details xboost-animate-arrow xboost-small-hide xboost-medium-hide"
                         >
                           {{ 'products.product.view_full_details' | t -}}
                           {{- 'icon-arrow.svg' | inline_asset_content -}}
@@ -521,7 +521,7 @@
                       </div>
                     </div>
                     <div>
-                      <div class="xboost-quick-add-modal__content-info--bulk-details small-hide medium-hide">
+                      <div class="xboost-quick-add-modal__content-info--bulk-details xboost-small-hide xboost-medium-hide">
                         <a href="{{ card_product.url }}" class="xboost-full-unstyled-link">
                           <h3 class="h2">
                             {{ card_product.title | escape }}
@@ -593,7 +593,7 @@
           class="xboost-card__media {% if image_shape and image_shape != 'default' %} shape--{{ image_shape }} color-{{ settings.card_color_scheme }} gradient{% endif %}"
         >
           <div
-            class="media media--transparent"
+            class="media xboost-media--transparent"
           >
             {%- if placeholder_image -%}
               {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}

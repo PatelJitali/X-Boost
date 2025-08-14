@@ -58,7 +58,7 @@
     data-modal="#ProductModal-{{ modal_id }}"
   >
     <span
-      class="product__media-icon xboost-motion-reduce quick-add-hidden{% if media.media_type == 'image' %} product__media-icon--{{ section.settings.image_zoom }}{% endif %}"
+      class="product__media-icon xboost-motion-reduce xboost-quick-add-hidden{% if media.media_type == 'image' %} product__media-icon--{{ section.settings.image_zoom }}{% endif %}"
       aria-hidden="true"
     >
       {% case media.media_type %}
@@ -77,7 +77,7 @@
       {% endcase %}
     </span>
     {%- render 'loading-spinner' -%}
-    <div class="product__media media media--transparent">
+    <div class="product__media media xboost-media--transparent">
       {{
         media.preview_image
         | image_url: width: 1946
@@ -89,7 +89,7 @@
       }}
     </div>
     <button
-      class="product__media-toggle quick-add-hidden product__media-zoom-{{ section.settings.image_zoom }}"
+      class="product__media-toggle xboost-quick-add-hidden product__media-zoom-{{ section.settings.image_zoom }}"
       type="button"
       aria-haspopup="dialog"
       data-media-id="{{ media.id }}"
@@ -102,9 +102,9 @@
 
   {%- if media.media_type != 'image' -%}
     {%- if media.media_type == 'model' -%}
-      <product-model class="deferred-media media media--transparent" data-media-id="{{ media.id }}">
+      <product-model class="deferred-media media xboost-media--transparent" data-media-id="{{ media.id }}">
     {%- else -%}
-      <deferred-media class="deferred-media media media--transparent" data-media-id="{{ media.id }}">
+      <deferred-media class="deferred-media media xboost-media--transparent" data-media-id="{{ media.id }}">
     {%- endif -%}
     <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
       <span class="deferred-media__poster-button xboost-motion-reduce">
