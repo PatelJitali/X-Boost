@@ -117,10 +117,10 @@ function createWishlistToggleHandler() {
                           <product-form data-section-id="template--23644041314582__product-grid"><form method="post" action="/cart/add" id="quick-add-template--23644041314582__product-grid9556926923030" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" name="id" value="${
                             item.productId
                           }" class="xboost-product-variant-id">
-                      <button id="quick-add-template--23644041314582__product-grid9556926923030-submit" type="submit" name="add" class="xboost-quick-add__submit button button--full-width button--secondary wishlist-cart-btn" aria-haspopup="dialog" aria-labelledby="quick-add-template--23644041314582__product-grid9556926923030-submit title-template--23644041314582__product-grid-9556926923030" aria-live="polite" data-sold-out-message="true">
+                      <button id="quick-add-template--23644041314582__product-grid9556926923030-submit" type="submit" name="add" class="xboost-quick-add__submit button xboost-button--full-width button--secondary wishlist-cart-btn" aria-haspopup="dialog" aria-labelledby="quick-add-template--23644041314582__product-grid9556926923030-submit title-template--23644041314582__product-grid-9556926923030" aria-live="polite" data-sold-out-message="true">
                       <span>Add to cart</span>             
                       <span class="sold-out-message hidden">Sold out</span>
-                      <div class="loading__spinner hidden">
+                      <div class="xboost-loading__spinner hidden">
                       <svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="0 0 66 66"><circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"></circle></svg>
                       </div>
                       </button><input type="hidden" name="product-id" value="${

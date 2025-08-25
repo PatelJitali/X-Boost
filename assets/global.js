@@ -510,7 +510,7 @@ class MenuDrawer extends HTMLElement {
   onSummaryClick(event) {
     const summaryElement = event.currentTarget;
     const detailsElement = summaryElement.parentNode;
-    const parentMenuElement = detailsElement.closest(".has-submenu");
+    const parentMenuElement = detailsElement.closest(".xboost-has-submenu");
     const isOpen = detailsElement.hasAttribute("open");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -705,11 +705,11 @@ class ModalDialog extends HTMLElement {
     this.addEventListener("keyup", (event) => {
       if (event.code.toUpperCase() === "ESCAPE") this.hide();
     });
-    if (this.classList.contains("media-modal")) {
+    if (this.classList.contains("xboost-media-modal")) {
       this.addEventListener("pointerup", (event) => {
         if (
           event.pointerType === "mouse" &&
-          !event.target.closest("deferred-media, product-model")
+          !event.target.closest("xboost-deferred-media, product-model")
         )
           this.hide();
       });
@@ -836,7 +836,7 @@ class DeferredMedia extends HTMLElement {
   }
 }
 
-customElements.define("deferred-media", DeferredMedia);
+customElements.define("xboost-deferred-media", DeferredMedia);
 
 class SliderComponent extends HTMLElement {
   constructor() {
@@ -1260,7 +1260,7 @@ class VariantSelects extends HTMLElement {
 
       const swatchValue = target.selectedOptions[0].dataset.optionSwatchValue;
       const selectedDropdownSwatchValue = target
-        .closest(".product-form__input")
+        .closest(".xboost-product-form__input")
         .querySelector("[data-selected-value] > .swatch");
       if (!selectedDropdownSwatchValue) return;
       if (swatchValue) {
@@ -1268,13 +1268,13 @@ class VariantSelects extends HTMLElement {
           "--swatch--background",
           swatchValue
         );
-        selectedDropdownSwatchValue.classList.remove("swatch--unavailable");
+        selectedDropdownSwatchValue.classList.remove("xboost-swatch--unavailable");
       } else {
         selectedDropdownSwatchValue.style.setProperty(
           "--swatch--background",
           "unset"
         );
-        selectedDropdownSwatchValue.classList.add("swatch--unavailable");
+        selectedDropdownSwatchValue.classList.add("xboost-swatch--unavailable");
       }
 
       selectedDropdownSwatchValue.style.setProperty(
@@ -1283,7 +1283,7 @@ class VariantSelects extends HTMLElement {
       );
     } else if (tagName === "INPUT" && target.type === "radio") {
       const selectedSwatchValue = target
-        .closest(`.product-form__input`)
+        .closest(`.xboost-product-form__input`)
         .querySelector("[data-selected-value]");
       if (selectedSwatchValue) selectedSwatchValue.innerHTML = value;
     }

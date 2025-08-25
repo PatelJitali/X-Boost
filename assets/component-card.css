@@ -327,7 +327,7 @@
 }
 
 .card--horizontal .xboost-card__heading,
-.card--horizontal .price__container .price-item,
+.card--horizontal .xboost-price__container .xboost-price-item,
 .xboost-card--horizontal__quick-add {
   font-size: calc(var(--font-heading-scale) * 1.2rem);
 }
@@ -345,7 +345,7 @@
 
 @media only screen and (min-width: 750px) {
   .card--horizontal .xboost-card__heading,
-  .card--horizontal .price__container .price-item,
+  .card--horizontal .xboost-price__container .xboost-price-item,
   .xboost-card--horizontal__quick-add {
     font-size: calc(var(--font-heading-scale) * 1.3rem);
   }
@@ -433,7 +433,7 @@
   > .xboost-card__content
   .xboost-card__heading:not(.card__heading--placeholder),
 .card--standard:not(.card--horizontal) > .xboost-card__content .xboost-card__badge,
-.card--standard.xboost-card--text.article-card > .xboost-card__content .xboost-card__information,
+.card--standard.xboost-card--text.xboost-article-card > .xboost-card__content .xboost-card__information,
 .card--standard > .xboost-card__content .xboost-card__caption {
   display: none;
 }

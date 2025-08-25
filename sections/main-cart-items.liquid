@@ -198,7 +198,7 @@
                         {%- endif -%}
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
-                          <div class="unit-price caption">
+                          <div class="xboost-unit-price caption">
                             <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
                             {{ item.unit_price | money }}
                             <span aria-hidden="true">/</span>
@@ -240,7 +240,7 @@
                                 {{- 'icon-info.svg' | inline_asset_content -}}
                               </button>
                             {%- endif -%}
-                            <quantity-input class="xboost-quantity cart-quantity">
+                            <quantity-input class="xboost-quantity xboost-cart-quantity">
                               <button class="xboost-quantity__button" name="minus" type="button">
                                 <span class="visually-hidden">
                                   {{- 'products.product.quantity.decrease' | t: product: item.product.title | escape -}}
@@ -414,7 +414,7 @@
                         {%- endif -%}
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
-                          <div class="unit-price caption">
+                          <div class="xboost-unit-price caption">
                             <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
                             {{ item.unit_price | money }}
                             <span aria-hidden="true">/</span>

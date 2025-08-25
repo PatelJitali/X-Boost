@@ -33,7 +33,7 @@ class CCFacetFiltersForm extends HTMLElement {
     CCFacetFiltersForm.searchParamsPrev = searchParams;
     const sections = CCFacetFiltersForm.getSections();
     const loadingSpinners = document.querySelectorAll(
-      '.facets-container .loading__spinner, cc-facet-filters-form .loading__spinner'
+      '.xboost-facets-container .xboost-loading__spinner, cc-facet-filters-form .xboost-loading__spinner'
     );
     
     loadingSpinners.forEach((spinner) => spinner.classList.remove('hidden'));
@@ -139,9 +139,9 @@ class CCFacetFiltersForm extends HTMLElement {
         CCFacetFiltersForm.renderMobileCounts(countsToRender, document.getElementById(closestJSFilterID));
 
         const newFacetDetailsElement = document.getElementById(closestJSFilterID);
-        const newElementSelector = newFacetDetailsElement.classList.contains('mobile-facets__details')
-          ? `.mobile-facets__close-button`
-          : `.facets__summary`;
+        const newElementSelector = newFacetDetailsElement.classList.contains('xboost-mobile-facets__details')
+          ? `.xboost-mobile-facets__close-button`
+          : `.xboost-facets__summary`;
         const newElementToActivate = newFacetDetailsElement.querySelector(newElementSelector);
 
         const isTextInput = event.target.getAttribute('type') === 'text';
@@ -164,15 +164,15 @@ class CCFacetFiltersForm extends HTMLElement {
   }
 
   static renderCounts(source, target) {
-    const targetSummary = target.querySelector('.facets__summary');
-    const sourceSummary = source.querySelector('.facets__summary');
+    const targetSummary = target.querySelector('.xboost-facets__summary');
+    const sourceSummary = source.querySelector('.xboost-facets__summary');
 
     if (sourceSummary && targetSummary) {
       targetSummary.outerHTML = sourceSummary.outerHTML;
     }
 
-    const targetHeaderElement = target.querySelector('.facets__header');
-    const sourceHeaderElement = source.querySelector('.facets__header');
+    const targetHeaderElement = target.querySelector('.xboost-facets__header');
+    const sourceHeaderElement = source.querySelector('.xboost-facets__header');
 
     if (sourceHeaderElement && targetHeaderElement) {
       targetHeaderElement.outerHTML = sourceHeaderElement.outerHTML;
@@ -194,8 +194,8 @@ class CCFacetFiltersForm extends HTMLElement {
   }
 
   static renderMobileCounts(source, target) {
-    const targetFacetsList = target.querySelector('.mobile-facets__list');
-    const sourceFacetsList = source.querySelector('.mobile-facets__list');
+    const targetFacetsList = target.querySelector('.xboost-mobile-facets__list');
+    const sourceFacetsList = source.querySelector('.xboost-mobile-facets__list');
 
     if (sourceFacetsList && targetFacetsList) {
       targetFacetsList.outerHTML = sourceFacetsList.outerHTML;

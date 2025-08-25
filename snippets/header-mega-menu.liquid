@@ -93,7 +93,7 @@
           <div class="xboost-mega-menu__collection-item">
             {{ block.settings.menu_image | image_url: width: 400 | image_tag:
               loading: 'lazy',
-              class: 'mega-menu__collection-photo',
+              class: 'xboost-mega-menu__collection-photo',
               alt: block.settings.image_heading
             }}
             {% if block.settings.image_heading != blank %}
@@ -115,7 +115,7 @@
             <a href="{{ block.settings.image_link }}" class="xboost-mega-menu__collection-link">
               {{ block.settings.menu_image | image_url: width: 400 | image_tag:
                 loading: 'lazy',
-                class: 'mega-menu__collection-photo',
+                class: 'xboost-mega-menu__collection-photo',
                 alt: block.settings.image_heading
               }}
               
@@ -151,7 +151,7 @@
             <a href="{{ block.settings.collection.url }}">
               {{ block.settings.collection.image | image_url: width: 400 | image_tag:
                 loading: 'lazy',
-                class: 'mega-menu__collection-photo',
+                class: 'xboost-mega-menu__collection-photo',
                 alt: block.settings.collection.title
               }}
               <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection.title }} <span class="svg-wrapper">

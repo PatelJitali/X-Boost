@@ -155,7 +155,7 @@ cart-remove-button .icon-remove {
   width: 1.5rem;
 }
 
-.cart-item .loading__spinner {
+.cart-item .xboost-loading__spinner {
   top: 0;
   left: auto;
   right: auto;
@@ -164,14 +164,14 @@ cart-remove-button .icon-remove {
 }
 
 @media screen and (min-width: 750px) {
-  .cart-item .loading__spinner {
+  .cart-item .xboost-loading__spinner {
     right: 0;
     padding-top: 4.5rem;
     bottom: auto;
   }
 }
 
-.cart-item .loading__spinner:not(.hidden) ~ * {
+.cart-item .xboost-loading__spinner:not(.hidden) ~ * {
   visibility: hidden;
 }
 

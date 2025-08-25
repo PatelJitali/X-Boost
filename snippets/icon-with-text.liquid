@@ -37,11 +37,11 @@
   endif
 -%}
 <ul
-  class="icon-with-text icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} icon-with-text--text-only{% endif %}"
+  class="xboost-icon-with-text xboost-icon-with-text--{{ block.settings.layout }} list-unstyled{% if text_only_all_items %} xboost-icon-with-text--text-only{% endif %}"
   {{ block.shopify_attributes }}
 >
   {%- unless heading_1_empty -%}
-    <li class="icon-with-text__item">
+    <li class="xboost-icon-with-text__item">
       {%- if block.settings.image_1 == null -%}
         {%- render 'icon-accordion', icon: block.settings.icon_1 -%}
       {%- else -%}
@@ -63,7 +63,7 @@
     </li>
   {%- endunless -%}
   {%- unless heading_2_empty -%}
-    <li class="icon-with-text__item">
+    <li class="xboost-icon-with-text__item">
       {%- if block.settings.image_2 == null -%}
         {% render 'icon-accordion', icon: block.settings.icon_2 -%}
       {%- else -%}
@@ -85,7 +85,7 @@
     </li>
   {%- endunless -%}
   {%- unless heading_3_empty -%}
-    <li class="icon-with-text__item">
+    <li class="xboost-icon-with-text__item">
       {%- if block.settings.image_3 == null -%}
         {% render 'icon-accordion', icon: block.settings.icon_3 -%}
       {%- else -%}

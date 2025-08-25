@@ -38,9 +38,9 @@ class CartDrawer extends HTMLElement {
       'transitionend',
       () => {
         const containerToTrapFocusOn = this.classList.contains('is-empty')
-          ? this.querySelector('.drawer__inner-empty')
+          ? this.querySelector('.xboost-drawer__inner-empty')
           : document.getElementById('CartDrawer');
-        const focusElement = this.querySelector('.drawer__inner') || this.querySelector('.drawer__close');
+        const focusElement = this.querySelector('.xboost-drawer__inner') || this.querySelector('.xboost-drawer__close');
         trapFocus(containerToTrapFocusOn, focusElement);
       },
       { once: true }
@@ -71,8 +71,8 @@ class CartDrawer extends HTMLElement {
   }
 
   renderContents(parsedState) {
-    this.querySelector('.drawer__inner').classList.contains('is-empty') &&
-      this.querySelector('.drawer__inner').classList.remove('is-empty');
+    this.querySelector('.xboost-drawer__inner').classList.contains('is-empty') &&
+      this.querySelector('.xboost-drawer__inner').classList.remove('is-empty');
     this.productId = parsedState.id;
     this.getSectionsToRender().forEach((section) => {
       const sectionElement = section.selector
@@ -122,7 +122,7 @@ class CartDrawerItems extends CartItems {
       {
         id: 'CartDrawer',
         section: 'cart-drawer',
-        selector: '.drawer__inner',
+        selector: '.xboost-drawer__inner',
       },
       {
         id: 'cart-icon-bubble',

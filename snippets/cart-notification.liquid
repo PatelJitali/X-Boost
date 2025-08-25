@@ -10,7 +10,7 @@
 {% endcomment %}
 
 <cart-notification>
-  <div class="cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
+  <div class="xboost-cart-notification-wrapper{% if desktop_menu_type != 'drawer' %} page-width{% endif %}">
     <div
       id="cart-notification"
       class="cart-notification focus-inset{% if color_scheme %} color-{{ color_scheme }} gradient{% endif %}"
@@ -19,14 +19,14 @@
       role="dialog"
       tabindex="-1"
     >
-      <div class="cart-notification__header">
-        <h2 class="cart-notification__heading xboost-caption-large xboost-text-body">
+      <div class="xboost-cart-notification__header">
+        <h2 class="xboost-cart-notification__heading xboost-caption-large xboost-text-body">
           {{- 'icon-checkmark.svg' | inline_asset_content -}}
           {{ 'general.cart.item_added' | t }}
         </h2>
         <button
           type="button"
-          class="cart-notification__close xboost-modal__close-button link link--text focus-inset"
+          class="xboost-cart-notification__close xboost-modal__close-button link link--text focus-inset"
           aria-label="{{ 'accessibility.close' | t }}"
         >
           <span class="svg-wrapper">
@@ -34,17 +34,17 @@
           </span>
         </button>
       </div>
-      <div id="cart-notification-product" class="cart-notification-product"></div>
-      <div class="cart-notification__links">
+      <div id="cart-notification-product" class="xboost-cart-notification-product"></div>
+      <div class="xboost-cart-notification__links">
         <a
           href="{{ routes.cart_url }}"
           id="cart-notification-button"
-          class="button button--secondary button--full-width"
+          class="button button--secondary xboost-button--full-width"
         >
           {{- 'general.cart.view_empty_cart' | t -}}
         </a>
         <form action="{{ routes.cart_url }}" method="post" id="cart-notification-form">
-          <button class="button button--primary button--full-width" name="checkout">
+          <button class="button button--primary xboost-button--full-width" name="checkout">
             {{ 'sections.cart.checkout' | t }}
           </button>
         </form>

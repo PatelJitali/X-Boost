@@ -305,8 +305,8 @@ if (!customElements.get('product-info')) {
         );
 
         // update media modal
-        const modalContent = this.productModal?.querySelector(`.product-media-modal__content`);
-        const newModalContent = html.querySelector(`product-modal .product-media-modal__content`);
+        const modalContent = this.productModal?.querySelector(`.xboost-product-media-modal__content`);
+        const newModalContent = html.querySelector(`product-modal .xboost-product-media-modal__content`);
         if (modalContent && newModalContent) modalContent.innerHTML = newModalContent.innerHTML;
       }
 
@@ -339,7 +339,7 @@ if (!customElements.get('product-info')) {
         const currentVariantId = this.productForm?.variantIdInput?.value;
         if (!currentVariantId) return;
 
-        this.querySelector('.xboost-quantity__rules-cart .loading__spinner').classList.remove('hidden');
+        this.querySelector('.xboost-quantity__rules-cart .xboost-loading__spinner').classList.remove('hidden');
         fetch(`${this.dataset.url}?variant=${currentVariantId}&section_id=${this.dataset.section}`)
           .then((response) => response.text())
           .then((responseText) => {
@@ -347,7 +347,7 @@ if (!customElements.get('product-info')) {
             this.updateQuantityRules(this.dataset.section, html);
           })
           .catch((e) => console.error(e))
-          .finally(() => this.querySelector('.xboost-quantity__rules-cart .loading__spinner').classList.add('hidden'));
+          .finally(() => this.querySelector('.xboost-quantity__rules-cart .xboost-loading__spinner').classList.add('hidden'));
       }
 
       updateQuantityRules(sectionId, html) {

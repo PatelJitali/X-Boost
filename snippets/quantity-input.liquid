@@ -10,7 +10,7 @@
   {% render 'quantity-input' variant: variant %}
 {% endcomment %}
 
-<quantity-input class="xboost-quantity cart-quantity">
+<quantity-input class="xboost-quantity xboost-cart-quantity">
   <button class="xboost-quantity__button" name="minus" type="button">
     <span class="visually-hidden">
       {{- 'products.product.quantity.decrease' | t: product: variant.title | escape -}}

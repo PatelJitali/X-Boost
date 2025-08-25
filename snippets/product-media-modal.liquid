@@ -9,9 +9,9 @@
   {% render 'product-media-modal' %}
 {% endcomment %}
 
-<product-modal id="ProductModal-{{ section.id }}" class="product-media-modal media-modal">
+<product-modal id="ProductModal-{{ section.id }}" class="xboost-product-media-modal xboost-media-modal">
   <div
-    class="product-media-modal__dialog color-{{ section.settings.color_scheme }} gradient"
+    class="xboost-product-media-modal__dialog color-{{ section.settings.color_scheme }} gradient"
     role="dialog"
     aria-label="{{ 'products.modal.label' | t }}"
     aria-modal="true"
@@ -20,14 +20,14 @@
     <button
       id="ModalClose-{{ section.id }}"
       type="button"
-      class="product-media-xboost-modal__toggle"
+      class="xboost-product-media-modal__toggle"
       aria-label="{{ 'accessibility.close' | t }}"
     >
       {{ 'icon-close.svg' | inline_asset_content }}
     </button>
 
     <div
-      class="product-media-modal__content color-{{ section.settings.color_scheme }} gradient"
+      class="xboost-product-media-modal__content color-{{ section.settings.color_scheme }} gradient"
       role="document"
       aria-label="{{ 'products.modal.label' | t }}"
       tabindex="0"

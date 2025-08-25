@@ -16,7 +16,7 @@
 
 {%- if media.media_type == 'image' -%}
   <img
-    class="xboost-global-media-settings xboost-global-media-settings--no-shadow{% if variant_image %} product__media-item--variant{% endif %}"
+    class="xboost-global-media-settings xboost-global-media-settings--no-shadow{% if variant_image %} xboost-product__media-item--variant{% endif %}"
     srcset="
       {%- if media.preview_image.width >= 550 -%}{{ media.preview_image | image_url: width: 550 }} 550w,{%- endif -%}
       {%- if media.preview_image.width >= 1100 -%}{{ media.preview_image | image_url: width: 1100 }} 1100w,{%- endif -%}
@@ -38,21 +38,21 @@
   >
 {%- else -%}
   {%- if media.media_type == 'model' -%}
-    <div class="product-media-modal__model" data-media-id="{{ media.id }}">
+    <div class="xboost-product-media-modal__model" data-media-id="{{ media.id }}">
       <product-model
-        class="deferred-media media xboost-media--transparent xboost-global-media-settings xboost-global-media-settings--no-shadow"
+        class="xboost-deferred-media media xboost-media--transparent xboost-global-media-settings xboost-global-media-settings--no-shadow"
         style="padding-top: min(calc(100vh - 12rem), 100%)"
       >
   {%- else -%}
     <deferred-media
-      class="deferred-media media xboost-global-media-settings xboost-global-media-settings--no-shadow"
+      class="xboost-deferred-media media xboost-global-media-settings xboost-global-media-settings--no-shadow"
       style="padding-top: min(calc(100vh - 12rem), {{ 1 | divided_by: media.aspect_ratio | times: 100 }}%)"
       data-media-id="{{ media.id }}"
     >
   {%- endif -%}
 
-  <button id="Deferred-Poster-Modal-{{ media.id }}" class="deferred-media__poster" type="button">
-    <span class="deferred-media__poster-button xboost-motion-reduce">
+  <button id="Deferred-Poster-Modal-{{ media.id }}" class="xboost-deferred-media__poster" type="button">
+    <span class="xboost-deferred-media__poster-button xboost-motion-reduce">
       {%- if media.media_type == 'model' -%}
         <span class="svg-wrapper">{{ 'icon-3d-model' | inline_asset_content }}</span>
       {%- else -%}
@@ -102,7 +102,7 @@
   {%- if media.media_type == 'model' -%}
     </product-model>
     <button
-      class="button button--full-width product__xr-button"
+      class="button xboost-button--full-width xboost-product__xr-button"
       type="button"
       aria-label="{{ 'products.product.xr_button_label' | t }}"
       data-shopify-xr

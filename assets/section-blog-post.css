@@ -165,7 +165,7 @@
 }
 
 @media screen and (min-width: 990px) {
-  .xboost-article-template__comments .pagination-wrapper {
+  .xboost-article-template__comments .xboost-pagination-wrapper {
     margin: 5rem 0 8rem;
   }
 }

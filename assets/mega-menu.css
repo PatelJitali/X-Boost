@@ -98,7 +98,7 @@
   border-radius: var(--all-section-border-radius);
 }
 
-.mega-menu__collection-photo,
+.xboost-mega-menu__collection-photo,
 .mega-menu__product-photo {
   width: 100%;
   height: 100%;
@@ -141,7 +141,7 @@ h3.xboost-mega-menu__product-price {
 }
 
 /* Hover effects */
-.xboost-mega-menu__collection-item:hover .mega-menu__collection-photo,
+.xboost-mega-menu__collection-item:hover .xboost-mega-menu__collection-photo,
 .xboost-mega-menu__product-item:hover .mega-menu__product-photo {
   transform: scale(1.05);
 }

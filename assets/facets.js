@@ -35,7 +35,7 @@ class FacetFiltersForm extends HTMLElement {
     const countContainer = document.getElementById('ProductCount');
     const countContainerDesktop = document.getElementById('ProductCountDesktop');
     const loadingSpinners = document.querySelectorAll(
-      '.facets-container .loading__spinner, facet-filters-form .loading__spinner'
+      '.xboost-facets-container .xboost-loading__spinner, facet-filters-form .xboost-loading__spinner'
     );
     loadingSpinners.forEach((spinner) => spinner.classList.remove('hidden'));
     document.getElementById('ProductGridContainer').querySelector('.collection').classList.add('loading');
@@ -104,7 +104,7 @@ class FacetFiltersForm extends HTMLElement {
       containerDesktop.classList.remove('loading');
     }
     const loadingSpinners = document.querySelectorAll(
-      '.facets-container .loading__spinner, facet-filters-form .loading__spinner'
+      '.xboost-facets-container .xboost-loading__spinner, facet-filters-form .xboost-loading__spinner'
     );
     loadingSpinners.forEach((spinner) => spinner.classList.add('hidden'));
   }
@@ -165,9 +165,9 @@ class FacetFiltersForm extends HTMLElement {
         FacetFiltersForm.renderMobileCounts(countsToRender, document.getElementById(closestJSFilterID));
 
         const newFacetDetailsElement = document.getElementById(closestJSFilterID);
-        const newElementSelector = newFacetDetailsElement.classList.contains('mobile-facets__details')
-          ? `.mobile-facets__close-button`
-          : `.facets__summary`;
+        const newElementSelector = newFacetDetailsElement.classList.contains('xboost-mobile-facets__details')
+          ? `.xboost-mobile-facets__close-button`
+          : `.xboost-facets__summary`;
         const newElementToActivate = newFacetDetailsElement.querySelector(newElementSelector);
 
         const isTextInput = event.target.getAttribute('type') === 'text';
@@ -178,7 +178,7 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderActiveFacets(html) {
-    const activeFacetElementSelectors = ['.active-facets-mobile', '.active-facets-desktop'];
+    const activeFacetElementSelectors = ['.xboost-active-facets-mobile', '.xboost-active-facets-desktop'];
 
     activeFacetElementSelectors.forEach((selector) => {
       const activeFacetsElement = html.querySelector(selector);
@@ -201,15 +201,15 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderCounts(source, target) {
-    const targetSummary = target.querySelector('.facets__summary');
-    const sourceSummary = source.querySelector('.facets__summary');
+    const targetSummary = target.querySelector('.xboost-facets__summary');
+    const sourceSummary = source.querySelector('.xboost-facets__summary');
 
     if (sourceSummary && targetSummary) {
       targetSummary.outerHTML = sourceSummary.outerHTML;
     }
 
-    const targetHeaderElement = target.querySelector('.facets__header');
-    const sourceHeaderElement = source.querySelector('.facets__header');
+    const targetHeaderElement = target.querySelector('.xboost-facets__header');
+    const sourceHeaderElement = source.querySelector('.xboost-facets__header');
 
     if (sourceHeaderElement && targetHeaderElement) {
       targetHeaderElement.outerHTML = sourceHeaderElement.outerHTML;
@@ -231,8 +231,8 @@ class FacetFiltersForm extends HTMLElement {
   }
 
   static renderMobileCounts(source, target) {
-    const targetFacetsList = target.querySelector('.mobile-facets__list');
-    const sourceFacetsList = source.querySelector('.mobile-facets__list');
+    const targetFacetsList = target.querySelector('.xboost-mobile-facets__list');
+    const sourceFacetsList = source.querySelector('.xboost-mobile-facets__list');
 
     if (sourceFacetsList && targetFacetsList) {
       targetFacetsList.outerHTML = sourceFacetsList.outerHTML;
@@ -263,7 +263,7 @@ class FacetFiltersForm extends HTMLElement {
   onSubmitHandler(event) {
     event.preventDefault();
     const sortFilterForms = document.querySelectorAll('facet-filters-form form');
-    if (event.srcElement.className == 'mobile-facets__checkbox') {
+    if (event.srcElement.className == 'xboost-mobile-facets__checkbox') {
       const searchParams = this.createSearchParams(event.target.closest('form'));
       this.onSubmitForm(searchParams, event);
     } else {

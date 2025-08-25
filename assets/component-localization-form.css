@@ -381,36 +381,36 @@
   padding: 0;
 }
 
-.xboost-header-localization:not(.menu-drawer__localization) {
+.xboost-header-localization:not(.xboost-menu-drawer__localization) {
   align-items: center;
 }
 
-.js .xboost-header-localization:not(.menu-drawer__localization) .xboost-localization-form__select {
+.js .xboost-header-localization:not(.xboost-menu-drawer__localization) .xboost-localization-form__select {
   padding: 0 2.7rem 0 1.2rem;
   width: max-content;
   height: 3.8rem;
 }
 
-.xboost-header-localization:not(.menu-drawer__localization) .localization-form:only-child .xboost-localization-form__select {
+.xboost-header-localization:not(.xboost-menu-drawer__localization) .localization-form:only-child .xboost-localization-form__select {
   margin: 0;
 }
 
-.xboost-header-localization:not(.menu-drawer__localization).xboost-localization-form__select > span {
+.xboost-header-localization:not(.xboost-menu-drawer__localization).xboost-localization-form__select > span {
   max-width: 20ch;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-.xboost-header-localization:not(.menu-drawer__localization) localization-form:only-child .xboost-localization-form__select > span {
+.xboost-header-localization:not(.xboost-menu-drawer__localization) localization-form:only-child .xboost-localization-form__select > span {
   max-width: 26ch;
 }
 
-.xboost-header-localization:not(.menu-drawer__localization) .xboost-localization-form__select .icon-caret {
+.xboost-header-localization:not(.xboost-menu-drawer__localization) .xboost-localization-form__select .icon-caret {
   right: 0.8rem;
 }
 
-.xboost-header-localization:not(.menu-drawer__localization) .xboost-disclosure__list-wrapper {
+.xboost-header-localization:not(.xboost-menu-drawer__localization) .xboost-disclosure__list-wrapper {
   bottom: initial;
   top: 100%;
   right: 0;
@@ -419,30 +419,30 @@
 
 /* Menu drawer */
 @media screen and (min-width: 990px) {
-  .menu-drawer__localization {
+  .xboost-menu-drawer__localization {
     display: none;
   }
 }
 
-.menu-drawer__localization localization-form {
+.xboost-menu-drawer__localization localization-form {
   display: block;
 }
 
-.menu-drawer__localization .xboost-localization-form__select {
+.xboost-menu-drawer__localization .xboost-localization-form__select {
   background-color: initial;
   margin-top: 0;
   padding: 1rem 3.6rem 1rem 0rem;
 }
 
-.menu-drawer__localization .localization-form {
+.xboost-menu-drawer__localization .localization-form {
   padding: 0;
 }
 
-.menu-drawer__localization .localization-form:only-child .xboost-localization-form__select {
+.xboost-menu-drawer__localization .localization-form:only-child .xboost-localization-form__select {
   margin: 0;
 }
 
-.menu-drawer__localization + .xboost-list-social {
+.xboost-menu-drawer__localization + .xboost-list-social {
   margin-top: 1rem;
 }
 

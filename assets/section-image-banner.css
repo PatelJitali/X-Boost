@@ -45,8 +45,8 @@
   clip-path: inset(0px);
 }
 
-.xboost-banner__media.animate--zoom-in > img:not(.zoom):not(.deferred-media__poster-button),
-.xboost-banner__media.animate--zoom-in > svg:not(.zoom):not(.deferred-media__poster-button) {
+.xboost-banner__media.animate--zoom-in > img:not(.zoom):not(.xboost-deferred-media__poster-button),
+.xboost-banner__media.animate--zoom-in > svg:not(.zoom):not(.xboost-deferred-media__poster-button) {
   position: fixed;
   height: 100vh;
 }

@@ -16,9 +16,9 @@ if (!customElements.get('recipient-form')) {
         this.offsetProperty = this.querySelector(`#Recipient-timezone-offset-${this.dataset.sectionId}`);
         if (this.offsetProperty) this.offsetProperty.value = new Date().getTimezoneOffset().toString();
 
-        this.errorMessageWrapper = this.querySelector('.product-form__recipient-error-message-wrapper');
+        this.errorMessageWrapper = this.querySelector('.xboost-product-form__recipient-error-message-wrapper');
         this.errorMessageList = this.errorMessageWrapper?.querySelector('ul');
-        this.errorMessage = this.errorMessageWrapper?.querySelector('.error-message');
+        this.errorMessage = this.errorMessageWrapper?.querySelector('.xboost-error-message');
         this.defaultErrorHeader = this.errorMessage?.innerText;
         this.currentProductVariantId = this.dataset.productVariantId;
         this.addEventListener('change', this.onChange.bind(this));
@@ -105,7 +105,7 @@ if (!customElements.get('recipient-form')) {
             const fieldSelector = `#Recipient-${key}-${this.dataset.sectionId}`;
             const message = `${value.join(', ')}`;
             const errorMessageElement = this.querySelector(`#${errorMessageId}`);
-            const errorTextElement = errorMessageElement?.querySelector('.error-message');
+            const errorTextElement = errorMessageElement?.querySelector('.xboost-error-message');
             if (!errorTextElement) return;
 
             if (this.errorMessageList) {
@@ -132,7 +132,7 @@ if (!customElements.get('recipient-form')) {
         a.setAttribute('href', target);
         a.innerText = message;
         li.appendChild(a);
-        li.className = 'error-message';
+        li.className = 'xboost-error-message';
         return li;
       }
 
@@ -143,7 +143,7 @@ if (!customElements.get('recipient-form')) {
 
         this.querySelectorAll('.recipient-fields .xboost-form__message').forEach((field) => {
           field.classList.add('hidden');
-          const textField = field.querySelector('.error-message');
+          const textField = field.querySelector('.xboost-error-message');
           if (textField) textField.innerText = '';
         });
 

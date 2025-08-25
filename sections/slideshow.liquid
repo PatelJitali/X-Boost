@@ -50,6 +50,7 @@
           <span aria-hidden="true"> / </span>
           <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
           <span class="xboost-slider-counter--total">{{ section.blocks.size }}</span>
+        
         {%- else -%}
           <div class="xboost-slideshow__control-wrapper">
             {%- for block in section.blocks -%}
@@ -83,7 +84,7 @@
       {%- if section.settings.auto_rotate -%}
         <button
           type="button"
-          class="xboost-slideshow__autoplay slider-button{% if section.settings.auto_rotate == false %} xboost-slideshow__autoplay--paused{% endif %}"
+          class="xboost-slideshow__autoplay xboost-slider-button{% if section.settings.auto_rotate == false %} xboost-slideshow__autoplay--paused{% endif %}"
           aria-label="{{ 'sections.slideshow.pause_slideshow' | t }}"
         >
           <span class="svg-wrapper">
@@ -161,7 +162,7 @@
         <div class="xboost-slideshow__text-wrapper xboost-banner__content xboost-banner__content--{{ block.settings.box_align }} page-width{% if block.settings.show_text_box == false %} xboost-banner--desktop-transparent{% endif %}{% if settings.animations_reveal_on_scroll and forloop.index == 1 %} scroll-trigger animate--slide-in{% endif %}">
           <div class="xboost-slideshow__text xboost-banner__box xboost-content-container xboost-content-container--full-width-mobile color-{{ block.settings.color_scheme }} gradient xboost-slideshow__text--{{ block.settings.text_alignment }} xboost-slideshow__text-mobile--{{ block.settings.text_alignment_mobile }}">
             {%- if block.settings.heading != blank -%}
-              <h2 class="xboost-banner__heading inline-richtext {{ block.settings.heading_size }}">
+              <h2 class="xboost-banner__heading xboost-inline-richtext {{ block.settings.heading_size }}">
                 {{ block.settings.heading }}
               </h2>
             {%- endif -%}

@@ -39,7 +39,7 @@
 {%- endcapture -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="video-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
+  <div class="xboost-video-section isolate{% unless section.settings.full_width %} page-width{% endunless %} section-{{ section.id }}-padding">
     <div
       {% if section.settings.full_width %}
         class="page-width"
@@ -52,7 +52,7 @@
       {%- endunless -%}
     </div>
     <deferred-media
-      class="video-section__media deferred-media gradient xboost-global-media-settings{% if section.settings.full_width %} xboost-global-media-settings--full-width{% endif %}{% if fix_ratio %} xboost-media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      class="xboost-video-section__media xboost-deferred-media gradient xboost-global-media-settings{% if section.settings.full_width %} xboost-global-media-settings--full-width{% endif %}{% if fix_ratio %} xboost-media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       data-media-id="{{ video_id }}"
       {% if poster != null %}
         style="--ratio-percent: {{ 1 | divided_by: poster.aspect_ratio | times: 100 }}%;"
@@ -60,7 +60,7 @@
     >
       <button
         id="Deferred-Poster-Modal-{{ video_id }}"
-        class="video-section__poster media deferred-media__poster media--landscape"
+        class="xboost-video-section__poster media xboost-deferred-media__poster xboost-media--landscape"
         type="button"
         aria-label="{{ alt }}"
       >
@@ -73,7 +73,7 @@
         {%- else -%}
           {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
         {%- endif -%}
-        <span class="deferred-media__poster-button xboost-motion-reduce">
+        <span class="xboost-deferred-media__poster-button xboost-motion-reduce">
           <span class="svg-wrapper">
             {{- 'icon-play.svg' | inline_asset_content -}}
           </span>
@@ -141,7 +141,7 @@
       "options": [
         {
           "value": "h2",
-          "label": "t:sections.all.heading_size.options__1.label"
+          "label": "t:sections.all.heading_size.options__1.label" 
         },
         {
           "value": "h1",

@@ -24,11 +24,11 @@
       visibility: hidden;
     }
 
-    .drawer.active .drawer__inner:not(:has(.collection-item)) {
+    .drawer.active .xboost-drawer__inner:not(:has(.xboost-collection-item)) {
       border-radius: 25px 0 0 25px;
   }
 
-  .collection-item .variant-dropdown option {
+  .xboost-collection-item .xboost-variant-dropdown option {
     background: {{ solid_button_background }};
   }
 </style>
@@ -36,21 +36,21 @@
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   {%- assign product_form_id = 'product-form-' | append: section.id -%}
   <div id="CartDrawer" class="cart-drawer">
-    <div id="CartDrawer-Overlay" class="cart-drawer__overlay"></div>
+    <div id="CartDrawer-Overlay" class="xboost-cart-drawer__overlay"></div>
     <div
-      class="drawer__inner gradient color-{{ settings.cart_color_scheme }}"
+      class="xboost-drawer__inner gradient color-{{ settings.cart_color_scheme }}"
       role="dialog"
       aria-modal="true"
       aria-label="{{ 'sections.cart.title' | t }}"
       tabindex="-1"
     >
       {%- if cart == empty -%}
-        <div class="drawer__inner-empty">
-          <div class="cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} cart-drawer__warnings--has-collection{% endif %}">
-            <div class="cart-drawer__empty-content">
+        <div class="xboost-drawer__inner-empty">
+          <div class="xboost-cart-drawer__warnings center{% if settings.cart_drawer_collection != blank %} xboost-cart-drawer__warnings--has-collection{% endif %}">
+            <div class="xboost-cart-drawer__empty-content">
               <h2 class="xboost-cart__empty-text">{{ 'sections.cart.empty' | t }}</h2>
               <button
-                class="drawer__close"
+                class="xboost-drawer__close"
                 type="button"
                 onclick="this.closest('cart-drawer').close()"
                 aria-label="{{ 'accessibility.close' | t }}"
@@ -88,10 +88,10 @@
         </div>
       {%- endif -%}
 
-      <div class="drawer__header">
-        <h2 class="drawer__heading">{{ 'sections.cart.title' | t }}</h2>
+      <div class="xboost-drawer__header">
+        <h2 class="xboost-drawer__heading">{{ 'sections.cart.title' | t }}</h2>
         <button
-          class="drawer__close"
+          class="xboost-drawer__close"
           type="button"
           onclick="this.closest('cart-drawer').close()"
           aria-label="{{ 'accessibility.close' | t }}"
@@ -109,12 +109,12 @@
         <form
           action="{{ routes.cart_url }}"
           id="CartDrawer-Form"
-          class="xboost-cart__contents cart-drawer__form"
+          class="xboost-cart__contents xboost-cart-drawer__form"
           method="post"
         >
-          <div id="CartDrawer-CartItems" class="drawer__contents xboost-js-contents">
+          <div id="CartDrawer-CartItems" class="xboost-drawer__contents xboost-js-contents">
             {%- if cart != empty -%}
-              <div class="drawer__cart-items-wrapper">
+              <div class="xboost-drawer__cart-items-wrapper">
                 <table class="cart-items" role="table">
                   <thead role="rowgroup">
                     <tr role="row">
@@ -196,7 +196,7 @@
                             or item.selling_plan_allocation != null
                           -%}
                             <dl>
-                              {%- if item.product.has_only_default_variant == false -%}
+                              {% comment %} {%- if item.product.has_only_default_variant == false -%}
                                 {%- for option in item.options_with_values -%}
                                   <div class="xboost-product-option">
                                     <dt>{{ option.name }}:</dt>
@@ -206,7 +206,18 @@
                                     </dd>
                                   </div>
                                 {%- endfor -%}
+                              {%- endif -%} {% endcomment %}
+                               {%- if item.product.has_only_default_variant == false -%}
+                                <dl class="xboost-product-options">
+                                  {%- for option in item.options_with_values -%}
+                                    <div class="xboost-product-option">
+                                      <dt class="xboost-option-label">{{ option.name }}:</dt>
+                                      <dd class="xboost-option-value">{{ option.value }}</dd>
+                                    </div>
+                                  {%- endfor -%}
+                                </dl>
                               {%- endif -%}
+
 
                               {%- for property in item.properties -%}
                                 {%- assign property_first_char = property.first | slice: 0 -%}
@@ -274,7 +285,7 @@
                             {%- endif -%}
 
                             {%- if item.variant.available and item.unit_price_measurement -%}
-                              <div class="unit-price caption">
+                              <div class="xboost-unit-price caption">
                                 <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
                                 {{ item.unit_price | money }}
                                 <span aria-hidden="true">/</span>
@@ -308,7 +319,7 @@
                           <quantity-popover>
                             <div class="xboost-cart-item__quantity-wrapper xboost-quantity-popover-wrapper">
                               <div class="xboost-quantity-popover-container{% if has_qty_rules or has_vol_pricing %} xboost-quantity-popover-container--hover{% endif %}">
-                                <quantity-input class="xboost-quantity cart-quantity">
+                                <quantity-input class="xboost-quantity xboost-cart-quantity">
                                   <button class="xboost-quantity__button" name="minus" type="button">
                                     <span class="visually-hidden">
                                       {{-
@@ -498,14 +509,14 @@
       {% endfor %}
 
       {% unless all_products_in_cart %}
-        <div class="collection-item color-{{ settings.cart_color_scheme }}">
+        <div class="xboost-collection-item color-{{ settings.cart_color_scheme }}">
           {% if settings['cartupsell-text'] != blank %}
-            <div class="collection-cart-title">
-              <h3 class="collection-cartupsell-title">{{ settings['cartupsell-text'] }}</h3>
+            <div class="xboost-collection-cart-title">
+              <h3 class="xboost-collection-cartupsell-title">{{ settings['cartupsell-text'] }}</h3>
             </div>
           {% endif %}
           
-          <div class="collection-inner-data-cart">
+          <div class="xboost-collection-inner-data-cart">
             {% assign displayed_products = 0 %}
             
             {% for product in shuffled_products %}
@@ -523,11 +534,14 @@
                           src="{{ product.featured_image | img_url: '300x300' }}"
                           alt="{{ product.title }}"
                         >
+
+                      {% else %}
+                        {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
                       {% endif %}
                     </div>
-                    <div class="product-details">
+                    <div class="xboost-product-details">
                       {% if product.title != blank %}
-                        <h3 class="product-title-cart-collection" style="color: {{ solid_button_label }};">
+                        <h3 class="xboost-product-title-cart-collection" style="color: {{ solid_button_label }};">
                           {{ product.title }}
                         </h3>
                       {% endif %}
@@ -538,27 +552,29 @@
                       >
                         {% if product.price != blank %}
                           {% if product.compare_at_price > product.price %}
-                            <span class="current-price-cart-collection">{{ product.price | money }}</span>
-                            <span class="compare-price-cart-collection">{{ product.compare_at_price | money }}</span>
+                            <span class="xboost-current-price-cart-collection">{{ product.price | money }}</span>
+                            <span class="xboost-compare-price-cart-collection">{{ product.compare_at_price | money }}</span>
                           {% else %}
-                            <span class="current-price-cart-collection">{{ product.price | money }}</span>
+                            <span class="xboost-current-price-cart-collection">{{ product.price | money }}</span>
                           {% endif %}
                         {% endif %}
                       </p>
-                      {% if product.variants != blank %}
+                     {% if product.variants.size > 1 %}
                         <select
                           id="variant-select-{{ product.id }}"
-                          class="variant-dropdown"
+                          class="xboost-variant-dropdown"
                           style="color: {{ solid_button_label }};"
                           data-product-id="{{ product.id }}"
                         >
                           {% for variant in product.variants %}
-                            {% if variant.title != blank %}
+                            {% if variant.title != "Default Title" %}
                               <option
                                 value="{{ variant.id }}"
                                 data-image="{{ variant.featured_image | img_url: '300x300' }}"
                                 data-price="{{ variant.price | money }}"
+                                data-price-raw="{{ variant.price }}"
                                 data-compare-price="{{ variant.compare_at_price | money }}"
+                                data-compare-price-raw="{{ variant.compare_at_price }}"
                               >
                                 {{ variant.title }}
                               </option>
@@ -566,7 +582,8 @@
                           {% endfor %}
                         </select>
                       {% endif %}
-                      <div class="product-form__buttons">
+
+                      <div class="xboost-product-form__buttons">
                         <button
                           type="button"
                           class="cc_cart_button_upsell button button--secondary"
@@ -591,7 +608,7 @@
 
       </cart-drawer-items>
 
-      <div class="drawer__footer">
+      <div class="xboost-drawer__footer">
         {%- if settings.show_cart_note -%}
           <details id="Details-CartDrawer">
             <summary>
@@ -604,7 +621,7 @@
               <label class="visually-hidden" for="CartDrawer-Note">{{ 'sections.cart.note' | t }}</label>
               <textarea
                 id="CartDrawer-Note"
-                class="xboost-text-area text-area--resize-vertical xboost-field__input"
+                class="xboost-text-area xboost-text-area--resize-vertical xboost-field__input"
                 name="note"
                 placeholder="{{ 'sections.cart.note' | t }}"
               >{{ cart.note }}</textarea>
@@ -615,7 +632,7 @@
         <!-- Start blocks -->
         <!-- Subtotals -->
 
-        <div class="cart-drawer__footer" {{ block.shopify_attributes }}>
+        <div class="xboost-cart-drawer__footer" {{ block.shopify_attributes }}>
           <div>
             {%- if cart.cart_level_discount_applications.size > 0 -%}
               <ul class="xboost-discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">

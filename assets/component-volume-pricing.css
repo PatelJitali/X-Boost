@@ -41,14 +41,14 @@ volume-pricing show-more-button {
   margin-top: 0.8rem;
 }
 
-.product-form__input price-per-item,
+.xboost-product-form__input price-per-item,
 .xboost-price-per-item__container {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.product-form__input .price-per-item {
+.xboost-product-form__input .price-per-item {
   color: rgba(var(--color-foreground));
   font-size: 1.4rem;
   letter-spacing: 0.06rem;
@@ -63,7 +63,7 @@ volume-pricing show-more-button {
 }
 
 .xboost-price-per-item__container .xboost-variant-item__old-price,
-.price__regular .xboost-variant-item__old-price {
+.xboost-price__regular .xboost-variant-item__old-price {
   color: rgba(var(--color-foreground), 0.75);
   font-size: 1.2rem;
   letter-spacing: 0.07rem;

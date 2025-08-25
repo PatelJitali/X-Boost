@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Check if all collection products are in cart
   function checkAllProductsInCart() {
-    const collectionSection = document.querySelector('.collection-item');
+    const collectionSection = document.querySelector('.xboost-collection-item');
     if (!collectionSection) return;
 
     const productCards = document.querySelectorAll('.product-card');
@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const price = selectedOption.dataset.price;
     const comparePrice = selectedOption.dataset.comparePrice;
 
-    let priceHtml = `<span class="current-price-cart-collection">${price}</span>`;
+    let priceHtml = `<span class="xboost-current-price-cart-collection">${price}</span>`;
     if (comparePrice && comparePrice !== '' && comparePrice !== price) {
       priceHtml += `<span class="compare-price-cart-collection">${comparePrice}</span>`;
     }
@@ -198,8 +198,8 @@ document.addEventListener('DOMContentLoaded', function () {
         cartForm.innerHTML = newForm.innerHTML;
         
         // Refresh upsell section if it exists in the new content
-        const upsellSection = doc.querySelector('.collection-inner-data-cart');
-        const currentUpsellSection = document.querySelector('.collection-inner-data-cart');
+        const upsellSection = doc.querySelector('.xboost-collection-inner-data-cart');
+        const currentUpsellSection = document.querySelector('.xboost-collection-inner-data-cart');
         
         if (upsellSection && currentUpsellSection) {
           currentUpsellSection.innerHTML = upsellSection.innerHTML;
@@ -217,7 +217,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // Initialize product order randomization
   function initializeProductOrder() {
-    const container = document.querySelector('.collection-inner-data-cart');
+    const container = document.querySelector('.xboost-collection-inner-data-cart');
     if (!container) return;
 
     try {

@@ -230,7 +230,7 @@
 }
 
 @media screen and (max-width: 749px) {
-  quick-add-modal .slider .product__media-item.xboost-grid__item {
+  quick-add-modal .slider .xboost-product__media-item.xboost-grid__item {
     margin-left: 1.5rem;
     margin-right: 1.5rem;
   }
@@ -243,7 +243,7 @@
     max-height: 100%;
   }
 
-  quick-add-modal .product--mobile-columns .product__media-item {
+  quick-add-modal .product--mobile-columns .xboost-product__media-item {
     width: calc(100% - 3rem - var(--grid-mobile-horizontal-spacing));
   }
 }
@@ -284,20 +284,20 @@ quick-add-modal .product:not(.featured-product) .xboost-product__view-details {
 }
 
 quick-add-modal .xboost-quick-add-hidden,
-quick-add-modal .product__modal-opener:not(.product__modal-opener--image),
-quick-add-modal .product__media-item:not(:first-child) {
+quick-add-modal .xboost-product__modal-opener:not(.xboost-product__modal-opener--image),
+quick-add-modal .xboost-product__media-item:not(:first-child) {
   display: none !important;
 }
 
-quick-add-modal .slider.slider--mobile {
+quick-add-modal .slider.xboost-slider--mobile {
   overflow: visible;
 }
 
-quick-add-modal .xboost-product__column-sticky .product__media-list {
+quick-add-modal .xboost-product__column-sticky .xboost-product__media-list {
   margin-bottom: 0;
 }
 
-quick-add-modal .product__media-list .deferred-media {
+quick-add-modal .xboost-product__media-list .xboost-deferred-media {
   display: block;
   width: 100%;
 }
@@ -320,12 +320,12 @@ quick-add-modal .xboost-product__column-sticky {
     width: calc(54% - var(--grid-desktop-horizontal-spacing) / 2);
   }
 
-  quick-add-modal .product--columns .product__media-item:not(.product__media-item--single):not(:only-child) {
+  quick-add-modal .product--columns .xboost-product__media-item:not(.xboost-product__media-item--single):not(:only-child) {
     max-width: 100%;
     width: 100%;
   }
 
-  quick-add-modal .thumbnail-slider .thumbnail-list.slider--tablet-up {
+  quick-add-modal .xboost-thumbnail-slider .xboost-thumbnail-list.xboost-slider--tablet-up {
     display: none;
   }
 }
@@ -350,7 +350,7 @@ quick-add-modal .xboost-product__title > a:hover {
   text-decoration-thickness: 0.3rem;
 }
 
-quick-add-modal .product-form__buttons {
+quick-add-modal .xboost-product-form__buttons {
   max-width: initial;
 }
 
@@ -381,7 +381,7 @@ quick-add-bulk {
   width: 100%;
 }
 
-quick-add-bulk .progress-bar-container {
+quick-add-bulk .xboost-progress-bar-container {
   position: absolute;
   height: 100%;
   display: flex;

@@ -1,4 +1,4 @@
-.header__icon--menu {
+.xboost-header__icon--menu {
   position: initial;
 }
 
@@ -52,20 +52,20 @@ menu-drawer > details[open] > summary::before {
 }
 
 .js details[open] > .menu-drawer,
-.js details[open] > .menu-drawer__submenu {
+.js details[open] > .xboost-menu-drawer__submenu {
   transition: transform var(--duration-default) ease,
     visibility var(--duration-default) ease;
 }
 
 .js details[open].menu-opening > .menu-drawer,
-details[open].menu-opening > .menu-drawer__submenu {
+details[open].menu-opening > .xboost-menu-drawer__submenu {
   transform: translateX(0);
   visibility: visible;
       overscroll-behavior-y: none;
     overscroll-behavior-x: none;
 }
 
-.js .menu-drawer__navigation .submenu-open {
+.js .xboost-menu-drawer__navigation .submenu-open {
   visibility: hidden; /* hide menus from screen readers when hidden by submenu */
 }
 
@@ -78,12 +78,12 @@ details[open].menu-opening > .menu-drawer__submenu {
   }
 }
 
-.menu-drawer__inner-container {
+.xboost-menu-drawer__inner-container {
   position: relative;
   height: 100%;
 }
 
-.menu-drawer__navigation-container {
+.xboost-menu-drawer__navigation-container {
   display: grid;
   grid-template-rows: 1fr auto;
   align-content: space-between;
@@ -91,51 +91,51 @@ details[open].menu-opening > .menu-drawer__submenu {
   height: 100%;
 }
 
-.menu-drawer__navigation {
+.xboost-menu-drawer__navigation {
   padding: 3rem 0;
 }
 
-.menu-drawer__inner-submenu {
+.xboost-menu-drawer__inner-submenu {
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-.js .menu-drawer__menu li {
+.js .xboost-menu-drawer__menu li {
   margin-bottom: 0.2rem;
 }
 
-.menu-drawer__menu-item {
+.xboost-menu-drawer__menu-item {
   padding: 1.1rem 3rem;
   text-decoration: none;
   font-size: 1.8rem;
 }
-.menu-drawer__menu-item {
+.xboost-menu-drawer__menu-item {
   font-size: 16px !important;
 }
 
-.menu-drawer summary.menu-drawer__menu-item {
+.menu-drawer summary.xboost-menu-drawer__menu-item {
   padding-right: 5.2rem;
 }
 
-.menu-drawer__menu-item--active,
-.menu-drawer__menu-item:focus,
-.menu-drawer__close-button:focus,
-.menu-drawer__menu-item:hover,
-.menu-drawer__close-button:hover {
+.xboost-menu-drawer__menu-item--active,
+.xboost-menu-drawer__menu-item:focus,
+.xboost-menu-drawer__close-button:focus,
+.xboost-menu-drawer__menu-item:hover,
+.xboost-menu-drawer__close-button:hover {
   color: rgb(var(--color-foreground));
   background-color: rgba(var(--color-foreground), 0.04);
 }
 
-.menu-drawer__menu-item--active:hover {
+.xboost-menu-drawer__menu-item--active:hover {
   background-color: rgba(var(--color-foreground), 0.08);
 }
 
-.js .menu-drawer__menu-item .icon-caret {
+.js .xboost-menu-drawer__menu-item .icon-caret {
   display: none;
 }
 
-.menu-drawer__menu-item > .svg-wrapper {
+.xboost-menu-drawer__menu-item > .svg-wrapper {
   width: 15px;
   position: absolute;
   right: 3rem;
@@ -143,7 +143,7 @@ details[open].menu-opening > .menu-drawer__submenu {
   transform: translateY(-50%);
 }
 
-.js .menu-drawer__submenu {
+.js .xboost-menu-drawer__submenu {
   position: absolute;
   top: 0;
   width: 100%;
@@ -155,11 +155,11 @@ details[open].menu-opening > .menu-drawer__submenu {
   visibility: hidden;
 }
 
-.js .menu-drawer__submenu .menu-drawer__submenu {
+.js .xboost-menu-drawer__submenu .xboost-menu-drawer__submenu {
   overflow-y: auto;
 }
 
-.menu-drawer__close-button {
+.xboost-menu-drawer__close-button {
   margin-top: 1.5rem;
   padding: 1.2rem 2.6rem 1.2rem 3rem;
   text-decoration: none;
@@ -174,19 +174,19 @@ details[open].menu-opening > .menu-drawer__submenu {
   text-align: left;
 }
 
-.menu-drawer__close-button .svg-wrapper {
+.xboost-menu-drawer__close-button .svg-wrapper {
   transform: rotate(180deg);
   margin-right: 1rem;
   width: 15px;
 }
 
-.menu-drawer__utility-links {
+.xboost-menu-drawer__utility-links {
   padding: 0;
   background-color: rgba(var(--color-foreground), 0.03);
   position: relative;
 }
 
-.xboost-header--has-social .menu-drawer__utility-links {
+.xboost-header--has-social .xboost-menu-drawer__utility-links {
   padding: 2rem 3rem;
 }
 
@@ -194,19 +194,19 @@ details[open].menu-opening > .menu-drawer__submenu {
   .xboost-header--has-account:where(
       :not(.xboost-header--has-social):not(.xboost-header--has-localizations)
     )
-    .menu-drawer__utility-links {
+    .xboost-menu-drawer__utility-links {
     padding: 2rem 3rem;
   }
 }
 
 @media screen and (max-width: 989px) {
   .xboost-header--has-localizations:where(:not(.xboost-header--has-social))
-    .menu-drawer__utility-links {
+    .xboost-menu-drawer__utility-links {
     padding: 2rem 3rem;
   }
 }
 
-.menu-drawer__account {
+.xboost-menu-drawer__account {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
@@ -216,24 +216,24 @@ details[open].menu-opening > .menu-drawer__submenu {
   margin-bottom: 0;
 }
 
-.menu-drawer__utility-links:has(.menu-drawer__localization)
-  .menu-drawer__account {
+.xboost-menu-drawer__utility-links:has(.xboost-menu-drawer__localization)
+  .xboost-menu-drawer__account {
   margin: 0;
 }
 
-.menu-drawer__account account-icon > .svg-wrapper {
+.xboost-menu-drawer__account account-icon > .svg-wrapper {
   height: 2rem;
   width: 2rem;
   margin-right: 1rem;
 }
 
-.menu-drawer__account shop-user-avatar {
+.xboost-menu-drawer__account shop-user-avatar {
   --shop-avatar-size: 2.4rem;
   margin-right: 0.55rem;
   margin-left: -0.45rem;
 }
 
-.menu-drawer__account:hover account-icon > .svg-wrapper {
+.xboost-menu-drawer__account:hover account-icon > .svg-wrapper {
   transform: scale(1.07);
 }
 

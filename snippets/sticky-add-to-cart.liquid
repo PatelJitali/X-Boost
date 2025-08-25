@@ -155,7 +155,7 @@
       <div class="quentity_wrapper">
         <div
           id="Quantity-Form-{{ section.id }}"
-          class="product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %} cc-quantity_container"
+          class="xboost-product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %} cc-quantity_container"
           {{ block.shopify_attributes }}
         >
           <label class="xboost-quantity__label xboost-form__label cc-quantity__label" for="Quantity-{{ section.id }}">
@@ -348,13 +348,13 @@
             </volume-pricing>
           {%- endif -%}
         </div>
-        <div class="product-form__buttons">
+        <div class="xboost-product-form__buttons">
           <button
             id="ProductSubmitButton-{{ section.id }}"
             type="submit"
             form="{{ product_form_id }}"
             name="add"
-            class="product-form__submit button button--full-width{% if settings.sticky-btn-style %} button--secondary{% endif %} cc_cart_button"
+            class="xboost-product-form__submit button xboost-button--full-width{% if settings.sticky-btn-style %} button--secondary{% endif %} cc_cart_button"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null

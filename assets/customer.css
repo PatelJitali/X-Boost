@@ -639,7 +639,7 @@
   color: rgba(var(--color-foreground), 0.7);
 }
 
-.order .unit-price {
+.order .xboost-unit-price {
   font-size: 1.1rem;
   letter-spacing: 0.07rem;
   line-height: calc(1 + 0.2 / var(--font-body-scale));

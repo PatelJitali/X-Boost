@@ -33,7 +33,7 @@ slider-component.xboost-slider-component-full-width {
 }
 
 @media screen and (max-width: 749px) {
-  .slider.slider--mobile {
+  .slider.xboost-slider--mobile {
     position: relative;
     flex-wrap: inherit;
     overflow-x: auto;
@@ -45,29 +45,29 @@ slider-component.xboost-slider-component-full-width {
   }
 
   /* Fix to show some space at the end of our sliders in all browsers */
-  .slider--mobile:after {
+  .xboost-slider--mobile:after {
     content: '';
     width: 0;
     padding-left: 1.5rem;
   }
 
-  .slider.slider--mobile .slider__slide {
+  .slider.xboost-slider--mobile .slider__slide {
     margin-bottom: 0;
     padding-top: max(var(--focus-outline-padding), var(--shadow-padding-top));
     padding-bottom: max(var(--focus-outline-padding), var(--shadow-padding-bottom));
   }
 
-  .slider.slider--mobile.xboost-contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
+  .slider.xboost-slider--mobile.xboost-contains-card--standard .slider__slide:not(.collection-list__item--no-media) {
     padding-bottom: var(--focus-outline-padding);
   }
 
-  .slider.slider--mobile.contains-content-container .slider__slide {
+  .slider.xboost-slider--mobile.contains-content-container .slider__slide {
     --focus-outline-padding: 0rem;
   }
 }
 
 @media screen and (min-width: 750px) {
-  .slider.slider--tablet-up {
+  .slider.xboost-slider--tablet-up {
     position: relative;
     flex-wrap: inherit;
     overflow-x: auto;
@@ -77,7 +77,7 @@ slider-component.xboost-slider-component-full-width {
     -webkit-overflow-scrolling: touch;
   }
 
-  .slider.slider--tablet-up .slider__slide {
+  .slider.xboost-slider--tablet-up .slider__slide {
     margin-bottom: 0;
   }
 }
@@ -330,7 +330,7 @@ slider-component.xboost-slider-component-full-width {
 }
 
 @media screen and (min-width: 750px) {
-  .slider--mobile + .xboost-slider-buttons {
+  .xboost-slider--mobile + .xboost-slider-buttons {
     display: none;
   }
 }

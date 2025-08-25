@@ -23,7 +23,7 @@ if (!customElements.get('quick-add-modal')) {
       show(opener) {
         opener.setAttribute('aria-disabled', true);
         opener.classList.add('loading');
-        opener.querySelector('.loading__spinner').classList.remove('hidden');
+        opener.querySelector('.xboost-loading__spinner').classList.remove('hidden');
 
         fetch(opener.getAttribute('data-product-url'))
           .then((response) => response.text())
@@ -44,7 +44,7 @@ if (!customElements.get('quick-add-modal')) {
           .finally(() => {
             opener.removeAttribute('aria-disabled');
             opener.classList.remove('loading');
-            opener.querySelector('.loading__spinner').classList.add('hidden');
+            opener.querySelector('.xboost-loading__spinner').classList.add('hidden');
           });
       }
 
@@ -103,7 +103,7 @@ if (!customElements.get('quick-add-modal')) {
         const desktopColumns = product?.classList.contains('product--columns');
         if (!desktopColumns) return;
 
-        const mediaImages = product.querySelectorAll('.product__media img');
+        const mediaImages = product.querySelectorAll('.xboost-product__media img');
         if (!mediaImages.length) return;
 
         let mediaImageSizes =

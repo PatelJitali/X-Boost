@@ -155,7 +155,7 @@ product-recommendations.is-accordion + .accordion {
 }
 
 @media screen and (min-width: 750px) {
-  .xboost-complementary-products__container .price--on-sale .price-item--regular {
+  .xboost-complementary-products__container .price--on-sale .xboost-price-item--regular {
     font-size: 1.3rem;
   }
 }

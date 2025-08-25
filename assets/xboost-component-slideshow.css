@@ -4,7 +4,7 @@ slideshow-component {
   flex-direction: column;
 }
 
-slideshow-component .slideshow.banner {
+slideshow-component .xboost-slideshow.banner {
   flex-direction: row;
   flex-wrap: nowrap;
   margin: 0;

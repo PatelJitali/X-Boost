@@ -369,7 +369,7 @@ if (!customElements.get('quick-order-list')) {
       }
 
       updateMultipleQty(items) {
-        this.querySelector('.xboost-variant-remove-total .loading__spinner')?.classList.remove('hidden');
+        this.querySelector('.xboost-variant-remove-total .xboost-loading__spinner')?.classList.remove('hidden');
         const ids = Object.keys(items);
 
         const body = JSON.stringify({
@@ -394,7 +394,7 @@ if (!customElements.get('quick-order-list')) {
             this.setErrorMessage(window.cartStrings.error);
           })
           .finally(() => {
-            this.querySelector('.xboost-variant-remove-total .loading__spinner')?.classList.add('hidden');
+            this.querySelector('.xboost-variant-remove-total .xboost-loading__spinner')?.classList.add('hidden');
             this.requestStarted = false;
           });
       }
@@ -478,7 +478,7 @@ if (!customElements.get('quick-order-list')) {
       }
 
       toggleLoading(id, enable) {
-        const quickOrderListItems = this.querySelectorAll(`#Variant-${id} .loading__spinner`);
+        const quickOrderListItems = this.querySelectorAll(`#Variant-${id} .xboost-loading__spinner`);
         const quickOrderListItem = this.querySelector(`#Variant-${id}`);
 
         if (enable) {

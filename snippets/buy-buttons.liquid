@@ -29,11 +29,11 @@
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
       data-section-id="{{ section.id }}"
     >
-      <div class="product-form__error-message-wrapper" role="alert" hidden>
+      <div class="xboost-product-form__error-message-wrapper" role="alert" hidden>
         <span class="svg-wrapper">
           {{- 'icon-error.svg' | inline_asset_content -}}
         </span>
-        <span class="product-form__error-message"></span>
+        <span class="xboost-product-form__error-message"></span>
       </div>
 
       {%- form 'product',
@@ -60,7 +60,7 @@
           {%- render 'gift-card-recipient-form', product: product, form: form, section: section -%}
         {%- endif -%}
 
-        <div class="product-form__buttons">
+        <div class="xboost-product-form__buttons">
           {%- liquid
             assign check_against_inventory = true
             if product.selected_or_first_available_variant.inventory_management != 'shopify' or product.selected_or_first_available_variant.inventory_policy == 'continue'
@@ -74,7 +74,7 @@
             id="ProductSubmitButton-{{ section_id }}"
             type="submit"
             name="add"
-            class="product-form__submit button button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} {% if settings.collection-cart-drawer-data %} button--secondary {% endif %}"
+            class="xboost-product-form__submit button xboost-button--full-width {% if show_dynamic_checkout %}button--secondary{% else %}button--primary{% endif %} {% if settings.collection-cart-drawer-data %} button--secondary {% endif %}"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null
@@ -101,11 +101,11 @@
     </product-form>
   {%- else -%}
     <div class="product-form">
-      <div class="product-form__buttons form">
+      <div class="xboost-product-form__buttons form">
         <button
           type="submit"
           name="add"
-          class="product-form__submit button button--full-width button--primary"
+          class="xboost-product-form__submit button xboost-button--full-width button--primary"
           disabled
         >
           {{ 'products.product.sold_out' | t }}
@@ -122,7 +122,7 @@
     -%}
 
     <pickup-availability
-      class="product__pickup-availabilities xboost-quick-add-hidden"
+      class="xboost-product__pickup-availabilities xboost-quick-add-hidden"
       {% if product.selected_or_first_available_variant.available and pick_up_availabilities.size > 0 %}
         available
       {% endif %}

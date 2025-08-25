@@ -24,7 +24,9 @@
     color: {{ timer_text }};
     box-shadow: 0 0 .3rem .1rem {{ shadow }}2b;
   }
-
+#xboost-announcement-countdown-timer .xboost-time-separator {
+  color: {{ timer_text }};
+}
   #xboost-announcement-countdown-timer a.xboost-countdown-button {
     box-shadow: 0 0 .4rem .1rem {{ shadow }}2b;
   }
@@ -114,7 +116,7 @@
                     >
                       {{ section.blocks.first.settings.button_text_countdown | default: 'Shop Now' }}
                       <svg
-                        fill="currentColor"
+                        fill="{{ section.blocks.first.settings.text_color_button }}"
                         height="15px"
                         width="25px"
                         version="1.1"

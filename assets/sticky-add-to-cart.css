@@ -24,7 +24,7 @@
   justify-content: center;
 }
 
-#cc-sticky-bar .product-form__input.cc-quantity_container {
+#cc-sticky-bar .xboost-product-form__input.cc-quantity_container {
   display: flex;
   align-items: center;
   width: 100%;
@@ -46,7 +46,7 @@
   justify-content: center;
 }
 
-.product-form__submit.cc_cart_button {
+.xboost-product-form__submit.cc_cart_button {
   margin: 0;
 }
 
@@ -199,12 +199,12 @@
     min-width: 6rem;
   }
 
-  #cc-sticky-bar .product-form__input.cc-quantity_container {
+  #cc-sticky-bar .xboost-product-form__input.cc-quantity_container {
     padding: 0 10px;
   }
 
   #cc-sticky-bar .cc-sticky-bar-price .quentity_wrapper .quantity,
-  .product-form__submit.cc_cart_button {
+  .xboost-product-form__submit.cc_cart_button {
     min-height: 40px;
   }
 }

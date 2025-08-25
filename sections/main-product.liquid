@@ -14,7 +14,7 @@
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'xboost-component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
-  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'component-xboost-deferred-media.css' | asset_url | stylesheet_tag }}
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -236,7 +236,7 @@
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
-                  class="product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %}"
+                  class="xboost-product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %}"
                   {{ block.shopify_attributes }}
                 >
                   {% comment %} TODO: enable theme-check once `item_count_for_variant` is accepted as valid filter {% endcomment %}
@@ -481,7 +481,7 @@
                 {% if settings['enable-wishlist'] %}
                   {% if settings['enable-product-pagewishlist'] %}
                     <button
-                      class="xboost-wishlist_button button button--full-width button--secondary"
+                      class="xboost-wishlist_button button xboost-button--full-width button--secondary"
                       data-product-title="{{ product.title }}"
                       data-product-img="{{ product.featured_image | img_url: '400x400' }}"
                       data-product-price="{{ product.price | money | remove_first: '' }}"

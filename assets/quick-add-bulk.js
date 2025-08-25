@@ -50,7 +50,7 @@ if (!customElements.get('quick-add-bulk')) {
       }
 
       selectProgressBar() {
-        return this.querySelector('.progress-bar-container');
+        return this.querySelector('.xboost-progress-bar-container');
       }
 
       listenForActiveInput() {

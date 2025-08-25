@@ -75,7 +75,7 @@
           {%- unless placeholder -%}
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
           {%- else -%}
-            <div class="product__media-item">
+            <div class="xboost-product__media-item">
               <div
                 class="xboost-product-media-container xboost-global-media-settings gradient{% if section.settings.constrain_to_viewport %} xboost-constrain-height{% endif %}"
                 style="--ratio: 1.0; --preview-ratio: 1.0;"
@@ -163,7 +163,7 @@
                 {%- when 'quantity_selector' -%}
                   <div
                     id="Quantity-Form-{{ section.id }}"
-                    class="product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %}"
+                    class="xboost-product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %}"
                     {{ block.shopify_attributes }}
                   >
                     {% comment %} TODO: enable theme-check once `item_count_for_variant` is accepted as valid filter {% endcomment %}

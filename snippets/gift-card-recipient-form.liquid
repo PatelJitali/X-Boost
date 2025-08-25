@@ -23,13 +23,13 @@
       name="{{ gift_card_recipient_control_flag }}"
       disabled
     >
-    <label class="recipient-checkbox" for="Recipient-checkbox-{{ section.id }}">
+    <label class="xboost-recipient-checkbox" for="Recipient-checkbox-{{ section.id }}">
       {{ 'square.svg' | inline_asset_content }}
       {{- 'icon-checkmark.svg' | inline_asset_content -}}
       <span>{{ 'recipient.form.checkbox' | t }}</span>
     </label>
     <div
-      class="product-form__recipient-error-message-wrapper"
+      class="xboost-product-form__recipient-error-message-wrapper"
       role="alert"
       {% unless form.errors %}
         hidden
@@ -37,7 +37,7 @@
     >
       <h2 class="xboost-form__message" tabindex="-1" autofocus>
         {{- 'icon-error.svg' | inline_asset_content -}}
-        <span class="error-message">{{ 'templates.contact.form.error_heading' | t }}</span>
+        <span class="xboost-error-message">{{ 'templates.contact.form.error_heading' | t }}</span>
       </h2>
 
       <ul>
@@ -90,7 +90,7 @@
           class="xboost-form__message{% unless form.errors contains 'email' %} hidden{% endunless %}"
         >
           {{- 'icon-error.svg' | inline_asset_content -}}
-          <span class="error-message">
+          <span class="xboost-error-message">
             {%- if form.errors contains 'email' -%}
               {{ form.errors.messages.email }}.
             {%- endif -%}
@@ -123,7 +123,7 @@
           class="xboost-form__message{% unless form.errors contains 'name' %} hidden{% endunless %}"
         >
           {{- 'icon-error.svg' | inline_asset_content -}}
-          <span class="error-message">
+          <span class="xboost-error-message">
             {%- if form.errors contains 'name' -%}
               {{ form.errors.messages.name }}.
             {%- endif -%}
@@ -163,7 +163,7 @@
           class="xboost-form__message{% unless form.errors contains 'message' %} hidden{% endunless %}"
         >
           {{- 'icon-error.svg' | inline_asset_content -}}
-          <span class="error-message">
+          <span class="xboost-error-message">
             {%- if form.errors contains 'message' -%}
               {{ form.errors.messages.message }}.
             {%- endif -%}
@@ -197,7 +197,7 @@
           class="xboost-form__message{% unless form.errors contains 'send_on' %} hidden{% endunless %}"
         >
           {{- 'icon-error.svg' | inline_asset_content -}}
-          <span class="error-message">
+          <span class="xboost-error-message">
             {%- if form.errors contains 'send_on' -%}
               {{ form.errors.messages.send_on }}.
             {%- endif -%}
