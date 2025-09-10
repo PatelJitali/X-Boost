@@ -263,22 +263,6 @@ slider-component.xboost-slider-component-full-width {
   }
 }
 
-/* .xboost-slider-counter__link--dots .dot {
- width: 12px;
-  height: 12px;
- border-radius: var(--all-section-border-radius);
-  border: 0.1rem solid rgba(var(--color-foreground), 0.5);
-  padding: 0;
-  display: block;
-  
-}
-
-.xboost-slider-counter__link--active.xboost-slider-counter__link--dots .dot {
-  background-color: rgb(var(--color-foreground));
-  width: 30px;
-  height: 12px;
-   
-} */
 .xboost-slider-counter__link--dots .dot {
   position: relative;
   width: 12px;
