@@ -124,7 +124,7 @@
               {% if block.settings.button_text != blank %}
                 <div class="slide_btn_container">
                   <a
-                    class="cc-slider-button button"
+                    class="cc-xboost-slider-button button"
                     href="{{ block.settings.button_link }}"
                     style="color: {{ solid_button_label }}; background-color: {{ solid_button_background }}; border-color: {{ outline_button }}"
                   >
@@ -163,7 +163,7 @@
     {% if block.settings.button_link != blank %}
       <div class="slide_btn_container">
         <a
-          class="cc-slider-button button"
+          class="cc-xboost-slider-button button"
           style="color: {{ solid_button_label }}; background-color: {{ solid_button_background }}; border-color: {{ outline_button }}"
           href="{{ block.settings.button_link }}"
         >
@@ -176,103 +176,106 @@
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
 <script>
-   const swiper = new Swiper(".swiper-container", {
-    direction: window.innerWidth <= 749 ? "horizontal" : "{{ section.settings.slider_direction }}",
-    effect: "{{ section.settings.slider_effect }}",
-    speed: 1500,
-    loop: true,
-    autoplay: false,
+  document.addEventListener("DOMContentLoaded", function () {
+  const sliders = document.querySelectorAll("#Slider-verticle-{{ section.id }}");
+
+  sliders.forEach(function (sliderEl) {
+    const swiper = new Swiper(sliderEl, {
+      direction: window.innerWidth <= 749 ? "horizontal" : "{{ section.settings.slider_direction }}",
+      effect: "{{ section.settings.slider_effect }}",
+      speed: 1500,
+      loop: true,
+      autoplay: false,
       breakpoints: {
         768: {
           {% if section.settings.autoplay %}
-            autoplay: {
-              enabled: true,
-              delay: {{ section.settings.slider_speed }},
-            },
+          autoplay: {
+            enabled: true,
+            delay: {{ section.settings.slider_speed }},
+          },
           {% endif %}
         }
       },
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    on: {
-      slideChange: function () {
-        this.slides.forEach((slide) => {
-          let background = slide.querySelector(".background");
-          let content = slide.querySelector(".slider-content");
+      pagination: {
+        el: sliderEl.querySelector(".swiper-pagination"), // scoped pagination
+        clickable: true,
+      },
+      on: {
+        slideChange: function () {
+          this.slides.forEach((slide) => {
+            let background = slide.querySelector(".background");
+            let content = slide.querySelector(".slider-content");
 
-          const animationClasses = [
-            "animate__animated",
-            "animate__fadeIn",
-            "animate__slideUp",
-            "animate__zoomIn",
-            "animate__slideFromTop",
-            "animate__slideFromBottom",
-            "animate__slideFromLeft",
-            "animate__slideFromRight",
-            "animate__spin"
-          ];
+            const animationClasses = [
+              "animate__animated",
+              "animate__fadeIn",
+              "animate__slideUp",
+              "animate__zoomIn",
+              "animate__slideFromTop",
+              "animate__slideFromBottom",
+              "animate__slideFromLeft",
+              "animate__slideFromRight",
+              "animate__spin"
+            ];
 
-          if (content) {
-            content.classList.remove(...animationClasses);
-          }
-
-          if (background) {
-            background.classList.remove("animation");
-            background.style.zIndex = "";
-          }
-        });
-
-        let activeSlide = this.slides[this.activeIndex];
-        let background = activeSlide.querySelector(".background");
-        let content = activeSlide.querySelector(".slider-content");
-
-        if (background) {
-          background.classList.add("animation");
-          background.style.zIndex = "-1";
-        }
-
-        if (content) {
-          const animation = content.getAttribute("data-animation");
-          if (animation) {
-
-            let animationClass = "";
-            switch (animation) {
-              case "top":
-                animationClass = "animate__slideFromTop";
-                break;
-              case "bottom":
-                animationClass = "animate__slideFromBottom";
-                break;
-              case "left":
-                animationClass = "animate__slideFromLeft";
-                break;
-              case "right":
-                animationClass = "animate__slideFromRight";
-                break;
-              case "slideUp":
-                animationClass = "animate__slideUp";
-                break;
-              case "fadeIn":
-                animationClass = "animate__fadeIn";
-                break;
-              case "zoomIn":
-                animationClass = "animate__zoomIn";
-                break;
-              case "spin":
-                animationClass = "animate__spin";
-                break;
-              default:
-                animationClass = "";
+            if (content) {
+              content.classList.remove(...animationClasses);
             }
 
-            content.classList.add("animate__animated", animationClass);
+            if (background) {
+              background.classList.remove("animation");
+              background.style.zIndex = "";
+            }
+          });
+
+          let activeSlide = this.slides[this.activeIndex];
+          let background = activeSlide.querySelector(".background");
+          let content = activeSlide.querySelector(".slider-content");
+
+          if (background) {
+            background.classList.add("animation");
+            background.style.zIndex = "-1";
           }
-        }
+
+          if (content) {
+            const animation = content.getAttribute("data-animation");
+            if (animation) {
+              let animationClass = "";
+              switch (animation) {
+                case "top":
+                  animationClass = "animate__slideFromTop";
+                  break;
+                case "bottom":
+                  animationClass = "animate__slideFromBottom";
+                  break;
+                case "left":
+                  animationClass = "animate__slideFromLeft";
+                  break;
+                case "right":
+                  animationClass = "animate__slideFromRight";
+                  break;
+                case "slideUp":
+                  animationClass = "animate__slideUp";
+                  break;
+                case "fadeIn":
+                  animationClass = "animate__fadeIn";
+                  break;
+                case "zoomIn":
+                  animationClass = "animate__zoomIn";
+                  break;
+                case "spin":
+                  animationClass = "animate__spin";
+                  break;
+              }
+              content.classList.add("animate__animated", animationClass);
+            }
+          }
+        },
       },
-    },
+    });
   });
+});
+
 
 
         // mobile content slider js

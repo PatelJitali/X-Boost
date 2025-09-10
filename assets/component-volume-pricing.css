@@ -19,11 +19,11 @@ volume-pricing li {
   justify-content: space-between;
 }
 
-div.volume-pricing-note {
+div.xboost-volume-pricing-note {
   margin-top: -2.6rem;
 }
 
-.product--no-media .volume-pricing-note {
+.product--no-media .xboost-volume-pricing-note {
   text-align: center;
 }
 
@@ -31,8 +31,8 @@ div.volume-pricing-note {
   width: 30rem;
 }
 
-.volume-pricing-note span,
-volume-pricing .label-show-more {
+.xboost-volume-pricing-note span,
+volume-pricing .xboost-label-show-more {
   font-size: 1.2rem;
   letter-spacing: 0.07rem;
 }
@@ -41,14 +41,14 @@ volume-pricing show-more-button {
   margin-top: 0.8rem;
 }
 
-.product-form__input price-per-item,
-.price-per-item__container {
+.xboost-product-form__input price-per-item,
+.xboost-price-per-item__container {
   display: flex;
   align-items: center;
   gap: 1rem;
 }
 
-.product-form__input .price-per-item {
+.xboost-product-form__input .price-per-item {
   color: rgba(var(--color-foreground));
   font-size: 1.4rem;
   letter-spacing: 0.06rem;
@@ -62,8 +62,8 @@ volume-pricing show-more-button {
   margin-left: 0;
 }
 
-.price-per-item__container .variant-item__old-price,
-.price__regular .variant-item__old-price {
+.xboost-price-per-item__container .xboost-variant-item__old-price,
+.xboost-price__regular .xboost-variant-item__old-price {
   color: rgba(var(--color-foreground), 0.75);
   font-size: 1.2rem;
   letter-spacing: 0.07rem;

@@ -40,18 +40,18 @@
   {%- paginate collection.products by section.settings.products_per_page -%}
     {% comment %} Sort is the first tabbable element when filter type is vertical {% endcomment %}
     {%- if section.settings.enable_sorting and section.settings.filter_type == 'vertical' -%}
-      <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
-        <form class="facets-vertical-form" id="FacetSortForm">
-          <div class="facet-filters sorting caption">
-            <div class="facet-filters__field">
-              <h2 class="facet-filters__label caption-large text-body">
+      <facet-filters-form class="facets xboost-facets-vertical-sort page-width xboost-small-hide">
+        <form class="xboost-facets-vertical-form" id="FacetSortForm">
+          <div class="xboost-facet-filters sorting caption">
+            <div class="xboost-facet-filters__field">
+              <h2 class="xboost-facet-filters__label xboost-caption-large xboost-text-body">
                 <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
               </h2>
               <div class="select">
                 {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
                 <select
                   name="sort_by"
-                  class="facet-filters__sort select__select caption-large"
+                  class="xboost-facet-filters__sort xboost-select__select xboost-caption-large"
                   id="SortBy"
                   aria-describedby="a11y-refresh-page-message"
                 >
@@ -73,8 +73,8 @@
             </div>
           </div>
 
-          <div class="product-count-vertical light" role="status">
-            <h2 class="product-count__text text-body">
+          <div class="xboost-product-count-vertical light" role="status">
+            <h2 class="xboost-product-count__text xboost-text-body">
               <span id="ProductCountDesktop">
                 {%- if collection.results_count -%}
                   {{
@@ -97,7 +97,7 @@
       </facet-filters-form>
     {%- endif -%}
 
-    <div class="{% if section.settings.filter_type == 'vertical' %} facets-vertical page-width{% endif %}">
+    <div class="{% if section.settings.filter_type == 'vertical' %} xboost-facets-vertical page-width{% endif %}">
       {{ 'component-facets.css' | asset_url | stylesheet_tag }}
       {% comment %}
         <script src="{{ 'facets.js' | asset_url }}" defer="defer"></script>
@@ -105,7 +105,7 @@
       {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
         <aside
           aria-labelledby="verticalTitle"
-          class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+          class="xboost-facets-wrapper{% unless section.settings.enable_filtering %} xboost-facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
           id="main-collection-filters"
           data-id="{{ section.id }}"
         >
@@ -120,17 +120,17 @@
       {%- endif -%}
 
       <div
-        class="product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="xboost-product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         id="ProductGridContainer"
         {% if settings.animations_reveal_on_scroll %}
           data-cascade
         {% endif %}
       >
         {%- if collection.products.size == 0 -%}
-          <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
-            <div class="loading-overlay gradient"></div>
+          <div class="collection xboost-collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
+            <div class="xboost-loading-overlay gradient"></div>
             <div class="title-wrapper center">
-              <h2 class="title title--primary">
+              <h2 class="title xboost-title--primary">
                 {{ 'sections.collection_template.empty' | t -}}
                 <br>
                 {{
@@ -144,14 +144,14 @@
           <div
             class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
           >
-            <div class="loading-overlay gradient"></div>
+            <div class="xboost-loading-overlay gradient"></div>
             <ul
               id="product-grid"
               data-id="{{ section.id }}"
               class="
-                grid product-grid grid--{{ section.settings.columns_mobile }}-col-tablet-down
-                grid--{{ section.settings.columns_desktop }}-col-desktop
-                {% if section.settings.quick_add == 'bulk' %} collection-quick-add-bulk{% endif %}
+                grid product-grid xboost-grid--{{ section.settings.columns_mobile }}-col-tablet-down
+                xboost-grid--{{ section.settings.columns_desktop }}-col-desktop
+                {% if section.settings.quick_add == 'bulk' %} xboost-collection-quick-add-bulk{% endif %}
               "
             >
               {% assign skip_card_product_styles = false %}
@@ -161,7 +161,7 @@
                   {%- assign lazy_load = true -%}
                 {%- endif -%}
                 <li
-                  class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                  class="xboost-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                   {% if settings.animations_reveal_on_scroll %}
                     data-cascade
                     style="--animation-order: {{ forloop.index }};"
@@ -184,7 +184,7 @@
                     {%- if settings['enable-product-gridwishlist'] %}
                       <div class="wishlist-button-collection">
                         <button
-                          class="wishlist_button"
+                          class="xboost-wishlist_button"
                           data-product-title="{{ product.title }}"
                           data-product-img="{{ product.featured_image | img_url: '400x400' }}"
                           data-product-price="{{ product.price | money | remove_first: '' }}"

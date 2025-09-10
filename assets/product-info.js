@@ -14,7 +14,7 @@ if (!customElements.get('product-info')) {
       constructor() {
         super();
 
-        this.quantityInput = this.querySelector('.quantity__input');
+        this.quantityInput = this.querySelector('.xboost-quantity__input');
       }
 
       connectedCallback() {
@@ -36,7 +36,7 @@ if (!customElements.get('product-info')) {
       initQuantityHandlers() {
         if (!this.quantityInput) return;
 
-        this.quantityForm = this.querySelector('.product-form__quantity');
+        this.quantityForm = this.querySelector('.xboost-product-form__quantity');
         if (!this.quantityForm) return;
 
         this.setQuantityBoundries();
@@ -305,8 +305,8 @@ if (!customElements.get('product-info')) {
         );
 
         // update media modal
-        const modalContent = this.productModal?.querySelector(`.product-media-modal__content`);
-        const newModalContent = html.querySelector(`product-modal .product-media-modal__content`);
+        const modalContent = this.productModal?.querySelector(`.xboost-product-media-modal__content`);
+        const newModalContent = html.querySelector(`product-modal .xboost-product-media-modal__content`);
         if (modalContent && newModalContent) modalContent.innerHTML = newModalContent.innerHTML;
       }
 
@@ -339,7 +339,7 @@ if (!customElements.get('product-info')) {
         const currentVariantId = this.productForm?.variantIdInput?.value;
         if (!currentVariantId) return;
 
-        this.querySelector('.quantity__rules-cart .loading__spinner').classList.remove('hidden');
+        this.querySelector('.xboost-quantity__rules-cart .xboost-loading__spinner').classList.remove('hidden');
         fetch(`${this.dataset.url}?variant=${currentVariantId}&section_id=${this.dataset.section}`)
           .then((response) => response.text())
           .then((responseText) => {
@@ -347,7 +347,7 @@ if (!customElements.get('product-info')) {
             this.updateQuantityRules(this.dataset.section, html);
           })
           .catch((e) => console.error(e))
-          .finally(() => this.querySelector('.quantity__rules-cart .loading__spinner').classList.add('hidden'));
+          .finally(() => this.querySelector('.xboost-quantity__rules-cart .xboost-loading__spinner').classList.add('hidden'));
       }
 
       updateQuantityRules(sectionId, html) {
@@ -355,12 +355,12 @@ if (!customElements.get('product-info')) {
         this.setQuantityBoundries();
 
         const quantityFormUpdated = html.getElementById(`Quantity-Form-${sectionId}`);
-        const selectors = ['.quantity__input', '.quantity__rules', '.quantity__label'];
+        const selectors = ['.xboost-quantity__input', '.xboost-quantity__rules', '.xboost-quantity__label'];
         for (let selector of selectors) {
           const current = this.quantityForm.querySelector(selector);
           const updated = quantityFormUpdated.querySelector(selector);
           if (!current || !updated) continue;
-          if (selector === '.quantity__input') {
+          if (selector === '.xboost-quantity__input') {
             const attributes = ['data-cart-quantity', 'data-min', 'data-max', 'step'];
             for (let attribute of attributes) {
               const valueUpdated = updated.getAttribute(attribute);

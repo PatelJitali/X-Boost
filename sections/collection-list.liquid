@@ -1,6 +1,6 @@
 {{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
+{{ 'xboost-component-slider.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -25,12 +25,12 @@
 -%}
 
 <div class="color-{{ section.settings.color_scheme }} gradient">
-  <div class="collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
+  <div class="xboost-collection-list-wrapper page-width isolate{% if show_mobile_slider %} page-width-desktop{% endif %}{% if section.settings.title == blank %} no-heading{% endif %}{% if section.settings.show_view_all == false or section.blocks.size > collections.size %} no-mobile-link{% endif %} section-{{ section.id }}-padding">
     {%- unless section.settings.title == blank -%}
-      <div class="title-wrapper-with-link{% if show_mobile_slider %} title-wrapper--self-padded-tablet-down{% else %} title-wrapper--self-padded-mobile{% endif %} title-wrapper--no-top-margin">
+      <div class="xboost-title-wrapper-with-link{% if show_mobile_slider %} xboost-title-wrapper--self-padded-tablet-down{% else %} xboost-title-wrapper--self-padded-mobile{% endif %} xboost-title-wrapper--no-top-margin">
         <h2
           id="SectionHeading-{{ section.id }}"
-          class="collection-list-title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="xboost-collection-list-title xboost-inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         >
           {{ section.settings.title }}
         </h2>
@@ -39,7 +39,7 @@
           <a
             href="{{ routes.collections_url }}"
             id="ViewAll-{{ section.id }}"
-            class="link underlined-link large-up-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="link underlined-link xboost-large-up-hide{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             aria-labelledby="ViewAll-{{ section.id }} SectionHeading-{{ section.id }}"
           >
             {{- 'sections.collection_list.view_all' | t -}}
@@ -48,9 +48,9 @@
       </div>
     {%- endunless -%}
 
-    <slider-component class="slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <slider-component class="xboost-slider-mobile-gutter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <ul
-        class="collection-list contains-card contains-card--collection{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid grid--{{ section.settings.columns_desktop }}-col-desktop grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
+        class="collection-list xboost-contains-card xboost-contains-card--collection{% if settings.card_style == 'standard' %} xboost-contains-card--standard{% endif %} grid xboost-grid--{{ section.settings.columns_desktop }}-col-desktop xboost-grid--{{ section.settings.columns_mobile }}-col-tablet-down{% if section.settings.swipe_on_mobile %} slider slider--tablet grid--peek{% endif %} collection-list--{{ section.blocks.size }}-items"
         id="Slider-{{ section.id }}"
         role="list"
       >
@@ -63,7 +63,7 @@
         {%- for block in section.blocks -%}
           <li
             id="Slide-{{ section.id }}-{{ forloop.index }}"
-            class="collection-list__item grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="xboost-collection-list__item xboost-grid__item{% if show_mobile_slider %} slider__slide{% endif %}{% if block.settings.collection.featured_image == nil %} xboost-collection-list__item--no-media{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -82,10 +82,10 @@
         {%- endfor -%}
       </ul>
       {%- if show_mobile_slider -%}
-        <div class="slider-buttons">
+        <div class="xboost-slider-buttons">
           <button
             type="button"
-            class="slider-button slider-button--prev"
+            class="xboost-slider-button xboost-slider-button--prev"
             name="previous"
             aria-label="{{ 'general.slider.previous_slide' | t }}"
           >
@@ -93,15 +93,15 @@
               {{- 'icon-caret.svg' | inline_asset_content -}}
             </span>
           </button>
-          <div class="slider-counter caption">
-            <span class="slider-counter--current">1</span>
+          <div class="xboost-slider-counter caption">
+            <span class="xboost-slider-counter--current">1</span>
             <span aria-hidden="true"> / </span>
             <span class="visually-hidden">{{ 'general.slider.of' | t }}</span>
-            <span class="slider-counter--total">{{ section.blocks.size }}</span>
+            <span class="xboost-slider-counter--total">{{ section.blocks.size }}</span>
           </div>
           <button
             type="button"
-            class="slider-button slider-button--next"
+            class="xboost-slider-button xboost-slider-button--next"
             name="next"
             aria-label="{{ 'general.slider.next_slide' | t }}"
           >
@@ -115,7 +115,7 @@
 
     {%- if section.settings.show_view_all and section.blocks.size < collections.size -%}
       <div
-        class="center collection-list-view-all{% if show_mobile_slider %} small-hide medium-hide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+        class="center xboost-collection-list-view-all{% if show_mobile_slider %} xboost-small-hide xboost-medium-hide{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
         {% if settings.animations_reveal_on_scroll %}
           data-cascade
         {% endif %}

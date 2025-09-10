@@ -10,14 +10,13 @@
   flex-basis: 70%;
   width: 100%;
   max-height: 650px;
-  /* height: 100%; */
 }
 
 .lookbook-main .lookbook-image-wrapper svg {
   box-shadow: inset 0 0 0.3rem 0.1rem #0000002b;
   border-radius: 15px;
   height: 100%;
-    width: 100%;
+  width: 100%;
   background: #ffffff;
 }
 
@@ -25,7 +24,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* border-radius: 12px; */
   border-radius: var(--all-section-border-radius);
 }
 
@@ -85,9 +83,11 @@
   top: 50%;
   transform: translateY(-50%);
 }
+
 .lookbook-main .hospot-popup-pro-img {
   max-width: 81px;
 }
+
 .lookbook-main .hotspot-popup.left {
   right: calc(100% + 15px);
   top: 50%;
@@ -109,7 +109,6 @@
   font-size: 14px;
   font-weight: 500;
   margin: 0 0 6px;
-  /* color: #000; */
   text-align: start;
 }
 
@@ -130,6 +129,7 @@
     transform: scale(1);
     opacity: 0.8;
   }
+
   100% {
     transform: scale(1.8);
     opacity: 0;
@@ -161,14 +161,12 @@
   box-shadow: 0 0 0.3rem 0.1rem #0000001b;
 }
 
-.lookbook-main .product-panel {
-  /* background: #fff; */
+.lookbook-main .product-panel { 
   border-radius: 16px;
   padding: 0px;
   display: none;
   opacity: 0;
   transition: opacity 0.4s ease-out, transform 0.4s ease-out;
-  /* box-shadow: 0 10px 30px rgb(6 4 4 / 8%); */
 }
 
 .lookbook-main .product-panel[aria-hidden="false"] {
@@ -182,6 +180,7 @@
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
@@ -191,51 +190,36 @@
 .lookbook-main .product-image {
   width: 100%;
   height: 100%;
-  /* border-radius: 12px; */
-  /* margin-bottom: 15px; */
-  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); */
   border-radius: var(--all-section-border-radius);
 }
 
 .lookbook-main .product-title {
   font-size: 16px;
   font-weight: 600;
-  /* color: #1a1a1a; */
   text-align: center;
-  /* margin: 3px; */
 }
 
 .lookbook-main .product-price {
   font-size: 16px;
-  /* color: #666; */
   margin-bottom: 10px;
   font-weight: 500;
   text-align: center;
 }
 
 .lookbook-main .product-header {
-  /* margin-bottom: 20px; */
   text-align: center;
 }
 
 .lookbook-main .product-lookbook-pro-header {
-  /* font-size: 24px; */
   font-weight: 600;
-  /* margin: 8px; */
-  /* color: #1a1a1a; */
 }
 
 .lookbook-main .product-lookbook-pro-subheader {
-  /* font-size: 16px; */
-  /* color: #666; */
-  /* margin-top: 10px; */
-      margin: 0px 0px;
+  margin: 0px 0px;
 }
 
 .lookbook-main .product-description {
   font-size: 16px;
-  /* color: #666; */
-  /* margin-bottom: 10px; */
   text-align: center;
 }
 
@@ -264,6 +248,13 @@
   }
 }
 
+@media (max-width: 749px) {
+  #main-lookbook-with-product {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
 @media (max-width: 768px) {
   .lookbook-main .hotspot {
     width: 15px;
@@ -289,28 +280,23 @@
     left: -4px;
   }
 
-  .lookbook-main .product-panel {
-    /* padding: 20px; */
-  }
-
   .lookbook-main .product-title {
     font-size: 15px;
-            margin: 0;
   }
 
   .lookbook-main .product-price {
     font-size: 12px;
-    /* margin-bottom: 10px; */
-     margin: 0;
   }
 
   .lookbook-main .hotspot-popup {
     display: none;
   }
+
   .lookbook-main .product-lookbook-pro-header {
     font-size: 22px !important;
     margin: 5px 0px;
   }
+
   .lookbook-main .product-description {
     font-size: 15px;
   }

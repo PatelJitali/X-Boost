@@ -23,7 +23,7 @@
   </p>
   {%- form 'activate_customer_password' -%}
     {%- if form.errors -%}
-      <h2 class="form__message" tabindex="-1" autofocus>
+      <h2 class="xboost-form__message" tabindex="-1" autofocus>
         <span class="svg-wrapper">
           {{- 'icon-error.svg' | inline_asset_content -}}
         </span>
@@ -61,7 +61,7 @@
         {{ 'customer.activate_account.password' | t }}
       </label>
       {%- if form.errors contains 'password' -%}
-        <small id="password-error" class="form__message">
+        <small id="password-error" class="xboost-form__message">
           <span class="svg-wrapper">
             {{- 'icon-error.svg' | inline_asset_content -}}
           </span>
@@ -87,7 +87,7 @@
         {{ 'customer.activate_account.password_confirm' | t }}
       </label>
       {%- if form.errors contains 'password_confirmation' -%}
-        <small id="password_confirmation-error" class="form__message">
+        <small id="password_confirmation-error" class="xboost-form__message">
           <span class="svg-wrapper">
             {{- 'icon-error.svg' | inline_asset_content -}}
           </span>

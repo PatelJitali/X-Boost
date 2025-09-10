@@ -80,7 +80,23 @@
             loading="lazy"
           >
         {% else %}
-          {{ 'product-1' | placeholder_svg_tag }}
+          <div
+    class="tab-image {% if forloop.first %}active{% endif %}"
+    data-tab="{{ forloop.index }}"
+  >
+    {% case forloop.index %}
+      {% when 1 %}
+        {{ 'product-1' | placeholder_svg_tag }}
+      {% when 2 %}
+        {{ 'product-2' | placeholder_svg_tag }}
+      {% when 3 %}
+        {{ 'product-3' | placeholder_svg_tag }}
+      {% when 4 %}
+        {{ 'product-4' | placeholder_svg_tag }}
+          {% else %}
+        {{ 'product-1' | placeholder_svg_tag }} 
+    {% endcase %}
+  </div>
         {% endif %}
       {% endfor %}
     </div>

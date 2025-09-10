@@ -2,7 +2,7 @@
   position: static;
 }
 /* Basic setup for mega menu */
-.mega-menu__content {
+.xboost-mega-menu__content {
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.5s ease;
@@ -10,7 +10,7 @@
 }
 
 /* Initial state when menu is opened */
-.mega-menu[open] .mega-menu__content {
+.mega-menu[open] .xboost-mega-menu__content {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
@@ -19,7 +19,7 @@
 
 /* Method 2: Fallback using scroll position class */
 /* Add this class via JS when scrolling */
-.is-scrolling .mega-menu[open] .mega-menu__content {
+.is-scrolling .mega-menu[open] .xboost-mega-menu__content {
   opacity: 0;
   transform: translateY(-10px);
   pointer-events: none;
@@ -27,13 +27,13 @@
 }
 
 /* Optional: Prevent menu from closing when hovering */
-.mega-menu:hover .mega-menu__content {
+.mega-menu:hover .xboost-mega-menu__content {
   opacity: 1 !important;
   transform: translateY(0) !important;
   pointer-events: auto !important;
   transition: all 0.5s ease;
 }
-.mega-menu__content {
+.xboost-mega-menu__content {
   background-color: rgb(var(--color-background));
   border-left: 0;
   border-radius: 0;
@@ -47,44 +47,44 @@
   top: 100%;
 }
 
-.shopify-section-header-sticky .mega-menu__content {
+.shopify-section-header-sticky .xboost-mega-menu__content {
   max-height: calc(100vh - var(--header-bottom-position-desktop, 20rem) - 4rem);
 }
 
-.header-wrapper--border-bottom .mega-menu__content {
+.header-wrapper--border-bottom .xboost-mega-menu__content {
   border-top: 0;
 }
 
-.js .mega-menu__content {
+.js .xboost-mega-menu__content {
   opacity: 0;
   transform: translateY(-1.5rem);
 }
 
-.mega-menu[open] .mega-menu__content {
+.mega-menu[open] .xboost-mega-menu__content {
   opacity: 1;
   transform: translateY(0);
 }
 
-.mega-menu-list .mega-menu__link {
+.xboost-mega-menu-list .xboost-mega-menu__link {
   transform: translate(10px, -10px);
 }
 
-.mega-menu[open] .mega-menu-list .mega-menu__link {
+.mega-menu[open] .xboost-mega-menu-list .xboost-mega-menu__link {
   transform: translate(0, 0);
 }
 
-/* .mega-menu__link--level-2 {
+/* .xboost-mega-menu__link--level-2 {
   font-size: 18px !important;
 } */
 
-.mega-menu__list {
+.xboost-mega-menu__list {
   display: grid;
   gap: 3rem 4rem;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   list-style: none;
 }
 
-.mega-menu__link {
+.xboost-mega-menu__link {
   color: rgba(var(--color-foreground), 0.75);
   display: block;
   line-height: calc(1 + 0.3 / var(--font-body-scale));
@@ -95,29 +95,29 @@
   word-wrap: break-word;
 }
 
-.mega-menu__link--level-2 {
+.xboost-mega-menu__link--level-2 {
   font-weight: bold;
 }
 
-.header--top-center .mega-menu__list {
+.header--top-center .xboost-mega-menu__list {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   column-gap: 0;
 }
 
-.header--top-center .mega-menu__list > li {
+.header--top-center .xboost-mega-menu__list > li {
   width: 16%;
   padding-right: 2.4rem;
 }
 
 .mega-menu__link:hover,
-.mega-menu__link--active {
+.xboost-mega-menu__link--active {
   color: rgb(var(--color-foreground));
   text-decoration: underline;
 }
 
-.mega-menu__link--active:hover {
+.xboost-mega-menu__link--active:hover {
   text-decoration-thickness: 0.2rem;
 }
 
@@ -125,6 +125,6 @@
   display: block;
 }
 
-.mega-menu__list--condensed .mega-menu__link {
+.mega-menu__list--condensed .xboost-mega-menu__link {
   font-weight: normal;
 }

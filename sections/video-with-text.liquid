@@ -120,22 +120,27 @@
 
         <div class="brand-media">
           {% if block.settings.video_url != blank %}
-            <div class="video-container">
-              {% if block.settings.video_url contains 'youtube' %}
-                <iframe
-                  src="https://www.youtube.com/embed/{{ block.settings.video_url.id }}?playsinline=1&autoplay=1&controls=0&mute=1&loop=1&"
-                  frameborder="0"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen
-                ></iframe>
-              {% elsif block.settings.video_url contains 'vimeo' %}
-                <iframe
-                  src="https://player.vimeo.com/video/{{ block.settings.video_url.last }}?background=1&autoplay=1&loop=1&byline=0&title=0"
-                  frameborder="0"
-                  allowfullscreen
-                ></iframe>
-              {% endif %}
-            </div>
+           <div class="video-container">
+  {% if block.settings.video_url contains 'youtube' %}
+    {% assign youtube_id = block.settings.video_url | split: 'v=' | last | split: '&' | first %}
+    <iframe
+      src="https://www.youtube.com/embed/{{ youtube_id }}?playsinline=1&autoplay={% if block.settings.enable_autoplay %}1{% else %}0{% endif %}&controls={% if block.settings.show_controls %}1{% else %}0{% endif %}&mute={% if block.settings.enable_muted %}1{% else %}0{% endif %}&loop=1&playlist={{ youtube_id }}"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+
+  {% elsif block.settings.video_url contains 'vimeo' %}
+    {% assign vimeo_id = block.settings.video_url | split: '/' | last %}
+    <iframe
+      src="https://player.vimeo.com/video/{{ vimeo_id }}?autoplay={% if block.settings.enable_autoplay %}1{% else %}0{% endif %}&loop=1&muted={% if block.settings.enable_muted %}1{% else %}0{% endif %}&title=0&byline=0&portrait=0"
+      frameborder="0"
+      allow="autoplay; fullscreen; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  {% endif %}
+</div>
+
           {% elsif block.settings.video != blank %}
             <div class="video-container ">
               {{

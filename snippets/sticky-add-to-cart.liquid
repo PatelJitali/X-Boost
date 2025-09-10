@@ -30,7 +30,7 @@
       color: {{ text_color }}
     }
 
-    #cc-sticky-bar .cc-sticky-bar-price .quentity_wrapper .price-per-item__container .quantity:after {
+    #cc-sticky-bar .cc-sticky-bar-price .quentity_wrapper .xboost-price-per-item__container .quantity:after {
       border: 1px solid {{ outline_button }};
     }
 
@@ -128,11 +128,20 @@
           id=""
           class="cc-product__media-item"
         >
-          {{
-            product.featured_image
-            | image_url: width: product.featured_image.width, height: product.featured_image.height
-            | image_tag
-          }}
+          
+          {% if product.featured_image %}
+  {{
+    product.featured_image
+    | image_url: width: product.featured_image.width, height: product.featured_image.height
+    | image_tag
+  }}
+{% else %}
+    <div style="min-width: 100px; height: 100px; display: flex; align-items: center; justify-content: center;">
+    {{ 'product-1' | placeholder_svg_tag }}
+  </div>
+
+{% endif %}
+
         </li>
       </ul>
       <div class="cc-sticky-bar-title">
@@ -146,15 +155,15 @@
       <div class="quentity_wrapper">
         <div
           id="Quantity-Form-{{ section.id }}"
-          class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %} cc-quantity_container"
+          class="xboost-product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %} cc-quantity_container"
           {{ block.shopify_attributes }}
         >
-          <label class="quantity__label form__label cc-quantity__label" for="Quantity-{{ section.id }}">
+          <label class="xboost-quantity__label xboost-form__label cc-quantity__label" for="Quantity-{{ section.id }}">
             {{ 'products.product.quantity.label' | t }}
           </label>
-          <div class="price-per-item__container">
-            <quantity-input class="quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
-              <button class="quantity__button" name="minus" type="button">
+          <div class="xboost-price-per-item__container">
+            <quantity-input class="xboost-quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
+              <button class="xboost-quantity__button" name="minus" type="button">
                 <span class="visually-hidden">
                   {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
                 </span>
@@ -165,7 +174,7 @@
                 </span>
               </button>
               <input
-                class="quantity__input"
+                class="xboost-quantity__input"
                 type="number"
                 name="quantity"
                 id="Quantity-{{ section.id }}"
@@ -180,7 +189,7 @@
                 value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                 form="{{ product_form_id }}"
               >
-              <button class="quantity__button" name="plus" type="button">
+              <button class="xboost-quantity__button" name="plus" type="button">
                 <span class="visually-hidden">
                   {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
                 </span>
@@ -208,12 +217,12 @@
                   {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                   <div class="price-per-item">
                     {%- if variant_price_compare -%}
-                      <dl class="price-per-item--current">
+                      <dl class="xboost-price-per-item--current">
                         <dt class="visually-hidden">
                           {{ 'products.product.price.regular_price' | t }}
                         </dt>
                         <dd>
-                          <s class="variant-item__old-price">
+                          <s class="xboost-variant-item__old-price">
                             {{ variant_price_compare | money_with_currency }}
                           </s>
                         </dd>
@@ -223,14 +232,14 @@
                       {%- assign variant_price = product.selected_or_first_available_variant.price
                         | money_with_currency
                       -%}
-                      <span class="price-per-item--current">
+                      <span class="xboost-price-per-item--current">
                         {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                       </span>
                     {%- else -%}
                       {%- for price_break in volume_pricing_array -%}
                         {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
                           {%- assign price_break_price = price_break.price | money_with_currency -%}
-                          <span class="price-per-item--current">
+                          <span class="xboost-price-per-item--current">
                             {{- 'products.product.volume_pricing.price_at_each' | t: price: price_break_price -}}
                           </span>
                           {%- break -%}
@@ -243,12 +252,12 @@
                   {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                   <div class="price-per-item">
                     {%- if variant_price_compare -%}
-                      <dl class="price-per-item--current">
+                      <dl class="xboost-price-per-item--current">
                         <dt class="visually-hidden">
                           {{ 'products.product.price.regular_price' | t }}
                         </dt>
                         <dd>
-                          <s class="variant-item__old-price">
+                          <s class="xboost-variant-item__old-price">
                             {{ variant_price_compare | money_with_currency }}
                           </s>
                         </dd>
@@ -256,13 +265,13 @@
                           {{ 'products.product.price.sale_price' | t }}
                         </dt>
                         <dd>
-                          <span class="price-per-item--current">
+                          <span class="xboost-price-per-item--current">
                             {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                           </span>
                         </dd>
                       </dl>
                     {%- else -%}
-                      <span class="price-per-item--current">
+                      <span class="xboost-price-per-item--current">
                         {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                       </span>
                     {%- endif -%}
@@ -271,7 +280,7 @@
               </price-per-item>
             {%- endif -%}
           </div>
-          <div class="quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
+          <div class="xboost-quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
             {%- if product.selected_or_first_available_variant.quantity_rule.increment > 1 -%}
               <span class="divider">
                 {{-
@@ -298,9 +307,9 @@
             {%- endif -%}
           </div>
           {%- if product.quantity_price_breaks_configured? -%}
-            <volume-pricing class="parent-display" id="Volume-{{ section.id }}">
+            <volume-pricing class="xboost-parent-display" id="Volume-{{ section.id }}">
               {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
-                <span class="caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
+                <span class="xboost-caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
                 <ul class="list-unstyled">
                   <li>
                     <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
@@ -325,11 +334,11 @@
                 {%- if product.selected_or_first_available_variant.quantity_price_breaks.size >= 3 -%}
                   <show-more-button>
                     <button
-                      class="button-show-more link underlined-link"
+                      class="xboost-button-show-more link underlined-link"
                       id="Show-More-{{ section.id }}"
                       type="button"
                     >
-                      <span class="label-show-more label-text"
+                      <span class="xboost-label-show-more label-text"
                         ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t }}
                       </span>
                     </button>
@@ -339,13 +348,13 @@
             </volume-pricing>
           {%- endif -%}
         </div>
-        <div class="product-form__buttons">
+        <div class="xboost-product-form__buttons">
           <button
             id="ProductSubmitButton-{{ section.id }}"
             type="submit"
             form="{{ product_form_id }}"
             name="add"
-            class="product-form__submit button button--full-width{% if settings.sticky-btn-style %} button--secondary{% endif %} cc_cart_button"
+            class="xboost-product-form__submit button xboost-button--full-width{% if settings.sticky-btn-style %} button--secondary{% endif %} cc_cart_button"
             {% if product.selected_or_first_available_variant.available == false
               or quantity_rule_soldout
               or product.selected_or_first_available_variant == null

@@ -5,7 +5,7 @@ $(window).on("scroll", function () {
       $(window).scrollTop() + $(window).height() - 100
     ) {
       $(this).find(".promo-image").addClass("active");
-      $(this).find(".countdown-section").addClass("active");
+      $(this).find(".xboost-countdown-section").addClass("active");
       $(this).find(".product-container").addClass("active");
     }
   });
@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const hoursEl = element.querySelector("[data-hours]");
     const minutesEl = element.querySelector("[data-minutes]");
     const secondsEl = element.querySelector("[data-seconds]");
-    const timeoutMessage = element.querySelector(".timeout-message");
+    const timeoutMessage = element.querySelector(".xboost-timeout-message");
 
     function updateCountdown() {
       const now = new Date().getTime();

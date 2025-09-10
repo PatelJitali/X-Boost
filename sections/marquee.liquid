@@ -362,7 +362,7 @@
    $(document).ready(function () {
       var scrollDirection = '{{ section.settings.scroll_direction }}' || 'left';
       var scrollSpeed = parseInt('{{ section.settings.scroll_speed }}') || 30000;
-      var pauseOnHover = {{ section.settings.pause_on_hover | json }} || true;
+    var pauseOnHover = {{ section.settings.pause_on_hover | json }};
 
   var itemsCount = $('.marquee-infinte{{ section.id }}').children().length;
 

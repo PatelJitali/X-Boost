@@ -23,27 +23,27 @@
       assign ratio = media_aspect_ratio
     endif
   -%}
-  <div class="article-card-wrapper card-wrapper underline-links-hover">
+  <div class="xboost-article-card-wrapper card-wrapper xboost-underline-links-hover">
     {% comment %} <article aria-labelledby="Article-{{ article.id }}"> {% endcomment %}
     <div
       class="
-        card article-card
+        xboost-card xboost-article-card
         card--{{ settings.blog_card_style }}
-        {% if media_height and media_height != 'adapt' %} article-card__image--{{ media_height }}{% endif %}
-        {% if article.image and show_image %} card--media{% else %} card--text{% endif %}
+        {% if media_height and media_height != 'adapt' %} xboost-article-card__image--{{ media_height }}{% endif %}
+        {% if article.image and show_image %} xboost-card--media{% else %} xboost-card--text{% endif %}
         {% if settings.blog_card_style == 'card' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}
         {% if settings.blog_card_style == 'card' and media_height == nil and article.image == empty or show_image == false %} ratio{% endif %}
       "
       style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
     >
       <div
-        class="card__inner {% if settings.blog_card_style == 'standard' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}{% if article.image and show_image or settings.blog_card_style == 'standard' %} ratio{% endif %}"
+        class="xboost-card__inner {% if settings.blog_card_style == 'standard' %} color-{{ settings.blog_card_color_scheme }} gradient{% endif %}{% if article.image and show_image or settings.blog_card_style == 'standard' %} ratio{% endif %}"
         style="--ratio-percent: {{ 1 | divided_by: ratio | times: 100 }}%;"
       >
         {%- if show_image == true and article.image -%}
-          <div class="article-card__image-wrapper card__media">
+          <div class="xboost-article-card__image-wrapper xboost-card__media">
             <div
-              class="article-card__image media media--hover-effect"
+              class="xboost-article-card__image media media--hover-effect"
               {% if section.settings.media_height == 'adapt' %}
                 style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
               {% endif %}
@@ -62,7 +62,7 @@
                 src="{{ article.image.src | image_url: width: 533 }}"
                 sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | divided_by: 2 }}px, (min-width: 750px) calc((100vw - 130px) / 2), calc((100vw - 50px) / 2)"
                 alt="{{ article.image.src.alt | escape }}"
-                class="motion-reduce"
+                class="xboost-motion-reduce"
                 {% unless lazy_load == false %}
                   loading="lazy"
                 {% endunless %}
@@ -73,16 +73,16 @@
             </div>
           </div>
         {%- endif -%}
-        <div class="card__content">
-          <div class="card__information">
-            <h3 class="card__heading{% if show_excerpt %} h2{% endif %}">
-              <a href="{{ article.url }}" class="full-unstyled-link">
+        <div class="xboost-card__content">
+          <div class="xboost-card__information">
+            <h3 class="xboost-card__heading{% if show_excerpt %} h2{% endif %}">
+              <a href="{{ article.url }}" class="xboost-full-unstyled-link">
                 {{ article.title | truncate: 50 | escape }}
               </a>
             </h3>
-            <div class="article-card__info caption-with-letter-spacing h5">
+            <div class="xboost-article-card__info xboost-caption-with-letter-spacing h5">
               {%- if show_date -%}
-                <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
+                <span class="xboost-circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
               {%- endif -%}
               {%- if show_author -%}
                 <span>{{ article.author }}</span>
@@ -90,7 +90,7 @@
             </div>
             {%- if show_excerpt -%}
               {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
-                <p class="article-card__excerpt rte-width">
+                <p class="xboost-article-card__excerpt xboost-rte-width">
                   {%- if article.excerpt.size > 0 -%}
                     {{ article.excerpt | strip_html | truncatewords: 30 }}
                   {%- else -%}
@@ -98,7 +98,7 @@
                   {%- endif -%}
                 </p>
               {%- endif -%}
-              <div class="article-card__footer">
+              <div class="xboost-article-card__footer">
                 {%- if article.comments_count > 0 and blog.comments_enabled? -%}
                   <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
                 {%- endif -%}
@@ -106,22 +106,22 @@
             {%- endif -%}
           </div>
           {%- if show_badge -%}
-            <div class="card__badge {{ settings.badge_position }}">
+            <div class="xboost-card__badge {{ settings.badge_position }}">
               <span class="badge color-{{ settings.color_schemes | first }}">{{ 'blogs.article.blog' | t }}</span>
             </div>
           {%- endif -%}
         </div>
       </div>
-      <div class="card__content">
-        <div class="card__information">
-          <h3 class="card__heading{% if show_excerpt %} h2{% endif %}">
-            <a href="{{ article.url }}" class="full-unstyled-link">
+      <div class="xboost-card__content">
+        <div class="xboost-card__information">
+          <h3 class="xboost-card__heading{% if show_excerpt %} h2{% endif %}">
+            <a href="{{ article.url }}" class="xboost-full-unstyled-link">
               {{ article.title | truncate: 50 | escape }}
             </a>
           </h3>
-          <div class="article-card__info caption-with-letter-spacing h5">
+          <div class="xboost-article-card__info xboost-caption-with-letter-spacing h5">
             {%- if show_date -%}
-              <span class="circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
+              <span class="xboost-circle-divider">{{ article.published_at | time_tag: format: 'date' }}</span>
             {%- endif -%}
             {%- if show_author -%}
               <span>{{ article.author }}</span>
@@ -129,7 +129,7 @@
           </div>
           {%- if show_excerpt -%}
             {%- if article.excerpt.size > 0 or article.content.size > 0 -%}
-              <p class="article-card__excerpt rte-width">
+              <p class="xboost-article-card__excerpt xboost-rte-width">
                 {%- if article.excerpt.size > 0 -%}
                   {{ article.excerpt | strip_html | truncatewords: 30 }}
                 {%- else -%}
@@ -137,7 +137,7 @@
                 {%- endif -%}
               </p>
             {%- endif -%}
-            <div class="article-card__footer">
+            <div class="xboost-article-card__footer">
               {%- if article.comments_count > 0 and blog.comments_enabled? -%}
                 <span>{{ 'blogs.article.comments' | t: count: article.comments_count }}</span>
               {%- endif -%}
@@ -145,7 +145,7 @@
           {%- endif -%}
         </div>
         {%- if show_badge -%}
-          <div class="card__badge {{ settings.badge_position }}">
+          <div class="xboost-card__badge {{ settings.badge_position }}">
             <span class="badge color-{{ settings.color_schemes | first }}">{{ 'blogs.article.blog' | t }}</span>
           </div>
         {%- endif -%}

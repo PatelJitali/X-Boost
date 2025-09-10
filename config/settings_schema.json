@@ -1645,7 +1645,6 @@
         "min": 5,
         "max": 24,
         "step": 1,
-        "unit": "px",
         "label": "t:settings_schema.cart.settings.cart_drawer.collection_product.label",
         "default": 10
       },

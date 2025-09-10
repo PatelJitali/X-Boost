@@ -20,30 +20,30 @@
 %}
 
 <style>
-  .template-search__header {
+  .xboost-template-search__header {
     margin-bottom: 3rem;
   }
 
-  .template-search__search {
+  .xboost-template-search__search {
     margin: 0 auto 3.5rem;
     max-width: 74.1rem;
   }
 
-  .template-search__search .search {
+  .xboost-template-search__search .search {
     margin-top: 3rem;
   }
 
-  .template-search--empty {
+  .xboost-template-search--empty {
     padding-bottom: 18rem;
   }
 
   @media screen and (min-width: 750px) {
-    .template-search__header {
+    .xboost-template-search__header {
       margin-bottom: 5rem;
     }
   }
 
-  .search__button .icon {
+  .xboost-search__button .icon {
     height: 1.8rem;
   }
 </style>
@@ -67,15 +67,15 @@
     }
   }
 
-  .facet-filters__field .select__select, .mobile-facets__sort .select__select {
+  .xboost-facet-filters__field .xboost-select__select, .xboost-mobile-facets__sort .xboost-select__select {
     background-color: {{ background }};
     color: {{ text_color }};
   }
 {%- endstyle -%}
 
 {% paginate search.results by 24 %}
-  <div class="template-search{% unless search.performed and search.results_count > 0 %} template-search--empty{% endunless %} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-    <div class="template-search__header page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="xboost-template-search{% unless search.performed and search.results_count > 0 %} xboost-template-search--empty{% endunless %} section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+    <div class="xboost-template-search__header page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       <h1 class="h2 center">
         {%- if search.performed -%}
           {{- 'templates.search.title' | t -}}
@@ -83,7 +83,7 @@
           {{- 'general.search.search' | t -}}
         {%- endif -%}
       </h1>
-      <div class="template-search__search">
+      <div class="xboost-template-search__search">
         {%- if settings.predictive_search_enabled -%}
           <predictive-search data-loading-text="{{ 'accessibility.loading' | t }}">
         {%- endif -%}
@@ -91,7 +91,7 @@
           <form action="{{ routes.search_url }}" method="get" role="search" class="search">
             <div class="field">
               <input
-                class="search__input field__input"
+                class="xboost-search__input xboost-field__input"
                 id="Search-In-Template"
                 type="search"
                 name="q"
@@ -110,27 +110,27 @@
                   spellcheck="false"
                 {%- endif -%}
               >
-              <label class="field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
+              <label class="xboost-field__label" for="Search-In-Template">{{ 'general.search.search' | t }}</label>
               <input name="options[prefix]" type="hidden" value="last">
 
               {%- if settings.predictive_search_enabled -%}
-                <div class="predictive-search predictive-search--search-template" tabindex="-1" data-predictive-search>
-                  {%- render 'loading-spinner', class: 'predictive-search__loading-state' -%}
+                <div class="predictive-search xboost-predictive-search--search-template" tabindex="-1" data-predictive-search>
+                  {%- render 'loading-spinner', class: 'xboost-predictive-search__loading-state' -%}
                 </div>
 
-                <span class="predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
+                <span class="xboost-predictive-search-status visually-hidden" role="status" aria-hidden="true"></span>
               {%- endif -%}
 
               <button
                 type="reset"
-                class="reset__button field__button{% if search.terms == blank %} hidden{% endif %}"
+                class="xboost-reset__button xboost-field__button{% if search.terms == blank %} hidden{% endif %}"
                 aria-label="{{ 'general.search.reset' | t }}"
               >
                 <span class="svg-wrapper">
                   {{- 'icon-reset.svg' | inline_asset_content -}}
                 </span>
               </button>
-              <button type="submit" class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
+              <button type="submit" class="xboost-search__button xboost-field__button" aria-label="{{ 'general.search.search' | t }}">
                 <span class="svg-wrapper">
                   {{- 'icon-search.svg' | inline_asset_content -}}
                 </span>
@@ -160,18 +160,18 @@
         and section.settings.filter_type == 'vertical'
         and search.filters != empty
       -%}
-        <facet-filters-form class="facets facets-vertical-sort page-width small-hide">
-          <form class="facets-vertical-form" id="FacetSortForm">
-            <div class="facet-filters sorting caption">
-              <div class="facet-filters__field">
-                <h2 class="facet-filters__label caption-large text-body">
+        <facet-filters-form class="facets xboost-facets-vertical-sort page-width xboost-small-hide">
+          <form class="xboost-facets-vertical-form" id="FacetSortForm">
+            <div class="xboost-facet-filters sorting caption">
+              <div class="xboost-facet-filters__field">
+                <h2 class="xboost-facet-filters__label xboost-caption-large xboost-text-body">
                   <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
                 </h2>
                 <div class="select">
                   {%- assign sort_by = search.sort_by | default: search.default_sort_by -%}
                   <select
                     name="sort_by"
-                    class="facet-filters__sort select__select caption-large"
+                    class="xboost-facet-filters__sort xboost-select__select xboost-caption-large"
                     id="SortBy"
                     aria-describedby="a11y-refresh-page-message"
                   >
@@ -193,8 +193,8 @@
               </div>
             </div>
 
-            <div class="product-count-vertical light" role="status">
-              <h2 class="product-count__text text-body">
+            <div class="xboost-product-count-vertical light" role="status">
+              <h2 class="xboost-product-count__text xboost-text-body">
                 <span id="ProductCountDesktop">
                   {%- if search.results_count -%}
                     {{ 'templates.search.results_with_count' | t: terms: search.terms, count: search.results_count }}
@@ -215,14 +215,14 @@
       {%- endif -%}
       <div
         {% if section.settings.filter_type == 'vertical' %}
-          class="facets-vertical page-width"
+          class="xboost-facets-vertical page-width"
         {% endif %}
       >
         {%- if search.filters != empty -%}
           {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
             <aside
               aria-labelledby="verticalTitle"
-              class="facets-wrapper{% unless section.settings.enable_filtering %} facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              class="xboost-facets-wrapper{% unless section.settings.enable_filtering %} xboost-facets-wrapper--no-filters{% endunless %}{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
               id="main-search-filters"
               data-id="{{ section.id }}"
             >
@@ -236,16 +236,16 @@
             </aside>
           {%- endif -%}
         {%- endif -%}
-        <div class="product-grid-container" id="ProductGridContainer">
+        <div class="xboost-product-grid-container" id="ProductGridContainer">
           {%- if search.results.size == 0 and search.filters != empty -%}
             <div
-              class="template-search__results collection collection--empty{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              class="xboost-template-search__results collection xboost-collection--empty{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
               id="product-grid"
               data-id="{{ section.id }}"
             >
-              <div class="loading-overlay gradient"></div>
+              <div class="xboost-loading-overlay gradient"></div>
               <div class="title-wrapper center">
-                <h2 class="title title--primary">
+                <h2 class="title xboost-title--primary">
                   {{ 'sections.collection_template.empty' | t -}}
                   <br>
                   {{
@@ -257,13 +257,13 @@
             </div>
           {%- else -%}
             <div
-              class="template-search__results collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
+              class="xboost-template-search__results collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
               id="product-grid"
               data-id="{{ section.id }}"
             >
-              <div class="loading-overlay gradient"></div>
+              <div class="xboost-loading-overlay gradient"></div>
               <ul
-                class="grid product-grid  grid--{{ section.settings.columns_mobile }}-col-tablet-down grid--{{ section.settings.columns_desktop }}-col-desktop"
+                class="grid product-grid  xboost-grid--{{ section.settings.columns_mobile }}-col-tablet-down xboost-grid--{{ section.settings.columns_desktop }}-col-desktop"
                 role="list"
               >
                 {%- assign skip_card_product_styles = false -%}
@@ -274,7 +274,7 @@
                   {%- endif -%}
 
                   <li
-                    class="grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                    class="xboost-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                     {% if settings.animations_reveal_on_scroll %}
                       data-cascade
                     {% endif %}
@@ -304,20 +304,20 @@
                           lazy_load: lazy_load
                         %}
                       {%- when 'page' -%}
-                        <div class="article-card-wrapper card-wrapper underline-links-hover">
+                        <div class="xboost-article-card-wrapper card-wrapper xboost-underline-links-hover">
                           <div
-                            class="card card--card card--text ratio color-{{ settings.blog_card_color_scheme }}"
+                            class="xboost-card card--card xboost-card--text ratio color-{{ settings.blog_card_color_scheme }}"
                             style="--ratio-percent: 100%;"
                           >
-                            <div class="card__content">
-                              <div class="card__information">
-                                <h3 class="card__heading">
-                                  <a href="{{ item.url }}" class="full-unstyled-link">
+                            <div class="xboost-card__content">
+                              <div class="xboost-card__information">
+                                <h3 class="xboost-card__heading">
+                                  <a href="{{ item.url }}" class="xboost-full-unstyled-link">
                                     {{ item.title | truncate: 50 | escape }}
                                   </a>
                                 </h3>
                               </div>
-                              <div class="card__badge {{ settings.badge_position }}">
+                              <div class="xboost-card__badge {{ settings.badge_position }}">
                                 <span class="badge color-{{ settings.color_schemes | first }}">
                                   {{- 'templates.search.page' | t -}}
                                 </span>

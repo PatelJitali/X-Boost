@@ -14,14 +14,14 @@
 {{ 'component-pagination.css' | asset_url | stylesheet_tag }}
 
 {%- if paginate.parts.size > 0 -%}
-  <div class="pagination-wrapper">
-    <nav class="pagination" role="navigation" aria-label="{{ 'general.pagination.label' | t }}">
-      <ul class="pagination__list list-unstyled" role="list">
+  <div class="xboost-pagination-wrapper">
+    <nav class="pagination" role="navigaion" aria-label="{{ 'general.pagination.label' | t }}">
+      <ul class="xboost-pagination__list list-unstyled" role="list">
         {%- if paginate.previous -%}
           <li>
             <a
               href="{{ paginate.previous.url }}{{ anchor }}"
-              class="pagination__item pagination__item--next pagination__item-arrow link motion-reduce"
+              class="xboost-pagination__item xboost-pagination__item--next xboost-pagination__item-arrow link xboost-motion-reduce"
               aria-label="{{ 'general.pagination.previous' | t }}"
             >
               <span class="svg-wrapper">
@@ -36,7 +36,7 @@
             {%- if part.is_link -%}
               <a
                 href="{{ part.url }}{{ anchor }}"
-                class="pagination__item link"
+                class="xboost-pagination__item link"
                 aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
               >
                 {{- part.title -}}
@@ -46,14 +46,14 @@
                 <a
                   role="link"
                   aria-disabled="true"
-                  class="pagination__item pagination__item--current light"
+                  class="xboost-pagination__item xboost-pagination__item--current light"
                   aria-current="page"
                   aria-label="{{ 'general.pagination.page' | t: number: part.title }}"
                 >
                   {{- part.title -}}
                 </a>
               {%- else -%}
-                <span class="pagination__item">{{ part.title }}</span>
+                <span class="xboost-pagination__item">{{ part.title }}</span>
               {%- endif -%}
             {%- endif -%}
           </li>
@@ -63,7 +63,7 @@
           <li>
             <a
               href="{{ paginate.next.url }}{{ anchor }}"
-              class="pagination__item pagination__item--prev pagination__item-arrow link motion-reduce"
+              class="xboost-pagination__item xboost-pagination__item--prev xboost-pagination__item-arrow link xboost-motion-reduce"
               aria-label="{{ 'general.pagination.next' | t }}"
             >
               <span class="svg-wrapper">

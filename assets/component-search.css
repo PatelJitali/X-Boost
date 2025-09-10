@@ -1,18 +1,18 @@
-.search__input.field__input {
+.xboost-search__input.xboost-field__input {
   padding-right: 9.8rem;
 }
 
-.search__button {
+.xboost-search__button {
   right: var(--inputs-border-width);
   top: var(--inputs-border-width);
 }
 
-.reset__button {
+.xboost-reset__button {
   right: calc(var(--inputs-border-width) + 4.4rem);
   top: var(--inputs-border-width);
 }
 
-.reset__button:not(:focus-visible)::after {
+.xboost-reset__button:not(:focus-visible)::after {
   border-right: 0.1rem solid rgba(var(--color-foreground), 0.08);
   display: block;
   height: calc(100% - 1.6rem);
@@ -21,7 +21,7 @@
   right: 0;
 }
 
-.reset__button:not(:focus)::after {
+.xboost-reset__button:not(:focus)::after {
   border-right: 0.1rem solid rgba(var(--color-foreground), 0.08);
   display: block;
   height: calc(100% - 1.8rem);
@@ -30,35 +30,35 @@
   right: 0;
 }
 
-.search__button:focus-visible,
-.reset__button:focus-visible {
+.xboost-search__button:focus-visible,
+.xboost-reset__button:focus-visible {
   background-color: rgb(var(--color-background));
   z-index: 4;
 }
 
-.search__button:focus,
-.reset__button:focus {
+.xboost-search__button:focus,
+.xboost-reset__button:focus {
   background-color: rgb(var(--color-background));
   z-index: 4;
 }
 
-.search__button:not(:focus-visible):not(.focused),
-.reset__button:not(:focus-visible):not(.focused) {
+.xboost-search__button:not(:focus-visible):not(.focused),
+.xboost-reset__button:not(:focus-visible):not(.focused) {
   box-shadow: inherit;
   background-color: inherit;
 }
 
-.search__button:hover .icon,
-.reset__button:hover .icon {
+.xboost-search__button:hover .icon,
+.xboost-reset__button:hover .icon {
   transform: scale(1.07);
 }
 
-.search__button .icon {
+.xboost-search__button .icon {
   height: 1.8rem;
   width: 1.8rem;
 }
 
-.reset__button .icon.icon-close {
+.xboost-reset__button .icon.icon-close {
   height: 1.8rem;
   width: 1.8rem;
   stroke-width: 0.1rem;
@@ -69,6 +69,6 @@ input::-webkit-search-decoration {
   -webkit-appearance: none;
 }
 
-.template-search__results {
+.xboost-template-search__results {
   position: relative;
 }

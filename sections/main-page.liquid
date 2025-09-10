@@ -6,7 +6,7 @@
     padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
   }
 
-  .page-width--narrow {
+  .xboost-page-width--narrow {
     padding-inline-start: 1.5rem;
     padding-inline-end: 1.5rem;
     margin: 0 auto;
@@ -18,15 +18,15 @@
       padding-bottom: {{ section.settings.padding_bottom }}px;
     }
 
-    .page-width--narrow {
+    .xboost-page-width--narrow {
         margin: 0 auto;
     }
   }
 {%- endstyle -%}
 
 <div class="{% unless section.settings.full_width_section %}page-width {% endunless %}section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-  <div class="{% if section.settings.full_width_section %}page-width{% else %}page-width--narrow{% endif %}">
-    <h1 class="main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="{% if section.settings.full_width_section %}page-width{% else %}xboost-page-width--narrow{% endif %}">
+    <h1 class="xboost-main-page-title page-title h0{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
       {{ page.title | escape }}
     </h1>
     <div class="rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">

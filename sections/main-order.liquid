@@ -16,7 +16,7 @@
 
 <div class="customer order section-{{ section.id }}-padding">
   <div>
-    <h1 class="customer__title">{{ 'customer.account.title' | t }}</h1>
+    <h1 class="xboost-customer__title">{{ 'customer.account.title' | t }}</h1>
     <a href="{{ routes.account_url }}">{{ 'customer.account.return' | t }}</a>
   </div>
 
@@ -31,7 +31,7 @@
         <p>{{ 'customer.order.cancelled_reason' | t: reason: order.cancel_reason_label }}</p>
       {%- endif -%}
 
-      <table role="table" class="order-details">
+      <table role="table" class="xboost-order-details">
         <caption class="visually-hidden">
           {{ 'customer.order.title' | t: name: order.name }}
         </caption>
@@ -62,7 +62,7 @@
                   {%- endif -%}
                   {%- assign property_size = line_item.properties | size -%}
                   {%- unless line_item.selling_plan_allocation == null and property_size == 0 -%}
-                    <div class="properties">
+                    <div class="xboost-properties">
                       {%- unless line_item.product.has_only_default_variant -%}
                         <span>
                           {{ line_item.variant.title | escape }}
@@ -144,7 +144,7 @@
                       <dt>
                         <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
                       </dt>
-                      <dd class="regular-price">
+                      <dd class="xboost-regular-price">
                         <s>{{ line_item.original_price | money }}</s>
                       </dd>
                       <dt>
@@ -165,7 +165,7 @@
                       <dt>
                         <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
                       </dt>
-                      <dd class="unit-price">
+                      <dd class="xboost-unit-price">
                         <span>
                           {%- capture unit_price_separator -%}
                             <span aria-hidden="true">/</span
@@ -205,7 +205,7 @@
                     <dt>
                       <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
                     </dt>
-                    <dd class="regular-price">
+                    <dd class="xboost-regular-price">
                       <s>{{ line_item.original_line_price | money }}</s>
                     </dd>
                     <dt>
@@ -236,7 +236,7 @@
               {%- for discount_application in order.cart_level_discount_applications -%}
                 <td id="RowDiscount" role="rowheader" scope="row" colspan="4">
                   {{ 'customer.order.discount' | t }}
-                  <span class="cart-discount">
+                  <span class="xboost-cart-discount">
                     <span class="svg-wrapper">
                       {{- 'icon-discount.svg' | inline_asset_content -}}
                     </span>
@@ -246,7 +246,7 @@
                 <td headers="RowDiscount" role="cell" data-label="{{ 'customer.order.discount' | t }}">
                   <div>
                     <span>-{{ discount_application.total_allocated_amount | money }}</span>
-                    <span class="cart-discount">
+                    <span class="xboost-cart-discount">
                       <span class="svg-wrapper">
                         {{- 'icon-discount.svg' | inline_asset_content -}}
                       </span>

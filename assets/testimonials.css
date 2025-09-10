@@ -44,6 +44,7 @@
   background-color: #ffffff;
   cursor: pointer;
   top: -4rem;
+  border-radius: var(--all-section-border-radius);
 }
 
 #cc-testimonial .cc-testimonial-content-container {

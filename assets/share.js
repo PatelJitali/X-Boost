@@ -8,7 +8,7 @@ if (!customElements.get('share-button')) {
         this.elements = {
           shareButton: this.querySelector('button'),
           shareSummary: this.querySelector('summary'),
-          closeButton: this.querySelector('.share-button__close'),
+          closeButton: this.querySelector('.xboost-share-button__close'),
           successMessage: this.querySelector('[id^="ShareMessage"]'),
           urlInput: this.querySelector('input'),
         };
@@ -23,9 +23,9 @@ if (!customElements.get('share-button')) {
         } else {
           this.mainDetailsToggle.addEventListener('toggle', this.toggleDetails.bind(this));
           this.mainDetailsToggle
-            .querySelector('.share-button__copy')
+            .querySelector('.xboost-share-button__copy')
             .addEventListener('click', this.copyToClipboard.bind(this));
-          this.mainDetailsToggle.querySelector('.share-button__close').addEventListener('click', this.close.bind(this));
+          this.mainDetailsToggle.querySelector('.xboost-share-button__close').addEventListener('click', this.close.bind(this));
         }
       }
 

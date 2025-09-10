@@ -68,16 +68,16 @@
 
   {% assign variant_images = product.images | where: 'attached_to_variant?', true | map: 'src' %}
 
-  <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}background-secondary{% else %}gradient{% endif %}">
+  <section class="color-{{ section.settings.color_scheme }} {% if section.settings.secondary_background %}xboost-background-secondary{% else %}gradient{% endif %}">
     <div class="page-width section-{{ section.id }}-padding{% if section.settings.secondary_background %} isolate{% endif %}">
       <div class="featured-product product product--{{ section.settings.media_size }} grid grid--1-col gradient color-{{ section.settings.color_scheme }} product--{{ section.settings.media_position }}{% if section.settings.secondary_background == false %} isolate{% endif %} {% if product.media.size > 0 or section.settings.product == blank %}grid--2-col-tablet{% else %}product--no-media{% endif %}">
-        <div class="grid__item product__media-wrapper">
+        <div class="xboost-grid__item xboost-product__media-wrapper">
           {%- unless placeholder -%}
             {% render 'product-media-gallery', product: product, variant_images: variant_images, limit: 1 %}
           {%- else -%}
-            <div class="product__media-item">
+            <div class="xboost-product__media-item">
               <div
-                class="product-media-container global-media-settings gradient{% if section.settings.constrain_to_viewport %} constrain-height{% endif %}"
+                class="xboost-product-media-container xboost-global-media-settings gradient{% if section.settings.constrain_to_viewport %} xboost-constrain-height{% endif %}"
                 style="--ratio: 1.0; --preview-ratio: 1.0;"
               >
                 {{ 'product-apparel-1' | placeholder_svg_tag: 'placeholder-svg' }}
@@ -85,10 +85,10 @@
             </div>
           {%- endunless -%}
         </div>
-        <div class="product__info-wrapper grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="xboost-product__info-wrapper xboost-grid__item{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           <section
             id="ProductInfo-{{ section.id }}"
-            class="product__info-container"
+            class="xboost-product__info-container"
             data-section="{{ section.id }}"
             data-url="{{ product.url }}"
           >
@@ -100,13 +100,13 @@
                   {% render block %}
                 {%- when 'text' -%}
                   <p
-                    class="product__text inline-richtext{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
+                    class="xboost-product__text xboost-inline-richtext{% if block.settings.text_style == 'uppercase' %} xboost-caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}"
                     {{ block.shopify_attributes }}
                   >
                     {{- block.settings.text -}}
                   </p>
                 {%- when 'title' -%}
-                  <h2 class="product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
+                  <h2 class="xboost-product__title {{ block.settings.heading_size }}" {{ block.shopify_attributes }}>
                     {%- unless placeholder -%}
                       {{ product.title | escape }}
                     {%- else -%}
@@ -124,12 +124,12 @@
                     -%}
                   </div>
                   {%- if product.quantity_price_breaks_configured? -%}
-                    <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
+                    <div class="xboost-volume-pricing-note" id="Volume-Note-{{ section.id }}">
                       <span>{{ 'products.product.volume_pricing.note' | t }}</span>
                     </div>
                   {%- endif -%}
                   {%- if cart.taxes_included or cart.duties_included or shop.shipping_policy.body != blank -%}
-                    <div class="product__tax caption rte">
+                    <div class="xboost-product__tax caption rte">
                       {%- if cart.duties_included and cart.taxes_included -%}
                         {{ 'products.product.duties_and_taxes_included' | t }}
                       {%- elsif cart.taxes_included -%}
@@ -152,7 +152,7 @@
                   {%- endunless -%}
                 {%- when 'sku' -%}
                   <p
-                    class="product__sku{% if block.settings.text_style == 'uppercase' %} caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
+                    class="xboost-product__sku{% if block.settings.text_style == 'uppercase' %} xboost-caption-with-letter-spacing{% elsif block.settings.text_style == 'subtitle' %} subtitle{% endif %}{% if product.selected_or_first_available_variant.sku.size == 0 %} visibility-hidden{% endif %}"
                     id="Sku-{{ section.id }}"
                     role="status"
                     {{ block.shopify_attributes }}
@@ -163,7 +163,7 @@
                 {%- when 'quantity_selector' -%}
                   <div
                     id="Quantity-Form-{{ section.id }}"
-                    class="product-form__input product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} product-form__quantity-top{% endif %}"
+                    class="xboost-product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %}"
                     {{ block.shopify_attributes }}
                   >
                     {% comment %} TODO: enable theme-check once `item_count_for_variant` is accepted as valid filter {% endcomment %}
@@ -172,9 +172,9 @@
                       | item_count_for_variant: product.selected_or_first_available_variant.id
                     -%}
                     {% # theme-check-enable %}
-                    <label class="quantity__label form__label" for="Quantity-{{ section.id }}">
+                    <label class="xboost-quantity__label xboost-form__label" for="Quantity-{{ section.id }}">
                       {{ 'products.product.quantity.label' | t }}
-                      <span class="quantity__rules-cart{% if cart_qty == 0 %} hidden{% endif %}">
+                      <span class="xboost-quantity__rules-cart{% if cart_qty == 0 %} hidden{% endif %}">
                         {%- render 'loading-spinner' -%}
                         <span
                           >(
@@ -183,9 +183,9 @@
                         >
                       </span>
                     </label>
-                    <div class="price-per-item__container">
-                      <quantity-input class="quantity">
-                        <button class="quantity__button" name="minus" type="button">
+                    <div class="xboost-price-per-item__container">
+                      <quantity-input class="xboost-quantity">
+                        <button class="xboost-quantity__button" name="minus" type="button">
                           <span class="visually-hidden">
                             {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
                           </span>
@@ -194,7 +194,7 @@
                           </span>
                         </button>
                         <input
-                          class="quantity__input"
+                          class="xboost-quantity__input"
                           type="number"
                           name="quantity"
                           id="Quantity-{{ section.id }}"
@@ -209,7 +209,7 @@
                           value="{{ product.selected_or_first_available_variant.quantity_rule.min }}"
                           form="{{ product_form_id }}"
                         >
-                        <button class="quantity__button" name="plus" type="button">
+                        <button class="xboost-quantity__button" name="plus" type="button">
                           <span class="visually-hidden">
                             {{- 'products.product.quantity.increase' | t: product: product.title | escape -}}
                           </span>
@@ -235,12 +235,12 @@
                             {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                             <div class="price-per-item">
                               {%- if variant_price_compare -%}
-                                <dl class="price-per-item--current">
+                                <dl class="xboost-price-per-item--current">
                                   <dt class="visually-hidden">
                                     {{ 'products.product.price.regular_price' | t }}
                                   </dt>
                                   <dd>
-                                    <s class="variant-item__old-price">
+                                    <s class="xboost-variant-item__old-price">
                                       {{ variant_price_compare | money_with_currency }}
                                     </s>
                                   </dd>
@@ -250,14 +250,14 @@
                                 {%- assign variant_price = product.selected_or_first_available_variant.price
                                   | money_with_currency
                                 -%}
-                                <span class="price-per-item--current">
+                                <span class="xboost-price-per-item--current">
                                   {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                                 </span>
                               {%- else -%}
                                 {%- for price_break in volume_pricing_array -%}
                                   {%- if current_qty_for_volume_pricing >= price_break.minimum_quantity -%}
                                     {%- assign price_break_price = price_break.price | money_with_currency -%}
-                                    <span class="price-per-item--current">
+                                    <span class="xboost-price-per-item--current">
                                       {{-
                                         'products.product.volume_pricing.price_at_each'
                                         | t: price: price_break_price
@@ -275,12 +275,12 @@
                             {%- assign variant_price_compare = product.selected_or_first_available_variant.compare_at_price -%}
                             <div class="price-per-item">
                               {%- if variant_price_compare -%}
-                                <dl class="price-per-item--current">
+                                <dl class="xboost-price-per-item--current">
                                   <dt class="visually-hidden">
                                     {{ 'products.product.price.regular_price' | t }}
                                   </dt>
                                   <dd>
-                                    <s class="variant-item__old-price">
+                                    <s class="xboost-variant-item__old-price">
                                       {{ variant_price_compare | money_with_currency }}
                                     </s>
                                   </dd>
@@ -288,13 +288,13 @@
                                     {{ 'products.product.price.sale_price' | t }}
                                   </dt>
                                   <dd>
-                                    <span class="price-per-item--current">
+                                    <span class="xboost-price-per-item--current">
                                       {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                                     </span>
                                   </dd>
                                 </dl>
                               {%- else -%}
-                                <span class="price-per-item--current">
+                                <span class="xboost-price-per-item--current">
                                   {{- 'products.product.volume_pricing.price_at_each' | t: price: variant_price -}}
                                 </span>
                               {%- endif -%}
@@ -303,7 +303,7 @@
                         </price-per-item>
                       {%- endif -%}
                     </div>
-                    <div class="quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
+                    <div class="xboost-quantity__rules caption" id="Quantity-Rules-{{ section.id }}">
                       {%- if product.selected_or_first_available_variant.quantity_rule.increment > 1 -%}
                         <span class="divider">
                           {{-
@@ -330,9 +330,9 @@
                       {%- endif -%}
                     </div>
                     {%- if product.quantity_price_breaks_configured? -%}
-                      <volume-pricing class="parent-display" id="Volume-{{ section.id }}">
+                      <volume-pricing class="xboost-parent-display" id="Volume-{{ section.id }}">
                         {%- if product.selected_or_first_available_variant.quantity_price_breaks.size > 0 -%}
-                          <span class="caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
+                          <span class="xboost-caption-large">{{ 'products.product.volume_pricing.title' | t }}</span>
                           <ul class="list-unstyled">
                             <li>
                               <span>{{ product.selected_or_first_available_variant.quantity_rule.min }}+</span>
@@ -360,11 +360,11 @@
                           {%- if product.selected_or_first_available_variant.quantity_price_breaks.size >= 3 -%}
                             <show-more-button>
                               <button
-                                class="button-show-more link underlined-link"
+                                class="xboost-button-show-more link underlined-link"
                                 id="Show-More-{{ section.id }}"
                                 type="button"
                               >
-                                <span class="label-show-more label-text"
+                                <span class="xboost-label-show-more label-text"
                                   ><span aria-hidden="true">+ </span>{{ 'products.facets.show_more' | t }}
                                 </span>
                               </button>
@@ -396,7 +396,7 @@
                   {{ block.settings.custom_liquid }}
                 {%- when 'rating' -%}
                   {%- if product.metafields.reviews.rating.value != blank -%}
-                    <div class="rating-wrapper">
+                    <div class="xboost-rating-wrapper">
                       {% liquid
                         assign rating_decimal = 0
                         assign decimal = product.metafields.reviews.rating.value.rating | modulo: 1
@@ -413,17 +413,17 @@
                       >
                         <span
                           aria-hidden="true"
-                          class="rating-star"
+                          class="xboost-rating-star"
                           style="--rating: {{ product.metafields.reviews.rating.value.rating | floor }}; --rating-max: {{ product.metafields.reviews.rating.value.scale_max }}; --rating-decimal: {{ rating_decimal }};"
                         ></span>
                       </div>
-                      <p class="rating-text caption">
+                      <p class="xboost-rating-text caption">
                         <span aria-hidden="true">
                           {{- product.metafields.reviews.rating.value }} /
                           {{ product.metafields.reviews.rating.value.scale_max -}}
                         </span>
                       </p>
-                      <p class="rating-count caption">
+                      <p class="xboost-rating-count caption">
                         <span aria-hidden="true">({{ product.metafields.reviews.rating_count }})</span>
                         <span class="visually-hidden">
                           {{- product.metafields.reviews.rating_count }}
@@ -442,7 +442,7 @@
               {% else %}
                 href="{{ product.url }}"
               {% endif %}
-              class="link product__view-details animate-arrow"
+              class="link xboost-product__view-details xboost-animate-arrow"
             >
               {{ 'products.product.view_full_details' | t }}
               {{- 'icon-arrow.svg' | inline_asset_content -}}

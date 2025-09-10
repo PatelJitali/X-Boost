@@ -47,7 +47,7 @@
    {% endunless %}
 
   #cc-countdown .promo-image,
-  #cc-countdown .countdown-section,
+  #cc-countdown .xboost-countdown-section,
   #cc-countdown .product-container{
      box-shadow: 0 0 .4rem .1rem {{shadow}}1b;
     margin: 1px;
@@ -56,15 +56,15 @@
 
 
 
-  #cc-countdown .countdown-button,
+  #cc-countdown .xboost-countdown-button,
    #cc-countdown .view-details{
       background-color: #003666;
       color: #ffffff;
     }
-   #cc-countdown .countdown-container .timeout-message{
+   #cc-countdown .xboost-countdown-container .xboost-timeout-message{
      color: {{ solid_button_label }};
    }
-  .promo-layout-section .timer-heading {
+  .promo-layout-section .xboost-timer-heading {
     font-size: {{section.settings.title-size}}px;
   }
   .promo-layout-section .timer-subtitle{
@@ -104,10 +104,10 @@
           </div>
 
         {% when 'countdown' %}
-          <div class="countdown-section count-sec-{{ forloop.index }}">
-            <div class="countdown-container">
+          <div class="xboost-countdown-section count-sec-{{ forloop.index }}">
+            <div class="xboost-countdown-container">
               {% if block.settings.countdown_heading != blank %}
-                <p class="timer-heading">{{ block.settings.countdown_heading }}</p>
+                <p class="xboost-timer-heading">{{ block.settings.countdown_heading }}</p>
               {% endif %}
               {% if block.settings.countdown_subtext != blank %}
                 <p class="timer-subtitle">{{ block.settings.countdown_subtext }}</p>
@@ -117,28 +117,28 @@
                 class="countdown-digits"
                 data-end-date="{{ block.settings.end_date | date: '%Y-%m-%d %H:%M:%S' }}"
               >
-                <div class="countdown-box" id="countdown-timer">
-                  <div class="countdown-item">
-                    <div class="countdown-number" data-days>00</div>
-                    <div class="countdown-label">Days</div>
+                <div class="xboost-countdown-box" id="countdown-timer">
+                  <div class="xboost-countdown-item">
+                    <div class="xboost-countdown-number" data-days>00</div>
+                    <div class="xboost-countdown-label">Days</div>
                   </div>
-                  <div class="time-separator">:</div>
-                  <div class="countdown-item">
-                    <div class="countdown-number" data-hours>00</div>
-                    <div class="countdown-label">Hours</div>
+                  <div class="xboost-time-separator">:</div>
+                  <div class="xboost-countdown-item">
+                    <div class="xboost-countdown-number" data-hours>00</div>
+                    <div class="xboost-countdown-label">Hours</div>
                   </div>
-                  <div class="time-separator">:</div>
-                  <div class="countdown-item">
-                    <div class="countdown-number" data-minutes>00</div>
-                    <div class="countdown-label">Minutes</div>
+                  <div class="xboost-time-separator">:</div>
+                  <div class="xboost-countdown-item">
+                    <div class="xboost-countdown-number" data-minutes>00</div>
+                    <div class="xboost-countdown-label">Minutes</div>
                   </div>
-                  <div class="time-separator">:</div>
-                  <div class="countdown-item">
-                    <div class="countdown-number" data-seconds>00</div>
-                    <div class="countdown-label">Seconds</div>
+                  <div class="xboost-time-separator">:</div>
+                  <div class="xboost-countdown-item">
+                    <div class="xboost-countdown-number" data-seconds>00</div>
+                    <div class="xboost-countdown-label">Seconds</div>
                   </div>
                 </div>
-                <div class="timeout-message" style="display:none;">
+                <div class="xboost-timeout-message" style="display:none;">
                   <p>{{ block.settings.timeout_message }}</p>
                 </div>
               </div>
@@ -178,7 +178,7 @@
                 <span class="compare-price">{{ product.compare_at_price | money }}</span>
                 <span class="sale-price">{{ product.price | money }}</span>
               {% else %}
-                <span class="regular-price">{{ product.price | money }}</span>
+                <span class="xboost-regular-price">{{ product.price | money }}</span>
               {% endif %}
             </div>
             <a
@@ -200,7 +200,7 @@
           <div class="product-info">
             <h3 class="product-title">{{ 'lookbook.pro_title' | t | escape }}</h3>
             <div class="product-price">
-              <span class="regular-price">{{ 1999 | money }}</span>
+              <span class="xboost-regular-price">{{ 1999 | money }}</span>
             </div>
             <a href="#" class="button">
               <span>{{ block.settings.button_text_collection | default: 'More Details' }}</span>
@@ -221,7 +221,7 @@
         <div class="product-info">
           <h3 class="product-title">{{ 'lookbook.pro_title' | t | escape }}</h3>
           <div class="product-price">
-            <span class="regular-price">{{ 1999 | money }}</span>
+            <span class="xboost-regular-price">{{ 1999 | money }}</span>
           </div>
           <a href="#" class="button">
             <span>{{ block.settings.button_text_collection | default: 'More Details' }}</span>

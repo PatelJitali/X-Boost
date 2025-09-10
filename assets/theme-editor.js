@@ -5,7 +5,7 @@ function hideProductModal() {
 
 document.addEventListener('shopify:block:select', function (event) {
   hideProductModal();
-  const blockSelectedIsSlide = event.target.classList.contains('slideshow__slide');
+  const blockSelectedIsSlide = event.target.classList.contains('xboost-slideshow__slide');
   if (!blockSelectedIsSlide) return;
 
   const parentSlideshowComponent = event.target.closest('slideshow-component');
@@ -19,7 +19,7 @@ document.addEventListener('shopify:block:select', function (event) {
 });
 
 document.addEventListener('shopify:block:deselect', function (event) {
-  const blockDeselectedIsSlide = event.target.classList.contains('slideshow__slide');
+  const blockDeselectedIsSlide = event.target.classList.contains('xboost-slideshow__slide');
   if (!blockDeselectedIsSlide) return;
   const parentSlideshowComponent = event.target.closest('slideshow-component');
   if (parentSlideshowComponent.autoplayButtonIsSetToPlay) parentSlideshowComponent.play();

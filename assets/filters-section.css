@@ -64,7 +64,7 @@
   div
   div.filter-list-wrapper
   div:has(input:checked)
-  span.facet-checkbox__text-label {
+  span.xboost-facet-checkbox__text-label {
   font-weight: 600;
 }
 #CCFacetFiltersForm .cc-filter-wrapper div div.filter-list-wrapper div label,

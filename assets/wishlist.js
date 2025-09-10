@@ -70,7 +70,7 @@ function createWishlistToggleHandler() {
   function displayWishlist() {
     const wishlistData = JSON.parse(localStorage.getItem("wishlist")) || [];
     const wishlistCountBubble = document.querySelector(
-      ".wishlist-count-bubble .wishlist-count"
+      ".xboost-wishlist-count-bubble .xboost-wishlist-count"
     );
 
     wishlistCountBubble.innerHTML = wishlistData.length;
@@ -100,8 +100,8 @@ function createWishlistToggleHandler() {
           item.productTitle
         }">
                       </a>
-                      <h3 class="c-product__title card__heading h5">
-                          <a class="full-unstyled-link wishlist-product-title" href="${
+                      <h3 class="c-xboost-product__title xboost-card__heading h5">
+                          <a class="xboost-full-unstyled-link wishlist-product-title" href="${
                             item.productUrl
                           }">${item.productTitle}</a>
                         <span class="wishlist-tooltip">${
@@ -116,11 +116,11 @@ function createWishlistToggleHandler() {
                           )}')" class="wishlist-remove-btn"><span class="wishlist-close-btn">&times;</span></button>
                           <product-form data-section-id="template--23644041314582__product-grid"><form method="post" action="/cart/add" id="quick-add-template--23644041314582__product-grid9556926923030" accept-charset="UTF-8" class="form" enctype="multipart/form-data" novalidate="novalidate" data-type="add-to-cart-form"><input type="hidden" name="form_type" value="product"><input type="hidden" name="utf8" value="✓"><input type="hidden" name="id" value="${
                             item.productId
-                          }" class="product-variant-id">
-                      <button id="quick-add-template--23644041314582__product-grid9556926923030-submit" type="submit" name="add" class="quick-add__submit button button--full-width button--secondary wishlist-cart-btn" aria-haspopup="dialog" aria-labelledby="quick-add-template--23644041314582__product-grid9556926923030-submit title-template--23644041314582__product-grid-9556926923030" aria-live="polite" data-sold-out-message="true">
+                          }" class="xboost-product-variant-id">
+                      <button id="quick-add-template--23644041314582__product-grid9556926923030-submit" type="submit" name="add" class="xboost-quick-add__submit button xboost-button--full-width button--secondary wishlist-cart-btn" aria-haspopup="dialog" aria-labelledby="quick-add-template--23644041314582__product-grid9556926923030-submit title-template--23644041314582__product-grid-9556926923030" aria-live="polite" data-sold-out-message="true">
                       <span>Add to cart</span>             
                       <span class="sold-out-message hidden">Sold out</span>
-                      <div class="loading__spinner hidden">
+                      <div class="xboost-loading__spinner hidden">
                       <svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="0 0 66 66"><circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"></circle></svg>
                       </div>
                       </button><input type="hidden" name="product-id" value="${
@@ -139,7 +139,7 @@ function createWishlistToggleHandler() {
   }
   function initWishlistButtons() {
     const wishlistButtons = document.querySelectorAll(
-      ".wishlist_button[data-product-title]"
+      ".xboost-wishlist_button[data-product-title]"
     );
     const wishlistData = JSON.parse(localStorage.getItem("wishlist")) || [];
 

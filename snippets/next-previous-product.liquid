@@ -15,6 +15,7 @@
     width: auto;
     aspect-ratio: 3 / 4;
     padding: 5px;
+    z-index:2;  
   }
 
   #next-previous-products .prev_product_btn, #next-previous-products .next_product_btn {
@@ -70,20 +71,68 @@
     {% endif %}
   {% else %}
     {% if previous_product_url != blank %}
-      <a href="{{ previous_product_url }}" class="prev_product_btn prev_product_image">
+      {% comment %} <a href="{{ previous_product_url }}" class="prev_product_btn prev_product_image">
         {{
           previous_product_img
           | image_url: width: previous_product_img.width, height: previous_product_img.height
           | image_tag
         -}}
         <span class="tooltiptext">{{ 'next_previous_product.prev_label_tooltip' | t }}</span>
-      </a>
+      </a> {% endcomment %}
+
+
+{% assign img_width = previous_product_img.width | default: 'auto' %}
+{% assign img_height = previous_product_img.height | default: 70 %}
+
+{% if previous_product_img %}
+  <a href="{{ previous_product_url }}" class="prev_product_btn prev_product_image">
+    {{
+      previous_product_img
+      | image_url: width: img_width, height: img_height
+      | image_tag
+    }}
+    <span class="tooltiptext">{{ 'next_previous_product.prev_label_tooltip' | t }}</span>
+  </a>
+{% else %}
+  <a href="{{ previous_product_url }}" class="prev_product_btn prev_product_image">
+    <div style="width: {{ img_width }}px; height: {{ img_height }}px; display: flex; align-items: center">
+      {{ 'product-1' | placeholder_svg_tag }}
+    </div>
+    <span class="tooltiptext">{{ 'next_previous_product.prev_label_tooltip' | t }}</span>
+  </a>
+{% endif %}
+
+
+
+
     {% endif %}
     {% if next_product_url != blank %}
-      <a href="{{ next_product_url }}" class="next_product_btn next_product_image">
+      {% comment %} <a href="{{ next_product_url }}" class="next_product_btn next_product_image">
         {{- next_product_img | image_url: width: next_product_img.width, height: next_product_img.height | image_tag -}}
         <span class="tooltiptext">{{ 'next_previous_product.next_label_tooltip' | t }}</span>
-      </a>
+      </a> {% endcomment %}
+
+{% assign img_width = next_product_img.width | default: 'auto' %}
+{% assign img_height = next_product_img.height | default: 70 %}
+
+{% if next_product_img %}
+  <a href="{{ next_product_url }}" class="next_product_btn next_product_image">
+    {{
+      next_product_img
+      | image_url: width: img_width, height: img_height
+      | image_tag
+    }}
+    <span class="tooltiptext">{{ 'next_previous_product.next_label_tooltip' | t }}</span>
+  </a>
+{% else %}
+  <a href="{{ next_product_url }}" class="next_product_btn next_product_image">
+    <div style="width: {{ img_width }}px; height: {{ img_height }}px; display: flex; align-items: center">
+      {{ 'product-1' | placeholder_svg_tag }}
+    </div>
+    <span class="tooltiptext">{{ 'next_previous_product.next_label_tooltip' | t }}</span>
+  </a>
+{% endif %}
+
     {% endif %}
   {% endif %}
 </div>

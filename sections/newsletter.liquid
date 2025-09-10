@@ -15,15 +15,15 @@
   }
 {%- endstyle -%}
 
-<div class="newsletter center {% if section.settings.full_width == false %}newsletter--narrow page-width{% endif %}">
-  <div class="newsletter__wrapper color-{{ section.settings.color_scheme }} gradient content-container isolate{% if section.settings.full_width %} content-container--full-width{% endif %} section-{{ section.id }}-padding">
+<div class="newsletter center {% if section.settings.full_width == false %}xboost-newsletter--narrow page-width{% endif %}">
+  <div class="xboost-newsletter__wrapper color-{{ section.settings.color_scheme }} gradient xboost-content-container isolate{% if section.settings.full_width %} xboost-content-container--full-width{% endif %} section-{{ section.id }}-padding">
     {%- for block in section.blocks -%}
       {%- case block.type -%}
         {%- when '@app' -%}
           {% render block %}
         {%- when 'heading' -%}
           <h2
-            class="inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="xboost-inline-richtext {{ block.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -34,7 +34,7 @@
           </h2>
         {%- when 'paragraph' -%}
           <div
-            class="newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="xboost-newsletter__subheading rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {{ block.shopify_attributes }}
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
@@ -48,7 +48,7 @@
             {% form 'customer', class: 'newsletter-form' %}
               <input type="hidden" name="contact[tags]" value="newsletter">
               <div
-                class="newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+                class="xboost-newsletter-form__field-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
                 {% if settings.animations_reveal_on_scroll %}
                   data-cascade
                   style="--animation-order: {{ forloop.index }};"
@@ -59,7 +59,7 @@
                     id="NewsletterForm--{{ section.id }}"
                     type="email"
                     name="contact[email]"
-                    class="field__input"
+                    class="xboost-field__input"
                     value="{{ form.email }}"
                     aria-required="true"
                     autocorrect="off"
@@ -75,12 +75,12 @@
                     placeholder="{{ 'newsletter.label' | t }}"
                     required
                   >
-                  <label class="field__label" for="NewsletterForm--{{ section.id }}">
+                  <label class="xboost-field__label" for="NewsletterForm--{{ section.id }}">
                     {{ 'newsletter.label' | t }}
                   </label>
                   <button
                     type="submit"
-                    class="newsletter-form__button field__button"
+                    class="xboost-newsletter-form__button xboost-field__button"
                     name="commit"
                     id="Subscribe"
                     aria-label="{{ 'newsletter.button_label' | t }}"
@@ -91,7 +91,7 @@
                   </button>
                 </div>
                 {%- if form.errors -%}
-                  <small class="newsletter-form__message form__message" id="Newsletter-error--{{ section.id }}">
+                  <small class="xboost-newsletter-form__message xboost-form__message" id="Newsletter-error--{{ section.id }}">
                     <span class="svg-wrapper">
                       {{- 'icon-error.svg' | inline_asset_content -}}
                     </span>
@@ -102,7 +102,7 @@
               </div>
               {%- if form.posted_successfully? -%}
                 <h3
-                  class="newsletter-form__message newsletter-form__message--success form__message"
+                  class="xboost-newsletter-form__message xboost-newsletter-form__message--success xboost-form__message"
                   id="Newsletter-success--{{ section.id }}"
                   tabindex="-1"
                   autofocus

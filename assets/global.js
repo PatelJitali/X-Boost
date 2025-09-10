@@ -303,7 +303,7 @@ class QuantityInput extends HTMLElement {
   validateQtyRules() {
     const value = parseInt(this.input.value);
     if (this.input.min) {
-      const buttonMinus = this.querySelector(".quantity__button[name='minus']");
+      const buttonMinus = this.querySelector(".xboost-quantity__button[name='minus']");
       buttonMinus.classList.toggle(
         "disabled",
         parseInt(value) <= parseInt(this.input.min)
@@ -311,7 +311,7 @@ class QuantityInput extends HTMLElement {
     }
     if (this.input.max) {
       const max = parseInt(this.input.max);
-      const buttonPlus = this.querySelector(".quantity__button[name='plus']");
+      const buttonPlus = this.querySelector(".xboost-quantity__button[name='plus']");
       buttonPlus.classList.toggle("disabled", value >= max);
     }
   }
@@ -487,7 +487,7 @@ class MenuDrawer extends HTMLElement {
       summary.addEventListener("click", this.onSummaryClick.bind(this))
     );
     this.querySelectorAll(
-      "button:not(.localization-selector):not(.country-selector__close-button):not(.country-filter__reset-button)"
+      "button:not(.xboost-localization-selector):not(.xboost-country-selector__close-button):not(.xboost-country-filter__reset-button)"
     ).forEach((button) =>
       button.addEventListener("click", this.onCloseButtonClick.bind(this))
     );
@@ -510,7 +510,7 @@ class MenuDrawer extends HTMLElement {
   onSummaryClick(event) {
     const summaryElement = event.currentTarget;
     const detailsElement = summaryElement.parentNode;
-    const parentMenuElement = detailsElement.closest(".has-submenu");
+    const parentMenuElement = detailsElement.closest(".xboost-has-submenu");
     const isOpen = detailsElement.hasAttribute("open");
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
@@ -705,11 +705,11 @@ class ModalDialog extends HTMLElement {
     this.addEventListener("keyup", (event) => {
       if (event.code.toUpperCase() === "ESCAPE") this.hide();
     });
-    if (this.classList.contains("media-modal")) {
+    if (this.classList.contains("xboost-media-modal")) {
       this.addEventListener("pointerup", (event) => {
         if (
           event.pointerType === "mouse" &&
-          !event.target.closest("deferred-media, product-model")
+          !event.target.closest("xboost-deferred-media, product-model")
         )
           this.hide();
       });
@@ -769,7 +769,7 @@ class BulkModal extends HTMLElement {
               "text/html"
             );
             const sourceQty = html.querySelector(
-              ".quick-order-list-container"
+              ".xboost-quick-order-list-container"
             ).parentNode;
             this.innerHTML = sourceQty.innerHTML;
           })
@@ -836,7 +836,7 @@ class DeferredMedia extends HTMLElement {
   }
 }
 
-customElements.define("deferred-media", DeferredMedia);
+customElements.define("xboost-deferred-media", DeferredMedia);
 
 class SliderComponent extends HTMLElement {
   constructor() {
@@ -844,8 +844,8 @@ class SliderComponent extends HTMLElement {
     this.slider = this.querySelector('[id^="Slider-"]');
     this.sliderItems = this.querySelectorAll('[id^="Slide-"]');
     this.enableSliderLooping = false;
-    this.currentPageElement = this.querySelector(".slider-counter--current");
-    this.pageTotalElement = this.querySelector(".slider-counter--total");
+    this.currentPageElement = this.querySelector(".xboost-slider-counter--current");
+    this.pageTotalElement = this.querySelector(".xboost-slider-counter--total");
     this.prevButton = this.querySelector('button[name="previous"]');
     this.nextButton = this.querySelector('button[name="next"]');
 
@@ -959,20 +959,20 @@ customElements.define("slider-component", SliderComponent);
 class SlideshowComponent extends SliderComponent {
   constructor() {
     super();
-    this.sliderControlWrapper = this.querySelector(".slider-buttons");
+    this.sliderControlWrapper = this.querySelector(".xboost-slider-buttons");
     this.enableSliderLooping = true;
 
     if (!this.sliderControlWrapper) return;
 
-    this.sliderFirstItemNode = this.slider.querySelector(".slideshow__slide");
+    this.sliderFirstItemNode = this.slider.querySelector(".xboost-slideshow__slide");
     if (this.sliderItemsToShow.length > 0) this.currentPage = 1;
 
-    this.announcementBarSlider = this.querySelector(".announcement-bar-slider");
-    // Value below should match --duration-announcement-bar CSS value
+    this.announcementBarSlider = this.querySelector(".xboost-announcement-bar-slider");
+    // Value below should match --duration-xboost-announcement-barCSS value
     this.announcerBarAnimationDelay = this.announcementBarSlider ? 250 : 0;
 
     this.sliderControlLinksArray = Array.from(
-      this.sliderControlWrapper.querySelectorAll(".slider-counter__link")
+      this.sliderControlWrapper.querySelectorAll(".xboost-slider-counter__link")
     );
     this.sliderControlLinksArray.forEach((link) =>
       link.addEventListener("click", this.linkToSlide.bind(this))
@@ -1013,8 +1013,8 @@ class SlideshowComponent extends SliderComponent {
     this.addEventListener("focusin", this.focusInHandling.bind(this));
     this.addEventListener("focusout", this.focusOutHandling.bind(this));
 
-    if (this.querySelector(".slideshow__autoplay")) {
-      this.sliderAutoplayButton = this.querySelector(".slideshow__autoplay");
+    if (this.querySelector(".xboost-slideshow__autoplay")) {
+      this.sliderAutoplayButton = this.querySelector(".xboost-slideshow__autoplay");
       this.sliderAutoplayButton.addEventListener(
         "click",
         this.autoPlayToggle.bind(this)
@@ -1064,17 +1064,17 @@ class SlideshowComponent extends SliderComponent {
 
   update() {
     super.update();
-    this.sliderControlButtons = this.querySelectorAll(".slider-counter__link");
+    this.sliderControlButtons = this.querySelectorAll(".xboost-slider-counter__link");
     this.prevButton.removeAttribute("disabled");
 
     if (!this.sliderControlButtons.length) return;
 
     this.sliderControlButtons.forEach((link) => {
-      link.classList.remove("slider-counter__link--active");
+      link.classList.remove("xboost-slider-counter__link--active");
       link.removeAttribute("aria-current");
     });
     this.sliderControlButtons[this.currentPage - 1].classList.add(
-      "slider-counter__link--active"
+      "xboost-slider-counter__link--active"
     );
     this.sliderControlButtons[this.currentPage - 1].setAttribute(
       "aria-current",
@@ -1134,13 +1134,13 @@ class SlideshowComponent extends SliderComponent {
 
   togglePlayButtonState(pauseAutoplay) {
     if (pauseAutoplay) {
-      this.sliderAutoplayButton.classList.add("slideshow__autoplay--paused");
+      this.sliderAutoplayButton.classList.add("xboost-slideshow__autoplay--paused");
       this.sliderAutoplayButton.setAttribute(
         "aria-label",
         window.accessibilityStrings.playSlideshow
       );
     } else {
-      this.sliderAutoplayButton.classList.remove("slideshow__autoplay--paused");
+      this.sliderAutoplayButton.classList.remove("xboost-slideshow__autoplay--paused");
       this.sliderAutoplayButton.setAttribute(
         "aria-label",
         window.accessibilityStrings.pauseSlideshow
@@ -1193,8 +1193,8 @@ class SlideshowComponent extends SliderComponent {
     const nextSlide = this.sliderItems[nextIndex];
     const currentSlide = this.sliderItems[currentIndex];
 
-    const animationClassIn = "announcement-bar-slider--fade-in";
-    const animationClassOut = "announcement-bar-slider--fade-out";
+    const animationClassIn = "xboost-announcement-bar-slider--fade-in";
+    const animationClassOut = "xboost-announcement-bar-slider--fade-out";
 
     const isFirstSlide = currentIndex === 0;
     const isLastSlide = currentIndex === itemsCount - 1;
@@ -1246,7 +1246,12 @@ class VariantSelects extends HTMLElement {
           selectedOptionValues: this.selectedOptionValues,
         },
       });
+          this.updateVariantDetails();
+
     });
+      const variantMetafieldData = JSON.parse(document.querySelector("[data-selected-variant]").textContent);
+    const currentVarientId = variantMetafieldData.id;
+    this.updateVariantDetails(currentVarientId);
   }
 
   updateSelectionMetadata({ target }) {
@@ -1260,7 +1265,7 @@ class VariantSelects extends HTMLElement {
 
       const swatchValue = target.selectedOptions[0].dataset.optionSwatchValue;
       const selectedDropdownSwatchValue = target
-        .closest(".product-form__input")
+        .closest(".xboost-product-form__input")
         .querySelector("[data-selected-value] > .swatch");
       if (!selectedDropdownSwatchValue) return;
       if (swatchValue) {
@@ -1268,13 +1273,13 @@ class VariantSelects extends HTMLElement {
           "--swatch--background",
           swatchValue
         );
-        selectedDropdownSwatchValue.classList.remove("swatch--unavailable");
+        selectedDropdownSwatchValue.classList.remove("xboost-swatch--unavailable");
       } else {
         selectedDropdownSwatchValue.style.setProperty(
           "--swatch--background",
           "unset"
         );
-        selectedDropdownSwatchValue.classList.add("swatch--unavailable");
+        selectedDropdownSwatchValue.classList.add("xboost-swatch--unavailable");
       }
 
       selectedDropdownSwatchValue.style.setProperty(
@@ -1283,7 +1288,7 @@ class VariantSelects extends HTMLElement {
       );
     } else if (tagName === "INPUT" && target.type === "radio") {
       const selectedSwatchValue = target
-        .closest(`.product-form__input`)
+        .closest(`.xboost-product-form__input`)
         .querySelector("[data-selected-value]");
       if (selectedSwatchValue) selectedSwatchValue.innerHTML = value;
     }
@@ -1298,6 +1303,11 @@ class VariantSelects extends HTMLElement {
       this.querySelectorAll("select option[selected], fieldset input:checked")
     ).map(({ dataset }) => dataset.optionValueId);
   }
+   updateVariantDetails(currentVarientId) {
+        const variantMetafieldData = JSON.parse(document.querySelector("#variantMetaFieldData").textContent);
+        const variantDetailsTextElement = document.querySelector("#variant_details");
+        variantDetailsTextElement.innerHTML = variantMetafieldData[currentVarientId] ? variantMetafieldData[currentVarientId] : '';
+    }
 }
 
 customElements.define("variant-selects", VariantSelects);
@@ -1347,7 +1357,7 @@ class ProductRecommendations extends HTMLElement {
           this.remove();
         }
 
-        if (html.querySelector(".grid__item")) {
+        if (html.querySelector(".xboost-grid__item")) {
           this.classList.add("product-recommendations--loaded");
         }
       })

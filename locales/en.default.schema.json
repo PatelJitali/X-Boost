@@ -277,7 +277,7 @@
           "default": "Your Wishlist"
         },
         "enable-product-pagewishlist": {
-          "label": "Show on Product Page"
+          "label": "Show Wishlist on Product Page"
         },
         "enable-product-gridwishlist": {
           "label": "Show on Product Cards"
@@ -309,7 +309,7 @@
           }
         },
         "next-prev-img-size": {
-          "label": "Image size"
+          "label": "Next/Prev Image size"
         },
         "section_header_sticky": {
           "content": "Sticky Add to Cart"
@@ -553,7 +553,7 @@
         "info": "Standard-styled cards have no borders when an image shape is active."
       }
     },
-    "announcement-bar": {
+    "xboost-announcement-bar": {
       "name": "Announcement bar",
       "settings": {
         "auto_rotate": {
@@ -4387,7 +4387,7 @@
             },
             "count_content": {
               "label": "Content",
-              "default": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>"
+              "default": "<p>XBoost gear combines recycled materials, waterproof fabrics, and lasting durability—built for peak performance and a sustainable future.</p>"
             },
             "counter_animation": {
               "content": "Counter animation"
@@ -4755,7 +4755,8 @@
               "label": "Image"
             },
             "testimonial_content_header": {
-              "content": "Testimonial Content"
+              "content": "Testimonial Content",
+              "info":"Note: Disable show content if show testimonial image"
             },
             "show_testimonial_content": {
               "label": "Show Content"

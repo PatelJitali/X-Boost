@@ -19,7 +19,7 @@
   }
 
   {%- if section.settings.sticky_header_type == 'reduce-logo-size' -%}
-    .scrolled-past-header .header__heading-logo-wrapper {
+    .scrolled-past-header .xboost-header__heading-logo-wrapper {
       width: 75%;
     }
   {%- endif -%}
@@ -32,33 +32,33 @@
     }
   {%- endif -%}
 
-  .menu-drawer-container {
+  .xboost-menu-drawer-container {
     display: flex;
   }
 
-  .list-menu {
+  .xboost-list-menu {
     list-style: none;
     padding: 0;
     margin: 0;
   }
 
-  .list-menu--inline {
+  .xboost-list-menu--inline {
     display: inline-flex;
     flex-wrap: wrap;
     justify-content: safe center;
   }
 
-  summary.list-menu__item {
+  summary.xboost-list-menu__item {
     padding-right: 2.7rem;
   }
 
-  .list-menu__item {
+  .xboost-list-menu__item {
     display: flex;
     align-items: center;
     line-height: calc(1 + 0.3 / var(--font-body-scale));
   }
 
-  .list-menu__item--link {
+  .xboost-list-menu__item--link {
     text-decoration: none;
     padding-bottom: 1rem;
     padding-top: 1rem;
@@ -66,7 +66,7 @@
   }
 
   @media screen and (min-width: 750px) {
-    .list-menu__item--link {
+    .xboost-list-menu__item--link {
       padding-bottom: 0.5rem;
       padding-top: 0.5rem;
     }
@@ -120,7 +120,7 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} {% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header header--{{ section.settings.logo_position }} xboost-header--mobile-{{ section.settings.mobile_logo_position }} {% if section.settings.menu_type_desktop == 'drawer' %} xboost-drawer-menu{% endif %}{% if section.settings.menu != blank %} xboost-header--has-menu{% endif %}{% if has_app_block %} xboost-header--has-app{% endif %}{% if social_links %} xboost-header--has-social{% endif %}{% if shop.customer_accounts_enabled %} xboost-header--has-account{% endif %}{% if localization_forms %} xboost-header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
@@ -133,17 +133,17 @@
 
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading">
+        <h1 class="xboost-header__heading">
       {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+          <a href="{{ routes.root_url }}" class="xboost-header__heading-link link link--text focus-inset">
             {%- if settings.logo != blank -%}
-              <div class="header__heading-logo-wrapper">
+              <div class="xboost-header__heading-logo-wrapper">
                 {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
                 {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                 {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
                 {{ settings.logo | image_url: width: 600 | image_tag:
-                  class: 'header__heading-logo motion-reduce',
+                  class: 'xboost-header__heading-logo xboost-motion-reduce',
                   widths: widths,
                   height: logo_height,
                   width: settings.logo_width,
@@ -173,17 +173,17 @@
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading">
+        <h1 class="xboost-header__heading">
       {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+          <a href="{{ routes.root_url }}" class="xboost-header__heading-link link link--text focus-inset">
             {%- if settings.logo != blank -%}
-              <div class="header__heading-logo-wrapper">
+              <div class="xboost-header__heading-logo-wrapper">
                 {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
                 {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                 {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
                 {{ settings.logo | image_url: width: 600 | image_tag:
-                  class: 'header__heading-logo',
+                  class: 'xboost-header__heading-logo',
                   widths: widths,
                   height: logo_height,
                   width: settings.logo_width,
@@ -201,10 +201,10 @@
       {%- endif -%}
     {%- endif -%}
 
-    <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
-      <div class="desktop-localization-wrapper">
+    <div class="xboost-header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization xboost-header-localization{% endif %}">
+      <div class="xboost-desktop-localization-wrapper">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
+          <localization-form class="xboost-small-hide xboost-medium-hide" data-prevent-hide>
             {%- form 'localization', id: 'HeaderCountryForm', class: 'localization-form' -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderCountryLabel">{{ 'localization.country_label' | t }}</h2>
@@ -215,7 +215,7 @@
         {% endif %}
 
         {%- if section.settings.enable_language_selector and localization.available_languages.size > 1 -%}
-          <localization-form class="small-hide medium-hide" data-prevent-hide>
+          <localization-form class="xboost-small-hide xboost-medium-hide" data-prevent-hide>
             {%- form 'localization', id: 'HeaderLanguageForm', class: 'localization-form' -%}
               <div>
                 <h2 class="visually-hidden" id="HeaderLanguageLabel">{{ 'localization.language_label' | t }}</h2>
@@ -228,22 +228,21 @@
       {% render 'header-search', input_id: 'Search-In-Modal' %}
 
       <!-- Wishlist Icon -->
-      {% if settings['enable-wishlist'] %}
-          <div class="button-floating header__icon">
-             <svg width="25px" height="25px" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" stroke-width="3" stroke="currentColor" fill="none">
-              <path d="M9.06,25C7.68,17.3,12.78,10.63,20.73,10c7-.55,10.47,7.93,11.17,9.55a.13.13,0,0,0,.25,0c3.25-8.91,9.17-9.29,11.25-9.5C49,9.45,56.51,13.78,55,23.87c-2.16,14-23.12,29.81-23.12,29.81S11.79,40.05,9.06,25Z"/>
-            </svg>
-          <div class="wishlist-count-bubble">
-            <span class="wishlist-count"></span>
+       {% if settings['enable-wishlist'] %}
+          <div class="button-floating xboost-header__icon header__icon--wishlist focus-inset">
+            <span class="svg-wrapper">
+            {{- 'icon-heart.svg' | inline_asset_content -}}
+            </span>
+          <div class="xboost-wishlist-count-bubble">
+            <span class="xboost-wishlist-count"></span>
           </div>
          </div>
       {% endif %}
 
-
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
-          class="header__icon header__icon--account link focus-inset{% if section.settings.menu != blank %} small-hide{% endif %}"
+          class="xboost-header__icon xboost-header__icon--account link focus-inset{% if section.settings.menu != blank %} xboost-small-hide{% endif %}"
           rel="nofollow"
         >
           {%- if section.settings.enable_customer_avatar -%}
@@ -276,7 +275,7 @@
         {%- endcase -%}
       {%- endfor -%}
 
-      <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
+      <a href="{{ routes.cart_url }}" class="xboost-header__icon xboost-header__icon--cart link focus-inset" id="cart-icon-bubble">
           {% if cart == empty %}
             <span class="svg-wrapper">{{'icon-cart-empty.svg' | inline_asset_content }}</span>
           {% else %}
@@ -284,7 +283,7 @@
           {% endif %}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
-          <div class="cart-count-bubble">
+          <div class="xboost-cart-count-bubble">
             {%- if cart.item_count < 100 -%}
               <span aria-hidden="true">{{ cart.item_count }}</span>
             {%- endif -%}
@@ -416,7 +415,7 @@
 {% endjavascript %}
 <script>
     {% if section.settings.menu_behavior == 'hover' %}
-  let items = document.querySelector(".header__inline-menu").querySelectorAll("details");
+  let items = document.querySelector(".xboost-header__inline-menu").querySelectorAll("details");
 
   items.forEach(item => {
     item.addEventListener("mouseover", () => {
@@ -721,30 +720,30 @@
             },
             {
               "value": "5",
-              "label": "Five Menu"
+              "label": "Fifth Menu"
             },   {
               "value": "6",
-              "label": "Six Menu"
+              "label": "Sixth Menu"
             },   {
               "value": "7",
-              "label": "Seven Menu"
+              "label": "Seventh Menu"
             },   {
               "value": "8",
-              "label": "Eight Menu"
+              "label": "Eighth Menu"
             },   {
               "value": "9",
-              "label": "Nine Menu"
+              "label": "Nineth Menu"
             },   {
               "value": "10",
-              "label": "Ten Menu"
+              "label": "Tenth Menu"
             }
           ],
           "default": "1"
         },
-    {
-      "type": "header",
-      "content": "Mega Menu Image"
-    },
+      {
+        "type": "header",
+        "content": "Mega Menu Image"
+      },
      {
       "type": "image_picker",
       "id": "menu_image",

@@ -79,7 +79,7 @@
 .next_prev_product_buttons .next_product_btn.next_product_image img {
   height: 100%;
   width: 100%;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 .next_prev_product_buttons .prev_product_btn.prev_product_btn_text::after,

@@ -1,0 +1,246 @@
+/* Internal theme design css - start */
+
+#xboost-announcement-countdown-timer .xboost-countdown-item {
+  flex: 1;
+  min-width: 70px;
+  border-radius: 4px;
+  padding: 4px 8px;
+  text-align: center;
+}
+
+#xboost-announcement-countdown-timer .xboost-announcement-countdown-digits .xboost-timer-heading {
+  color: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin: 0;
+  white-space: nowrap;
+}
+
+#xboost-announcement-countdown-timer a.xboost-countdown-button {
+  border-radius: 10px;
+  padding: 8px 15px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+
+#xboost-announcement-countdown-timer a.xboost-countdown-button svg {
+  transform: scale(1);
+  transition: transform 0.3s ease;
+}
+
+#xboost-announcement-countdown-timer a.xboost-countdown-button:hover svg {
+  transform: scale(1.2);
+  transition: transform 0.3s ease;
+}
+
+#xboost-announcement-countdown-timer
+  .xboost-countdown-container
+  .xboost-announcement-countdown-digits
+  .xboost-countdown-button {
+  display: none;
+}
+
+/* Internal theme design css - end */
+
+#xboost-announcement-countdown-timer .xboost-announcement-countdown-digits {
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+#xboost-announcement-countdown-timer .xboost-countdown-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+#xboost-announcement-countdown-timer .countdown-digits {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+#xboost-announcement-countdown-timer .xboost-announcement-countdown-digits .xboost-countdown-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#xboost-announcement-countdown-timer .xboost-countdown-number {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+#xboost-announcement-countdown-timer .xboost-countdown-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+#xboost-announcement-countdown-timer .xboost-time-separator {
+  font-size: 18px;
+  font-weight: 600;
+}
+#xboost-announcement-countdown-timer .xboost-timeout-message p {
+  font-weight: bold;
+  margin: 0;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 1024px) {
+ #xboost-announcement-countdown-timer .xboost-announcement-countdown-digits .xboost-timer-heading {
+  font-size: 13px;
+ }
+}
+@media (min-width: 800px) and (max-width: 850px) {
+  #xboost-announcement-countdown-timer .xboost-countdown-item {
+    min-width: 60px;
+  }
+}
+@media (min-width: 700px) and (max-width: 800px) {
+  #xboost-announcement-countdown-timer .xboost-countdown-container {
+    gap: 0;
+  }
+  #xboost-announcement-countdown-timer .xboost-announcement-countdown-digits {
+    gap: 10px;
+    padding: 10px 10px;
+  }
+  #xboost-announcement-countdown-timer .xboost-countdown-item {
+    min-width: auto;
+  }
+  #xboost-announcement-countdown-timer .xboost-countdown-button {
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+  #xboost-announcement-countdown-timer .xboost-timer-heading {
+    font-size: 13px;
+  }
+  #xboost-announcement-countdown-timer .xboost-announcement-countdown-digits .xboost-countdown-box {
+    gap: 5px;
+  }
+  #xboost-announcement-countdown-timer .xboost-countdown-number {
+    font-size: 17px;
+  }
+  #xboost-announcement-countdown-timer .xboost-countdown-label {
+    font-size: 8px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  #xboost-announcement-countdown-timer
+    .xboost-countdown-container
+    .xboost-announcement-countdown-digits
+    .xboost-countdown-button {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+  }
+
+  #xboost-announcement-countdown-timer a.xboost-countdown-button {
+    display: none;
+  }
+
+  #xboost-announcement-countdown-timer .xboost-announcement-countdown-digits {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  #xboost-announcement-countdown-timer
+    .xboost-announcement-countdown-digits
+    .xboost-heading-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 8px;
+  }
+
+  #xboost-announcement-countdown-timer .xboost-announcement-countdown-digits .xboost-timer-heading {
+    font-size: 12px;
+  }
+
+  #xboost-announcement-countdown-timer .xboost-countdown-item {
+    flex: 1;
+    min-width: max-content;
+    width: 60px;
+  }
+
+  #xboost-announcement-countdown-timer .xboost-countdown-number {
+    font-size: 16px;
+  }
+
+  #xboost-announcement-countdown-timer .xboost-countdown-label {
+    font-size: 9px;
+  }
+
+  #xboost-announcement-countdown-timer .xboost-announcement-countdown-digits .xboost-countdown-box {
+    gap: 5px;
+  }
+}
+
+@media only screen and (max-width: 430px) {
+  #xboost-announcement-countdown-timer
+    .xboost-countdown-container
+    .xboost-announcement-countdown-digits
+    .xboost-countdown-button
+    svg {
+    display: none;
+  }
+  #xboost-announcement-countdown-timer
+    .xboost-announcement-countdown-digits
+    .xboost-heading-wrapper {
+    gap: 5px;
+  }
+  #xboost-announcement-countdown-timer .xboost-countdown-item {
+    width: auto;
+  }
+  #xboost-announcement-countdown-timer .xboost-countdown-number {
+    font-size: 14px;
+  }
+  #xboost-announcement-countdown-timer .xboost-countdown-label {
+    font-size: 8px;
+  }
+  #xboost-announcement-countdown-timer .xboost-countdown-item {
+    padding: 4px;
+  }
+
+  #xboost-announcement-countdown-timer .xboost-announcement-countdown-digits {
+    padding: 8px 0;
+  }
+}
+@media only screen and (max-width: 360px) {
+  #xboost-announcement-countdown-timer
+    .xboost-countdown-container
+    .xboost-announcement-countdown-digits
+    .xboost-countdown-button {
+    padding: 5px 8px;
+    font-size: 10px;
+    border-radius: 5px;
+  }
+
+  #xboost-announcement-countdown-timer
+    .xboost-countdown-container
+    .xboost-announcement-countdown-digits
+    .xboost-timeout-message {
+    font-size: 14px;
+  }
+
+  .xboost-announcement-bar-slider .xboost-slider-button {
+    display: none;
+  }
+}

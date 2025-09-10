@@ -83,7 +83,7 @@ if (!customElements.get('media-gallery')) {
       }
 
       announceLiveRegion(activeItem, position) {
-        const image = activeItem.querySelector('.product__modal-opener--image img');
+        const image = activeItem.querySelector('.xboost-product__modal-opener--image img');
         if (!image) return;
         image.onload = () => {
           this.elements.liveRegion.setAttribute('aria-hidden', false);
@@ -97,7 +97,7 @@ if (!customElements.get('media-gallery')) {
 
       playActiveMedia(activeItem) {
         window.pauseAllMedia();
-        const deferredMedia = activeItem.querySelector('.deferred-media');
+        const deferredMedia = activeItem.querySelector('.xboost-deferred-media');
         if (deferredMedia) deferredMedia.loadContent(false);
       }
 

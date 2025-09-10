@@ -92,7 +92,7 @@ class CartItems extends HTMLElement {
         .then((response) => response.text())
         .then((responseText) => {
           const html = new DOMParser().parseFromString(responseText, 'text/html');
-          const selectors = ['cart-drawer-items', '.cart-drawer__footer'];
+          const selectors = ['cart-drawer-items', '.xboost-cart-drawer__footer'];
           for (const selector of selectors) {
             const targetElement = document.querySelector(selector);
             const sourceElement = html.querySelector(selector);
@@ -123,7 +123,7 @@ class CartItems extends HTMLElement {
       {
         id: 'main-cart-items',
         section: document.getElementById('main-cart-items').dataset.id,
-        selector: '.js-contents',
+        selector: '.xboost-js-contents',
       },
       {
         id: 'cart-icon-bubble',
@@ -138,7 +138,7 @@ class CartItems extends HTMLElement {
       {
         id: 'main-cart-footer',
         section: document.getElementById('main-cart-footer').dataset.id,
-        selector: '.js-contents',
+        selector: '.xboost-js-contents',
       },
     ];
   }
@@ -202,15 +202,15 @@ class CartItems extends HTMLElement {
             ? trapFocus(cartDrawerWrapper, lineItem.querySelector(`[name="${name}"]`))
             : lineItem.querySelector(`[name="${name}"]`).focus();
         } else if (parsedState.item_count === 0 && cartDrawerWrapper) {
-          trapFocus(cartDrawerWrapper.querySelector('.drawer__inner-empty'), cartDrawerWrapper.querySelector('a'));
+          trapFocus(cartDrawerWrapper.querySelector('.xboost-drawer__inner-empty'), cartDrawerWrapper.querySelector('a'));
         } else if (document.querySelector('.cart-item') && cartDrawerWrapper) {
-          trapFocus(cartDrawerWrapper, document.querySelector('.cart-item__name'));
+          trapFocus(cartDrawerWrapper, document.querySelector('.xboost-cart-item__name'));
         }
 
         publish(PUB_SUB_EVENTS.cartUpdate, { source: 'cart-items', cartData: parsedState, variantId: variantId });
       })
       .catch(() => {
-        this.querySelectorAll('.loading__spinner').forEach((overlay) => overlay.classList.add('hidden'));
+        this.querySelectorAll('.xboost-loading__spinner').forEach((overlay) => overlay.classList.add('hidden'));
         const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
         errors.textContent = window.cartStrings.error;
       })
@@ -222,7 +222,7 @@ class CartItems extends HTMLElement {
   updateLiveRegions(line, message) {
     const lineItemError =
       document.getElementById(`Line-item-error-${line}`) || document.getElementById(`CartDrawer-LineItemError-${line}`);
-    if (lineItemError) lineItemError.querySelector('.cart-item__error-text').textContent = message;
+    if (lineItemError) lineItemError.querySelector('.xboost-cart-item__error-text').textContent = message;
 
     this.lineItemStatusElement.setAttribute('aria-hidden', true);
 
@@ -243,8 +243,8 @@ class CartItems extends HTMLElement {
     const mainCartItems = document.getElementById('main-cart-items') || document.getElementById('CartDrawer-CartItems');
     mainCartItems.classList.add('cart__items--disabled');
 
-    const cartItemElements = this.querySelectorAll(`#CartItem-${line} .loading__spinner`);
-    const cartDrawerItemElements = this.querySelectorAll(`#CartDrawer-Item-${line} .loading__spinner`);
+    const cartItemElements = this.querySelectorAll(`#CartItem-${line} .xboost-loading__spinner`);
+    const cartDrawerItemElements = this.querySelectorAll(`#CartDrawer-Item-${line} .xboost-loading__spinner`);
 
     [...cartItemElements, ...cartDrawerItemElements].forEach((overlay) => overlay.classList.remove('hidden'));
 
@@ -256,8 +256,8 @@ class CartItems extends HTMLElement {
     const mainCartItems = document.getElementById('main-cart-items') || document.getElementById('CartDrawer-CartItems');
     mainCartItems.classList.remove('cart__items--disabled');
 
-    const cartItemElements = this.querySelectorAll(`#CartItem-${line} .loading__spinner`);
-    const cartDrawerItemElements = this.querySelectorAll(`#CartDrawer-Item-${line} .loading__spinner`);
+    const cartItemElements = this.querySelectorAll(`#CartItem-${line} .xboost-loading__spinner`);
+    const cartDrawerItemElements = this.querySelectorAll(`#CartDrawer-Item-${line} .xboost-loading__spinner`);
 
     cartItemElements.forEach((overlay) => overlay.classList.add('hidden'));
     cartDrawerItemElements.forEach((overlay) => overlay.classList.add('hidden'));

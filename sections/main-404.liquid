@@ -1,10 +1,10 @@
 <style type="text/css">
-  .template-404 .title + * {
+  .xboost-template-404 .title + * {
     margin-top: 1rem;
   }
 
   @media screen and (min-width: 750px) {
-    .template-404 .title + * {
+    .xboost-template-404 .title + * {
       margin-top: 2rem;
     }
   }
@@ -24,7 +24,7 @@
   }
 {% endstyle %}
 
-<div class="template-404 {% unless section.settings.full_width_section %}page-width page-margin {% endunless %}center section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
+<div class="xboost-template-404 {% unless section.settings.full_width_section %}page-width page-margin {% endunless %}center section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
   <div class="{% if section.settings.full_width_section %}page-width{% endif %}">
     <p>
       {{ 'templates.404.subtext' | t }}
