@@ -263,17 +263,55 @@ slider-component.xboost-slider-component-full-width {
   }
 }
 
-.xboost-slider-counter__link--dots .dot {
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
+/* .xboost-slider-counter__link--dots .dot {
+ width: 12px;
+  height: 12px;
+ border-radius: var(--all-section-border-radius);
   border: 0.1rem solid rgba(var(--color-foreground), 0.5);
   padding: 0;
   display: block;
+  
 }
 
 .xboost-slider-counter__link--active.xboost-slider-counter__link--dots .dot {
   background-color: rgb(var(--color-foreground));
+  width: 30px;
+  height: 12px;
+   
+} */
+.xboost-slider-counter__link--dots .dot {
+  position: relative;
+  width: 12px;
+  height: 12px;
+  border-radius: 20px;
+  border: 0.1rem solid rgba(var(--color-foreground), 0.5);
+  background: transparent;
+  display: block;
+  overflow: hidden; /* so fill stays inside */
+  transition: width 0.4s ease;
+}
+
+/* The animated fill */
+.xboost-slider-counter__link--dots .dot::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0; /* start filling from right */
+  height: 100%;
+  width: 0;
+  background-color: rgb(var(--color-foreground));
+  transition: width 0.6s ease;
+}
+
+/* Active state */
+.xboost-slider-counter__link--active.xboost-slider-counter__link--dots .dot {
+  width: 30px;
+  height: 12px;
+}
+
+/* Trigger fill */
+.xboost-slider-counter__link--active.xboost-slider-counter__link--dots .dot::after {
+  width: 100%; /* fills from right to left */
 }
 
 @media screen and (forced-colors: active) {

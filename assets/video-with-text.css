@@ -119,7 +119,7 @@
   position: absolute;
   top: -6rem;
   /* top: -1rem; */
-  border-radius: 50%;
+  border-radius: var(--all-section-border-radius);
   padding: 10px 14px;
   background-color: white;
   border: 2px solid #ccc;

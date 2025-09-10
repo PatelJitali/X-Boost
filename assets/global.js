@@ -1246,7 +1246,12 @@ class VariantSelects extends HTMLElement {
           selectedOptionValues: this.selectedOptionValues,
         },
       });
+          this.updateVariantDetails();
+
     });
+      const variantMetafieldData = JSON.parse(document.querySelector("[data-selected-variant]").textContent);
+    const currentVarientId = variantMetafieldData.id;
+    this.updateVariantDetails(currentVarientId);
   }
 
   updateSelectionMetadata({ target }) {
@@ -1298,6 +1303,11 @@ class VariantSelects extends HTMLElement {
       this.querySelectorAll("select option[selected], fieldset input:checked")
     ).map(({ dataset }) => dataset.optionValueId);
   }
+   updateVariantDetails(currentVarientId) {
+        const variantMetafieldData = JSON.parse(document.querySelector("#variantMetaFieldData").textContent);
+        const variantDetailsTextElement = document.querySelector("#variant_details");
+        variantDetailsTextElement.innerHTML = variantMetafieldData[currentVarientId] ? variantMetafieldData[currentVarientId] : '';
+    }
 }
 
 customElements.define("variant-selects", VariantSelects);

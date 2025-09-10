@@ -74,7 +74,7 @@
               style="left: {{ block.settings.left_position }}%; top: {{ block.settings.top_position }}%;"
             >
               <button
-                class="hotspot"
+                class="hotspot hotspot-{{section.id}}"
                 style="background-color: {{ block.settings.hotspot_background_color }};"
                 aria-expanded="false"
                 aria-controls="product-panel-{{ block.id }}"
@@ -156,7 +156,7 @@
           style="left: 50%; top: 50%;"
         >
           <button
-            class="hotspot deflaut-hotspost"
+            class="hotspot deflaut-hotspost deflaut-hotspost-{{ section.id }}"
             style="background-color: #000000;"
             aria-expanded="false"
             aria-controls="default-product-panel-1"
@@ -195,7 +195,7 @@
             {% assign has_panel_products = true %}
             <div
               id="product-panel-{{ block.id }}"
-              class="product-panel"
+              class="product-panel product-panel-{{ section.id }}"
               aria-hidden="true"
             >
               {% if block.settings.product != blank %}
@@ -262,8 +262,46 @@
   </div>
 </section>
 
-<script src="{{ 'lookbook.js' | asset_url }}" defer="defer"></script>
+<script>
+  $(function() {
+  $('.hotspot-{{section.id}}').hover(function() {
+    var panelId = $(this).attr('aria-controls');
+    
+    // Reset all hotspots and panels
+    $('.hotspot-{{section.id}}').attr('aria-expanded', 'false');
+    $('.product-panel-{{ section.id }}').attr('aria-hidden', 'true');
 
+    // Activate clicked hotspot and corresponding panel
+    $(this).attr('aria-expanded', 'true');
+    $('#' + panelId).attr('aria-hidden', 'false');
+  });
+
+  // Show the first product panel by default
+  $('.hotspot-{{section.id}}:first').attr('aria-expanded', 'true');
+  $('.product-panel-{{ section.id }}:first').attr('aria-hidden', 'false');
+
+
+  
+
+    $('.deflaut-hotspost-{{ section.id }}').hover(function() {
+    var panelId = $(this).attr('aria-controls');
+    
+    // Reset all hotspots and panels
+    $('.deflaut-hotspost-{{ section.id }}').attr('aria-expanded', 'false');
+    $('.product-panel-{{ section.id }}').attr('aria-hidden', 'false');
+
+    // Activate clicked hotspot and corresponding panel
+    $(this).attr('aria-expanded', 'true');
+    $('#' + panelId).attr('aria-hidden', 'false');
+  });
+
+  // Show the first product panel by default
+  $('.hotspot-{{section.id}}:first').attr('aria-expanded', 'true');
+  $('.product-panel-{{ section.id }}:first').attr('aria-hidden', 'false');
+
+});
+
+</script>
 {% schema %}
 {
   "name": "t:sections.lookbook_product.name",

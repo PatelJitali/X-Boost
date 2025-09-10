@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
+  gap: 5px;
 }
 
 @media only screen and (max-width: 749px) {
@@ -20,6 +21,8 @@
   display: flex;
   padding: 1.1rem;
   color: rgb(var(--color-foreground));
+      background: rgba(var(--color-foreground));
+  border-radius: var(--all-section-border-radius);
 }
 
 .x-boost-utility-bar .xboost-list-social__link {

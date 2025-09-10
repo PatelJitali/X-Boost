@@ -51,7 +51,7 @@
         </div>
       {%- endunless -%}
     </div>
-    <deferred-media
+    <xboost-deferred-media
       class="xboost-video-section__media xboost-deferred-media gradient xboost-global-media-settings{% if section.settings.full_width %} xboost-global-media-settings--full-width{% endif %}{% if fix_ratio %} xboost-media-fit-cover{% endif %}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
       data-media-id="{{ video_id }}"
       {% if poster != null %}
@@ -116,7 +116,7 @@
           }}
         {%- endif -%}
       </template>
-    </deferred-media>
+    </xboost-deferred-media>
   </div>
 </div>
 

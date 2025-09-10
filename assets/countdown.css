@@ -17,7 +17,7 @@
 .promo-layout-section .slick-right-arrow-collection {
   position: absolute;
   z-index: 1;
-  border-radius: 50%;
+ border-radius: var(--all-section-border-radius);
   font-size: 20px;
   padding: 10px 15px;
   border: 1px solid lightgrey;

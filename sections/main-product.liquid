@@ -135,7 +135,11 @@
                 {%- endif -%}
                 <div {{ block.shopify_attributes }}>
                   {%- assign product_form_installment_id = 'product-form-installment-' | append: section.id -%}
-                  {%- form 'product', product, id: product_form_installment_id, class: 'installment xboost-caption-large' -%}
+                  {%- form 'product',
+                    product,
+                    id: product_form_installment_id,
+                    class: 'installment xboost-caption-large'
+                  -%}
                     <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
                     {{ form | payment_terms }}
                   {%- endform -%}
@@ -210,29 +214,42 @@
               {%- when 'custom_liquid' -%}
                 {{ block.settings.custom_liquid }}
               {%- when 'collapsible_tab' -%}
-                {% if block.settings.heading != blank
-                  and product.selected_or_first_available_variant.metafields.custom.details.value != blank
-                %}
-                  <div class="xboost-product__accordion accordion xboost-quick-add-hidden" {{ block.shopify_attributes }}>
+                {% if block.settings.heading != blank %}
+                  <div
+                    class="xboost-product__accordion accordion xboost-quick-add-hidden"
+                    {{ block.shopify_attributes }}
+                  >
                     <details id="Details-{{ block.id }}-{{ section.id }}">
                       <summary>
-                        {% if block.settings.heading != blank or block.settings.page.title != blank %}
-                          <div class="xboost-summary__title">
-                            {% render 'icon-accordion', icon: block.settings.icon %}
-                            <h2 class="h4 xboost-accordion__title xboost-inline-richtext">
-                              {{ block.settings.heading | default: block.settings.page.title | escape }}
-                            </h2>
-                          </div>
-                        {% endif %}
+                        <div class="xboost-summary__title">
+                          {% render 'icon-accordion', icon: block.settings.icon %}
+                          <h2 class="h4 xboost-accordion__title xboost-inline-richtext">
+                            {{ block.settings.heading | default: block.settings.page.title | escape }}
+                          </h2>
+                        </div>
                         {{- 'icon-caret.svg' | inline_asset_content -}}
                       </summary>
+
                       <div class="xboost-accordion__content rte" id="ProductAccordion-{{ block.id }}-{{ section.id }}">
-                        {{ block.settings.content }}
-                        {{ block.settings.page.content }}
+                        {% if block.settings.show_variant_details %}
+                          <!-- Dynamic Variant Description -->
+                          <div id="variant_details">
+                            {{ product.selected_or_first_available_variant.metafields.custom.details.value }}
+                          </div>
+                        {% endif %}
+
+                        <!-- Fallback content if variant metafield is empty OR feature not enabled -->
+                        {% if product.selected_or_first_available_variant.metafields.custom.details.value == blank
+                          or block.settings.show_variant_details == false
+                        %}
+                          {{ block.settings.content }}
+                          {{ block.settings.page.content }}
+                        {% endif %}
                       </div>
                     </details>
                   </div>
                 {% endif %}
+
               {%- when 'quantity_selector' -%}
                 <div
                   id="Quantity-Form-{{ section.id }}"
@@ -257,7 +274,11 @@
                     </span>
                   </label>
                   <div class="xboost-price-per-item__container">
-                    <quantity-input class="xboost-quantity" data-url="{{ product.url }}" data-section="{{ section.id }}">
+                    <quantity-input
+                      class="xboost-quantity"
+                      data-url="{{ product.url }}"
+                      data-section="{{ section.id }}"
+                    >
                       <button class="xboost-quantity__button" name="minus" type="button">
                         <span class="visually-hidden">
                           {{- 'products.product.quantity.decrease' | t: product: product.title | escape -}}
@@ -1206,6 +1227,17 @@
           "type": "page",
           "id": "page",
           "label": "t:sections.main-product.blocks.collapsible_tab.settings.page.label"
+        },
+        {
+          "type": "paragraph",
+          "content": "To use dynamic variant descriptions, go to **Admin > Settings > Metafields and metaobjects > Variants** and create a metafield with Namespace & Key: 'custom.details', Type: 'Single line text', Value: 'One value. Then add a value for each variant under the product page."
+        },
+        {
+          "type": "checkbox",
+          "id": "show_variant_details",
+          "label": "Enable Dynamic Variant Description",
+          "default": false,
+          "info": "Show variant-specific description using the 'custom.details' variant metafield."
         }
       ]
     },
