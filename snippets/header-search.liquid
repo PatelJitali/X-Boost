@@ -30,7 +30,7 @@
       aria-modal="true"
       aria-label="{{ 'general.search.search' | t }}"
     >
-      <div class="xboost-modal-overlay"></div>
+      {% comment %} <div class="xboost-modal-overlay"></div> {% endcomment %}
       <div
         class="xboost-search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-search-modal__content-top{% else %} xboost-search-modal__content-bottom{% endif %}"
         tabindex="-1"

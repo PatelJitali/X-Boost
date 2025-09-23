@@ -118,7 +118,7 @@
                           </ul>
                              {% comment %} Position-based Collection Image Section {% endcomment %}
                               {% if section.settings.menu_type_desktop == 'mega' %}
-  <div class="xboost-mega-menu-right-side">
+                     <div class="xboost-mega-menu-right-side">
                     {% assign index = forloop.index %}
                     {%- for block in section.blocks -%}
                       {% assign position = block.settings.position-mega-menu | plus: 0 %}
@@ -131,9 +131,7 @@
                               alt: block.settings.image_heading
                             }}
                             {% if block.settings.image_heading != blank %}
-                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }} <span class="svg-wrapper">
-                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                        </span> </h3>
+                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }}</h3>
                             {% endif %}
                             {% if block.settings.cta_text != blank %}
                               <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
@@ -142,9 +140,7 @@
                         {% elsif block.settings.menu_image != blank %}
                           <div class="xboost-mega-menu__collection-item">
                                  {% if block.settings.collection_heading != blank %}
-                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection_heading }} <span class="svg-wrapper">
-                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                        </span></h3>
+                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection_heading }}</h3>
                             {% endif %}
                             <a href="{{ block.settings.image_link }}" class="xboost-mega-menu__collection-link">
                               {{ block.settings.menu_image | image_url: width: 400 | image_tag:
@@ -153,9 +149,7 @@
                                 alt: block.settings.image_heading
                               }}
                               {% if block.settings.image_heading != blank %}
-                                <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }} <span class="svg-wrapper">
-                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                        </span> </h3>
+                                <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }}</h3>
                               {% endif %}
                               {% if block.settings.cta_text != blank %}
                                 <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
@@ -173,11 +167,11 @@
                               }}
                               <div class="xboost-product-price-title-menu">
                               <h3 class="xboost-mega-menu__product-title">{{ block.settings.product.title }} </h3>
-                              <h3 class="xboost-mega-menu__product-price">{{ block.settings.product.price  | money  }}</h3>
-                              </div>
+                               <div class="xboost-price-shop"> <h3 class="xboost-mega-menu__product-price">{{ block.settings.product.price  | money  }}</h3>
                               {% if block.settings.cta_text != blank %}
                                 <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
-                              {% endif %}
+                              {% endif %}</div>
+                              </div>
                             </a>
                           </div>
                         {% elsif block.settings.collection != blank %}
@@ -188,9 +182,7 @@
                                 class: 'xboost-mega-menu__collection-photo',
                                 alt: block.settings.collection.title
                               }}
-                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection.title }}  <span class="svg-wrapper">
-                          {{- 'icon-arrow.svg' | inline_asset_content -}}
-                        </span></h3>
+                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection.title }}  </h3>
                               {% if block.settings.cta_text != blank %}
                                 <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
                               {% endif %}
@@ -216,6 +208,96 @@
                     >
                       {{ link.title | escape }}
                     </a>
+                     {% comment %} Position-based Collection Image Section {% endcomment %}
+{% if section.settings.menu_type_desktop == 'mega' %}
+  {% assign index = forloop.index %}
+  {% assign has_block = false %}
+
+  {%- for block in section.blocks -%}
+    {% assign position = block.settings.position-mega-menu | plus: 0 %}
+    {% if position == index %}
+      {% assign has_block = true %}
+    {% endif %}
+  {%- endfor -%}
+
+  {% if has_block %}
+    <div class="xboost-mega-menu-right-side">
+      {%- for block in section.blocks -%}
+        {% assign position = block.settings.position-mega-menu | plus: 0 %}
+        {% if position == index %}
+        
+          {% if block.settings.menu_image != blank and block.settings.product != blank and block.settings.collection != blank %}
+            <div class="xboost-mega-menu__collection-item">
+              {{ block.settings.menu_image | image_url: width: 400 | image_tag:
+                loading: 'lazy',
+                class: 'xboost-mega-menu__collection-photo',
+                alt: block.settings.image_heading
+              }}
+              {% if block.settings.image_heading != blank %}
+                <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }}</h3>
+              {% endif %}
+              {% if block.settings.cta_text != blank %}
+                <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+              {% endif %}
+            </div>
+          {% elsif block.settings.menu_image != blank %}
+            <div class="xboost-mega-menu__collection-item">
+              {% if block.settings.collection_heading != blank %}
+                <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection_heading }}</h3>
+              {% endif %}
+              <a href="{{ block.settings.image_link }}" class="xboost-mega-menu__collection-link">
+                {{ block.settings.menu_image | image_url: width: 400 | image_tag:
+                  loading: 'lazy',
+                  class: 'xboost-mega-menu__collection-photo',
+                  alt: block.settings.image_heading
+                }}
+                {% if block.settings.image_heading != blank %}
+                  <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }}</h3>
+                {% endif %}
+                {% if block.settings.cta_text != blank %}
+                  <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                {% endif %}
+              </a>
+            </div>
+          {% elsif block.settings.product != blank %}
+            <div class="xboost-mega-menu__product-item">
+              <a href="{{ block.settings.product.url }}">
+                {{ block.settings.product | image_url: width: 400 | image_tag:
+                  loading: 'lazy',
+                  class: 'mega-menu__product-photo',
+                  alt: block.settings.product.title
+                }}
+                <div class="xboost-product-price-title-menu">
+                  <h3 class="xboost-mega-menu__product-title">{{ block.settings.product.title }}</h3>
+                  <div class="xboost-price-shop">
+                    <h3 class="xboost-mega-menu__product-price">{{ block.settings.product.price | money }}</h3>
+                    {% if block.settings.cta_text != blank %}
+                      <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </a>
+            </div>
+          {% elsif block.settings.collection != blank %}
+            <div class="xboost-mega-menu__collection-item">
+              <a href="{{ block.settings.collection.url }}">
+                {{ block.settings.collection.image | image_url: width: 400 | image_tag:
+                  loading: 'lazy',
+                  class: 'xboost-mega-menu__collection-photo',
+                  alt: block.settings.collection.title
+                }}
+                <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection.title }}</h3>
+                {% if block.settings.cta_text != blank %}
+                  <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                {% endif %}
+              </a>
+            </div>
+          {% endif %}
+        {% endif %}
+      {%- endfor -%}
+    </div>
+  {% endif %}
+  {% endif %}
                   {%- endif -%}
                 </li>
               {%- endfor -%}

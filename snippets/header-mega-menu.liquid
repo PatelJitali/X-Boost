@@ -5,7 +5,7 @@
 {% endcomment %}
 
 <style>
-      {%- for block in section.blocks -%}
+ {%- for block in section.blocks -%}
     {% if block.settings.menu_image != blank or block.settings.product != blank or block.settings.collection != blank %}
 .xboost-mega-menu__list {
   display: flex;
@@ -15,8 +15,9 @@
 .xboost-mega-menu__container {
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
-.xboost-mega-menu__links {
-  border-right: 1px solid #eaeaea !important;
+
+.xboost-mega-menu-right-side{
+border-left: 1px solid #eaeaea !important;
 }
     
   {% endif %}
@@ -52,7 +53,7 @@
                   <div class="xboost-mega-menu__links">
                     <ul class="xboost-mega-menu__list" role="list">
                       {%- for childlink in link.links -%}
-                        <li class=" xboost-mega-menu-list"
+                        <li class=" xboost-mega-menu-list" data-target="child-{{ forloop.index }}"
                       >
                           <a
                             id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}"
@@ -63,7 +64,7 @@
                             {{ childlink.title | escape }}
                           </a>
                           {%- if childlink.links != blank -%}
-                            <ul class="list-unstyled mega-menus-list-unstyled absolute " role="list">
+                            <ul class="list-unstyled mega-menus-list-unstyled " role="list">
                               {%- for grandchildlink in childlink.links -%}
                                 <li>
                                   <a
@@ -75,6 +76,7 @@
                                     {{ grandchildlink.title | escape }}
                                   </a>
                                 </li>
+                               
                               {%- endfor -%}
                             </ul>
                           {%- endif -%}
@@ -83,89 +85,128 @@
                     </ul>
                   </div>
 
-    {% if section.blocks.size > 0 %}
-  <div class="xboost-mega-menu-right-side">
+   {% comment %}
+  Fixed block counting logic - only count blocks that actually have content
+{% endcomment %}
+
+{% if section.blocks.size > 0 %}
+{% assign current_menu_index = forloop.index %}
+{% assign block_count = 0 %}
+
+{%- for b in section.blocks -%}
+  {% assign position = b.settings.position-mega-menu | plus: 0 %}
+  {% if position == current_menu_index %}
+    {% comment %} Only count blocks that have actual content {% endcomment %}
+    {% if b.settings.menu_image != blank or b.settings.product != blank or b.settings.collection != blank %}
+      {% assign block_count = block_count | plus: 1 %}
+    {% endif %}
+  {% endif %}
+{%- endfor -%}
+
+{% comment %} Only render the right side if there are blocks with content {% endcomment %}
+{% if block_count > 0 %}
+  <div class="xboost-mega-menu-right-side grid-cols-{{ block_count }}" data-parent="child-{{ forloop.index }}">
     {% assign index = forloop.index %}
     {%- for block in section.blocks -%}
       {% assign position = block.settings.position-mega-menu | plus: 0 %}
       {% if position == index %}
-        {% if block.settings.menu_image != blank and block.settings.product != blank and block.settings.collection != blank %}
-          <div class="xboost-mega-menu__collection-item">
-            {{ block.settings.menu_image | image_url: width: 400 | image_tag:
-              loading: 'lazy',
-              class: 'xboost-mega-menu__collection-photo',
-              alt: block.settings.image_heading
-            }}
-            {% if block.settings.image_heading != blank %}
-              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }} <span class="svg-wrapper">
-                {{- 'icon-arrow.svg' | inline_asset_content -}}
-              </span></h3>
-            {% endif %}
-            {% if block.settings.cta_text != blank %}
-              <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
-            {% endif %}
-          </div>
-        {% elsif block.settings.menu_image != blank %}
-          <div class="xboost-mega-menu__collection-item">
-            {% if block.settings.collection_heading != blank %}
-              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection_heading }} <span class="svg-wrapper">
-                {{- 'icon-arrow.svg' | inline_asset_content -}}
-              </span></h3>
-            {% endif %}
-            <a href="{{ block.settings.image_link }}" class="xboost-mega-menu__collection-link">
+        {% comment %} Only render blocks that have content {% endcomment %}
+        {% if block.settings.menu_image != blank or block.settings.product != blank or block.settings.collection != blank %}
+          {% if block.settings.menu_image != blank and block.settings.product != blank and block.settings.collection != blank %}
+            <div class="xboost-image-content"> 
+            <div class="xboost-mega-menu__collection-item">
+              {% if block.settings.menu_image != blank %}
               {{ block.settings.menu_image | image_url: width: 400 | image_tag:
                 loading: 'lazy',
                 class: 'xboost-mega-menu__collection-photo',
                 alt: block.settings.image_heading
               }}
-              
-              {% if block.settings.image_heading != blank %}
+            {% endif %}
+             <div> {% if block.settings.image_heading != blank %}
                 <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }} <span class="svg-wrapper">
+               
+                </span></h3>
+              {% endif %}</div>
+            <div>  {% if block.settings.cta_text != blank %}
+                <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+              {% endif %}</div>
+            </div>
+            </div>
+          {% elsif block.settings.menu_image != blank %}
+            
+            <div class="xboost-mega-menu__collection-item">
+              {% if block.settings.collection_heading != blank %}
+                <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection_heading }} <span class="svg-wrapper">
                   {{- 'icon-arrow.svg' | inline_asset_content -}}
                 </span></h3>
               {% endif %}
-              {% if block.settings.cta_text != blank %}
-                <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
-              {% endif %}
-            </a>
-          </div>
-        {% elsif block.settings.product != blank %}
-          <div class="xboost-mega-menu__product-item">
-            <a href="{{ block.settings.product.url }}">
-              {{ block.settings.product | image_url: width: 400 | image_tag:
-                loading: 'lazy',
-                class: 'mega-menu__product-photo',
-                alt: block.settings.product.title
-              }}
-              <div class="xboost-product-price-title-menu">
-                <h3 class="xboost-mega-menu__product-title">{{ block.settings.product.title }}</h3>
-                <h3 class="xboost-mega-menu__product-price">{{ block.settings.product.price | money }}</h3>
+              <a href="{{ block.settings.image_link }}" class="xboost-mega-menu__collection-link">
+                {{ block.settings.menu_image | image_url: width: 400 | image_tag:
+                  loading: 'lazy',
+                  class: 'xboost-mega-menu__collection-photo',
+                  alt: block.settings.image_heading
+                }}
+                  <div class="xboost-image-content"> 
+                    <div class="xboost-image-price-title-menu">
+               <div> {% if block.settings.image_heading != blank %}
+                  <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }} </h3>
+                {% endif %} </div>
+               <div> {% if block.settings.cta_text != blank %}
+                  <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                {% endif %} </div>
+                </div></div>
+              </a>
+            </div>
+          {% elsif block.settings.product != blank %}
+            <div class="xboost-mega-menu__product-item">
+              <a href="{{ block.settings.product.url }}">
+                {{ block.settings.product | image_url: width: 400 | image_tag:
+                  loading: 'lazy',
+                  class: 'mega-menu__product-photo',
+                  alt: block.settings.product.title
+                }}
+                <div class="xboost-product-content">
+                <div class="xboost-product-price-title-menu">
+                  <div><h3 class="xboost-mega-menu__product-title">{{ block.settings.product.title }}</h3></div>
+                <div class="xboost-price-shop"><div><h3 class="xboost-mega-menu__product-price">{{ block.settings.product.price | money }}</h3></div>
+                 <div>{% if block.settings.cta_text != blank %}
+                    <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                  {% endif %}</div></div>
+                  
+                </div>
+                </div>
+              </a>
+            </div>
+          {% elsif block.settings.collection != blank %}
+            <div class="xboost-mega-menu__collection-item">
+              <a href="{{ block.settings.collection.url }}">
+                {{ block.settings.collection.image | image_url: width: 400 | image_tag:
+                  loading: 'lazy',
+                  class: 'xboost-mega-menu__collection-photo',
+                  alt: block.settings.collection.title
+                }}
+                
+               <div class="xboost-collection-content"> 
+                   <div class="xboost-collection-price-title-menu">
+                <div>
+                  <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection.title }}</h3>
               </div>
-              {% if block.settings.cta_text != blank %}
-                <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
-              {% endif %}
-            </a>
-          </div>
-        {% elsif block.settings.collection != blank %}
-          <div class="xboost-mega-menu__collection-item">
-            <a href="{{ block.settings.collection.url }}">
-              {{ block.settings.collection.image | image_url: width: 400 | image_tag:
-                loading: 'lazy',
-                class: 'xboost-mega-menu__collection-photo',
-                alt: block.settings.collection.title
-              }}
-              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection.title }} <span class="svg-wrapper">
-                {{- 'icon-arrow.svg' | inline_asset_content -}}
-              </span></h3>
-              {% if block.settings.cta_text != blank %}
-                <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
-              {% endif %}
-            </a>
-          </div>
+              <div>  
+                {% if block.settings.cta_text != blank %}
+                  <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                {% endif %}
+              </div>
+                </div>
+              </div>
+              </a>
+            </div>
+          {% endif %}
         {% endif %}
       {% endif %}
     {%- endfor -%}
   </div>
+{% endif %}
+
 {% endif %}
 
 
@@ -174,18 +215,181 @@
             </details>
           </header-menu>
         {%- else -%}
-          <a
-            id="HeaderMenu-{{ link.handle }}"
-            href="{{ link.url }}"
-            class="xboost-header__menu-item xboost-list-menu__item link link--text focus-inset"
-            {% if link.current %}aria-current="page"{% endif %}
-          >
-            <span {%- if link.current %} class="xboost-header__active-menu-item"{% endif %}>
-              {{- link.title | escape -}}
-            </span>
-          </a>
-        {%- endif -%}
+  {% comment %}
+    No child links → check if this menu has assigned mega menu blocks
+  {% endcomment %}
+  {% assign current_menu_index = forloop.index %}
+  {% assign block_count = 0 %}
+  {%- for b in section.blocks -%}
+    {% assign position = b.settings.position-mega-menu | plus: 0 %}
+    {% if position == current_menu_index %}
+      {% if b.settings.menu_image != blank or b.settings.product != blank or b.settings.collection != blank %}
+        {% assign block_count = block_count | plus: 1 %}
+      {% endif %}
+    {% endif %}
+  {%- endfor -%}
+
+  {% if block_count > 0 %}
+    <header-menu>
+      <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu" data-menu-behavior="{{ section.settings.menu_behavior }}">
+        <summary
+          id="HeaderMenu-{{ link.handle }}"
+          class="xboost-header__menu-item xboost-list-menu__item link focus-inset"
+        >
+          <span>{{- link.title | escape -}}</span>
+          {{- 'icon-menu.svg' | inline_asset_content -}}
+        </summary>
+
+        <div
+          id="MegaMenu-Content-{{ forloop.index }}"
+          class="xboost-mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient xboost-motion-reduce"
+          tabindex="-1"
+        >
+          <div class="xboost-mega-menu__container">
+            <div class="xboost-mega-menu-right-side grid-cols-{{ block_count }} no-child" data-parent="child-{{ forloop.index }}">
+              {% assign index = forloop.index %}
+              {%- for block in section.blocks -%}
+                {% assign position = block.settings.position-mega-menu | plus: 0 %}
+                {% if position == index %}
+                  {% if block.settings.menu_image != blank or block.settings.product != blank or block.settings.collection != blank %}
+                    
+                    {% if block.settings.menu_image != blank and block.settings.product != blank and block.settings.collection != blank %}
+                      <div class="xboost-image-content"> 
+                      
+                        <div class="xboost-image-price-title-menu">
+                        <div class="xboost-mega-menu__collection-item">
+                          {{ block.settings.menu_image | image_url: width: 400 | image_tag:
+                            loading: 'lazy',
+                            class: 'xboost-mega-menu__collection-photo',
+                            alt: block.settings.image_heading
+                          }}
+                          <div>
+                            {% if block.settings.image_heading != blank %}
+                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }}</h3>
+                            {% endif %}
+                          </div>
+                          <div>
+                            {% if block.settings.cta_text != blank %}
+                              <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                            {% endif %}
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    {% elsif block.settings.menu_image != blank %}
+                      <div class="xboost-mega-menu__collection-item">
+                        {% if block.settings.collection_heading != blank %}
+                          <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection_heading }}
+                            <span class="svg-wrapper">{{- 'icon-arrow.svg' | inline_asset_content -}}</span>
+                          </h3>
+                        {% endif %}
+                        <a href="{{ block.settings.image_link }}" class="xboost-mega-menu__collection-link">
+                          {{ block.settings.menu_image | image_url: width: 400 | image_tag:
+                            loading: 'lazy',
+                            class: 'xboost-mega-menu__collection-photo',
+                            alt: block.settings.image_heading
+                          }}
+                          <div class="xboost-image-content"> 
+                            <div class="xboost-image-price-title-menu">
+                            <div>{% if block.settings.image_heading != blank %}
+                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.image_heading }}</h3>
+                            {% endif %}</div>
+                          <div>  {% if block.settings.cta_text != blank %}
+                              <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                            {% endif %} </div>
+                          </div>
+                          </div>
+                        </a>
+                      </div>
+
+                    {% elsif block.settings.product != blank %}
+                      <div class="xboost-mega-menu__product-item">
+                        <a href="{{ block.settings.product.url }}">
+                          {{ block.settings.product | image_url: width: 400 | image_tag:
+                            loading: 'lazy',
+                            class: 'mega-menu__product-photo',
+                            alt: block.settings.product.title
+                          }}
+                          <div class="xboost-product-content">
+                            <div class="xboost-product-price-title-menu">
+                              <h3 class="xboost-mega-menu__product-title">{{ block.settings.product.title }}</h3>
+                              <div class="xboost-price-shop">
+                                <h3 class="xboost-mega-menu__product-price">{{ block.settings.product.price | money }}</h3>
+                                {% if block.settings.cta_text != blank %}
+                                  <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                                {% endif %}
+                              </div>
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+
+                    {% elsif block.settings.collection != blank %}
+                      <div class="xboost-mega-menu__collection-item">
+                        <a href="{{ block.settings.collection.url }}">
+                          {{ block.settings.collection.image | image_url: width: 400 | image_tag:
+                            loading: 'lazy',
+                            class: 'xboost-mega-menu__collection-photo',
+                            alt: block.settings.collection.title
+                          }}
+                          <div class="xboost-collection-content"> 
+                            <div class="xboost-collection-price-title-menu">
+                              <h3 class="xboost-mega-menu__collection-title">{{ block.settings.collection.title }}</h3>
+                              {% if block.settings.cta_text != blank %}
+                                <span class="xboost-mega-menu__cta">{{ block.settings.cta_text }}</span>
+                              {% endif %}
+                            </div>
+                          </div>
+                        </a>
+                      </div>
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+              {%- endfor -%}
+            </div>
+          </div>
+        </div>
+      </details>
+    </header-menu>
+  {% else %}
+    <a
+      id="HeaderMenu-{{ link.handle }}"
+      href="{{ link.url }}"
+      class="xboost-header__menu-item xboost-list-menu__item link link--text focus-inset"
+      {% if link.current %}aria-current="page"{% endif %}
+    >
+      <span {%- if link.current %} class="xboost-header__active-menu-item"{% endif %}>
+        {{- link.title | escape -}}
+      </span>
+    </a>
+  {% endif %}
+{%- endif -%}
+
       </li>
     {%- endfor -%}
   </ul>
 </nav>
+
+<style>
+  .xboost-mega-menu-right-side {
+  display: grid;
+  gap: 1rem;
+}
+.xboost-mega-menu-right-side.grid-cols-0 {
+  display:none;
+}
+.xboost-mega-menu-right-side.grid-cols-1 {
+  grid-template-columns: 1fr;
+}
+.xboost-mega-menu-right-side.grid-cols-2 {
+  grid-template-columns: 1fr 1fr;
+}
+.xboost-mega-menu-right-side.grid-cols-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.xboost-mega-menu-right-side.grid-cols-4 {
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: auto;
+}
+
+</style>

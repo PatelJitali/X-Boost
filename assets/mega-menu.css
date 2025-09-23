@@ -23,6 +23,7 @@
 .absolute {
   position: absolute;
 }
+
 /* Active link styling */
 .xboost-mega-menu__links .xboost-mega-menu__link--level-2.active-link {
   text-decoration: underline;
@@ -33,14 +34,18 @@
   transition: opacity 0.3s, visibility 0.3s;
 }
 /* Dropdown list container */
-.mega-menus-list-unstyled {
+/* .mega-menus-list-unstyled {
   top: 3rem;
   left: 36rem;
 
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
-}
+} */
+ .xboost-mega-menu-list{
+  display: flex;
+  gap: 50px;
+ }
 .mega-menus-list-unstyled .submenu-link {
   font-size: 18px;
 }
@@ -49,8 +54,6 @@
 }
 .xboost-mega-menu__container {
   display: grid;
-
-  gap: 2rem;
   padding: 0rem 5rem;
   margin: 0 auto;
 }
@@ -73,11 +76,14 @@
   /* grid-template-columns: auto; */
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
-.xboost-mega-menu__links {
-  padding-right: 2rem;
-  border-right: 0px solid #eaeaea;
-}
 
+.xboost-mega-menu-right-side{
+  padding-left: 2rem;
+   border-left: 0px solid #eaeaea !important;
+}
+.xboost-mega-menu-right-side.no-child {
+  border-left: none !important;
+}
 .xboost-mega-menu__list {
   /* display: grid; */
   /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
@@ -108,56 +114,101 @@
 
 .xboost-mega-menu__collection-title,
 .xboost-mega-menu__product-title {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 1rem;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
   color: white;
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
+  text-align: left;
+}
+.svg-wrapper{
+  width: 15px;
+    height: 15px;
 }
 h3.xboost-mega-menu__product-price {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  padding: 1rem;
-  background: linear-gradient(transparent, #000000b3);
-  color: #fff;
+    color: #fff;
   margin: 0;
-  font-size: 20px;
+  font-size: 16px;
+  
 }
-.xboost-mega-menu__cta {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  background: #003666;
-  color: #fff;
-  padding: 5px 5px;
-  border-radius: 4px;
-  font-weight: 600;
-  font-size: 10px;
+.xboost-mega-menu__product-item , xboost-mega-menu__collection-item{
+  position: relative;
+  overflow: hidden;
 }
 
+.xboost-mega-menu__product-item img , xboost-mega-menu__collection-item img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.xboost-mega-menu__product-item::before , xboost-mega-menu__collection-item::before{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.5));
+  z-index: 1; /* overlay sits above image */
+  pointer-events: none;
+}
+
+.xboost-product-content, .xboost-collection-content, .xboost-image-content{
+  position: absolute;
+    bottom: 0;
+  text-align: left;
+    transform: translate(0, 0);
+     z-index: 2; 
+     width: 100%;
+}
+.xboost-product-price-title-menu, .xboost-collection-price-title-menu, .xboost-image-price-title-menu{
+      display: flex;
+    flex-direction: column;
+    padding: 0.5rem 1rem;
+    text-align: left;
+}
+.xboost-mega-menu__cta {
+  /* position: absolute;
+  top: 1rem;
+  right: 1rem; */
+   color: rgb(var(--color-background));
+ 
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 16px;
+  text-decoration: underline;
+}
+.xboost-price-shop{
+  display: flex;    
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+}
 /* Hover effects */
 .xboost-mega-menu__collection-item:hover .xboost-mega-menu__collection-photo,
 .xboost-mega-menu__product-item:hover .mega-menu__product-photo {
   transform: scale(1.05);
 }
+@media screen and (max-width: 1024px) {
+  .mega-menus-list-unstyled{
+    left: 20rem;
+  }
+}
 
 /* Responsive adjustments */
 @media screen and (max-width: 1440px) {
-  .xboost-mega-menu-right-side {
+  /* .xboost-mega-menu-right-side {
     grid-template-columns: 1fr 1fr;
-  }
-  .xboost-mega-menu__container {
+  } */
+  /* .xboost-mega-menu__container {
     display: flex !important;
     flex-direction: column;
-  }
-  .xboost-mega-menu__links {
+  } */
+  /* .xboost-mega-menu__links {
     border-right: 0px solid #eaeaea !important;
+  } */
+  .xboost-mega-menu-right-side{
+     border-left: 0px solid #eaeaea !important;
   }
+  .xboost-mega-menu-right-side.no-child {
+  border-left: none !important;
+}
 }
 
 @media screen and (max-width: 767px) {

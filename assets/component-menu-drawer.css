@@ -68,7 +68,14 @@ details[open].menu-opening > .xboost-menu-drawer__submenu {
 .js .xboost-menu-drawer__navigation .submenu-open {
   visibility: hidden; /* hide menus from screen readers when hidden by submenu */
 }
-
+.menu-drawer .xboost-mega-menu__collection-title,
+.menu-drawer .xboost-product-price-title-menu{
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  z-index: 1;
+  padding: 0;
+}
 @media screen and (min-width: 750px) {
   .menu-drawer {
     width: 40rem;
@@ -150,7 +157,7 @@ details[open].menu-opening > .xboost-menu-drawer__submenu {
   bottom: 0;
   left: 0;
   background-color: rgb(var(--color-background));
-  z-index: 1;
+  z-index: 2;
   transform: translateX(100%);
   visibility: hidden;
 }

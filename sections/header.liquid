@@ -79,7 +79,7 @@
   }
 
   .section-header {
-    position: sticky; /* This is for fixing a Safari z-index issue. PR #2147 */
+    position: sticky; 
     margin-bottom: {{ section.settings.margin_bottom | times: 0.75 | round: 0 }}px;
   }
 
@@ -413,24 +413,32 @@
 
 
 {% endjavascript %}
-<script>
-    {% if section.settings.menu_behavior == 'hover' %}
-  let items = document.querySelector(".xboost-header__inline-menu").querySelectorAll("details");
 
-  items.forEach(item => {
-    item.addEventListener("mouseover", () => {
-      item.setAttribute("open", true);
-      item.querySelector("ul").addEventListener("mouseleave", () => {
+{% if section.settings.menu_behavior == 'hover' %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  let menuItems = document.querySelectorAll(".xboost-header__inline-menu details");
+
+  menuItems.forEach(item => {
+    let summary = item.querySelector("summary");
+    let content = item.querySelector(".xboost-mega-menu__content");
+
+    if (summary && content) {
+      // open on hover
+      item.addEventListener("mouseenter", () => {
+        item.setAttribute("open", true);
+      });
+
+      // close when leaving details OR content
+      item.addEventListener("mouseleave", () => {
         item.removeAttribute("open");
       });
-    item.addEventListener("mouseleave", () => {
-      item.removeAttribute("open");
-    });
+    }
   });
-  
-  });
-    {% endif %}
+});
 </script>
+{% endif %}
+
 <script type="application/ld+json">
   {
     "@context": "http://schema.org",
@@ -498,7 +506,7 @@
           "label": "t:sections.header.settings.logo_position.options__4.label"
         }
       ],
-      "default": "middle-left",
+      "default": "top-center",
       "label": "t:sections.header.settings.logo_position.label",
       "info": "t:sections.header.settings.logo_help.content"
     },
@@ -687,8 +695,8 @@
   ],
  "blocks": [
     {
-      "name": "Image",
-      "type": "image",
+      "name": "Mega Menu",
+      "type": "megamenu",
        
 
  "settings": [
@@ -784,7 +792,7 @@
   "label": "Collection"
     },
       ]
-    }
+    },
   ]
 }
 {% endschema %}
