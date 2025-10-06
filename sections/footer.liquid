@@ -6,6 +6,7 @@
 {{ 'component-list-social.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
+
     .footer {
       margin-top: {{ section.settings.margin_top | times: 0.75 | round: 0 }}px;
     }
@@ -23,6 +24,8 @@
     @media screen and (min-width: 750px) {
       .footer {
         margin-top: {{ section.settings.margin_top }}px;
+            padding-left: 5rem;
+    padding-right: 5rem;
       }
 
       .section-{{ section.id }}-padding {
@@ -52,7 +55,7 @@
     and has_social_icons == true
     or section.settings.enable_follow_on_shop
   -%}
-    <div class="xboost-footer-block--brand{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} page-width">
+    <div class="xboost-footer-block--brand{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} {% unless section.settings.full_width_section %}page-width {% endunless %}">
       <div class="xboost-footer-block__brand-info xboost-footer-image-brand ">
         {%- if settings.brand_image != blank -%}
           {%- assign brand_image_height = settings.brand_image_width | divided_by: settings.brand_image.aspect_ratio -%}
@@ -74,7 +77,7 @@
       </div>
     </div>
     {%- unless only_empty_brand -%}
-      <div class="xboost-footer__content-top page-width">
+      <div class="xboost-footer__content-top {% unless section.settings.full_width_section %}page-width {% endunless %}">
         {%- if section.blocks.size > 0 -%}
           {%- liquid
             if section.blocks.size == 9
@@ -279,17 +282,18 @@
             {%- endfor -%}
           </div>
         {%- endif -%}
+        {% render 'trust-badges' %}   
       </div>
     {%- endunless -%}
   {%- endif -%}
-
+  
   <div
     class="xboost-footer__content-bottom{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
     {% if settings.animations_reveal_on_scroll %}
       data-cascade
     {% endif %}
   >
-    <div class="xboost-footer__content-bottom-wrapper page-width">
+    <div class="xboost-footer__content-bottom-wrapper {% unless section.settings.full_width_section %}page-width {% endunless %}">
       <div class="xboost-footer__column xboost-footer__localization isolate">
         {%- if section.settings.enable_country_selector and localization.available_countries.size > 1 -%}
           <localization-form>
@@ -352,6 +356,7 @@
       </div>
     </div>
   </div>
+ 
 </footer>
 
 {% schema %}
@@ -484,12 +489,44 @@
       ]
     }
   ],
-  "settings": [
+  "settings": [     
+    {
+      "type": "checkbox",
+      "id": "full_width_section",
+      "label": "t:sections.image_with_tabs.settings.full_width_section.label",
+      "default": true
+    },
     {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.colors.label",
       "default": "scheme-4"
+    },
+     {
+      "type": "checkbox",
+      "id": "show_trust_badges",
+      "label": "t:sections.footer.settings.show_trust_badges.label",
+      "default": true
+    },
+   {
+      "type": "select",
+      "id": "badges_position",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.footer.settings.badges_position.options__1.label"
+        },
+        {
+          "value": "center",
+          "label": "t:sections.footer.settings.badges_position.options__2.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.footer.settings.badges_position.options__3.label"
+        },
+      ],
+      "default": "center",
+      "label": "t:sections.footer.settings.badges_position.label"
     },
     {
       "type": "header",

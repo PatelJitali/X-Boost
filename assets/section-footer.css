@@ -7,16 +7,25 @@
 .footer .xboost-footer__content-top .xboost-footer-block__heading .rte p {
   font-size: 16px !important;
 }
-/* .footer:not(
-    .color-scheme-1,
-    .color-scheme-2,
-    .color-scheme-3,
-    .color-scheme-4,
-    .color-scheme-5
-  ) {
-  border-top: none;
-} */
-
+.footer .xboost-trust-badges {
+  display: flex;
+}
+.footer .xboost-trust-badges.left{
+  justify-content: left;
+}
+.footer .xboost-trust-badges.center{
+  justify-content: center;
+}
+.footer .xboost-trust-badges.right{
+  justify-content: right;
+}
+.footer .xboost-trust-badge{
+  width: 100px;
+}
+.xboost-footer-block--brand{
+  display: flex;
+  justify-content: center;
+}
 .xboost-footer__content-top {
   padding-bottom: 5rem;
   display: block;
@@ -63,7 +72,7 @@
 .xboost-newsletter-form__button .svg-wrapper {
   background: #ffffff;
   color: #000;
-  border-radius: 50px;
+  border-radius: 10px;
   height: 3rem;
   width: 3rem;
 }
@@ -109,6 +118,7 @@
 .xboost-footer__content-bottom-wrapper {
   display: flex;
   width: 100%;
+  justify-content: center;
 }
 
 @media screen and (max-width: 749px) {
@@ -406,12 +416,48 @@
 }
 
 @media screen and (min-width: 750px) {
-  .xboost-footer-block__details-content .xboost-list-menu__item--link:hover,
+  /* .xboost-footer-block__details-content .xboost-list-menu__item--link:hover,
   .xboost-copyright__content a:hover {
     color: rgb(var(--color-foreground));
     text-decoration: underline;
     text-underline-offset: 0.3rem;
-  }
+  } */
+
+  /* Footer menu underline effect */
+.xboost-list-menu__item--link {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.35rem; /* space for underline */
+  line-height: 1;
+  z-index: 1;
+}
+
+/* hidden underline by default */
+.xboost-list-menu__item--link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.12rem;
+  height: 0.12rem;
+  background: rgb(var(--color-foreground, 0 0 0)); /* fallback if var missing */
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .25s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* show on hover */
+.xboost-list-menu__item--link:hover::before {
+  transform: scaleX(1);
+}
+
+/* keep visible on active link */
+.xboost-list-menu__item--active::before {
+  transform: scaleX(1);
+}
+
 
   .xboost-footer-block__details-content .xboost-list-menu__item--active:hover {
     text-decoration-thickness: 0.2rem;

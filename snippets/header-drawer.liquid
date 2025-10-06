@@ -118,6 +118,7 @@
                           </ul>
                              {% comment %} Position-based Collection Image Section {% endcomment %}
                               {% if section.settings.menu_type_desktop == 'mega' %}
+                                {% if block.settings.menu_image != blank and block.settings.product != blank and block.settings.collection != blank %}
                      <div class="xboost-mega-menu-right-side">
                     {% assign index = forloop.index %}
                     {%- for block in section.blocks -%}
@@ -192,6 +193,7 @@
                       {% endif %}
                     {%- endfor -%}
                   </div>
+                  {% endif %}
                 {% endif %}
                         </div>
                         
@@ -221,6 +223,7 @@
   {%- endfor -%}
 
   {% if has_block %}
+     {% if block.settings.menu_image != blank and block.settings.product != blank and block.settings.collection != blank %}
     <div class="xboost-mega-menu-right-side">
       {%- for block in section.blocks -%}
         {% assign position = block.settings.position-mega-menu | plus: 0 %}
@@ -296,6 +299,7 @@
         {% endif %}
       {%- endfor -%}
     </div>
+    {% endif %}
   {% endif %}
   {% endif %}
                   {%- endif -%}

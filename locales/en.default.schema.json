@@ -1228,6 +1228,21 @@
           "content": "Follow on Shop",
           "info": "To allow customers to follow your store on the Shop app from your storefront, Shop Pay must be enabled. [Learn more](https://help.shopify.com/manual/online-store/themes/customizing-themes/follow-on-shop)"
         },
+        "show_trust_badges":{
+          "label":"Enable Trust Badges"
+        },
+        "badges_position": {
+          "label": "Badges Position",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          },
+        },
         "enable_follow_on_shop": {
           "label": "Enable Follow on Shop"
         }
@@ -4845,6 +4860,33 @@
         "autoplay": {
           "label": "Enable autoplay"
         },
+        "progress_settings": {
+          "content": "Autoplay Progress Bar Settings"
+        },
+        "show_autoplay_progress":{
+          "label": "Show Autoplay Progress Bar"
+        },
+        "progress_bar_color":{
+          "label": "Progress Bar Color"
+        },
+        "progress_number_color":{
+          "label": "Progress Number Color"
+        },
+        "progress_bar_size":{
+          "label": "Progress Bar Size"
+        },
+        "progress_bar_thickness":{
+          "label": "Progress Bar Thickness"
+        },
+        "progress_position":{
+         "label": "Progress Bar Position",
+          "option_1": {
+            "label": "Left"
+          },
+          "option_2": {
+            "label": "Right"
+          }
+        },
         "font_settings": {
           "content": "Font Settings"
         },
@@ -5423,6 +5465,99 @@
       "presets": {
         "name": "Lookbook Hotspots"
       }
-    }
+    },
+    "hero_banner": {
+      "name": "Hero banner",
+      "settings": {
+        "header": {
+          "content": "Section colors"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+           "default": "scheme-1"
+        },
+         "layout_header": {
+          "content": "Layout"
+        },
+        "section_height": {
+          "label": "Desktop Height"
+        },
+        "mobile_height": {
+          "label": "Mobile Height"
+        },
+        "text_alignment": {
+          "label": "Text alignment",
+          "option_1": {
+            "label": "Left"
+          },
+          "option_2": {
+            "label": "Center"
+          },
+           "option_3": {
+            "label": "Right"
+          },
+           "default": "Center"
+        },
+        "background_header": {
+          "content": "Background",
+        },
+        "background_image": {
+          "label": "Background image"
+        },
+        "content_header": {
+          "content": "Content"
+        },
+        "eyebrow_text": {
+          "label": "Eyebrow text",
+          "default" : "New Collection"
+        },
+        "heading": {
+          "label": "Heading",
+          "default" : "Discover Your Style"
+        },
+        "subheading": {
+          "label": "Subheading",
+          "default" : "Explore our latest collection of premium products designed for the modern lifestyle."
+        },
+        "content_max_width": {
+          "label": "Content max width"
+        },
+        "typography_header": {
+          "content": "Typography"
+        },
+        "eyebrow_size": {
+          "label": "Eyebrow text size"
+        },
+        "heading_size": {
+          "label": "Heading size"
+        },
+        "subheading_size": {
+          "label": "Subheading size"
+        }, 
+        "primary_button_header": {
+          "content": "Primary button"
+        }, 
+        "primary_btn_label": {
+          "label": "Primary button label",
+          "default": "Shop Now"
+        }, 
+        "primary_btn_link": {
+          "label": "Primary button link"
+        }, 
+        "secondary_button_content": {
+          "content": "Secondary button"
+        }, 
+        "secondary_btn_label": {
+          "label": "Secondary button label",
+          "default": "Learn More"
+       },
+       "secondary_btn_link": {
+          "label": "Secondary button link"
+        }, 
+      },
+      "presets": {
+        "name": "Hero banner"
+      }
+    },
   }
 }

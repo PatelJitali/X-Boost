@@ -19,12 +19,15 @@
 .xboost-list-social__link {
   align-items: center;
   display: flex;
-  padding: 1.1rem;
+  padding: 0.5rem;
   color: rgb(var(--color-foreground));
-      background: rgba(var(--color-foreground));
-  border-radius: var(--all-section-border-radius);
+  background: rgba(var(--color-foreground));
+  border-radius: 10px;
 }
-
+.xboost-list-social__item .svg-wrapper{
+  width: 30px;
+  height: 30px;
+}
 .x-boost-utility-bar .xboost-list-social__link {
   padding: 0 0.8rem;
   height: 3.8rem;

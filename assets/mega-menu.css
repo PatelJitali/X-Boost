@@ -23,7 +23,26 @@
 .absolute {
   position: absolute;
 }
-
+ .xboost-mega-menu-right-side {
+    display: grid;
+    gap: 1rem;
+  }
+  .xboost-mega-menu-right-side.grid-cols-0 {
+    display: none;
+  }
+  .xboost-mega-menu-right-side.grid-cols-1 {
+    grid-template-columns: 1fr;
+  }
+  .xboost-mega-menu-right-side.grid-cols-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+  .xboost-mega-menu-right-side.grid-cols-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  .xboost-mega-menu-right-side.grid-cols-4 {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: auto;
+  }
 /* Active link styling */
 .xboost-mega-menu__links .xboost-mega-menu__link--level-2.active-link {
   text-decoration: underline;

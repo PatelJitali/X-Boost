@@ -1,7 +1,6 @@
 .tabs-section .main-tab-contanier {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
   padding: 30px 20px;
   background: #fff !important;
   /* border-radius: 20px; */

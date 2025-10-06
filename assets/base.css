@@ -2904,10 +2904,49 @@ details[open]>.xboost-header__submenu {
   transition: text-decoration var(--duration-short) ease;
 }
 
-.xboost-header__menu-item:hover span {
-  text-decoration: underline;
-  text-underline-offset: 0.3rem;
+/* make the menu item a stable positioning container */
+.xboost-header__menu-item {
+  position: relative;
+  display: inline-block; /* ensures width/positioning behaves predictably */
 }
+
+/* the span holding the text must be block-ish and reserve space for the underline */
+.xboost-header__menu-item > span {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 0.35rem; /* space so the underline doesn't overlap the text */
+  line-height: 1;
+  z-index: 1; /* keep text above the pseudo-element if needed */
+}
+
+/* underline (hidden by scaleX(0)) */
+.xboost-header__menu-item > span::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0.12rem;        /* adjust vertical position if needed */
+  height: 0.12rem;        /* thickness */
+  background: rgb(var(--color-foreground, 0 0 0)); /* fallback color if var missing */
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform .25s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* show underline on hover */
+.xboost-header__menu-item:hover > span::before {
+  transform: scaleX(1);
+}
+
+/* keep underline visible for the active/current item
+   (most specific selector to ensure it overrides other rules) */
+.xboost-header__menu-item > span.xboost-header__active-menu-item::before {
+  transform: scaleX(1);
+}
+
+
 
 details[open]>.xboost-header__menu-item {
   text-decoration: underline;
