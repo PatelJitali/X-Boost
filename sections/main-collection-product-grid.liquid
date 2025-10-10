@@ -118,6 +118,27 @@
           %}
         </aside>
       {%- endif -%}
+      <!-- View As Toolbar -->
+      <div class="xboost-collection-view-toolbar page-width">
+        <span class="xboost-collection-view-label">{{ 'sections.collection_template.view_as' | t }}</span>
+        <div class="xboost-collection-view-buttons">
+          <button class="xboost-collection-view-toggle active" data-view="grid" aria-label="Grid view">
+            <svg class="icon" viewBox="0 0 24 24">
+              <rect x="3" y="3" width="8" height="8"></rect>
+              <rect x="13" y="3" width="8" height="8"></rect>
+              <rect x="3" y="13" width="8" height="8"></rect>
+              <rect x="13" y="13" width="8" height="8"></rect>
+            </svg>
+          </button>
+          <button class="xboost-collection-view-toggle" data-view="list" aria-label="List view">
+            <svg class="icon" viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="2"></rect>
+              <rect x="3" y="10" width="18" height="2"></rect>
+              <rect x="3" y="16" width="18" height="2"></rect>
+            </svg>
+          </button>
+        </div>
+      </div>
 
       <div
         class="xboost-product-grid-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
@@ -218,6 +239,34 @@
     {{ 'mask-arch.svg' | inline_asset_content }}
   {%- endif -%}
 </div>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toolbarButtons = document.querySelectorAll('.xboost-collection-view-toolbar .xboost-collection-view-toggle');
+    const collectionContainer = document.querySelector('.collection');
+
+    if (!collectionContainer) return;
+
+    // Load saved preference
+    const savedView = localStorage.getItem('collectionView') || 'grid';
+    setView(savedView);
+
+    toolbarButtons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const view = button.dataset.view;
+        setView(view);
+        localStorage.setItem('collectionView', view);
+      });
+    });
+
+    function setView(view) {
+      document.body.classList.remove('grid-view', 'list-view');
+      document.body.classList.add(view + '-view');
+
+      toolbarButtons.forEach((btn) => btn.classList.remove('active'));
+      document.querySelector(`.xboost-collection-view-toggle[data-view="${view}"]`).classList.add('active');
+    }
+  });
+</script>
 
 {% schema %}
 {

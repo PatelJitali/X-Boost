@@ -120,7 +120,97 @@
         },
         "sold_out_badge_color_scheme": {
           "label": "Sold out badge color scheme"
-        }
+        },
+        "custom_badge_1_header": {
+        "content": "Custom Badge 1"
+      },
+      "custom_badge_1_description": {
+        "content": "Create your own badges by linking them to [product tags](https://help.shopify.com/en/manual/shopify-admin/productivity-tools/using-tags)"
+      },
+      "product_card_custom_badge_1_text": {
+        "label": "Badge 1"
+      },
+      "product_card_custom_badge_1_tag": {
+        "label": "Tag"
+      },
+      "product_card_custom_badge_1_bg": {
+        "label": "Background"
+      },
+      "product_card_custom_badge_1_color": {
+        "label": "Text"
+      },
+         "custom_badge_2_header": {
+        "content": "Custom Badge 2"
+      },
+      "custom_badge_2_description": {
+        "content": "Create your own badges by linking them to [product tags](https://help.shopify.com/en/manual/shopify-admin/productivity-tools/using-tags)"
+      },
+      "product_card_custom_badge_2_text": {
+        "label": "Badge 2"
+      },
+      "product_card_custom_badge_2_tag": {
+        "label": "Tag"
+      },
+      "product_card_custom_badge_2_bg": {
+        "label": "Background"
+      },
+      "product_card_custom_badge_2_color": {
+        "label": "Text"
+      },
+       "custom_badge_3_header": {
+        "content": "Custom Badge 3"
+      },
+      "custom_badge_3_description": {
+        "content": "Create your own badges by linking them to [product tags](https://help.shopify.com/en/manual/shopify-admin/productivity-tools/using-tags)"
+      },
+      "product_card_custom_badge_3_text": {
+        "label": "Badge 3"
+      },
+      "product_card_custom_badge_3_tag": {
+        "label": "Tag"
+      },
+      "product_card_custom_badge_3_bg": {
+        "label": "Background"
+      },
+      "product_card_custom_badge_3_color": {
+        "label": "Text"
+      }, 
+      "custom_badge_4_header": {
+        "content": "Custom Badge 4"
+      },
+      "custom_badge_4_description": {
+        "content": "Create your own badges by linking them to [product tags](https://help.shopify.com/en/manual/shopify-admin/productivity-tools/using-tags)"
+      },
+      "product_card_custom_badge_4_text": {
+        "label": "Badge 4"
+      },
+      "product_card_custom_badge_4_tag": {
+        "label": "Tag"
+      },
+      "product_card_custom_badge_4_bg": {
+        "label": "Background"
+      },
+      "product_card_custom_badge_4_color": {
+        "label": "Text"
+      },
+      "custom_badge_5_header": {
+        "content": "Custom Badge 5"
+      },
+      "custom_badge_5_description": {
+        "content": "Create your own badges by linking them to [product tags](https://help.shopify.com/en/manual/shopify-admin/productivity-tools/using-tags)"
+      },
+      "product_card_custom_badge_5_text": {
+        "label": "Badge 5"
+      },
+      "product_card_custom_badge_5_tag": {
+        "label": "Tag"
+      },
+      "product_card_custom_badge_5_bg": {
+        "label": "Background"
+      },
+      "product_card_custom_badge_5_color": {
+        "label": "Text"
+      },
       }
     },
     "colors": {

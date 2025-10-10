@@ -377,7 +377,7 @@ quick-add-bulk {
   z-index: 1;
 }
 
-.xboost-card__content quick-add-bulk .quantity {
+.xboost-card__content quick-add-bulk .xboost-quantity {
   width: 100%;
 }
 
