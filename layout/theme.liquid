@@ -348,10 +348,13 @@
       }
     </script>
 
+   
+    
     <!-- JQUERY CDN -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <!-- Wishlist Icon -->
     <script src="{{ 'wishlist-header.js' | asset_url }}" defer="defer"></script>
+    
   </head>
 
   <body class="gradient{% if settings.animations_hover_elements != 'none' %} animate--hover-{{ settings.animations_hover_elements }}{% endif %} {% if template.name != blank %}custom-{{ template.name }} {% endif %}{% if template.suffix != blank %}custom-{{ template.suffix }} {% endif %}">
@@ -456,5 +459,7 @@
     <div class="popup-wishlist">
       {% render 'wishlist' %}
     </div>
+    <script src="{{ 'lightzoom.js' | asset_url }}"></script>
+     
   </body>
 </html>

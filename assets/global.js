@@ -501,9 +501,9 @@ class MenuDrawer extends HTMLElement {
 
     openDetailsElement === this.mainDetailsToggle
       ? this.closeMenuDrawer(
-          event,
-          this.mainDetailsToggle.querySelector("summary")
-        )
+        event,
+        this.mainDetailsToggle.querySelector("summary")
+      )
       : this.closeSubmenu(openDetailsElement);
   }
 
@@ -545,9 +545,9 @@ class MenuDrawer extends HTMLElement {
         !reducedMotion || reducedMotion.matches
           ? addTrapFocus()
           : summaryElement.nextElementSibling.addEventListener(
-              "transitionend",
-              addTrapFocus
-            );
+            "transitionend",
+            addTrapFocus
+          );
       }, 100);
     }
   }
@@ -648,9 +648,9 @@ class HeaderDrawer extends MenuDrawer {
     this.header = this.header || document.querySelector(".section-header");
     this.borderOffset =
       this.borderOffset ||
-      this.closest(".header-wrapper").classList.contains(
-        "header-wrapper--border-bottom"
-      )
+        this.closest(".header-wrapper").classList.contains(
+          "header-wrapper--border-bottom"
+        )
         ? 1
         : 0;
     document.documentElement.style.setProperty(
@@ -870,7 +870,7 @@ class SliderComponent extends HTMLElement {
       this.sliderItemsToShow[0].offsetLeft;
     this.slidesPerPage = Math.floor(
       (this.slider.clientWidth - this.sliderItemsToShow[0].offsetLeft) /
-        this.sliderItemOffset
+      this.sliderItemOffset
     );
     this.totalPages = this.sliderItemsToShow.length - this.slidesPerPage + 1;
     this.update();
@@ -1218,9 +1218,9 @@ class SlideshowComponent extends SliderComponent {
     const slideScrollPosition =
       this.slider.scrollLeft +
       this.sliderFirstItemNode.clientWidth *
-        (this.sliderControlLinksArray.indexOf(event.currentTarget) +
-          1 -
-          this.currentPage);
+      (this.sliderControlLinksArray.indexOf(event.currentTarget) +
+        1 -
+        this.currentPage);
     this.slider.scrollTo({
       left: slideScrollPosition,
     });
@@ -1246,10 +1246,10 @@ class VariantSelects extends HTMLElement {
           selectedOptionValues: this.selectedOptionValues,
         },
       });
-          this.updateVariantDetails();
+      this.updateVariantDetails();
 
     });
-      const variantMetafieldData = JSON.parse(document.querySelector("[data-selected-variant]").textContent);
+    const variantMetafieldData = JSON.parse(document.querySelector("[data-selected-variant]").textContent);
     const currentVarientId = variantMetafieldData.id;
     this.updateVariantDetails(currentVarientId);
   }
@@ -1303,11 +1303,11 @@ class VariantSelects extends HTMLElement {
       this.querySelectorAll("select option[selected], fieldset input:checked")
     ).map(({ dataset }) => dataset.optionValueId);
   }
-   updateVariantDetails(currentVarientId) {
-        const variantMetafieldData = JSON.parse(document.querySelector("#variantMetaFieldData").textContent);
-        const variantDetailsTextElement = document.querySelector("#variant_details");
-        variantDetailsTextElement.innerHTML = variantMetafieldData[currentVarientId] ? variantMetafieldData[currentVarientId] : '';
-    }
+  updateVariantDetails(currentVarientId) {
+    const variantMetafieldData = JSON.parse(document.querySelector("#variantMetaFieldData").textContent);
+    const variantDetailsTextElement = document.querySelector("#variant_details");
+    variantDetailsTextElement.innerHTML = variantMetafieldData[currentVarientId] ? variantMetafieldData[currentVarientId] : '';
+  }
 }
 
 customElements.define("variant-selects", VariantSelects);
@@ -1496,3 +1496,19 @@ class BulkAdd extends HTMLElement {
 if (!customElements.get("bulk-add")) {
   customElements.define("bulk-add", BulkAdd);
 }
+
+// Show the selected variant option value 
+document.addEventListener('change', (event) => {
+  const target = event.target;
+  if (target.name && target.name.startsWith('options[')) {
+    const optionName = target.name.match(/options\[(.*?)\]/)[1];
+    const selectedValue = target.value;
+
+    document.querySelectorAll('[data-selected-value]').forEach((span) => {
+      const parent = span.closest('fieldset, .xboost-product-form__input--dropdown');
+      if (parent && parent.textContent.includes(optionName)) {
+        span.textContent = selectedValue;
+      }
+    });
+  }
+});

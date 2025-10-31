@@ -14,7 +14,8 @@
   {{ 'component-price.css' | asset_url | stylesheet_tag }}
   {{ 'xboost-component-slider.css' | asset_url | stylesheet_tag }}
   {{ 'component-rating.css' | asset_url | stylesheet_tag }}
-  {{ 'component-xboost-deferred-media.css' | asset_url | stylesheet_tag }}
+  {{ 'component-deferred-media.css' | asset_url | stylesheet_tag }}
+  
 
   {% unless product.has_only_default_variant %}
     {{ 'component-product-variant-picker.css' | asset_url | stylesheet_tag }}
@@ -48,6 +49,23 @@
 
   {% if section.settings.image_zoom == 'hover' %}
     <script id="EnableZoomOnHover-main" src="{{ 'magnify.js' | asset_url }}" defer="defer"></script>
+  {% endif %}
+  {% if section.settings.image_zoom == 'magnifying_glass' %}
+     
+    <script>
+    document.addEventListener('shopify:section:load', function() {
+      $('.image-selector').lightzoom({
+        zoomPower: 3,
+        glassSize: 100
+      });
+    });
+    document.addEventListener('DOMContentLoaded', function() {
+      $('.image-selector').lightzoom({
+        zoomPower: 3,
+        glassSize: 100
+      });
+    });
+    </script>
   {% endif %}
   {%- if request.design_mode -%}
     <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
@@ -2237,6 +2255,10 @@
         {
           "value": "thumbnail_slider",
           "label": "t:sections.main-product.settings.gallery_layout.options__4.label"
+        },
+         {
+          "value": "thumbnail_vertical",
+          "label": "t:sections.main-product.settings.gallery_layout.options__5.label"
         }
       ],
       "default": "stacked",
@@ -2270,11 +2292,15 @@
         {
           "value": "hover",
           "label": "t:sections.main-product.settings.image_zoom.options__2.label"
-        },
+        },       
         {
           "value": "none",
           "label": "t:sections.main-product.settings.image_zoom.options__3.label"
-        }
+        },
+         {
+          "value": "magnifying_glass",
+          "label": "t:sections.main-product.settings.image_zoom.options__4.label"
+        },
       ],
       "default": "lightbox",
       "label": "t:sections.main-product.settings.image_zoom.label",

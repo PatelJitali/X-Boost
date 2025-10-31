@@ -38,7 +38,7 @@
       background-color: {{ solid_button_background }};
       color: {{ solid_button_label }};
     }
-
+ {% unless settings['sticky-btn-full-width'] %}
   {% if block_position == 'right' %}
     @media only screen and (min-width: 768px){
 
@@ -46,7 +46,7 @@
         flex-direction: column;
         height: auto;
         width: max-content;
-        max-width: 50rem;
+        max-width: 70rem;
         max-height: 50rem;
         overflow: hidden;
         right: 10px;
@@ -81,7 +81,7 @@
           flex-direction: column;
           height: auto;
           width: max-content;
-          max-width: 50rem;
+          max-width: 70rem;
           max-height: 50rem;
           overflow: hidden;
           right: auto;
@@ -110,6 +110,7 @@
       }
     }
     {% endif %}
+    {% endunless %}
 {% endstyle %}
 <div
   class="cc-sticky-add-to-cart{% if settings['hide_on_mobile'] %} hide_on_mobile{% endif %}"
@@ -153,6 +154,31 @@
 
     <div class="cc-sticky-bar-price">
       <div class="quentity_wrapper">
+            
+        {% unless product.has_only_default_variant %}
+          <div class="cc-sticky-variant-selector">
+            <label for="StickyVariantSelect-{{ section.id }}" class="xboost-form__label">
+              Select Variant 
+            </label>
+            <select
+              id="StickyVariantSelect-{{ section.id }}"
+              name="id"
+              form="{{ product_form_id }}"
+              class="xboost-select__select"
+            >
+              {% for variant in product.variants %}
+                <option
+                  value="{{ variant.id }}"
+                  {% if variant.id == product.selected_or_first_available_variant.id %}selected{% endif %}
+                  {% unless variant.available %}disabled{% endunless %}
+                >
+                  {{ variant.title }}{% unless variant.available %} — {{ 'products.product.sold_out' | t }}{% endunless %}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endunless %}
+        <!-- ✅ VARIANT PICKER END -->
         <div
           id="Quantity-Form-{{ section.id }}"
           class="xboost-product-form__input xboost-product-form__quantity{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} xboost-product-form__quantity-top{% endif %} cc-quantity_container"

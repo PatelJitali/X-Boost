@@ -1,3 +1,4 @@
+
 {% comment %}
   Renders product variant-picker
 
@@ -27,11 +28,12 @@
           endif
         endif
       -%}
+
       {%- if picker_type == 'swatch' -%}
         <fieldset class="js xboost-product-form__input xboost-product-form__input--swatch">
           <legend class="xboost-form__label">
             {{ option.name }}:
-            <span data-selected-value>
+            <span class="selected-value" data-selected-value>
               {{- option.selected_value -}}
             </span>
           </legend>
@@ -42,9 +44,15 @@
             picker_type: picker_type
           %}
         </fieldset>
+
       {%- elsif picker_type == 'button' -%}
         <fieldset class="js xboost-product-form__input xboost-product-form__input--pill">
-          <legend class="xboost-form__label">{{ option.name }}</legend>
+          <legend class="xboost-form__label">
+            {{ option.name }}:
+            <span class="selected-value" data-selected-value>
+              {{- option.selected_value -}}
+            </span>
+          </legend>
           {% render 'product-variant-options',
             product: product,
             option: option,
@@ -52,10 +60,14 @@
             picker_type: picker_type
           %}
         </fieldset>
+
       {%- else -%}
         <div class="xboost-product-form__input xboost-product-form__input--dropdown">
           <label class="xboost-form__label" for="Option-{{ section.id }}-{{ forloop.index0 }}">
-            {{ option.name }}
+            {{ option.name }}:
+            <span class="selected-value" data-selected-value>
+              {{- option.selected_value -}}
+            </span>
           </label>
           <div class="select">
             {%- if picker_type == 'swatch_dropdown' -%}

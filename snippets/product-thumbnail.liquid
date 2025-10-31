@@ -41,7 +41,7 @@
   endif
 
   if media.media_type == 'image'
-    assign image_class = 'image-magnify-' | append: section.settings.image_zoom
+    assign image_class = 'image-magnify-' | append: section.settings.image_zoom | append: ' image-selector'
   endif
 -%}
 
@@ -126,6 +126,7 @@
         | image_tag:
           loading: lazy,
           sizes: sizes,
+          class: "image-selector",
           widths: '246, 493, 600, 713, 823, 990, 1100, 1206, 1346, 1426, 1646, 1946'
       }}
     </button>

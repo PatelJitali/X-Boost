@@ -91,10 +91,21 @@
       {% endif %}
       {{ input_dataset }}
     >
-    <label for="{{ input_id }}">
+    {% comment %} <label for="{{ input_id }}">
       {{ value -}}
       {{ label_unavailable }}
-    </label>
+    </label> {% endcomment %}
+
+    {% if product.variants[forloop.index0].image != blank and option.name == 'Color' %}
+      <label for="{{ input_id }}"
+        style="background-image: url({{ product.variants[forloop.index0].image | img_url: '' }});height:40px;width:40px;background-size: cover;"
+      ></label>
+    {% else %}
+        <label for="{{ input_id }}">
+        {{ value -}}
+         {{ label_unavailable }}
+      </label>
+    {% endif %}
   {%- elsif picker_type == 'dropdown' or picker_type == 'swatch_dropdown' -%}
     <option
       id="{{ input_id }}"

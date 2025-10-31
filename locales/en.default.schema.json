@@ -2645,6 +2645,9 @@
           },
           "options__4": {
             "label": "Thumbnail carousel"
+          },
+          "options__5": {
+            "label": "Thumbnail Vertical"
           }
         },
         "constrain_to_viewport": {
@@ -2674,6 +2677,9 @@
           },
           "options__3": {
             "label": "No zoom"
+          },
+          "options__4": {
+            "label": "Magnifying Glass"
           }
         },
         "media_position": {

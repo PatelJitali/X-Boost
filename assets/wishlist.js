@@ -75,7 +75,7 @@ function createWishlistToggleHandler() {
 
     wishlistCountBubble.innerHTML = wishlistData.length;
 
-    console.log("wishlistData:::", wishlistData.length);
+    // console.log("wishlistData:::", wishlistData.length);
     const wishlistBlock = document.querySelector(".js-wishlistBlock");
     if (wishlistData.length === 0) {
       if (wishlistBlock) {

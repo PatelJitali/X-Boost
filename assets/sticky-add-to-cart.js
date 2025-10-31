@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const checkVisibility = () => {
     const targetPosition = cartButton.getBoundingClientRect();
-    console.log("targetPosition", targetPosition.top);
+    // console.log("targetPosition", targetPosition.top);
     if (targetPosition.top >= 0) {
       stikcyBar.style.display = "none";
       if (html) {
