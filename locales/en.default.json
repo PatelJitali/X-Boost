@@ -106,7 +106,13 @@
       "back_to_blog": "Back to blog",
       "share": "Share this article",
       "success": "Your comment was posted successfully! Thank you!",
-      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated."
+      "success_moderated": "Your comment was posted successfully. We will publish it in a little while, as our blog is moderated.",
+      "all_category":"All Category",
+      "all_months":"All Months",
+      "loading":"Loading....",
+      "no_articles_found":"No articles found",
+      "categories":"Categories",
+      "month":"Month"
     }
   },
   "onboarding": {

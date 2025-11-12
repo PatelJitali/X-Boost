@@ -18,19 +18,190 @@
 
 {%- paginate blog.articles by 6 -%}
   <div class="main-blog {% unless section.settings.full_width_section %}page-width {% endunless %}section-{{ section.id }}-padding color-{{ section.settings.color_scheme }}">
-    <div class="{% if section.settings.full_width_section %}page-width{% endif %}">
-      <h1 class="xboost-title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+    <div class="{% if section.settings.full_width_section %}page-width{% endif %} xboost-filter-part" >
+      <div class="xboost-blog-left-side">
+        <div class="xboost-title-filter">
+        <h1 class="xboost-title--primary{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
         {{ blog.title | escape }}
       </h1>
+ <!-- Mobile Filter Toggles -->
+<div class="mobile-filter-toggles">
+  <div class="mobile-filter-row">
+     {% if section.settings.blog_show_category %}
+    <div class="mobile-filter-item">
+      <div class="filter-dropdown-wrapper">
+        <div class="filter-dropdown-header" id="mobile-category-header">
+     {% if section.settings.category_icon != blank  %}<img src="{{ section.settings.category_icon | image_url }}" alt="Diversity Image" class="select-icon" /> {% endif %}
+          <span class="selected-text">{{ 'blogs.article.all_category' | t }}</span>
+        </div>
+        <ul class="filter-dropdown-list" id="mobile-category-list" style="display: none;">
+     <h3 class="filter-title mobile-title">{% if section.settings.category_icon != blank  %} <img src="{{ section.settings.category_icon | image_url }}" alt="Diversity Image" /> {% endif %}<span>{{ 'blogs.article.categories' | t }}</span></h3>
+          <li class="filter-dropdown-item active" data-value="">
+            <span>{{ 'blogs.article.all_category' | t }}</span>
+          </li>
+          {%- for tag in all_tags -%}
+            {%- assign tag_first_char = tag | slice: 0, 1 -%}
+            {%- unless tag_first_char == "_" -%}
+              <li class="filter-dropdown-item" data-value="{{ tag | downcase | replace: ' ', '-' | replace: '&', 'and' | strip }}">
+                <span>{{ tag }}</span>
+              </li>
+            {%- endunless -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+        {% endif %}
+         {% if section.settings.blog_show_month %}
+    <div class="mobile-filter-item">
+      <div class="filter-dropdown-wrapper">
+        <div class="filter-dropdown-header" id="mobile-month-header">
+         {% if section.settings.month_icon != blank %} <img src="{{ section.settings.month_icon | image_url }}" alt="Calendar Image" class="select-icon" /> {% endif %}
+          <span class="selected-text">{{ 'blogs.article.all_months' | t }}</span>
+         
+        </div>
+        <ul class="filter-dropdown-list" id="mobile-month-list" style="display: none;">
+         <h3 class="filter-title mobile-title"> {% if section.settings.month_icon != blank  %}<img src="{{ section.settings.month_icon | image_url }}" alt="Calendar Image" /> {% endif %}<span>{{ 'blogs.article.month' | t }}</span></h3>
+          <li class="filter-dropdown-item active" data-value="">
+            <span>{{ 'blogs.article.all_months' | t }}</span>
+          </li>
+          {%- assign date_keys = '' -%}
+          {%- assign all_dates = '' -%}
+          {%- for article in blog.articles -%}
+            {%- assign month_year = article.published_at | date: "%Y-%m" -%}
+            {%- unless date_keys contains month_year -%}
+              {%- assign formatted_date = article.published_at | date: "%B %Y" -%}
+              {%- assign all_dates = all_dates | append: month_year | append: '|' | append: formatted_date | append: ',' -%}
+              {%- assign date_keys = date_keys | append: month_year | append: ',' -%}
+            {%- endunless -%}
+          {%- endfor -%}
+          
+          {%- assign date_array = all_dates | split: ',' -%}
+          {%- assign sorted_dates = date_array | sort | reverse -%}
+          
+          {%- for date_item in sorted_dates -%}
+            {%- if date_item != '' -%}
+              {%- assign date_parts = date_item | split: '|' -%}
+              {%- assign date_value = date_parts[0] -%}
+              {%- assign date_display = date_parts[1] -%}
+              <li class="filter-dropdown-item" data-value="month-{{ date_value }}">
+                <span>{{ date_display }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+    </div>
+        {% endif %}
+  </div>
+</div>
+</div>
+        <!-- Desktop Filters -->
+      <div class="desktop-filters">
+        <!-- Categories Filter -->
+         {% if section.settings.blog_show_category %}
+        <div class="filter-section">
+         <h3 class="filter-title">{% if section.settings.category_icon != blank  %} <img src="{{ section.settings.category_icon | image_url }}" alt="Diversity Image" /> {% endif %}<span>{{ 'blogs.article.categories' | t }}</span></h3>
+          <div class="filter-list" id="categories-list">
+            <label class="filter-item">
+              <input type="radio" name="category-filter" value="" checked>
+              <span class="filter-label">{{ 'blogs.article.all_category' | t }}</span>
+            </label>
+            {%- for tag in all_tags -%}
+              {%- assign tag_first_char = tag | slice: 0, 1 -%}
+              {%- unless tag_first_char == "_" -%}
+                <label class="filter-item">
+                  <input type="radio" name="category-filter" value="{{ tag | downcase | replace: ' ', '-' | replace: '&', 'and' | strip }}">
+                  <span class="filter-label">{{ tag }}</span>
+                </label>
+              {%- endunless -%}
+            {%- endfor -%}
+          </div>
+        </div>
+          {% endif %}
+        <!-- Month Filter -->
+          {% if section.settings.blog_show_month %}
+        <div class="filter-section">
+          <h3 class="filter-title">{% if section.settings.month_icon != blank  %}<img src="{{ section.settings.month_icon | image_url }}" alt="Calendar Image" /> {% endif %}<span>{{ 'blogs.article.month' | t }}</span></h3>
+          <div class="filter-list" id="months-list">
+            {%- assign date_keys = '' -%}
+            {%- assign all_dates = '' -%}
 
-      <div class="xboost-blog-articles {% if section.settings.layout == 'collage' %}xboost-blog-articles--collage{% endif %}">
+            {%- for article in blog.articles -%}
+              {%- assign month_year = article.published_at | date: "%Y-%m" -%}
+              {%- unless date_keys contains month_year -%}
+                {%- assign formatted_date = article.published_at | date: "%Y %B" -%}
+                {%- assign all_dates = all_dates | append: month_year | append: '|' | append: formatted_date | append: ',' -%}
+                {%- assign date_keys = date_keys | append: month_year | append: ',' -%}
+              {%- endunless -%}
+            {%- endfor -%}
+            
+            {%- assign date_array = all_dates | split: ',' -%}
+            {%- assign sorted_dates = date_array | sort | reverse -%}
+            
+            <label class="filter-item">
+              <input type="radio" name="month-filter" value="" checked>
+              <span class="filter-label">{{ 'blogs.article.all_months' | t }}</span>
+            </label>
+            
+            {%- for date_item in sorted_dates -%}
+              {%- if date_item != '' -%}
+                {%- assign date_parts = date_item | split: '|' -%}
+                {%- assign date_value = date_parts[0] -%}
+                {%- assign date_display = date_parts[1] -%}
+                <label class="filter-item">
+                  <input type="radio" name="month-filter" value="month-{{ date_value }}">
+                  <span class="filter-label">{{ date_display }}</span>
+                </label>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+          {% endif %}
+      </div>
+    </div>
+    <div class="xboost-blog-right-side">
+     <!-- Blog Header -->
+    {% if section.settings.blog_show_search_bar %}     
+    <header class="blog-header"> 
+      <div class="search-container">
+        <input type="text" id="search-input" class="search-input" placeholder="Search">
+        <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5f5f5f" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <path d="m21 21-4.35-4.35"></path>
+        </svg>
+      </div>
+      </header>
+    {% endif %}
+
+    <!-- Loader -->
+    <div class="filter-loader" id="filter-loader" style="display: none;">
+      <div class="loader-spinner"></div>
+      <p class="loader-text">{{ 'blogs.article.loading' | t }}</p>
+    </div>
+      <div class="xboost-blog-articles {% if section.settings.layout == 'collage' %}xboost-blog-articles--collage{% endif %} "id="articles-container">
         {%- for article in blog.articles -%}
+           {%- assign normalized_tags = '' -%}
+        {%- for tag in article.tags -%}
+          {%- assign normalized_tag = tag | downcase | replace: ' ', '-' | replace: '&', 'and' | strip -%}
+          {%- if normalized_tags == '' -%}
+            {%- assign normalized_tags = normalized_tag -%}
+          {%- else -%}
+            {%- assign normalized_tags = normalized_tags | append: ',' | append: normalized_tag -%}
+          {%- endif -%}
+        {%- endfor -%}
           <div
-            class="xboost-blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="xboost-blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %} blog-article-item"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
               style="--animation-order: {{ forloop.index }};"
+              
             {% endif %}
+          data-tags="{{ normalized_tags }}"
+          data-original-tags="{{ article.tags | join: ',' }}"
+          data-date="{{ article.published_at | date: '%Y-%m-%d' }}"
+          data-title="{{ article.title | escape }}"
+          data-excerpt="{{ article.excerpt | strip_html | escape }}"
+            
           >
             {%- render 'article-card',
               article: article,
@@ -44,11 +215,18 @@
           </div>
         {%- endfor -%}
       </div>
-
+       <!-- No Results Message -->
+    <div class="no-results" id="no-results" style="display: none;">
+      <h3>{{ 'blogs.article.no_articles_found' | t }}</h3>
+        
+    </div>
       {%- if paginate.pages > 1 -%}
+        <div class="pagination-wrapper" id="pagination-wrapper">
         {%- render 'pagination', paginate: paginate -%}
+        </div>
       {%- endif -%}
     </div>
+  </div>
   </div>
 {%- endpaginate -%}
 
@@ -133,6 +311,38 @@
       "content": "t:sections.main-blog.settings.paragraph.content"
     },
      {
+      "type": "checkbox",
+      "id": "blog_show_category",
+      "label": "t:sections.featured-blog.settings.blog_show_category.label",
+      "default": true
+    },
+    {
+      "type": "image_picker",
+      "id": "category_icon",
+      "label": "t:sections.featured-blog.settings.category_icon.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_month",
+      "label": "t:sections.featured-blog.settings.blog_show_month.label",
+      "default": true
+    },
+     {
+      "type": "image_picker",
+      "id": "month_icon",
+      "label": "t:sections.featured-blog.settings.month_icon.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "blog_show_search_bar",
+      "label": "t:sections.featured-blog.settings.blog_show_search_bar.label",
+      "default": true
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-blog.settings.paragraph.content"
+    },
+     {
       "type": "header",
       "content": "t:settings_schema.global.settings.colors.color_header"
     },
@@ -169,3 +379,332 @@
   ]
 }
 {% endschema %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Get filter elements
+  const searchInput = document.getElementById('search-input');
+  const articlesContainer = document.getElementById('articles-container');
+  const noResults = document.getElementById('no-results');
+  const paginationWrapper = document.getElementById('pagination-wrapper');
+  const filterLoader = document.getElementById('filter-loader');
+
+  // Desktop filter elements
+  const categoryRadios = document.querySelectorAll('input[name="category-filter"]');
+  const monthRadios = document.querySelectorAll('input[name="month-filter"]');
+
+  // Mobile dropdown elements
+  const mobileCategoryHeader = document.getElementById('mobile-category-header');
+  const mobileCategoryList = document.getElementById('mobile-category-list');
+  const mobileMonthHeader = document.getElementById('mobile-month-header');
+  const mobileMonthList = document.getElementById('mobile-month-list');
+
+  // Store original articles
+  let allArticles = Array.from(document.querySelectorAll('.blog-article-item'));
+  let filteredArticles = [...allArticles];
+
+  // Loader functions
+  function showLoader() {
+    if (filterLoader) {
+      filterLoader.style.display = 'flex';
+    }
+    if (articlesContainer) {
+      articlesContainer.classList.add('filtering');
+    }
+  }
+
+  function hideLoader() {
+    if (filterLoader) {
+      filterLoader.style.display = 'none';
+    }
+    if (articlesContainer) {
+      articlesContainer.classList.remove('filtering');
+    }
+  }
+
+  // Mobile dropdown functionality
+  function initializeMobileDropdowns() {
+    // Category dropdown
+    if (mobileCategoryHeader && mobileCategoryList) {
+      mobileCategoryHeader.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleDropdown(mobileCategoryList);
+        // Close other dropdown
+        if (mobileMonthList) {
+          mobileMonthList.style.display = 'none';
+          mobileMonthHeader.classList.remove('active');
+        }
+      });
+
+      // Category dropdown items
+      const categoryItems = mobileCategoryList.querySelectorAll('.filter-dropdown-item');
+      categoryItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.stopPropagation();
+          selectMobileDropdownItem(mobileCategoryHeader, mobileCategoryList, this);
+          setRadioValue('category-filter', this.dataset.value);
+          filterArticles();
+        });
+      });
+    }
+
+    // Month dropdown
+    if (mobileMonthHeader && mobileMonthList) {
+      mobileMonthHeader.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleDropdown(mobileMonthList);
+        // Close other dropdown
+        if (mobileCategoryList) {
+          mobileCategoryList.style.display = 'none';
+          mobileCategoryHeader.classList.remove('active');
+        }
+      });
+
+      // Month dropdown items
+      const monthItems = mobileMonthList.querySelectorAll('.filter-dropdown-item');
+      monthItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+          e.stopPropagation();
+          selectMobileDropdownItem(mobileMonthHeader, mobileMonthList, this);
+          setRadioValue('month-filter', this.dataset.value);
+          filterArticles();
+        });
+      });
+    }
+
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function() {
+      if (mobileCategoryList) {
+        mobileCategoryList.style.display = 'none';
+        mobileCategoryHeader.classList.remove('active');
+      }
+      if (mobileMonthList) {
+        mobileMonthList.style.display = 'none';
+        mobileMonthHeader.classList.remove('active');
+      }
+    });
+  }
+
+  function toggleDropdown(dropdownList) {
+    const header = dropdownList.previousElementSibling;
+    if (dropdownList.style.display === 'none' || !dropdownList.style.display) {
+      dropdownList.style.display = 'block';
+      header.classList.add('active');
+    } else {
+      dropdownList.style.display = 'none';
+      header.classList.remove('active');
+    }
+  }
+
+  function selectMobileDropdownItem(header, list, selectedItem) {
+    // Remove active class from all items
+    const allItems = list.querySelectorAll('.filter-dropdown-item');
+    allItems.forEach(item => item.classList.remove('active'));
+    
+    // Add active class to selected item
+    selectedItem.classList.add('active');
+    
+    // Update header text
+    const selectedText = header.querySelector('.selected-text');
+    selectedText.textContent = selectedItem.querySelector('span').textContent;
+    
+    // Close dropdown
+    list.style.display = 'none';
+    header.classList.remove('active');
+  }
+
+  // Sync mobile and desktop filters
+  function syncMobileFilters() {
+    // Sync category filters
+    const selectedCategory = getSelectedRadioValue('category-filter');
+    if (mobileCategoryList) {
+      const categoryItem = mobileCategoryList.querySelector(`[data-value="${selectedCategory}"]`);
+      if (categoryItem && mobileCategoryHeader) {
+        selectMobileDropdownItem(mobileCategoryHeader, mobileCategoryList, categoryItem);
+      }
+    }
+
+    // Sync month filters
+    const selectedMonth = getSelectedRadioValue('month-filter');
+    if (mobileMonthList) {
+      const monthItem = mobileMonthList.querySelector(`[data-value="${selectedMonth}"]`);
+      if (monthItem && mobileMonthHeader) {
+        selectMobileDropdownItem(mobileMonthHeader, mobileMonthList, monthItem);
+      }
+    }
+  }
+
+  function getSelectedRadioValue(name) {
+    const selectedRadio = document.querySelector(`input[name="${name}"]:checked`);
+    return selectedRadio ? selectedRadio.value : '';
+  }
+
+  function setRadioValue(name, value) {
+    const radio = document.querySelector(`input[name="${name}"][value="${value}"]`);
+    if (radio) {
+      radio.checked = true;
+    }
+  }
+
+  // Main filter function with loader
+  function filterArticles() {
+    // Show loader immediately
+    showLoader();
+
+    // Use setTimeout to allow loader to show before heavy processing
+    setTimeout(() => {
+      const selectedTag = getSelectedRadioValue('category-filter');
+      const selectedDate = getSelectedRadioValue('month-filter');
+      const searchTerm = searchInput?.value.toLowerCase().trim() || '';
+
+      filteredArticles = allArticles.filter(article => {
+        // Tag filtering
+        const articleTags = (article.dataset.tags || '').toLowerCase();
+        const articleTagsArray = articleTags ? articleTags.split(',').map(t => t.trim()) : [];
+        const tagMatch = !selectedTag || articleTagsArray.includes(selectedTag);
+
+        // Search filtering
+        const title = (article.dataset.title || '').toLowerCase();
+        const excerpt = (article.dataset.excerpt || '').toLowerCase();
+        const originalTags = (article.dataset.originalTags || '').toLowerCase();
+        const searchableText = `${title} ${excerpt} ${originalTags}`;
+        const searchMatch = !searchTerm || searchableText.includes(searchTerm);
+
+        // Date filtering
+        const dateMatch = checkDateFilter(article, selectedDate);
+
+        return tagMatch && searchMatch && dateMatch;
+      });
+
+      // Display results after a short delay to show the loader
+      setTimeout(() => {
+        displayFilteredArticles();
+        hideLoader();
+
+        // Hide pagination during filtering
+        if (paginationWrapper) {
+          const hasFilters = selectedTag || selectedDate || searchTerm;
+          paginationWrapper.style.display = hasFilters ? 'none' : 'flex';
+        }
+      }, 100);
+    }, 50);
+  }
+
+  // Date filter helper
+  function checkDateFilter(article, dateValue) {
+    if (!dateValue) return true;
+
+    const articleDateStr = article.dataset.date;
+    const articleDate = articleDateStr ? new Date(articleDateStr) : null;
+    if (!articleDate) return true;
+
+    if (dateValue.startsWith('month-')) {
+      const [_, yearMonth] = dateValue.split('month-');
+      const [year, month] = yearMonth.split('-').map(Number);
+      return (
+        articleDate.getFullYear() === year &&
+        articleDate.getMonth() + 1 === month
+      );
+    }
+    
+    return true;
+  }
+
+  // Display filtered articles
+  function displayFilteredArticles() {
+    // Hide all articles
+    allArticles.forEach(article => {
+      article.style.display = 'none';
+    });
+
+    // Show filtered articles
+    filteredArticles.forEach(article => {
+      article.style.display = 'block';
+    });
+
+    // Show/hide no results message
+    if (filteredArticles.length === 0) {
+      noResults.style.display = 'block';
+      articlesContainer.style.display = 'none';
+    } else {
+      noResults.style.display = 'none';
+      articlesContainer.style.display = 'grid';
+    }
+  }
+
+  // Clear all filters
+  function clearFilters() {
+    // Show loader
+    showLoader();
+
+    setTimeout(() => {
+      // Clear desktop filters
+      const allCategoryRadio = document.querySelector('input[name="category-filter"][value=""]');
+      const allMonthRadio = document.querySelector('input[name="month-filter"][value=""]');
+      if (allCategoryRadio) allCategoryRadio.checked = true;
+      if (allMonthRadio) allMonthRadio.checked = true;
+
+      // Clear mobile filters
+      if (mobileCategoryList && mobileCategoryHeader) {
+        const defaultCategoryItem = mobileCategoryList.querySelector('[data-value=""]');
+        if (defaultCategoryItem) {
+          selectMobileDropdownItem(mobileCategoryHeader, mobileCategoryList, defaultCategoryItem);
+        }
+      }
+      
+      if (mobileMonthList && mobileMonthHeader) {
+        const defaultMonthItem = mobileMonthList.querySelector('[data-value=""]');
+        if (defaultMonthItem) {
+          selectMobileDropdownItem(mobileMonthHeader, mobileMonthList, defaultMonthItem);
+        }
+      }
+
+      if (searchInput) searchInput.value = '';
+
+      filteredArticles = [...allArticles];
+      
+      setTimeout(() => {
+        displayFilteredArticles();
+        hideLoader();
+
+        if (paginationWrapper) {
+          paginationWrapper.style.display = 'flex';
+        }
+      }, 100);
+    }, 50);
+  }
+
+  // Global function for no-results button
+  window.clearAllFilters = clearFilters;
+
+  // Event listeners for desktop filters
+  categoryRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      syncMobileFilters();
+      filterArticles();
+    });
+  });
+
+  monthRadios.forEach(radio => {
+    radio.addEventListener('change', function() {
+      syncMobileFilters();
+      filterArticles();
+    });
+  });
+
+  // Search input listener with debouncing and loader
+  if (searchInput) {
+    let timeout;
+    searchInput.addEventListener('input', function() {
+      clearTimeout(timeout);
+      showLoader();
+      timeout = setTimeout(() => {
+        filterArticles();
+      }, 500);
+    });
+  }
+
+  // Initialize
+  initializeMobileDropdowns();
+  syncMobileFilters();
+});
+</script>                                       

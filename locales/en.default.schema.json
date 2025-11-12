@@ -957,7 +957,22 @@
         },
         "show_author": {
           "label": "Show author"
-        }
+        },
+        "blog_show_category": {
+          "label": "Show Category Filter"
+        },
+        "category_icon": {
+          "label": "Category Icon"
+        },
+        "blog_show_month": {
+          "label": "Show Month Filter"
+        },
+        "month_icon": {
+          "label": "Month Icon"
+        },
+        "blog_show_search_bar": {
+          "label": "Show Searchbar Filter"
+        },
       },
       "presets": {
         "name": "Blog posts"
