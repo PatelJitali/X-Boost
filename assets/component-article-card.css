@@ -21,7 +21,18 @@ input[type="radio"]:checked+.filter-label {
   gap: 10px;
   align-items: center;
 }
-
+.filter-title.mobile-title {
+    margin: 10px;
+}
+.filter-dropdown-item {
+    padding: 5px 10px 5px 60px;
+    cursor: pointer;
+    transition: background-color .2s;
+}
+.filter-dropdown-item.active, input[type=radio]:checked+.filter-label {
+    color: #4c6762;
+    font-weight: 600;
+}
 .filter-list {
   padding-left: 34px;
 }
@@ -49,6 +60,12 @@ input[type="radio"]:checked+.filter-label {
   transform: translateY(-50%);
   height: 20px;
   pointer-events: none;
+}
+ .filter-dropdown-header .select-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    flex-shrink: 0;
 }
 .select-wrapper select {
   padding-left: 40px;
@@ -157,7 +174,7 @@ input[type="radio"]:checked+.filter-label {
 }
 .mobile-filter-row{
       display: flex;
-    gap: 20px;
+    gap: 10px;
     align-items: center;
 }
 .filter-dropdown-header{
